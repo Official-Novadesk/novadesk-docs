@@ -1,11 +1,475 @@
 ---
-title: Example Guide
-description: A guide in my new Starlight docs site.
+title: Advanced Examples
+description: Complex examples showing various Novadesk features
 ---
 
-Guides lead a user through a specific task they want to accomplish, often with a sequence of steps.
-Writing a good guide requires thinking about what your users are trying to do.
+# Advanced Examples
 
-## Further reading
+This guide demonstrates complex examples that combine multiple Novadesk features to create sophisticated widgets.
 
-- Read [about how-to guides](https://diataxis.fr/how-to-guides/) in the Diátaxis framework
+## Complete System Monitor Dashboard
+
+This example creates a comprehensive system monitor dashboard that displays CPU, memory, network, and disk usage:
+
+```javascript
+// Initialize monitors
+var cpu = new novadesk.system.CPU();
+var memory = new novadesk.system.Memory();
+var network = new novadesk.system.Network();
+var disk = new novadesk.system.Disk({ drive: "C:" });
+
+// Create the dashboard widget
+var dashboard = new widgetWindow({
+    id: "systemDashboard",
+    x: 50,
+    y: 50,
+    width: 300,
+    height: 250,
+    backgroundcolor: "rgba(0,0,0,0.85)",
+    zpos: "ondesktop",
+    draggable: true,
+    keeponscreen: true
+});
+
+// Add title
+dashboard.addText({
+    id: "title",
+    text: "System Dashboard",
+    x: 10,
+    y: 10,
+    fontsize: 18,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+// Add CPU info
+dashboard.addText({
+    id: "cpuInfo",
+    text: "CPU: Calculating...",
+    x: 10,
+    y: 40,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add memory info
+dashboard.addText({
+    id: "memInfo",
+    text: "Memory: Calculating...",
+    x: 10,
+    y: 65,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add network info
+dashboard.addText({
+    id: "netInfo",
+    text: "Network: Calculating...",
+    x: 10,
+    y: 90,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add disk info
+dashboard.addText({
+    id: "diskInfo",
+    text: "Disk C:: Calculating...",
+    x: 10,
+    y: 115,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add timestamp
+dashboard.addText({
+    id: "timestamp",
+    text: "Last updated: Calculating...",
+    x: 10,
+    y: 140,
+    fontsize: 12,
+    color: "rgb(200,200,200)"
+});
+
+// Add refresh button
+dashboard.addText({
+    id: "refreshBtn",
+    text: "[Refresh Data]",
+    x: 10,
+    y: 165,
+    fontsize: 12,
+    color: "rgb(100,150,255)",
+    onleftmouseup: "updateSystemInfo()"
+});
+
+// Add global hotkey to refresh dashboard
+novadesk.registerHotkey("Ctrl+Alt+D", function() {
+    updateSystemInfo();
+    novadesk.log("Dashboard refreshed via hotkey");
+});
+
+// Update function
+function updateSystemInfo() {
+    // Get current system stats
+    var cpuUsage = cpu.usage();
+    var memStats = memory.stats();
+    var netStats = network.stats();
+    var diskStats = disk.stats();
+    
+    // Format memory values
+    var memUsedGB = (memStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var memTotalGB = (memStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    
+    // Format network values
+    var netInKB = (netStats.netIn / 1024).toFixed(1);
+    var netOutKB = (netStats.netOut / 1024).toFixed(1);
+    
+    // Format disk values
+    var diskUsedGB = (diskStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var diskTotalGB = (diskStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    
+    // Update display
+    dashboard.updateText("cpuInfo", "CPU: " + cpuUsage.toFixed(1) + "%");
+    dashboard.updateText("memInfo", "Memory: " + memUsedGB + "GB / " + memTotalGB + "GB (" + memStats.percent + "%)");
+    dashboard.updateText("netInfo", "Network: " + netInKB + "↓ " + netOutKB + "↑ KB/s");
+    dashboard.updateText("diskInfo", "Disk C:: " + diskUsedGB + "GB / " + diskTotalGB + "GB (" + diskStats.percent + "%)");
+    
+    // Update timestamp
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    dashboard.updateText("timestamp", "Last updated: " + timeString);
+}
+
+// Update every 3 seconds
+setInterval(updateSystemInfo, 3000);
+
+// Initial update
+updateSystemInfo();
+```
+
+## Interactive Clock with Date
+
+This example creates a clock that displays both time and date with interactive features:
+
+```javascript
+var clockWidget = new widgetWindow({
+    id: "clockWidget",
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 100,
+    backgroundcolor: "rgba(0,0,0,0.7)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add time display
+clockWidget.addText({
+    id: "timeDisplay",
+    text: "Loading...",
+    x: 10,
+    y: 10,
+    fontsize: 24,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+// Add date display
+clockWidget.addText({
+    id: "dateDisplay",
+    text: "Loading...",
+    x: 10,
+    y: 45,
+    fontsize: 14,
+    color: "rgb(200,200,200)"
+});
+
+// Add day of week
+clockWidget.addText({
+    id: "dayDisplay",
+    text: "Loading...",
+    x: 10,
+    y: 65,
+    fontsize: 12,
+    color: "rgb(150,150,150)"
+});
+
+// Add clickable refresh
+clockWidget.addText({
+    id: "refreshClock",
+    text: "[Refresh]",
+    x: 150,
+    y: 80,
+    fontsize: 10,
+    color: "rgb(100,150,255)",
+    onleftmouseup: "updateClock()"
+});
+
+function updateClock() {
+    var now = new Date();
+    
+    // Format time as HH:MM:SS
+    var timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+    
+    // Format date as Month DD, YYYY
+    var dateString = now.toLocaleDateString([], {year: 'numeric', month: 'long', day: 'numeric'});
+    
+    // Get day of week
+    var dayString = now.toLocaleDateString([], {weekday: 'long'});
+    
+    // Update displays
+clockWidget.updateText("timeDisplay", timeString);
+    clockWidget.updateText("dateDisplay", dateString);
+    clockWidget.updateText("dayDisplay", dayString);
+}
+
+// Update every second
+setInterval(updateClock, 1000);
+
+// Initial update
+updateClock();
+```
+
+## Media Controller Widget
+
+This example creates a simple media controller that can play/pause and control volume:
+
+```javascript
+var mediaWidget = new widgetWindow({
+    id: "mediaController",
+    x: 200,
+    y: 200,
+    width: 150,
+    height: 100,
+    backgroundcolor: "rgba(30,30,30,0.9)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add title
+mediaWidget.addText({
+    id: "mediaTitle",
+    text: "Media Controller",
+    x: 10,
+    y: 10,
+    fontsize: 14,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+// Add play/pause button
+mediaWidget.addText({
+    id: "playPauseBtn",
+    text: "▶ Play",
+    x: 10,
+    y: 40,
+    fontsize: 16,
+    color: "rgb(100,255,100)",
+    onleftmouseup: "togglePlayPause()"
+});
+
+// Add volume controls
+mediaWidget.addText({
+    id: "volDownBtn",
+    text: "🔉 -",
+    x: 10,
+    y: 70,
+    fontsize: 14,
+    color: "rgb(255,200,100)",
+    onleftmouseup: "changeVolume(-10)"
+});
+
+mediaWidget.addText({
+    id: "volUpBtn",
+    text: "🔊 +",
+    x: 60,
+    y: 70,
+    fontsize: 14,
+    color: "rgb(255,200,100)",
+    onleftmouseup: "changeVolume(10)"
+});
+
+// Add volume display
+mediaWidget.addText({
+    id: "volDisplay",
+    text: "Vol: 100%",
+    x: 110,
+    y: 70,
+    fontsize: 12,
+    color: "rgb(200,200,200)"
+});
+
+var isPlaying = false;
+var volume = 100;
+
+function togglePlayPause() {
+    isPlaying = !isPlaying;
+    var btnText = isPlaying ? "⏸ Pause" : "▶ Play";
+    var btnColor = isPlaying ? "rgb(255,100,100)" : "rgb(100,255,100)";
+    
+    mediaWidget.updateText("playPauseBtn", btnText);
+    
+    // In a real implementation, you would send media control commands
+    // For example, using Windows APIs to control system media
+    novadesk.log("Media " + (isPlaying ? "playing" : "paused"));
+}
+
+function changeVolume(amount) {
+    volume = Math.max(0, Math.min(100, volume + amount));
+    mediaWidget.updateText("volDisplay", "Vol: " + volume + "%");
+    
+    // In a real implementation, you would adjust system volume
+    novadesk.log("Volume changed to " + volume + "%");
+}
+
+// Register hotkeys for media control
+novadesk.registerHotkey("MediaPlayPause", function() {
+    togglePlayPause();
+});
+
+novadesk.registerHotkey("MediaVolumeUp", function() {
+    changeVolume(5);
+});
+
+novadesk.registerHotkey("MediaVolumeDown", function() {
+    changeVolume(-5);
+});
+```
+
+## Multiple Widget Coordination
+
+This example shows how multiple widgets can work together:
+
+```javascript
+// Create a main controller widget
+var controller = new widgetWindow({
+    id: "mainController",
+    x: 300,
+    y: 300,
+    width: 180,
+    height: 150,
+    backgroundcolor: "rgba(0,0,50,0.8)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Create a secondary display widget
+var display = new widgetWindow({
+    id: "secondaryDisplay",
+    x: 500,
+    y: 300,
+    width: 200,
+    height: 100,
+    backgroundcolor: "rgba(50,0,0,0.8)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Controller UI
+c controller.addText({
+    id: "ctrlTitle",
+    text: "Widget Controller",
+    x: 10,
+    y: 10,
+    fontsize: 14,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+controller.addText({
+    id: "showBtn",
+    text: "[Show Display]",
+    x: 10,
+    y: 40,
+    fontsize: 12,
+    color: "rgb(100,255,100)",
+    onleftmouseup: "showSecondaryDisplay()"
+});
+
+controller.addText({
+    id: "hideBtn",
+    text: "[Hide Display]",
+    x: 10,
+    y: 60,
+    fontsize: 12,
+    color: "rgb(255,100,100)",
+    onleftmouseup: "hideSecondaryDisplay()"
+});
+
+controller.addText({
+    id: "syncBtn",
+    text: "[Sync Time]",
+    x: 10,
+    y: 80,
+    fontsize: 12,
+    color: "rgb(100,150,255)",
+    onleftmouseup: "syncTime()"
+});
+
+// Display UI
+display.addText({
+    id: "dispTitle",
+    text: "Secondary Display",
+    x: 10,
+    y: 10,
+    fontsize: 14,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+display.addText({
+    id: "timeDisplay",
+    text: "Time: Syncing...",
+    x: 10,
+    y: 40,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+display.addText({
+    id: "statusDisplay",
+    text: "Status: Active",
+    x: 10,
+    y: 65,
+    fontsize: 12,
+    color: "rgb(200,255,200)"
+});
+
+// Control functions
+function showSecondaryDisplay() {
+    display.setProperties({
+        backgroundcolor: "rgba(50,0,0,0.8)"
+    });
+    display.setProperties({
+        windowopacity: 255
+    });
+    novadesk.log("Secondary display shown");
+}
+
+function hideSecondaryDisplay() {
+    display.setProperties({
+        windowopacity: 0  // Nearly transparent but still functional
+    });
+    novadesk.log("Secondary display hidden");
+}
+
+function syncTime() {
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    display.updateText("timeDisplay", "Time: " + timeString);
+    
+    // Update status with timestamp
+    display.updateText("statusDisplay", "Status: Synced at " + timeString);
+    
+    novadesk.log("Time synced at " + timeString);
+}
+
+// Sync time every 10 seconds
+setInterval(syncTime, 10000);
+
+// Initial sync
+syncTime();
+```
+
+These advanced examples demonstrate how to combine various Novadesk features to create sophisticated desktop widgets. Each example showcases different aspects of the API while remaining practical and useful.

@@ -1,59 +1,51 @@
-# Starlight Starter Kit: Markdoc
+# Novadesk Documentation
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+This repository contains the documentation for Novadesk, a desktop widget platform for Windows that allows you to create beautiful, interactive desktop widgets using JavaScript.
 
+## About Novadesk
+
+Novadesk is a powerful desktop widget platform built with C++ and powered by the Duktape JavaScript engine. It allows users to create system monitors, custom interfaces, and desktop enhancements using familiar JavaScript syntax.
+
+## Documentation Structure
+
+The documentation is organized as follows:
+
+- **Getting Started**: Learn how to install and create your first widget
+- **Examples**: Progressive examples from simple to complex
+- **Guides**: Detailed guides on specific features and capabilities
+- **Reference**: Complete API reference
+
+## Running the Documentation Locally
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser to `http://localhost:4321`
+
+## Building for Production
+
+To build the documentation site for production:
+
+```bash
+npm run build
 ```
-npm create astro@latest -- --template starlight/markdoc
-```
 
-<!-- ASTRO:REMOVE:START -->
+## Contributing
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/markdoc)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/markdoc)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/markdoc)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fmarkdoc&project-name=my-starlight-docs&repository-name=my-starlight-docs)
+This documentation is built with [Starlight](https://starlight.astro.build/), a documentation framework built on [Astro](https://astro.build/). To contribute:
 
-<!-- ASTRO:REMOVE:END -->
+1. Fork the repository
+2. Create a new branch for your changes
+3. Make your changes to the documentation files in `src/content/docs/`
+4. Submit a pull request
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## License
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
-
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── markdoc.config.mjs
-├── package.json
-└── tsconfig.json
-```
-
-Starlight looks for `.md`, `.mdx` or `.mdoc` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
-
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
-
-Static assets, like favicons, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+The documentation is available under the terms of the LICENSE in the main Novadesk repository.

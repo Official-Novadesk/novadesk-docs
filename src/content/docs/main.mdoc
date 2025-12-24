@@ -1,0 +1,127 @@
+---
+title: Main Example
+description: A more comprehensive Novadesk widget example with multiple features
+---
+
+# Main Example
+
+This example demonstrates several key Novadesk features including system monitoring, hotkeys, and multiple content types.
+
+## Comprehensive Widget
+
+```javascript
+// Initialize system monitors
+var cpuMonitor = new novadesk.system.CPU();
+var memoryMonitor = new novadesk.system.Memory();
+
+// Create the main widget
+var mainWidget = new widgetWindow({
+    id: "mainWidget",
+    x: 50,
+    y: 50,
+    width: 250,
+    height: 150,
+    backgroundcolor: "rgba(0,0,0,0.8)",
+    zpos: "ondesktop",
+    draggable: true,
+    keeponscreen: true
+});
+
+// Add title text
+mainWidget.addText({
+    id: "titleText",
+    text: "System Monitor",
+    x: 10,
+    y: 10,
+    fontsize: 16,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+// Add CPU usage text
+mainWidget.addText({
+    id: "cpuText",
+    text: "CPU: Calculating...",
+    x: 10,
+    y: 40,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add memory usage text
+mainWidget.addText({
+    id: "memoryText",
+    text: "Memory: Calculating...",
+    x: 10,
+    y: 65,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add time display
+mainWidget.addText({
+    id: "timeText",
+    text: "Time: Calculating...",
+    x: 10,
+    y: 90,
+    fontsize: 12,
+    color: "rgb(200,200,200)"
+});
+
+// Add refresh button
+mainWidget.addText({
+    id: "refreshBtn",
+    text: "[Refresh]",
+    x: 10,
+    y: 115,
+    fontsize: 12,
+    color: "rgb(100,150,255)",
+    onleftmouseup: "updateSystemInfo()"
+});
+
+// Register global hotkey to refresh
+novadesk.registerHotkey("Ctrl+Alt+R", function() {
+    updateSystemInfo();
+    novadesk.log("System info refreshed via hotkey");
+});
+
+// Function to update system information
+function updateSystemInfo() {
+    // Get current system stats
+    var cpuUsage = cpuMonitor.usage();
+    var memStats = memoryMonitor.stats();
+    
+    // Format memory values
+    var usedGB = (memStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var totalGB = (memStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    
+    // Update the displays
+    mainWidget.updateText("cpuText", "CPU: " + cpuUsage.toFixed(1) + "%");
+    mainWidget.updateText("memoryText", "Memory: " + usedGB + "GB / " + totalGB + "GB (" + memStats.percent + "%)");
+    
+    // Update time
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    mainWidget.updateText("timeText", "Time: " + timeString);
+}
+
+// Update information every 2 seconds
+setInterval(updateSystemInfo, 2000);
+
+// Initial update
+updateSystemInfo();
+
+// Log when widget is ready
+novadesk.log("Main system monitor widget initialized");
+```
+
+This main example demonstrates:
+- Creating a widget with multiple configuration options
+- Using system monitoring classes (CPU and Memory)
+- Adding multiple text elements with different styles
+- Implementing periodic updates with setInterval
+- Registering global hotkeys
+- Adding interactive elements with mouse handlers
+- Proper resource management and logging
+
+The widget will display real-time system information and can be refreshed either by clicking the refresh button or using the Ctrl+Alt+R hotkey.

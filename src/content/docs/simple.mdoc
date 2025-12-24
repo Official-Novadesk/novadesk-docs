@@ -1,0 +1,60 @@
+---
+title: Simple Example
+description: A basic Novadesk widget to get you started quickly
+---
+
+# Simple Example
+
+This is a basic example to help you get started with Novadesk quickly. It creates a simple text widget that displays a welcome message.
+
+## Basic Widget
+
+```javascript
+// Create a simple widget window
+var simpleWidget = new widgetWindow({
+    id: "simpleWidget",
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 80,
+    backgroundcolor: "rgba(0,0,0,0.7)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add a welcome text
+simpleWidget.addText({
+    id: "welcomeText",
+    text: "Hello, Novadesk!",
+    x: 10,
+    y: 10,
+    fontsize: 18,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+// Add a timestamp
+simpleWidget.addText({
+    id: "timeText",
+    text: "Time: Loading...",
+    x: 10,
+    y: 40,
+    fontsize: 12,
+    color: "rgb(200,200,200)"
+});
+
+// Update the time every second
+setInterval(function() {
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    simpleWidget.updateText("timeText", "Time: " + timeString);
+}, 1000);
+```
+
+This simple example demonstrates:
+- Creating a basic widget window
+- Adding text elements
+- Updating text content periodically
+- Using basic styling options
+
+You can copy this code to your `Widgets/index.js` file to see it in action.

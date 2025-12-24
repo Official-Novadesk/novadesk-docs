@@ -1,0 +1,244 @@
+---
+title: Configuration and Directives
+description: Learn how to configure Novadesk and use special directives
+---
+
+# Configuration and Directives
+
+Novadesk provides several ways to configure the application and control its behavior through special directives and configuration options.
+
+## Configuration Directives
+
+Configuration directives are special comments that you can add to the beginning of your JavaScript files to control Novadesk's behavior. These directives start with `!` followed by the directive name.
+
+### Available Directives
+
+#### `!enableDebugging;`
+Enables debug logging, which will output more detailed information to the console and log file.
+
+```javascript
+!enableDebugging;
+// Debug messages will now appear in the console
+novadesk.debug("This debug message will be shown");
+```
+
+#### `!disableLogging;`
+Disables all logging output to console and file.
+
+```javascript
+!disableLogging;
+// No log messages will be output
+novadesk.log("This message will not appear");
+novadesk.error("This error will not appear");
+```
+
+#### `!logToFile`
+Enables logging to a file named `novadesk.log` in the application directory.
+
+```javascript
+!logToFile
+// Log messages will be saved to novadesk.log
+novadesk.log("This will be saved to the log file");
+```
+
+#### `!hideTrayIcon`
+Hides the Novadesk tray icon from the system tray.
+
+```javascript
+!hideTrayIcon
+// The tray icon will not appear
+// Widgets will still function normally
+```
+
+## Widget Configuration Options
+
+When creating widgets, you can configure various aspects of their behavior and appearance through the options object passed to `new widgetWindow()`.
+
+### Position and Size Options
+
+```javascript
+var widget = new widgetWindow({
+    x: 100,           // X position (use CW_USEDEFAULT for system default)
+    y: 100,           // Y position
+    width: 300,       // Width in pixels
+    height: 200,      // Height in pixels
+    m_WDefined: false, // Whether width was explicitly defined
+    m_HDefined: false // Whether height was explicitly defined
+});
+```
+
+### Visual Options
+
+```javascript
+var widget = new widgetWindow({
+    backgroundcolor: "rgba(0,0,0,0.8)", // Background color with alpha
+    zpos: "ondesktop",                  // Z-order position
+    bgalpha: 200,                       // Alpha component of background color (0-255)
+    windowopacity: 255                  // Overall window opacity (0-255)
+});
+```
+
+### Behavior Options
+
+```javascript
+var widget = new widgetWindow({
+    draggable: true,      // Whether the widget can be dragged by the user
+    clickthrough: false,  // Whether clicks pass through the widget
+    keeponscreen: true,   // Whether to keep widget on screen boundaries
+    snapedges: true       // Whether to snap to screen edges when dragging
+});
+```
+
+## Z-Order Positions
+
+The `zpos` option controls where your widget appears in the window stack:
+
+- `"normal"` - Standard window position (default)
+- `"topmost"` - Above most windows, but below always-on-top windows
+- `"ondesktop"` - On the desktop layer, below icons but above the wallpaper
+- `"onbottom"` - Below all other windows
+
+```javascript
+// Widget that stays on desktop layer
+var desktopWidget = new widgetWindow({
+    id: "desktopWidget",
+    zpos: "ondesktop"
+});
+
+// Always-on-top widget
+var topWidget = new widgetWindow({
+    id: "topWidget",
+    zpos: "topmost"
+});
+```
+
+## Mouse Action Configuration
+
+Content elements (images and text) can respond to mouse events by adding mouse action properties to their options:
+
+```javascript
+widget.addText({
+    id: "clickableText",
+    text: "Click me!",
+    x: 10,
+    y: 10,
+    fontsize: 16,
+    color: "rgb(100,150,255)",
+    // Mouse event handlers
+    onleftmouseup: "novadesk.log('Left click')",
+    onrightmouseup: "novadesk.log('Right click')",
+    onmouseenter: "this.setProperties({ color: 'rgb(255,100,100)' })",
+    onmouseleave: "this.setProperties({ color: 'rgb(100,150,255)' })",
+    onmousemove: "novadesk.log('Mouse moving over element')"
+});
+```
+
+## Image Configuration Options
+
+When adding images to widgets, you can configure various visual properties:
+
+```javascript
+widget.addImage({
+    id: "configuredImage",
+    path: "assets/image.png",
+    x: 0,
+    y: 0,
+    width: 100,
+    height: 100,
+    solidcolor: "rgba(255,0,0,0.3)",    // Background color when no image
+    solidcolorradius: 5,                 // Rounded corners for solid color
+    preserveaspectratio: 1,              // Maintain aspect ratio (0 or 1)
+    imagetint: "rgb(255,255,255)",      // Tint color (affects brightness)
+    imagealpha: 255,                     // Alpha transparency (0-255)
+    grayscale: false,                    // Convert to grayscale
+    tile: false,                         // Tile the image if smaller than specified size
+    rotate: 0.0,                         // Rotation angle in degrees
+    transformmatrix: [1,0,0,1,0,0],     // Affine transformation matrix [a,b,c,d,tx,ty]
+    colormatrix: [ /* 25 values */ ]     // Color transformation matrix
+});
+```
+
+## Text Configuration Options
+
+Text elements have numerous configuration options for appearance and behavior:
+
+```javascript
+widget.addText({
+    id: "configuredText",
+    text: "Sample Text",
+    x: 10,
+    y: 10,
+    width: 200,
+    height: 30,
+    fontsize: 16,
+    fontfamily: "Arial",
+    color: "rgb(255,255,255)",
+    fontweight: "normal",              // "normal" or "bold"
+    fontstyle: "normal",               // "normal" or "italic"
+    align: "left",                     // Text alignment
+    clipstring: 0,                     // Whether to clip the string
+    clipstringw: -1,                   // Clip width
+    clipstringh: -1,                   // Clip height
+    solidcolor: "rgba(0,0,0,0.3)",     // Background color
+    solidcolorradius: 3,               // Background corner radius
+    rotate: 0.0                        // Rotation angle in degrees
+});
+```
+
+## Text Alignment Options
+
+The `align` property for text elements accepts several values:
+
+- `"left"` or `"lefttop"` - Top-left alignment
+- `"center"` or `"centertop"` - Top-center alignment
+- `"right"` or `"righttop"` - Top-right alignment
+- `"leftcenter"` - Middle-left alignment
+- `"centercenter"` - Center alignment
+- `"rightcenter"` - Middle-right alignment
+- `"leftbottom"` - Bottom-left alignment
+- `"centerbottom"` - Bottom-center alignment
+- `"rightbottom"` - Bottom-right alignment
+
+## System Variables
+
+Novadesk provides access to various system variables through `novadesk.system.getWorkspaceVariables()`:
+
+```javascript
+var ws = novadesk.system.getWorkspaceVariables();
+
+// Current monitor workspace (if multi-monitor setup)
+console.log("Work area X:", ws.WORKAREAX);
+console.log("Work area Y:", ws.WORKAREAY);
+console.log("Work area width:", ws.WORKAREAWIDTH);
+console.log("Work area height:", ws.WORKAREAHEIGHT);
+
+// Primary monitor workspace
+console.log("Primary work area X:", ws.PWORKAREAX);
+console.log("Primary work area Y:", ws.PWORKAREAY);
+
+// Virtual screen (all monitors combined)
+console.log("Virtual screen X:", ws.VSCREENAREAX);
+console.log("Virtual screen Y:", ws.VSCREENAREAY);
+console.log("Virtual screen width:", ws.VSCREENAREAWIDTH);
+console.log("Virtual screen height:", ws.VSCREENAREAHEIGHT);
+
+// Nth monitor (if multi-monitor setup)
+console.log("Monitor 1 work area X:", ws["WORKAREAX@1"]);
+console.log("Monitor 1 work area Y:", ws["WORKAREAY@1"]);
+```
+
+## Configuration Best Practices
+
+1. **Use appropriate z-order positions**: Choose the right `zpos` value based on your widget's purpose. Use `"ondesktop"` for widgets that should appear behind desktop icons but above the wallpaper.
+
+2. **Consider performance**: For frequently updated content, optimize your update intervals. Use appropriate intervals for different types of data (e.g., every second for clocks, every few seconds for system stats).
+
+3. **Handle errors gracefully**: When accessing system resources, always include error handling to prevent widget crashes.
+
+4. **Use proper paths**: When referencing assets, use paths relative to the `Widgets` directory.
+
+5. **Clean up resources**: When possible, properly destroy monitor objects and cancel timers when they're no longer needed.
+
+6. **Use configuration directives judiciously**: Directives only affect the file they're in, so use them at the top of the appropriate files.
+
+Configuration options give you fine-grained control over your widgets' appearance, behavior, and performance characteristics, allowing you to create the exact desktop experience you want.

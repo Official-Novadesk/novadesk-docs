@@ -1,0 +1,145 @@
+---
+title: Widget Options and Configuration
+description: Learn how to configure widget windows with various options and properties
+---
+
+# Widget Options and Configuration
+
+The `widgetWindow` constructor accepts a configuration object that allows you to customize the appearance, behavior, and positioning of your widget windows.
+
+## Basic Widget Options
+
+Here are the available options for creating a widget window:
+
+```javascript
+var widget = new widgetWindow({
+    id: "uniqueWidgetId",           // Unique identifier for the widget
+    x: 100,                        // X position (default: CW_USEDEFAULT)
+    y: 100,                        // Y position (default: CW_USEDEFAULT)
+    width: 300,                    // Width in pixels (default: auto)
+    height: 200,                   // Height in pixels (default: auto)
+    backgroundcolor: "rgba(0,0,0,0.5)", // Background color with alpha
+    zpos: "ondesktop",             // Z-order position
+    draggable: true,               // Whether the widget can be dragged
+    clickthrough: false,           // Whether clicks pass through the widget
+    keeponscreen: true,            // Whether to keep widget on screen
+    snapedges: true,               // Whether to snap to screen edges
+    windowopacity: 255             // Overall window opacity (0-255)
+});
+```
+
+## Position and Size Options
+
+### Positioning
+- `x`, `y`: Set the initial position of the widget window. Use `CW_USEDEFAULT` (default) to let the system choose the position.
+
+### Sizing
+- `width`, `height`: Set the dimensions of the widget window. If set to 0 or not specified, the window will auto-size based on content.
+
+## Visual Options
+
+### Background Color
+The `backgroundcolor` option accepts CSS-style color values:
+- `"rgb(255,255,255)"` - Solid white
+- `"rgba(0,0,0,0.5)"` - Semi-transparent black (50% opacity)
+- `"rgba(255,0,0,128)"` - Red with alpha channel (0-255 range)
+
+### Opacity
+- `windowopacity`: Controls the overall transparency of the widget window (0 = fully transparent, 255 = fully opaque)
+- `bgalpha`: Controls the alpha channel of the background color (0-255)
+
+## Behavior Options
+
+### Draggable
+When `draggable: true`, users can click and drag the widget to reposition it on the screen. This works even if the widget has no visible background.
+
+### Click Through
+When `clickthrough: true`, mouse clicks will pass through the widget to the window underneath. This is useful for overlay widgets that should not interfere with other applications.
+
+### Keep on Screen
+When `keeponscreen: true`, the widget will be automatically repositioned if it would extend beyond the screen boundaries.
+
+### Snap Edges
+When `snapedges: true`, the widget will snap to screen edges when dragged near them, making it easier to position precisely.
+
+## Z-Order Positions
+
+The `zpos` option controls where your widget appears in the window stack:
+
+- `"normal"` - Standard window position (default)
+- `"topmost"` - Above most windows, but below always-on-top windows
+- `"ondesktop"` - On the desktop layer, below icons but above the wallpaper
+- `"onbottom"` - Below all other windows
+
+## Example: System Monitor Widget
+
+```javascript
+var sysWidget = new widgetWindow({
+    id: "systemMonitor",
+    x: 10,
+    y: 10,
+    width: 250,
+    height: 150,
+    backgroundcolor: "rgba(0,0,0,0.8)",
+    zpos: "ondesktop",
+    draggable: true,
+    clickthrough: false,
+    keeponscreen: true,
+    snapedges: true,
+    windowopacity: 255
+});
+
+// Add content to the widget
+sysWidget.addText({
+    id: "cpuText",
+    text: "CPU: Calculating...",
+    x: 10,
+    y: 10,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+sysWidget.addText({
+    id: "memoryText",
+    text: "Memory: Calculating...",
+    x: 10,
+    y: 35,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+```
+
+## Widget Methods
+
+Once a widget is created, you can modify it using these methods:
+
+- `addImage(options)` - Add an image element to the widget
+- `addText(options)` - Add a text element to the widget
+- `updateImage(id, newPath)` - Update an existing image
+- `updateText(id, newText)` - Update an existing text element
+- `removeContent(id)` - Remove a content element by ID
+- `clearContent()` - Remove all content from the widget
+- `setProperties(options)` - Update widget properties
+- `getProperties()` - Get current widget properties
+- `close()` - Close and destroy the widget
+- `refresh()` - Refresh all widgets (equivalent to novadesk.refresh())
+
+## Dynamic Property Updates
+
+You can update widget properties after creation using the `setProperties` method:
+
+```javascript
+// Update widget position and size
+widget.setProperties({
+    x: 200,
+    y: 200,
+    width: 400,
+    height: 300
+});
+
+// Update visual properties
+widget.setProperties({
+    backgroundcolor: "rgba(255,0,0,0.3)",
+    windowopacity: 200
+});
+```

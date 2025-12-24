@@ -8,19 +8,37 @@ export default defineConfig({
 	integrations: [
 		markdoc(),
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			title: 'Novadesk Documentation',
+			social: [
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/Novadesk/Novadesk' }
+			],
 			sidebar: [
+				{ label: 'Home', link: '/' },
+				{ label: 'Getting Started', link: '/getting-started/' },
+				{
+					label: 'Examples',
+					items: [
+						{ label: 'Simple Example', link: '/simple/' },
+						{ label: 'Main Example', link: '/main/' },
+						{ label: 'Full Example', link: '/full-example/' },
+					],
+				},
 				{
 					label: 'Guides',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ label: 'Widget Options', link: '/widget-options/' },
+						{ label: 'Content Elements', link: '/content-elements/' },
+						{ label: 'System Monitoring', link: '/system-monitoring/' },
+						{ label: 'Novadesk API', link: '/novadesk-api/' },
+						{ label: 'Configuration', link: '/configuration/' },
+						{ label: 'Troubleshooting', link: '/troubleshooting/' },
 					],
 				},
 				{
 					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					items: [
+						{ label: 'API Reference', link: '/reference/' },
+					],
 				},
 			],
 		}),

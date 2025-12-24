@@ -1,44 +1,44 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Novadesk Documentation
+template: splash
+description: Comprehensive documentation for Novadesk, a desktop widget platform for Windows
 hero:
-  title: Welcome to Starlight with Markdoc
-  tagline: Congrats on setting up a new Starlight project!
+  title: Novadesk
+  tagline: Create beautiful desktop widgets with JavaScript
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started
+      link: /getting-started/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: View on GitHub
+      link: https://github.com/Novadesk/Novadesk
       icon: external
       variant: minimal
 ---
 
-## Next steps
+## Create Desktop Widgets with JavaScript
 
-{% cardgrid stagger=true %}
+Novadesk is a powerful desktop widget platform that allows you to create beautiful, interactive desktop widgets using JavaScript. Built with C++ and powered by the Duktape JavaScript engine, Novadesk provides an extensive API for creating system monitors, custom interfaces, and desktop enhancements.
 
-{% card title="Update content" icon="pencil" %}
-Edit `src/content/docs/index.mdoc` to see this page change.
+## Key Features
+
+{% cardgrid %}
+
+{% card title="JavaScript API" icon="code" %}
+Build widgets using familiar JavaScript syntax with a comprehensive API for creating UI elements, handling system information, and managing widgets.
 {% /card %}
 
-{% card title="Change page layout" icon="document" %}
-Delete `template: splash` in `src/content/docs/index.mdoc` to display a sidebar on this page.
+{% card title="System Monitoring" icon="dashboard" %}
+Access real-time system information including CPU, memory, network, disk, and mouse usage through dedicated monitoring classes.
 {% /card %}
 
-{% card title="Add new content" icon="add-document" %}
-Add Markdoc files to `src/content/docs` to create new pages.
+{% card title="Custom UI Elements" icon="paintbrush" %}
+Create rich interfaces with images, text elements, and custom styling options.
 {% /card %}
 
-{% card title="Configure your site" icon="setting" %}
-Edit your `sidebar` and other config in `astro.config.mjs`.
-{% /card %}
-
-{% card title="Read the docs" icon="open-book" %}
-Learn more in [the Starlight Docs](https://starlight.astro.build/).
+{% card title="Global Hotkeys" icon="keyboard" %}
+Register global hotkeys that work system-wide to control your widgets and applications.
 {% /card %}
 
 {% /cardgrid %}

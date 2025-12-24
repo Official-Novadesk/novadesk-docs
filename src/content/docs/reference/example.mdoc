@@ -1,11 +1,298 @@
 ---
-title: Example Reference
-description: A reference page in my new Starlight docs site.
+title: API Reference
+description: Complete reference for all Novadesk API functions and properties
 ---
 
-Reference pages are ideal for outlining how things work in terse and clear terms.
-Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what you're documenting.
+# API Reference
 
-## Further reading
+This page provides a complete reference for all Novadesk API functions, methods, and properties.
 
-- Read [about reference](https://diataxis.fr/reference/) in the Diátaxis framework
+## Global Functions
+
+### novadesk.log(...)
+Write informational messages to the console and log file.
+
+**Parameters:** Any number of values to log
+**Returns:** Nothing
+
+### novadesk.error(...)
+Write error messages to the console and log file.
+
+**Parameters:** Any number of values to log as errors
+**Returns:** Nothing
+
+### novadesk.debug(...)
+Write debug messages (only shown when debugging is enabled).
+
+**Parameters:** Any number of values to log as debug info
+**Returns:** Nothing
+
+### novadesk.include(filename)
+Include and execute another JavaScript file.
+
+**Parameters:**
+- `filename` (string): Path to the JavaScript file to include
+**Returns:** Nothing
+
+### novadesk.onReady(callback)
+Execute a callback function when the application is ready.
+
+**Parameters:**
+- `callback` (function): Function to execute when ready
+**Returns:** Nothing
+
+### novadesk.refresh()
+Refresh all widgets.
+
+**Parameters:** None
+**Returns:** Nothing
+
+### novadesk.getExePath()
+Get information about the Novadesk executable.
+
+**Parameters:** None
+**Returns:** Object with `fullPath`, `directory`, and `filename` properties
+
+### novadesk.getEnv(variableName)
+Get the value of a specific environment variable.
+
+**Parameters:**
+- `variableName` (string): Name of the environment variable
+**Returns:** Value of the environment variable or null if not found
+
+### novadesk.getAllEnv()
+Get all environment variables as an object.
+
+**Parameters:** None
+**Returns:** Object containing all environment variables
+
+### novadesk.system.getWorkspaceVariables()
+Get workspace and screen-related variables.
+
+**Parameters:** None
+**Returns:** Object with screen/workspace information
+
+### novadesk.registerHotkey(hotkey, callback)
+Register a global hotkey with a callback function.
+
+**Parameters:**
+- `hotkey` (string): Hotkey combination (e.g., "Ctrl+Alt+R")
+- `callback` (function|object): Callback function or object with onKeyDown/onKeyUp
+**Returns:** Hotkey ID or -1 on failure
+
+### novadesk.unregisterHotkey(id)
+Unregister a previously registered hotkey using its ID.
+
+**Parameters:**
+- `id` (number): Hotkey ID returned by registerHotkey
+**Returns:** Nothing
+
+## Timer Functions
+
+### setTimeout(callback, delay)
+Execute a callback after a specified delay.
+
+**Parameters:**
+- `callback` (function): Function to execute
+- `delay` (number): Delay in milliseconds
+**Returns:** Timer ID
+
+### setInterval(callback, interval)
+Execute a callback repeatedly at specified intervals.
+
+**Parameters:**
+- `callback` (function): Function to execute repeatedly
+- `interval` (number): Interval in milliseconds
+**Returns:** Timer ID
+
+### clearTimeout(id)
+Cancel a timeout using its ID.
+
+**Parameters:**
+- `id` (number): Timer ID returned by setTimeout
+**Returns:** Nothing
+
+### clearInterval(id)
+Cancel an interval using its ID.
+
+**Parameters:**
+- `id` (number): Timer ID returned by setInterval
+**Returns:** Nothing
+
+### setImmediate(callback)
+Execute a callback immediately after the current event loop cycle.
+
+**Parameters:**
+- `callback` (function): Function to execute
+**Returns:** Immediate ID
+
+## Widget Window Methods
+
+### new widgetWindow(options)
+Create a new widget window.
+
+**Parameters:**
+- `options` (object): Configuration options for the widget
+**Returns:** Widget object
+
+### widget.addImage(options)
+Add an image element to the widget.
+
+**Parameters:**
+- `options` (object): Image configuration options
+**Returns:** The widget object (for chaining)
+
+### widget.addText(options)
+Add a text element to the widget.
+
+**Parameters:**
+- `options` (object): Text configuration options
+**Returns:** The widget object (for chaining)
+
+### widget.updateImage(id, newPath)
+Update an existing image with a new file.
+
+**Parameters:**
+- `id` (string): ID of the image element to update
+- `newPath` (string): Path to the new image file
+**Returns:** Boolean indicating success
+
+### widget.updateText(id, newText)
+Update an existing text element with new content.
+
+**Parameters:**
+- `id` (string): ID of the text element to update
+- `newText` (string): New text content
+**Returns:** Boolean indicating success
+
+### widget.removeContent(id)
+Remove a content element by ID.
+
+**Parameters:**
+- `id` (string): ID of the content element to remove
+**Returns:** Boolean indicating success
+
+### widget.clearContent()
+Remove all content from the widget.
+
+**Parameters:** None
+**Returns:** The widget object (for chaining)
+
+### widget.setProperties(options)
+Update widget properties.
+
+**Parameters:**
+- `options` (object): New property values
+**Returns:** The widget object (for chaining)
+
+### widget.getProperties()
+Get current widget properties.
+
+**Parameters:** None
+**Returns:** Object with current widget properties
+
+### widget.close()
+Close and destroy the widget.
+
+**Parameters:** None
+**Returns:** Nothing
+
+### widget.refresh()
+Refresh all widgets (equivalent to novadesk.refresh()).
+
+**Parameters:** None
+**Returns:** Nothing
+
+## System Monitoring Classes
+
+### new novadesk.system.CPU(options)
+Create a CPU monitor.
+
+**Parameters:**
+- `options` (object, optional): Configuration options (e.g., { processor: 0 })
+**Returns:** CPU monitor object
+
+### cpu.usage()
+Get current CPU usage percentage.
+
+**Parameters:** None
+**Returns:** Number representing CPU usage percentage
+
+### cpu.destroy()
+Destroy the CPU monitor and free resources.
+
+**Parameters:** None
+**Returns:** Nothing
+
+### new novadesk.system.Memory()
+Create a memory monitor.
+
+**Parameters:** None
+**Returns:** Memory monitor object
+
+### memory.stats()
+Get memory statistics.
+
+**Parameters:** None
+**Returns:** Object with memory stats (total, available, used, percent)
+
+### memory.destroy()
+Destroy the memory monitor and free resources.
+
+**Parameters:** None
+**Returns:** Nothing
+
+### new novadesk.system.Network()
+Create a network monitor.
+
+**Parameters:** None
+**Returns:** Network monitor object
+
+### network.stats()
+Get network statistics.
+
+**Parameters:** None
+**Returns:** Object with network stats (netIn, netOut, totalIn, totalOut)
+
+### network.destroy()
+Destroy the network monitor and free resources.
+
+**Parameters:** None
+**Returns:** Nothing
+
+### new novadesk.system.Mouse()
+Create a mouse monitor.
+
+**Parameters:** None
+**Returns:** Mouse monitor object
+
+### mouse.position()
+Get current mouse position.
+
+**Parameters:** None
+**Returns:** Object with x and y coordinates
+
+### mouse.destroy()
+Destroy the mouse monitor and free resources.
+
+**Parameters:** None
+**Returns:** Nothing
+
+### new novadesk.system.Disk(options)
+Create a disk monitor.
+
+**Parameters:**
+- `options` (object, optional): Configuration options (e.g., { drive: "C:" })
+**Returns:** Disk monitor object
+
+### disk.stats()
+Get disk statistics.
+
+**Parameters:** None
+**Returns:** For single drive: Object with drive stats; For all drives: Array of drive stat objects
+
+### disk.destroy()
+Destroy the disk monitor and free resources.
+
+**Parameters:** None
+**Returns:** Nothing

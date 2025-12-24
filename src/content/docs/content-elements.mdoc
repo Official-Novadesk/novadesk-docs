@@ -1,0 +1,311 @@
+---
+title: Content Elements
+description: Add images and text to your widgets with customizable properties
+---
+
+# Content Elements
+
+Novadesk widgets support two main types of content elements: images and text. These elements can be added to widgets and customized with various properties.
+
+## Image Elements
+
+Image elements allow you to display images in your widgets. They support various formats and styling options.
+
+### Adding an Image
+
+```javascript
+widget.addImage({
+    id: "myImage",              // Unique identifier
+    path: "assets/image.png",   // Path to the image file
+    x: 10,                     // X position
+    y: 10,                     // Y position
+    width: 100,                // Width (0 for auto)
+    height: 100,               // Height (0 for auto)
+    solidcolor: "rgb(255,0,0)", // Solid color background
+    solidcolorradius: 5,       // Rounded corners for solid color
+    preserveaspectratio: 1,    // Preserve aspect ratio (0 or 1)
+    imagetint: "rgb(255,255,255)", // Tint color (RGB only)
+    imagealpha: 255,           // Alpha value (0-255)
+    grayscale: false,          // Convert to grayscale
+    tile: false,               // Tile the image
+    rotate: 0.0,               // Rotation angle in degrees
+    transformmatrix: [1,0,0,1,0,0], // Affine transformation matrix
+    colormatrix: [ /* 25 values for color transformation */ ]
+});
+```
+
+### Image Properties Explained
+
+- **`id`**: A unique identifier for the image element (required for updates/removal)
+- **`path`**: Path to the image file (relative to the Widgets directory)
+- **`x`, `y`**: Position of the image within the widget
+- **`width`, `height`**: Dimensions of the image (0 means auto-size)
+- **`solidcolor`**: Solid color to display when no image is available
+- **`solidcolorradius`**: Radius for rounded corners when using solid color
+- **`preserveaspectratio`**: Whether to maintain the original aspect ratio (1) or stretch (0)
+- **`imagetint`**: RGB color to tint the image (affects brightness only)
+- **`imagealpha`**: Transparency level (0 = fully transparent, 255 = fully opaque)
+- **`grayscale`**: Whether to convert the image to grayscale
+- **`tile`**: Whether to tile the image if it's smaller than the specified dimensions
+- **`rotate`**: Rotation angle in degrees
+- **`transformmatrix`**: 6-element array for affine transformations [a,b,c,d,tx,ty]
+- **`colormatrix`**: 25-element array for advanced color transformations
+
+### Updating Images
+
+```javascript
+// Update an existing image with a new file
+widget.updateImage("myImage", "assets/new-image.png");
+
+// Or modify properties using other element methods
+```
+
+### Image Example
+
+```javascript
+var imageWidget = new widgetWindow({
+    id: "imageWidget",
+    width: 300,
+    height: 200,
+    backgroundcolor: "rgba(0,0,0,0.5)"
+});
+
+// Add a background image
+imageWidget.addImage({
+    id: "bgImage",
+    path: "assets/background.jpg",
+    width: 300,
+    height: 200,
+    preserveaspectratio: 1
+});
+
+// Add an icon with transparency
+imageWidget.addImage({
+    id: "icon",
+    path: "assets/icon.png",
+    x: 10,
+    y: 10,
+    width: 32,
+    height: 32,
+    imagealpha: 200
+});
+```
+
+## Text Elements
+
+Text elements allow you to display text with various formatting options.
+
+### Adding Text
+
+```javascript
+widget.addText({
+    id: "myText",              // Unique identifier
+    text: "Hello, World!",     // Text content
+    x: 10,                    // X position
+    y: 10,                    // Y position
+    width: 200,               // Width (0 for auto)
+    height: 30,               // Height (0 for auto)
+    fontsize: 16,             // Font size in points
+    fontfamily: "Arial",      // Font family
+    color: "rgb(255,255,255)", // Text color
+    fontweight: "normal",     // "normal" or "bold"
+    fontstyle: "normal",      // "normal" or "italic"
+    align: "left",            // Text alignment
+    clipstring: 0,            // Clip string mode
+    clipstringw: -1,          // Clip width
+    clipstringh: -1,          // Clip height
+    solidcolor: "rgba(0,0,0,0.3)", // Background color
+    solidcolorradius: 3,      // Background corner radius
+    rotate: 0.0               // Rotation angle in degrees
+});
+```
+
+### Text Properties Explained
+
+- **`id`**: A unique identifier for the text element (required for updates/removal)
+- **`text`**: The text content to display
+- **`x`, `y`**: Position of the text within the widget
+- **`width`, `height`**: Dimensions of the text area (0 means auto-size)
+- **`fontsize`**: Size of the font in points
+- **`fontfamily`**: Font family name (e.g., "Arial", "Times New Roman", "Consolas")
+- **`color`**: Text color in CSS format (rgb, rgba, hex)
+- **`fontweight`**: Font weight ("normal" or "bold")
+- **`fontstyle`**: Font style ("normal" or "italic")
+- **`align`**: Text alignment options:
+  - `"left"` or `"lefttop"` - Top-left alignment
+  - `"center"` or `"centertop"` - Top-center alignment
+  - `"right"` or `"righttop"` - Top-right alignment
+  - `"leftcenter"` - Middle-left alignment
+  - `"centercenter"` - Center alignment
+  - `"rightcenter"` - Middle-right alignment
+  - `"leftbottom"` - Bottom-left alignment
+  - `"centerbottom"` - Bottom-center alignment
+  - `"rightbottom"` - Bottom-right alignment
+- **`clipstring`**: Whether to clip the text (0 or 1)
+- **`clipstringw`, `clipstringh`**: Dimensions for text clipping
+- **`solidcolor`**: Background color behind the text
+- **`solidcolorradius`**: Radius for rounded corners on the background
+- **`rotate`**: Rotation angle in degrees
+
+### Updating Text
+
+```javascript
+// Update the text content of an existing element
+widget.updateText("myText", "New text content");
+
+// The position and styling remain unchanged
+```
+
+### Text Example
+
+```javascript
+var textWidget = new widgetWindow({
+    id: "textWidget",
+    width: 250,
+    height: 150,
+    backgroundcolor: "rgba(30,30,30,0.9)"
+});
+
+// Add a title
+textWidget.addText({
+    id: "title",
+    text: "System Status",
+    x: 10,
+    y: 10,
+    fontsize: 18,
+    fontfamily: "Arial",
+    color: "rgb(255,255,255)",
+    fontweight: "bold",
+    align: "left"
+});
+
+// Add status information
+textWidget.addText({
+    id: "status",
+    text: "All systems operational",
+    x: 10,
+    y: 40,
+    fontsize: 14,
+    fontfamily: "Arial",
+    color: "rgb(100,255,100)",
+    align: "left"
+});
+
+// Add a timestamp
+textWidget.addText({
+    id: "timestamp",
+    text: new Date().toLocaleString(),
+    x: 10,
+    y: 70,
+    fontsize: 12,
+    fontfamily: "Consolas",
+    color: "rgb(200,200,200)",
+    align: "left"
+});
+```
+
+## Content Management Methods
+
+### Adding Content
+- `widget.addImage(options)` - Add an image element
+- `widget.addText(options)` - Add a text element
+
+### Updating Content
+- `widget.updateImage(id, newPath)` - Update an existing image
+- `widget.updateText(id, newText)` - Update an existing text element
+
+### Removing Content
+- `widget.removeContent(id)` - Remove a content element by ID
+- `widget.clearContent()` - Remove all content elements
+
+### Content Example: Weather Widget
+
+```javascript
+var weatherWidget = new widgetWindow({
+    id: "weatherWidget",
+    x: 50,
+    y: 50,
+    width: 200,
+    height: 150,
+    backgroundcolor: "rgba(0,0,0,0.7)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add weather icon
+weatherWidget.addImage({
+    id: "weatherIcon",
+    path: "assets/sunny.png",
+    x: 10,
+    y: 10,
+    width: 64,
+    height: 64
+});
+
+// Add temperature text
+weatherWidget.addText({
+    id: "temperature",
+    text: "22°C",
+    x: 80,
+    y: 20,
+    fontsize: 24,
+    color: "rgb(255,255,255)",
+    fontweight: "bold"
+});
+
+// Add description
+weatherWidget.addText({
+    id: "description",
+    text: "Sunny",
+    x: 80,
+    y: 50,
+    fontsize: 14,
+    color: "rgb(200,200,200)"
+});
+
+// Add location
+weatherWidget.addText({
+    id: "location",
+    text: "New York, NY",
+    x: 10,
+    y: 90,
+    fontsize: 12,
+    color: "rgb(150,150,150)"
+});
+
+// Simulate updating weather data
+setInterval(function() {
+    // In a real implementation, you would fetch actual weather data
+    var temp = Math.floor(Math.random() * 10) + 20; // Random temp between 20-29
+    weatherWidget.updateText("temperature", temp + "°C");
+}, 60000); // Update every minute
+```
+
+## Mouse Actions
+
+Content elements can respond to mouse events. Add mouse action properties to your element options:
+
+```javascript
+widget.addText({
+    id: "clickableText",
+    text: "Click me!",
+    x: 10,
+    y: 10,
+    fontsize: 16,
+    color: "rgb(100,150,255)",
+    onleftmouseup: "novadesk.log('Text clicked!')",
+    onrightmouseup: "novadesk.refresh()",
+    onmouseenter: "this.setProperties({ color: 'rgb(255,100,100)' })",
+    onmouseleave: "this.setProperties({ color: 'rgb(100,150,255)' })"
+});
+```
+
+Available mouse events:
+- `onleftmouseup` - Left mouse button released
+- `onrightmouseup` - Right mouse button released
+- `onmiddlemouseup` - Middle mouse button released
+- `onmouseenter` - Mouse enters the element
+- `onmouseleave` - Mouse leaves the element
+- `onmousemove` - Mouse moves over the element
+
+Content elements form the building blocks of your widgets, allowing you to create rich, interactive desktop experiences with Novadesk.

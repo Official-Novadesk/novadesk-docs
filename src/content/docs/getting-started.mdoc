@@ -1,0 +1,89 @@
+---
+title: Getting Started
+description: Learn how to install and start creating widgets with Novadesk
+---
+
+# Getting Started with Novadesk
+
+Novadesk is a desktop widget platform that allows you to create beautiful, interactive desktop widgets using JavaScript. This guide will help you get started with creating your first widget.
+
+## Installation
+
+1. Download the latest release from the [GitHub releases page](https://github.com/Novadesk/Novadesk/releases)
+2. Extract the archive to a directory of your choice
+3. Run `Novadesk.exe` to start the application
+
+The application will appear in your system tray. You can right-click the tray icon to access refresh and exit options.
+
+## Project Structure
+
+The Novadesk directory structure is organized as follows:
+
+```
+Novadesk/
+├── Novadesk.exe          # Main executable
+├── Widgets/              # Widget scripts and assets
+│   ├── index.js          # Main entry point for widgets
+│   ├── assets/           # Widget assets (images, etc.)
+│   └── ...               # Additional widget scripts
+└── Library/              # C++ source code
+```
+
+## Your First Widget
+
+Create a simple clock widget by modifying the `Widgets/index.js` file:
+
+```javascript
+// Create a new widget window
+var clockWidget = new widgetWindow({
+    id: "clockWidget",
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 80,
+    backgroundcolor: "rgba(0,0,0,0.7)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add a text element to display the time
+clockWidget.addText({
+    id: "timeText",
+    text: "Loading...",
+    x: 10,
+    y: 10,
+    fontsize: 20,
+    color: "rgb(255,255,255)",
+    fontfamily: "Arial",
+    align: "left"
+});
+
+// Update the time every second
+setInterval(function() {
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    clockWidget.updateText("timeText", timeString);
+}, 1000);
+```
+
+## Understanding the API
+
+Novadesk provides a comprehensive JavaScript API organized into several main components:
+
+- **`widgetWindow`**: Creates and manages widget windows
+- **`novadesk` object**: Provides system utilities and global functions
+- **`novadesk.system`**: System monitoring classes (CPU, Memory, Network, etc.)
+
+## Running Your Widget
+
+Widgets are automatically loaded when Novadesk starts. If you make changes to your widget scripts:
+
+1. Right-click the Novadesk tray icon
+2. Select "Refresh all" to reload all widgets
+3. Alternatively, use the hotkey `Ctrl+Alt+R` (if configured)
+
+## Next Steps
+
+- Learn about [widget options and configuration](/widget-options/)
+- Explore the [system monitoring API](/system-monitoring/)
+- Check out [advanced examples](/guides/advanced-examples/)

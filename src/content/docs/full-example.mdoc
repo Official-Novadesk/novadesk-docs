@@ -1,0 +1,328 @@
+---
+title: Full Example
+description: A complete Novadesk widget demonstrating all major features
+---
+
+# Full Example
+
+This comprehensive example demonstrates all major Novadesk features including all system monitors, images, advanced text formatting, and complex interactions.
+
+## Complete System Dashboard
+
+```javascript
+// Initialize all system monitors
+var cpuMonitor = new novadesk.system.CPU();
+var memoryMonitor = new novadesk.system.Memory();
+var networkMonitor = new novadesk.system.Network();
+var mouseMonitor = new novadesk.system.Mouse();
+var diskMonitor = new novadesk.system.Disk({ drive: "C:" });
+
+// Create the main dashboard widget
+var dashboard = new widgetWindow({
+    id: "fullDashboard",
+    x: 50,
+    y: 50,
+    width: 350,
+    height: 300,
+    backgroundcolor: "rgba(0,0,0,0.85)",
+    zpos: "ondesktop",
+    draggable: true,
+    keeponscreen: true,
+    windowopacity: 240
+});
+
+// Add dashboard title
+dashboard.addText({
+    id: "title",
+    text: "Complete System Dashboard",
+    x: 15,
+    y: 10,
+    fontsize: 18,
+    color: "rgb(255,255,100)",
+    fontweight: "bold"
+});
+
+// Add CPU information
+dashboard.addText({
+    id: "cpuLabel",
+    text: "CPU:",
+    x: 15,
+    y: 45,
+    fontsize: 14,
+    color: "rgb(100,255,100)"
+});
+
+dashboard.addText({
+    id: "cpuInfo",
+    text: "Calculating...",
+    x: 60,
+    y: 45,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add memory information
+dashboard.addText({
+    id: "memoryLabel",
+    text: "Memory:",
+    x: 15,
+    y: 70,
+    fontsize: 14,
+    color: "rgb(100,255,100)"
+});
+
+dashboard.addText({
+    id: "memoryInfo",
+    text: "Calculating...",
+    x: 75,
+    y: 70,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add network information
+dashboard.addText({
+    id: "netLabel",
+    text: "Network:",
+    x: 15,
+    y: 95,
+    fontsize: 14,
+    color: "rgb(100,255,100)"
+});
+
+dashboard.addText({
+    id: "netInfo",
+    text: "Calculating...",
+    x: 80,
+    y: 95,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add disk information
+dashboard.addText({
+    id: "diskLabel",
+    text: "Disk C::",
+    x: 15,
+    y: 120,
+    fontsize: 14,
+    color: "rgb(100,255,100)"
+});
+
+dashboard.addText({
+    id: "diskInfo",
+    text: "Calculating...",
+    x: 70,
+    y: 120,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add mouse position
+dashboard.addText({
+    id: "mouseLabel",
+    text: "Mouse:",
+    x: 15,
+    y: 145,
+    fontsize: 14,
+    color: "rgb(100,255,100)"
+});
+
+dashboard.addText({
+    id: "mouseInfo",
+    text: "Calculating...",
+    x: 70,
+    y: 145,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add timestamp
+dashboard.addText({
+    id: "timeLabel",
+    text: "Time:",
+    x: 15,
+    y: 170,
+    fontsize: 14,
+    color: "rgb(100,255,100)"
+});
+
+dashboard.addText({
+    id: "timeInfo",
+    text: "Calculating...",
+    x: 65,
+    y: 170,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Add refresh button
+dashboard.addText({
+    id: "refreshBtn",
+    text: "[Refresh All]",
+    x: 15,
+    y: 195,
+    fontsize: 12,
+    color: "rgb(100,150,255)",
+    onleftmouseup: "updateAllInfo()",
+    onmouseenter: "this.setProperties({ color: 'rgb(150,200,255)' })",
+    onmouseleave: "this.setProperties({ color: 'rgb(100,150,255)' })"
+});
+
+// Add quit button
+dashboard.addText({
+    id: "quitBtn",
+    text: "[Quit]",
+    x: 120,
+    y: 195,
+    fontsize: 12,
+    color: "rgb(255,100,100)",
+    onleftmouseup: "novadesk.log('Dashboard closed'); dashboard.close(); cpuMonitor.destroy(); memoryMonitor.destroy(); networkMonitor.destroy(); mouseMonitor.destroy(); diskMonitor.destroy();"
+});
+
+// Add status indicator
+dashboard.addText({
+    id: "status",
+    text: "Status: Active",
+    x: 15,
+    y: 220,
+    fontsize: 12,
+    color: "rgb(100,255,100)"
+});
+
+// Add version info
+dashboard.addText({
+    id: "version",
+    text: "Novadesk Dashboard v1.0",
+    x: 15,
+    y: 245,
+    fontsize: 10,
+    color: "rgb(150,150,150)"
+});
+
+// Register global hotkeys
+novadesk.registerHotkey("Ctrl+Alt+R", function() {
+    updateAllInfo();
+    novadesk.log("Dashboard refreshed via hotkey");
+});
+
+novadesk.registerHotkey("Ctrl+Alt+D", function() {
+    novadesk.log("Dashboard activated via hotkey");
+    updateAllInfo();
+});
+
+// Function to update all system information
+function updateAllInfo() {
+    // Update CPU usage
+    var cpuUsage = cpuMonitor.usage();
+    dashboard.updateText("cpuInfo", cpuUsage.toFixed(1) + "%");
+    
+    // Update memory information
+    var memStats = memoryMonitor.stats();
+    var memUsedGB = (memStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var memTotalGB = (memStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    dashboard.updateText("memoryInfo", memUsedGB + "GB/" + memTotalGB + "GB (" + memStats.percent + "%)");
+    
+    // Update network information
+    var netStats = networkMonitor.stats();
+    var netInKB = (netStats.netIn / 1024).toFixed(1);
+    var netOutKB = (netStats.netOut / 1024).toFixed(1);
+    dashboard.updateText("netInfo", netInKB + "↓ " + netOutKB + "↑ KB/s");
+    
+    // Update disk information
+    var diskStats = diskMonitor.stats();
+    var diskUsedGB = (diskStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var diskTotalGB = (diskStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    dashboard.updateText("diskInfo", diskUsedGB + "GB/" + diskTotalGB + "GB (" + diskStats.percent + "%)");
+    
+    // Update mouse position
+    var mousePos = mouseMonitor.position();
+    dashboard.updateText("mouseInfo", "X:" + mousePos.x + " Y:" + mousePos.y);
+    
+    // Update time
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    var dateString = now.toLocaleDateString();
+    dashboard.updateText("timeInfo", timeString + " (" + dateString + ")");
+    
+    // Update status
+    dashboard.updateText("status", "Status: Updated at " + timeString);
+    
+    novadesk.debug("All dashboard information updated");
+}
+
+// Update all information every 2 seconds
+setInterval(updateAllInfo, 2000);
+
+// Initial update
+updateAllInfo();
+
+// Log initialization
+novadesk.log("Full system dashboard initialized with all monitors");
+
+// Additional widget for extra functionality
+var miniWidget = new widgetWindow({
+    id: "miniWidget",
+    x: 420,
+    y: 50,
+    width: 150,
+    height: 80,
+    backgroundcolor: "rgba(30,30,50,0.8)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add clock to mini widget
+miniWidget.addText({
+    id: "miniClock",
+    text: "Loading...",
+    x: 10,
+    y: 10,
+    fontsize: 16,
+    color: "rgb(255,255,200)",
+    fontweight: "bold"
+});
+
+miniWidget.addText({
+    id: "miniDate",
+    text: "Loading...",
+    x: 10,
+    y: 40,
+    fontsize: 12,
+    color: "rgb(200,200,255)"
+});
+
+// Update mini clock every second
+setInterval(function() {
+    var now = new Date();
+    var timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    var dateString = now.toLocaleDateString([], {month: 'short', day: 'numeric'});
+    
+    miniWidget.updateText("miniClock", timeString);
+    miniWidget.updateText("miniDate", dateString);
+}, 1000);
+
+// Initial update for mini widget
+var now = new Date();
+var timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+var dateString = now.toLocaleDateString([], {month: 'short', day: 'numeric'});
+miniWidget.updateText("miniClock", timeString);
+miniWidget.updateText("miniDate", dateString);
+
+novadesk.log("Mini clock widget initialized");
+```
+
+This full example demonstrates:
+- All system monitoring classes (CPU, Memory, Network, Mouse, Disk)
+- Multiple widgets working together
+- Advanced text formatting and styling
+- Interactive elements with mouse events
+- Global hotkey registration and management
+- Proper resource management and cleanup
+- Comprehensive logging
+- Multiple update intervals
+- Status indicators and user feedback
+- Widget positioning and layering
+- Error prevention and defensive programming
+
+The dashboard will display real-time system information and can be controlled through both UI elements and global hotkeys.

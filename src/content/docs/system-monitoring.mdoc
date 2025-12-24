@@ -1,0 +1,379 @@
+---
+title: System Monitoring API
+description: Access real-time system information with Novadesk's monitoring classes
+---
+
+# System Monitoring API
+
+Novadesk provides comprehensive system monitoring capabilities through dedicated JavaScript classes. These allow you to create system monitors, performance dashboards, and other widgets that display real-time system information.
+
+## Available Monitoring Classes
+
+- `novadesk.system.CPU` - Monitor CPU usage
+- `novadesk.system.Memory` - Monitor memory usage
+- `novadesk.system.Network` - Monitor network activity
+- `novadesk.system.Mouse` - Track mouse position
+- `novadesk.system.Disk` - Monitor disk usage (single drive or all drives)
+
+## CPU Monitoring
+
+The CPU monitor tracks processor usage across all cores.
+
+### Creating a CPU Monitor
+
+```javascript
+// Create a CPU monitor for all processors (default)
+var cpu = new novadesk.system.CPU();
+
+// Create a CPU monitor for a specific processor (0-indexed)
+var cpuCore1 = new novadesk.system.CPU({ processor: 0 });
+```
+
+### Using the CPU Monitor
+
+```javascript
+// Get current CPU usage percentage
+var usage = cpu.usage(); // Returns a number (e.g., 15.3)
+novadesk.log("CPU Usage: " + usage + "%");
+
+// Update a widget with CPU usage
+var cpuWidget = new widgetWindow({
+    id: "cpuWidget",
+    width: 150,
+    height: 50,
+    backgroundcolor: "rgba(0,0,0,0.7)"
+});
+
+cpuWidget.addText({
+    id: "cpuText",
+    text: "CPU: Calculating...",
+    fontsize: 16,
+    color: "rgb(255,255,255)"
+});
+
+// Update every 2 seconds
+setInterval(function() {
+    var usage = cpu.usage();
+    cpuWidget.updateText("cpuText", "CPU: " + usage.toFixed(1) + "%");
+}, 2000);
+```
+
+## Memory Monitoring
+
+The memory monitor provides information about system RAM usage.
+
+### Creating a Memory Monitor
+
+```javascript
+var memory = new novadesk.system.Memory();
+```
+
+### Using the Memory Monitor
+
+```javascript
+// Get memory statistics
+var stats = memory.stats();
+// Returns an object with:
+// - total: Total physical memory in bytes
+// - available: Available physical memory in bytes
+// - used: Used physical memory in bytes
+// - percent: Memory usage percentage
+
+novadesk.log("Memory: " + stats.used + " / " + stats.total + " (" + stats.percent + "%)");
+
+// Create a memory monitor widget
+var memWidget = new widgetWindow({
+    id: "memWidget",
+    width: 200,
+    height: 70,
+    backgroundcolor: "rgba(0,0,0,0.7)"
+});
+
+memWidget.addText({
+    id: "memText",
+    text: "RAM: Calculating...",
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+setInterval(function() {
+    var stats = memory.stats();
+    var usedGB = (stats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var totalGB = (stats.total / (1024 * 1024 * 1024)).toFixed(1);
+    memWidget.updateText("memText", "RAM: " + usedGB + "GB / " + totalGB + "GB (" + stats.percent + "%)");
+}, 2000);
+```
+
+## Network Monitoring
+
+The network monitor tracks network activity across all network interfaces.
+
+### Creating a Network Monitor
+
+```javascript
+var network = new novadesk.system.Network();
+```
+
+### Using the Network Monitor
+
+```javascript
+// Get network statistics
+var stats = network.stats();
+// Returns an object with:
+// - netIn: Incoming bytes per second
+// - netOut: Outgoing bytes per second
+// - totalIn: Total incoming bytes
+// - totalOut: Total outgoing bytes
+
+novadesk.log("Network In: " + stats.netIn + " B/s, Out: " + stats.netOut + " B/s");
+
+// Create a network monitor widget
+var netWidget = new widgetWindow({
+    id: "netWidget",
+    width: 200,
+    height: 70,
+    backgroundcolor: "rgba(0,0,0,0.7)"
+});
+
+netWidget.addText({
+    id: "netInText",
+    text: "In: Calculating...",
+    x: 10,
+    y: 10,
+    fontsize: 12,
+    color: "rgb(100,255,100)"
+});
+
+netWidget.addText({
+    id: "netOutText",
+    text: "Out: Calculating...",
+    x: 10,
+    y: 30,
+    fontsize: 12,
+    color: "rgb(100,200,255)"
+});
+
+setInterval(function() {
+    var stats = network.stats();
+    var netInKB = (stats.netIn / 1024).toFixed(2);
+    var netOutKB = (stats.netOut / 1024).toFixed(2);
+    netWidget.updateText("netInText", "In: " + netInKB + " KB/s");
+    netWidget.updateText("netOutText", "Out: " + netOutKB + " KB/s");
+}, 1000);
+```
+
+## Mouse Monitoring
+
+The mouse monitor tracks the current mouse cursor position.
+
+### Creating a Mouse Monitor
+
+```javascript
+var mouse = new novadesk.system.Mouse();
+```
+
+### Using the Mouse Monitor
+
+```javascript
+// Get current mouse position
+var pos = mouse.position();
+// Returns an object with:
+// - x: X coordinate
+// - y: Y coordinate
+
+novadesk.log("Mouse Position: X=" + pos.x + ", Y=" + pos.y);
+
+// Create a mouse position tracker
+var mouseWidget = new widgetWindow({
+    id: "mouseWidget",
+    width: 180,
+    height: 40,
+    backgroundcolor: "rgba(0,0,0,0.7)"
+});
+
+mouseWidget.addText({
+    id: "mouseText",
+    text: "Mouse: Calculating...",
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+// Update frequently since mouse position changes often
+setInterval(function() {
+    var pos = mouse.position();
+    mouseWidget.updateText("mouseText", "Mouse: " + pos.x + ", " + pos.y);
+}, 100);
+```
+
+## Disk Monitoring
+
+The disk monitor can track usage for a single drive or all drives.
+
+### Creating a Disk Monitor
+
+```javascript
+// Monitor a specific drive
+var diskC = new novadesk.system.Disk({ drive: "C:" });
+
+// Monitor all drives
+var allDisks = new novadesk.system.Disk();
+```
+
+### Using the Disk Monitor
+
+```javascript
+// For a single drive
+var diskStats = diskC.stats();
+// Returns an object with:
+// - drive: Drive letter
+// - total: Total space in bytes
+// - free: Free space in bytes
+// - used: Used space in bytes
+// - percent: Usage percentage
+
+novadesk.log("C: Drive - Used: " + diskStats.used + " / " + diskStats.total + " (" + diskStats.percent + "%)");
+
+// For all drives (returns an array)
+var allDiskStats = allDisks.stats();
+for (var i = 0; i < allDiskStats.length; i++) {
+    var d = allDiskStats[i];
+    novadesk.log("Drive " + d.drive + " - " + d.used + " / " + d.total + " (" + d.percent + "%)");
+}
+
+// Create a disk usage monitor
+var diskWidget = new widgetWindow({
+    id: "diskWidget",
+    width: 250,
+    height: 100,
+    backgroundcolor: "rgba(0,0,0,0.7)"
+});
+
+diskWidget.addText({
+    id: "diskText",
+    text: "Disk: Calculating...",
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+setInterval(function() {
+    var stats = diskC.stats();
+    var usedGB = (stats.used / (1024 * 1024 * 1024)).toFixed(2);
+    var totalGB = (stats.total / (1024 * 1024 * 1024)).toFixed(2);
+    diskWidget.updateText("diskText", "C: " + usedGB + "GB / " + totalGB + "GB (" + stats.percent + "%)");
+}, 5000);
+```
+
+## Complete System Monitor Example
+
+Here's a complete example that combines all monitoring classes:
+
+```javascript
+// Create monitors
+var cpu = new novadesk.system.CPU();
+var memory = new novadesk.system.Memory();
+var network = new novadesk.system.Network();
+var disk = new novadesk.system.Disk({ drive: "C:" });
+
+// Create system monitor widget
+var sysWidget = new widgetWindow({
+    id: "systemMonitor",
+    x: 10,
+    y: 10,
+    width: 250,
+    height: 180,
+    backgroundcolor: "rgba(0,0,0,0.8)",
+    zpos: "ondesktop",
+    draggable: true
+});
+
+// Add text elements
+sysWidget.addText({
+    id: "cpuText",
+    text: "CPU: Calculating...",
+    x: 10,
+    y: 10,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+sysWidget.addText({
+    id: "memText",
+    text: "RAM: Calculating...",
+    x: 10,
+    y: 35,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+sysWidget.addText({
+    id: "netText",
+    text: "Net: Calculating...",
+    x: 10,
+    y: 60,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+sysWidget.addText({
+    id: "diskText",
+    text: "Disk: Calculating...",
+    x: 10,
+    y: 85,
+    fontsize: 14,
+    color: "rgb(255,255,255)"
+});
+
+sysWidget.addText({
+    id: "timeText",
+    text: "Time: Calculating...",
+    x: 10,
+    y: 110,
+    fontsize: 12,
+    color: "rgb(200,200,200)"
+});
+
+// Update all information every 2 seconds
+setInterval(function() {
+    // Update CPU
+    var cpuUsage = cpu.usage();
+    sysWidget.updateText("cpuText", "CPU: " + cpuUsage.toFixed(1) + "%");
+    
+    // Update Memory
+    var memStats = memory.stats();
+    var usedGB = (memStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var totalGB = (memStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    sysWidget.updateText("memText", "RAM: " + usedGB + "GB/" + totalGB + "GB (" + memStats.percent + "%)");
+    
+    // Update Network
+    var netStats = network.stats();
+    var netInKB = (netStats.netIn / 1024).toFixed(1);
+    var netOutKB = (netStats.netOut / 1024).toFixed(1);
+    sysWidget.updateText("netText", "Net: " + netInKB + "/" + netOutKB + " KB/s");
+    
+    // Update Disk
+    var diskStats = disk.stats();
+    var diskUsedGB = (diskStats.used / (1024 * 1024 * 1024)).toFixed(1);
+    var diskTotalGB = (diskStats.total / (1024 * 1024 * 1024)).toFixed(1);
+    sysWidget.updateText("diskText", "Disk: " + diskUsedGB + "GB/" + diskTotalGB + "GB (" + diskStats.percent + "%)");
+    
+    // Update Time
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    sysWidget.updateText("timeText", "Time: " + timeString);
+}, 2000);
+```
+
+## Cleanup
+
+Remember to properly destroy monitor objects when they're no longer needed:
+
+```javascript
+// Destroy individual monitors
+cpu.destroy();
+memory.destroy();
+network.destroy();
+mouse.destroy();
+disk.destroy();
+
+// Or let them be automatically cleaned up when the script reloads
+```

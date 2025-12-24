@@ -17,26 +17,60 @@ Add a text element to the widget.
 - **options** (Object): Configuration options for the text element
 
 #### Options
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | string | Required | Unique identifier for the text element |
-| `text` | string | "" | Text content to display |
-| `x` | number | 0 | X-coordinate of the text element |
-| `y` | number | 0 | Y-coordinate of the text element |
-| `width` | number | Auto | Width of the text element |
-| `height` | number | Auto | Height of the text element |
-| `fontsize` | number | 12 | Font size in pixels |
-| `fontfamily` | string | "Arial" | Font family |
-| `color` | string | "rgb(0,0,0)" | Text color in CSS format |
-| `fontweight` | string | "normal" | Font weight ("normal", "bold") |
-| `fontstyle` | string | "normal" | Font style ("normal", "italic") |
-| `align` | string | "lefttop" | Text alignment ("lefttop", "centertop", "righttop", etc.) |
-| `clipstring` | number | 0 | Clip string behavior (0=none, 1=on, 2=ellipsis) |
-| `clipstringw` | number | -1 | Maximum width for clipping |
-| `clipstringh` | number | -1 | Maximum height for clipping |
-| `solidcolor` | string | "" | Background color for text area |
-| `solidcolorradius` | number | 0 | Corner radius for solid color background |
-| `rotate` | number | 0 | Rotation angle in degrees |
+
+**`id`** (string, required)  
+Unique identifier for the text element
+
+**`text`** (string, default: "")  
+Text content to display
+
+**`x`** (number, default: 0)  
+X-coordinate of the text element
+
+**`y`** (number, default: 0)  
+Y-coordinate of the text element
+
+**`width`** (number, default: Auto)  
+Width of the text element
+
+**`height`** (number, default: Auto)  
+Height of the text element
+
+**`fontsize`** (number, default: 12)  
+Font size in pixels
+
+**`fontfamily`** (string, default: "Arial")  
+Font family
+
+**`color`** (string, default: "rgb(0,0,0)")  
+Text color in CSS format
+
+**`fontweight`** (string, default: "normal")  
+Font weight ("normal", "bold")
+
+**`fontstyle`** (string, default: "normal")  
+Font style ("normal", "italic")
+
+**`align`** (string, default: "lefttop")  
+Text alignment ("lefttop", "centertop", "righttop", etc.)
+
+**`clipstring`** (number, default: 0)  
+Clip string behavior (0=none, 1=on, 2=ellipsis)
+
+**`clipstringw`** (number, default: -1)  
+Maximum width for clipping
+
+**`clipstringh`** (number, default: -1)  
+Maximum height for clipping
+
+**`solidcolor`** (string, default: "")  
+Background color for text area
+
+**`solidcolorradius`** (number, default: 0)  
+Corner radius for solid color background
+
+**`rotate`** (number, default: 0)  
+Rotation angle in degrees
 
 #### Example
 ```javascript
@@ -59,22 +93,48 @@ Add an image element to the widget.
 - **options** (Object): Configuration options for the image element
 
 #### Options
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | string | Required | Unique identifier for the image element |
-| `path` | string | "" | Path to the image file |
-| `x` | number | 0 | X-coordinate of the image element |
-| `y` | number | 0 | Y-coordinate of the image element |
-| `width` | number | Auto | Width of the image element |
-| `height` | number | Auto | Height of the image element |
-| `solidcolor` | string | "" | Solid color background |
-| `solidcolorradius` | number | 0 | Corner radius for solid color background |
-| `preserveaspectratio` | number | 0 | Aspect ratio behavior (0=stretch, 1=fit, 2=crop) |
-| `imagealpha` | number | 255 | Image opacity (0-255) |
-| `grayscale` | boolean | false | Whether to apply grayscale filter |
-| `tile` | boolean | false | Whether to tile the image |
-| `rotate` | number | 0 | Rotation angle in degrees |
-| `imagetint` | string | "" | Tint color for the image |
+
+**`id`** (string, required)  
+Unique identifier for the image element
+
+**`path`** (string, default: "")  
+Path to the image file
+
+**`x`** (number, default: 0)  
+X-coordinate of the image element
+
+**`y`** (number, default: 0)  
+Y-coordinate of the image element
+
+**`width`** (number, default: Auto)  
+Width of the image element
+
+**`height`** (number, default: Auto)  
+Height of the image element
+
+**`solidcolor`** (string, default: "")  
+Solid color background
+
+**`solidcolorradius`** (number, default: 0)  
+Corner radius for solid color background
+
+**`preserveaspectratio`** (number, default: 0)  
+Aspect ratio behavior (0=stretch, 1=fit, 2=crop)
+
+**`imagealpha`** (number, default: 255)  
+Image opacity (0-255)
+
+**`grayscale`** (boolean, default: false)  
+Whether to apply grayscale filter
+
+**`tile`** (boolean, default: false)  
+Whether to tile the image
+
+**`rotate`** (number, default: 0)  
+Rotation angle in degrees
+
+**`imagetint`** (string, default: "")  
+Tint color for the image
 
 #### Example
 ```javascript
@@ -146,18 +206,36 @@ Update widget properties after creation.
 - **options** (Object): Properties to update
 
 #### Options
-| Property | Type | Description |
-|----------|------|-------------|
-| `x` | number | New X-coordinate |
-| `y` | number | New Y-coordinate |
-| `width` | number | New width |
-| `height` | number | New height |
-| `backgroundcolor` | string | New background color |
-| `opacity` | number | New overall opacity (0.0-1.0 or 0-255) |
-| `zpos` | string | New z-order position |
-| `draggable` | boolean | Whether widget is draggable |
-| `clickthrough` | boolean | Whether widget is click-through |
-| `keeponscreen` | boolean | Whether to keep widget on screen |
+
+**`x`** (number)  
+New X-coordinate
+
+**`y`** (number)  
+New Y-coordinate
+
+**`width`** (number)  
+New width
+
+**`height`** (number)  
+New height
+
+**`backgroundcolor`** (string)  
+New background color
+
+**`opacity`** (number)  
+New overall opacity (0.0-1.0 or 0-255)
+
+**`zpos`** (string)  
+New z-order position
+
+**`draggable`** (boolean)  
+Whether widget is draggable
+
+**`clickthrough`** (boolean)  
+Whether widget is click-through
+
+**`keeponscreen`** (boolean)  
+Whether to keep widget on screen
 
 #### Example
 ```javascript

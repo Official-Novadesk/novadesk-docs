@@ -17,64 +17,143 @@ widget.addImage(options);
 
 ## Image Element Options
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | string | Required | Unique identifier for the image element |
-| `path` | string | "" | Path to the image file |
-| `x` | number | 0 | X-coordinate of the image element |
-| `y` | number | 0 | Y-coordinate of the image element |
-| `width` | number | Auto | Width of the image element (auto-calculated if not specified) |
-| `height` | number | Auto | Height of the image element (auto-calculated if not specified) |
-| `solidcolor` | string | "" | Solid color background for the image area |
-| `solidcolorradius` | number | 0 | Corner radius for solid color background |
-| `preserveaspectratio` | number | 0 | Aspect ratio behavior (0=stretch, 1=fit, 2=crop) |
-| `imagealpha` | number | 255 | Image opacity (0-255) |
-| `grayscale` | boolean | false | Whether to apply grayscale filter |
-| `tile` | boolean | false | Whether to tile the image |
-| `rotate` | number | 0 | Rotation angle in degrees |
-| `imagetint` | string | "" | Tint color for the image in CSS format |
-| `transformmatrix` | array | [] | 6-element transformation matrix [a, b, c, d, e, f] |
-| `colormatrix` | array | [] | 25-element color transformation matrix |
-| `paddingleft` | number | 0 | Left padding in pixels |
-| `paddingtop` | number | 0 | Top padding in pixels |
-| `paddingright` | number | 0 | Right padding in pixels |
-| `paddingbottom` | number | 0 | Bottom padding in pixels |
+**`id`** (string, required)  
+Unique identifier for the image element
+
+**`path`** (string, default: "")  
+Path to the image file
+
+**`x`** (number, default: 0)  
+X-coordinate of the image element
+
+**`y`** (number, default: 0)  
+Y-coordinate of the image element
+
+**`width`** (number, default: Auto)  
+Width of the image element (auto-calculated if not specified)
+
+**`height`** (number, default: Auto)  
+Height of the image element (auto-calculated if not specified)
+
+**`solidcolor`** (string, default: "")  
+Solid color background for the image area
+
+**`solidcolorradius`** (number, default: 0)  
+Corner radius for solid color background
+
+**`preserveaspectratio`** (number, default: 0)  
+Aspect ratio behavior (0=stretch, 1=fit, 2=crop)
+
+**`imagealpha`** (number, default: 255)  
+Image opacity (0-255)
+
+**`grayscale`** (boolean, default: false)  
+Whether to apply grayscale filter
+
+**`tile`** (boolean, default: false)  
+Whether to tile the image
+
+**`rotate`** (number, default: 0)  
+Rotation angle in degrees
+
+**`imagetint`** (string, default: "")  
+Tint color for the image in CSS format
+
+**`transformmatrix`** (array, default: [])  
+6-element transformation matrix [a, b, c, d, e, f]
+
+**`colormatrix`** (array, default: [])  
+25-element color transformation matrix
+
+**`paddingleft`** (number, default: 0)  
+Left padding in pixels
+
+**`paddingtop`** (number, default: 0)  
+Top padding in pixels
+
+**`paddingright`** (number, default: 0)  
+Right padding in pixels
+
+**`paddingbottom`** (number, default: 0)  
+Bottom padding in pixels
 
 ### Preserve Aspect Ratio Options
 
-| Value | Description |
-|-------|-------------|
-| `0` | Stretch image to fill specified dimensions |
-| `1` | Fit image within dimensions, maintaining aspect ratio |
-| `2` | Crop image to fill dimensions, maintaining aspect ratio |
+**`0`**  
+Stretch image to fill specified dimensions
+
+**`1`**  
+Fit image within dimensions, maintaining aspect ratio
+
+**`2`**  
+Crop image to fill dimensions, maintaining aspect ratio
 
 ## Image Element Event Options
 
 Image elements can respond to various mouse events:
 
-| Property | Description |
-|----------|-------------|
-| `onleftmouseup` | Executed when left mouse button is released |
-| `onleftmousedown` | Executed when left mouse button is pressed |
-| `onleftdoubleclick` | Executed when left mouse button is double-clicked |
-| `onrightmouseup` | Executed when right mouse button is released |
-| `onrightmousedown` | Executed when right mouse button is pressed |
-| `onrightdoubleclick` | Executed when right mouse button is double-clicked |
-| `onmiddlemouseup` | Executed when middle mouse button is released |
-| `onmiddlemousedown` | Executed when middle mouse button is pressed |
-| `onmiddledoubleclick` | Executed when middle mouse button is double-clicked |
-| `onx1mouseup` | Executed when X1 mouse button is released (back button) |
-| `onx1mousedown` | Executed when X1 mouse button is pressed |
-| `onx1doubleclick` | Executed when X1 mouse button is double-clicked |
-| `onx2mouseup` | Executed when X2 mouse button is released (forward button) |
-| `onx2mousedown` | Executed when X2 mouse button is pressed |
-| `onx2doubleclick` | Executed when X2 mouse button is double-clicked |
-| `onmouseover` | Executed when mouse enters the element |
-| `onmouseleave` | Executed when mouse leaves the element |
-| `onscrollup` | Executed when mouse wheel scrolls up |
-| `onscrolldown` | Executed when mouse wheel scrolls down |
-| `onscrollleft` | Executed when horizontal scroll moves left |
-| `onscrollright` | Executed when horizontal scroll moves right |
+**`onleftmouseup`**  
+Executed when left mouse button is released
+
+**`onleftmousedown`**  
+Executed when left mouse button is pressed
+
+**`onleftdoubleclick`**  
+Executed when left mouse button is double-clicked
+
+**`onrightmouseup`**  
+Executed when right mouse button is released
+
+**`onrightmousedown`**  
+Executed when right mouse button is pressed
+
+**`onrightdoubleclick`**  
+Executed when right mouse button is double-clicked
+
+**`onmiddlemouseup`**  
+Executed when middle mouse button is released
+
+**`onmiddlemousedown`**  
+Executed when middle mouse button is pressed
+
+**`onmiddledoubleclick`**  
+Executed when middle mouse button is double-clicked
+
+**`onx1mouseup`**  
+Executed when X1 mouse button is released (back button)
+
+**`onx1mousedown`**  
+Executed when X1 mouse button is pressed
+
+**`onx1doubleclick`**  
+Executed when X1 mouse button is double-clicked
+
+**`onx2mouseup`**  
+Executed when X2 mouse button is released (forward button)
+
+**`onx2mousedown`**  
+Executed when X2 mouse button is pressed
+
+**`onx2doubleclick`**  
+Executed when X2 mouse button is double-clicked
+
+**`onmouseover`**  
+Executed when mouse enters the element
+
+**`onmouseleave`**  
+Executed when mouse leaves the element
+
+**`onscrollup`**  
+Executed when mouse wheel scrolls up
+
+**`onscrolldown`**  
+Executed when mouse wheel scrolls down
+
+**`onscrollleft`**  
+Executed when horizontal scroll moves left
+
+**`onscrollright`**  
+Executed when horizontal scroll moves right
 
 ## Examples
 

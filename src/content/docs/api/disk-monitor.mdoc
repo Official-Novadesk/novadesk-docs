@@ -17,9 +17,8 @@ var disk = new novadesk.system.Disk([options]);
 
 **options** (Object, optional): Configuration options for the disk monitor
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `drive` | string | All drives | Drive letter to monitor (e.g., "C:", "D:") |
+**`drive`** (string, default: All drives)  
+Drive letter to monitor (e.g., "C:", "D:")
 
 ### Example
 
@@ -41,13 +40,20 @@ Get current disk statistics.
 For a single drive monitor:
 An object containing disk statistics:
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `drive` | string | Drive letter |
-| `total` | number | Total disk space in bytes |
-| `free` | number | Free disk space in bytes |
-| `used` | number | Used disk space in bytes |
-| `percent` | number | Disk usage percentage (0-100) |
+**`drive`** (string)  
+Drive letter
+
+**`total`** (number)  
+Total disk space in bytes
+
+**`free`** (number)  
+Free disk space in bytes
+
+**`used`** (number)  
+Used disk space in bytes
+
+**`percent`** (number)  
+Disk usage percentage (0-100)
 
 For an all-drives monitor:
 An array of objects, each containing disk statistics for each drive.

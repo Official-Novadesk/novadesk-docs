@@ -20,30 +20,45 @@ An object containing configuration options for the widget window.
 
 #### Position and Size Options
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | string | Auto-generated | Unique identifier for the widget |
-| `x` | number | CW_USEDEFAULT | X-coordinate of the widget position |
-| `y` | number | CW_USEDEFAULT | Y-coordinate of the widget position |
-| `width` | number | Auto | Width of the widget in pixels |
-| `height` | number | Auto | Height of the widget in pixels |
+**`id`** (string, default: Auto-generated)  
+Unique identifier for the widget
+
+**`x`** (number, default: CW_USEDEFAULT)  
+X-coordinate of the widget position
+
+**`y`** (number, default: CW_USEDEFAULT)  
+Y-coordinate of the widget position
+
+**`width`** (number, default: Auto)  
+Width of the widget in pixels
+
+**`height`** (number, default: Auto)  
+Height of the widget in pixels
 
 #### Visual Options
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `backgroundcolor` | string | "rgba(0,0,0,0)" | Background color in CSS format (supports rgba, rgb, hex) |
-| `opacity` | number | 255 | Overall window opacity (0-255) |
-| `zpos` | string | "ondesktop" | Z-order position: "normal", "onbottom", "ondesktop", "ontop", "ontopmost" |
+**`backgroundcolor`** (string, default: "rgba(0,0,0,0)")  
+Background color in CSS format (supports rgba, rgb, hex)
+
+**`opacity`** (number, default: 255)  
+Overall window opacity (0-255)
+
+**`zpos`** (string, default: "ondesktop")  
+Z-order position: "normal", "onbottom", "ondesktop", "ontop", "ontopmost"
 
 #### Behavior Options
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `draggable` | boolean | true | Whether the widget can be dragged by the user |
-| `clickthrough` | boolean | false | Whether mouse clicks pass through the widget |
-| `keeponscreen` | boolean | false | Whether to keep the widget within screen bounds |
-| `snapedges` | boolean | true | Whether to snap to other widgets and screen edges |
+**`draggable`** (boolean, default: true)  
+Whether the widget can be dragged by the user
+
+**`clickthrough`** (boolean, default: false)  
+Whether mouse clicks pass through the widget
+
+**`keeponscreen`** (boolean, default: false)  
+Whether to keep the widget within screen bounds
+
+**`snapedges`** (boolean, default: true)  
+Whether to snap to other widgets and screen edges
 
 ## Return Value
 

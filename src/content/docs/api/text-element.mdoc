@@ -17,72 +17,167 @@ widget.addText(options);
 
 ## Text Element Options
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | string | Required | Unique identifier for the text element |
-| `text` | string | "" | Text content to display |
-| `x` | number | 0 | X-coordinate of the text element |
-| `y` | number | 0 | Y-coordinate of the text element |
-| `width` | number | Auto | Width of the text element (auto-calculated if not specified) |
-| `height` | number | Auto | Height of the text element (auto-calculated if not specified) |
-| `fontsize` | number | 12 | Font size in pixels |
-| `fontfamily` | string | "Arial" | Font family name |
-| `color` | string | "rgb(0,0,0)" | Text color in CSS format (supports rgba, rgb, hex) |
-| `fontweight` | string | "normal" | Font weight ("normal", "bold") |
-| `fontstyle` | string | "normal" | Font style ("normal", "italic") |
-| `align` | string | "lefttop" | Text alignment (see alignment options below) |
-| `clipstring` | number | 0 | Clip string behavior (0=none, 1=on, 2=ellipsis) |
-| `clipstringw` | number | -1 | Maximum width for clipping when clipstring is enabled |
-| `clipstringh` | number | -1 | Maximum height for clipping when clipstring is enabled |
-| `solidcolor` | string | "" | Background color for the text area |
-| `solidcolorradius` | number | 0 | Corner radius for solid color background |
-| `rotate` | number | 0 | Rotation angle in degrees |
-| `paddingleft` | number | 0 | Left padding in pixels |
-| `paddingtop` | number | 0 | Top padding in pixels |
-| `paddingright` | number | 0 | Right padding in pixels |
-| `paddingbottom` | number | 0 | Bottom padding in pixels |
+**`id`** (string, required)  
+Unique identifier for the text element
+
+**`text`** (string, default: "")  
+Text content to display
+
+**`x`** (number, default: 0)  
+X-coordinate of the text element
+
+**`y`** (number, default: 0)  
+Y-coordinate of the text element
+
+**`width`** (number, default: Auto)  
+Width of the text element (auto-calculated if not specified)
+
+**`height`** (number, default: Auto)  
+Height of the text element (auto-calculated if not specified)
+
+**`fontsize`** (number, default: 12)  
+Font size in pixels
+
+**`fontfamily`** (string, default: "Arial")  
+Font family name
+
+**`color`** (string, default: "rgb(0,0,0)")  
+Text color in CSS format (supports rgba, rgb, hex)
+
+**`fontweight`** (string, default: "normal")  
+Font weight ("normal", "bold")
+
+**`fontstyle`** (string, default: "normal")  
+Font style ("normal", "italic")
+
+**`align`** (string, default: "lefttop")  
+Text alignment (see alignment options below)
+
+**`clipstring`** (number, default: 0)  
+Clip string behavior (0=none, 1=on, 2=ellipsis)
+
+**`clipstringw`** (number, default: -1)  
+Maximum width for clipping when clipstring is enabled
+
+**`clipstringh`** (number, default: -1)  
+Maximum height for clipping when clipstring is enabled
+
+**`solidcolor`** (string, default: "")  
+Background color for the text area
+
+**`solidcolorradius`** (number, default: 0)  
+Corner radius for solid color background
+
+**`rotate`** (number, default: 0)  
+Rotation angle in degrees
+
+**`paddingleft`** (number, default: 0)  
+Left padding in pixels
+
+**`paddingtop`** (number, default: 0)  
+Top padding in pixels
+
+**`paddingright`** (number, default: 0)  
+Right padding in pixels
+
+**`paddingbottom`** (number, default: 0)  
+Bottom padding in pixels
 
 ### Alignment Options
 
-| Value | Description |
-|-------|-------------|
-| `"lefttop"` or `"left"` | Left aligned, top vertical |
-| `"centertop"` | Center aligned, top vertical |
-| `"righttop"` | Right aligned, top vertical |
-| `"leftcenter"` | Left aligned, center vertical |
-| `"centercenter"` | Center aligned, center vertical |
-| `"rightcenter"` | Right aligned, center vertical |
-| `"leftbottom"` | Left aligned, bottom vertical |
-| `"centerbottom"` | Center aligned, bottom vertical |
-| `"rightbottom"` | Right aligned, bottom vertical |
+**`"lefttop"` or `"left"`**  
+Left aligned, top vertical
+
+**`"centertop"`**  
+Center aligned, top vertical
+
+**`"righttop"`**  
+Right aligned, top vertical
+
+**`"leftcenter"`**  
+Left aligned, center vertical
+
+**`"centercenter"`**  
+Center aligned, center vertical
+
+**`"rightcenter"`**  
+Right aligned, center vertical
+
+**`"leftbottom"`**  
+Left aligned, bottom vertical
+
+**`"centerbottom"`**  
+Center aligned, bottom vertical
+
+**`"rightbottom"`**  
+Right aligned, bottom vertical
 
 ## Text Element Event Options
 
 Text elements can respond to various mouse events:
 
-| Property | Description |
-|----------|-------------|
-| `onleftmouseup` | Executed when left mouse button is released |
-| `onleftmousedown` | Executed when left mouse button is pressed |
-| `onleftdoubleclick` | Executed when left mouse button is double-clicked |
-| `onrightmouseup` | Executed when right mouse button is released |
-| `onrightmousedown` | Executed when right mouse button is pressed |
-| `onrightdoubleclick` | Executed when right mouse button is double-clicked |
-| `onmiddlemouseup` | Executed when middle mouse button is released |
-| `onmiddlemousedown` | Executed when middle mouse button is pressed |
-| `onmiddledoubleclick` | Executed when middle mouse button is double-clicked |
-| `onx1mouseup` | Executed when X1 mouse button is released (back button) |
-| `onx1mousedown` | Executed when X1 mouse button is pressed |
-| `onx1doubleclick` | Executed when X1 mouse button is double-clicked |
-| `onx2mouseup` | Executed when X2 mouse button is released (forward button) |
-| `onx2mousedown` | Executed when X2 mouse button is pressed |
-| `onx2doubleclick` | Executed when X2 mouse button is double-clicked |
-| `onmouseover` | Executed when mouse enters the element |
-| `onmouseleave` | Executed when mouse leaves the element |
-| `onscrollup` | Executed when mouse wheel scrolls up |
-| `onscrolldown` | Executed when mouse wheel scrolls down |
-| `onscrollleft` | Executed when horizontal scroll moves left |
-| `onscrollright` | Executed when horizontal scroll moves right |
+**`onleftmouseup`**  
+Executed when left mouse button is released
+
+**`onleftmousedown`**  
+Executed when left mouse button is pressed
+
+**`onleftdoubleclick`**  
+Executed when left mouse button is double-clicked
+
+**`onrightmouseup`**  
+Executed when right mouse button is released
+
+**`onrightmousedown`**  
+Executed when right mouse button is pressed
+
+**`onrightdoubleclick`**  
+Executed when right mouse button is double-clicked
+
+**`onmiddlemouseup`**  
+Executed when middle mouse button is released
+
+**`onmiddlemousedown`**  
+Executed when middle mouse button is pressed
+
+**`onmiddledoubleclick`**  
+Executed when middle mouse button is double-clicked
+
+**`onx1mouseup`**  
+Executed when X1 mouse button is released (back button)
+
+**`onx1mousedown`**  
+Executed when X1 mouse button is pressed
+
+**`onx1doubleclick`**  
+Executed when X1 mouse button is double-clicked
+
+**`onx2mouseup`**  
+Executed when X2 mouse button is released (forward button)
+
+**`onx2mousedown`**  
+Executed when X2 mouse button is pressed
+
+**`onx2doubleclick`**  
+Executed when X2 mouse button is double-clicked
+
+**`onmouseover`**  
+Executed when mouse enters the element
+
+**`onmouseleave`**  
+Executed when mouse leaves the element
+
+**`onscrollup`**  
+Executed when mouse wheel scrolls up
+
+**`onscrolldown`**  
+Executed when mouse wheel scrolls down
+
+**`onscrollleft`**  
+Executed when horizontal scroll moves left
+
+**`onscrollright`**  
+Executed when horizontal scroll moves right
 
 ## Examples
 

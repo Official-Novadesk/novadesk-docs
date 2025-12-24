@@ -2,3 +2,14 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+#### `novadesk.include(filename)`
+Include and execute another JavaScript file.
+
+```javascript
+// Include a shared utility file
+novadesk.include("utils.js");
+
+// Include a widget module
+novadesk.include("weather-widget.js");
+```

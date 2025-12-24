@@ -2,3 +2,25 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+#### `novadesk.onReady(callback)`
+Execute a callback function when the application is ready.
+
+```javascript
+novadesk.onReady(function() {
+    novadesk.log("Novadesk is ready, initializing widgets...");
+    createClockWidget();
+    createSystemMonitor();
+});
+```
+
+#### `novadesk.refresh()`
+Refresh all widgets (equivalent to right-clicking the tray icon and selecting "Refresh all").
+
+```javascript
+// Refresh when a button is clicked
+someWidget.addText({
+    id: "refreshButton",
+    text: "Refresh",
+    onleftmouseup: "novadesk.refresh()"
+});

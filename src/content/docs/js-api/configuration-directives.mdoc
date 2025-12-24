@@ -1,4 +1,51 @@
 ---
-title: Configuration and Directives
-description: Learn how to configure Novadesk and use special directives
+title: Configuration Directives
+description: Learn how to use special directives
 ---
+
+# Configuration and Directives
+
+Novadesk provides several ways to configure the application and control its behavior through special directives and configuration options.
+
+## Configuration Directives
+
+Configuration directives are special comments that you can add to the beginning of your JavaScript files to control Novadesk's behavior. These directives start with `!` followed by the directive name.
+
+### Available Directives
+
+#### `!enableDebugging;`
+Enables debug logging, which will output more detailed information to the console and log file.
+
+```javascript
+!enableDebugging;
+// Debug messages will now appear in the console
+novadesk.debug("This debug message will be shown");
+```
+
+#### `!disableLogging;`
+Disables all logging output to console and file.
+
+```javascript
+!disableLogging;
+// No log messages will be output
+novadesk.log("This message will not appear");
+novadesk.error("This error will not appear");
+```
+
+#### `!logToFile`
+Enables logging to a file named `novadesk.log` in the application directory.
+
+```javascript
+!logToFile
+// Log messages will be saved to novadesk.log
+novadesk.log("This will be saved to the log file");
+```
+
+#### `!hideTrayIcon`
+Hides the Novadesk tray icon from the system tray.
+
+```javascript
+!hideTrayIcon
+// The tray icon will not appear
+// Widgets will still function normally
+```

@@ -2,3 +2,19 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+
+#### `novadesk.system.getWorkspaceVariables()`
+Get workspace and screen-related variables.
+
+```javascript
+var ws = novadesk.system.getWorkspaceVariables();
+// Returns an object with properties like:
+// - WORKAREAX, WORKAREAY, WORKAREAWIDTH, WORKAREAHEIGHT
+// - SCREENAREAX, SCREENAREAY, SCREENAREAWIDTH, SCREENAREAHEIGHT
+// - PWORKAREAX, PWORKAREAY, etc. (for primary monitor)
+// - VSCREENAREAX, VSCREENAREAY, etc. (for virtual screen)
+
+novadesk.log("Screen width:", ws.WORKAREAWIDTH);
+novadesk.log("Screen height:", ws.WORKAREAHEIGHT);
+```

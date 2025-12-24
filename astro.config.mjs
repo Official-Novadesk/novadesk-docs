@@ -39,20 +39,6 @@ export default defineConfig({
 						{ label: 'Disk Monitor', link: '/system-monitor/disk/' },
 					],
 				},
-				{
-					label: 'Guides',
-					items: [
-						{ label: 'Novadesk API', link: '/novadesk-api/' },
-						{ label: 'Configuration', link: '/configuration/' },
-						{ label: 'Troubleshooting', link: '/troubleshooting/' },
-					],
-				},
-				{
-					label: 'Reference',
-					items: [
-						{ label: 'API Reference', link: '/reference/' },
-					],
-				},
 			],
 		}),
 	],

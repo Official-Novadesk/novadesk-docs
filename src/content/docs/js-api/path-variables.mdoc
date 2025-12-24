@@ -2,3 +2,16 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+#### `novadesk.getExePath()`
+Get information about the Novadesk executable.
+
+```javascript
+var exeInfo = novadesk.getExePath();
+// Returns an object with:
+// - fullPath: Full path to the executable
+// - directory: Directory containing the executable
+// - filename: Name of the executable file
+
+novadesk.log("Executable:", exeInfo.fullPath);
+novadesk.log("Directory:", exeInfo.directory);

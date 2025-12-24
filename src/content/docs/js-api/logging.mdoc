@@ -1,4 +1,35 @@
 ---
-title: Configuration and Directives
-description: Learn how to configure Novadesk and use special directives
+title: Novadesk Global API
+description: Explore the global novadesk object and its utility functions
 ---
+
+# Novadesk Global API
+
+The `novadesk` object provides global utility functions and system access methods for your widgets. It's automatically available in all widget scripts.
+
+## Available Methods
+
+### Logging Functions
+
+#### `novadesk.log(...)`
+Write informational messages to the console and log file.
+
+```javascript
+novadesk.log("Application started");
+novadesk.log("User:", "John", "Age:", 30);
+```
+
+#### `novadesk.error(...)`
+Write error messages to the console and log file.
+
+```javascript
+novadesk.error("Failed to load configuration");
+novadesk.error("Error code:", errorCode, "Message:", errorMessage);
+```
+
+#### `novadesk.debug(...)`
+Write debug messages (only shown when debugging is enabled).
+
+```javascript
+novadesk.debug("Debug info:", variable);
+```

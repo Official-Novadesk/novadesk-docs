@@ -2,3 +2,52 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+### Timer Functions
+
+The following timer functions are available globally:
+
+#### `setTimeout(callback, delay)`
+Execute a callback after a specified delay (in milliseconds).
+
+```javascript
+setTimeout(function() {
+    novadesk.log("This runs after 2 seconds");
+}, 2000);
+```
+
+#### `setInterval(callback, interval)`
+Execute a callback repeatedly at specified intervals (in milliseconds).
+
+```javascript
+// Update the clock every second
+setInterval(function() {
+    var now = new Date();
+    var timeString = now.toLocaleTimeString();
+    clockWidget.updateText("timeText", timeString);
+}, 1000);
+```
+
+#### `clearTimeout(id)` and `clearInterval(id)`
+Cancel a timeout or interval using its ID.
+
+```javascript
+var intervalId = setInterval(function() {
+    novadesk.log("This runs every 5 seconds");
+}, 5000);
+
+// Cancel the interval after 30 seconds
+setTimeout(function() {
+    clearInterval(intervalId);
+    novadesk.log("Interval cancelled");
+}, 30000);
+```
+
+#### `setImmediate(callback)`
+Execute a callback immediately after the current event loop cycle.
+
+```javascript
+setImmediate(function() {
+    novadesk.log("This runs immediately after current code");
+});
+```

@@ -2,3 +2,44 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+### Hotkey Management
+
+#### `novadesk.registerHotkey(hotkey, callback)`
+Register a global hotkey with a callback function.
+
+```javascript
+// Simple hotkey registration (triggers on key down)
+novadesk.registerHotkey("Ctrl+Alt+R", function() {
+    novadesk.log("Global refresh triggered!");
+    novadesk.refresh();
+});
+
+// Advanced hotkey registration with separate key down/up callbacks
+novadesk.registerHotkey("Space", {
+    onKeyDown: function() {
+        novadesk.log("Space key pressed");
+    },
+    onKeyUp: function() {
+        novadesk.log("Space key released");
+    }
+});
+
+// Register a Windows key combination
+novadesk.registerHotkey("Win+Z", function() {
+    novadesk.log("Win+Z pressed");
+});
+```
+
+#### `novadesk.unregisterHotkey(id)`
+Unregister a previously registered hotkey using its ID.
+
+```javascript
+// Register a hotkey and store its ID
+var hotkeyId = novadesk.registerHotkey("Ctrl+Shift+D", function() {
+    novadesk.debug("Debug mode toggled");
+});
+
+// Later, unregister the hotkey
+novadesk.unregisterHotkey(hotkeyId);
+```

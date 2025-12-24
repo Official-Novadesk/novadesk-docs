@@ -2,3 +2,26 @@
 title: Configuration and Directives
 description: Learn how to configure Novadesk and use special directives
 ---
+
+#### `novadesk.getEnv(variableName)`
+Get the value of a specific environment variable.
+
+```javascript
+var username = novadesk.getEnv("USERNAME");
+var tempDir = novadesk.getEnv("TEMP");
+var userProfile = novadesk.getEnv("USERPROFILE");
+
+novadesk.log("Current user:", username);
+```
+
+#### `novadesk.getAllEnv()`
+Get all environment variables as an object.
+
+```javascript
+var allEnv = novadesk.getAllEnv();
+novadesk.log("Total environment variables:", Object.keys(allEnv).length);
+
+// Access specific variables
+novadesk.log("Path:", allEnv.PATH);
+novadesk.log("System root:", allEnv.SystemRoot);
+```

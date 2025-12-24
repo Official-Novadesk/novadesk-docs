@@ -37,24 +37,24 @@ widget.addImage({
 ## Image Properties
 
 ### Basic Properties
-- `id` (string): A unique identifier for the image element (required for updates/removal)
 - `path` (string): Path to the image file (relative to the Widgets directory)
 
-For positioning and sizing options, see [General Options](/elements/general-options/).
+For common properties like `id`, positioning, sizing, background styling, rotation, and gradients, see [General Options](/elements/general-options/).
 
 ### Styling Properties
-- `solidcolor` (string): Solid color to display when no image is available
-- `solidcolorradius` (number): Radius for rounded corners when using solid color
 - `preserveaspectratio` (number): Whether to maintain the original aspect ratio (1) or stretch (0)
 - `imagetint` (string): RGB color to tint the image (affects brightness only)
 - `imagealpha` (number): Transparency level (0 = fully transparent, 255 = fully opaque)
 - `grayscale` (boolean): Whether to convert the image to grayscale
 - `tile` (boolean): Whether to tile the image if it's smaller than the specified dimensions
 
+For common styling properties like `solidcolor`, `solidcolorradius`, and `rotate`, see [General Options](/elements/general-options/).
+
 ### Transformation Properties
-- `rotate` (number): Rotation angle in degrees
 - `transformmatrix` (array): 6-element array for affine transformations [a,b,c,d,tx,ty]
 - `colormatrix` (array): 25-element array for advanced color transformations
+
+For rotation property, see [General Options](/elements/general-options/).
 
 ## Updating Image Elements
 

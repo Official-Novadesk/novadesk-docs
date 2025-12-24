@@ -23,15 +23,35 @@ Elements in Novadesk widgets can share common options for positioning, styling, 
 - `solidcolor` (string): Solid color background in CSS format (e.g., "rgb(255,0,0)", "rgba(0,0,0,0.5)")
 - `solidcolorradius` (number): Radius for rounded corners on solid color backgrounds
 
+### Other Common Properties
+- `rotate` (number): Rotation angle in degrees
+- `id` (string): Unique identifier for the element (required for updates/removal)
+
 ## Interaction Options
 
 ### Mouse Actions
 Elements can respond to various mouse events:
 - `onleftmouseup` - Function to execute when left mouse button is released over the element
+- `onleftmousedown` - Function to execute when left mouse button is pressed over the element
+- `onleftdoubleclick` - Function to execute when left mouse button is double-clicked over the element
 - `onrightmouseup` - Function to execute when right mouse button is released over the element
-- `onmouseenter` - Function to execute when mouse enters the element area
+- `onrightmousedown` - Function to execute when right mouse button is pressed over the element
+- `onrightdoubleclick` - Function to execute when right mouse button is double-clicked over the element
+- `onmiddlemouseup` - Function to execute when middle mouse button is released over the element
+- `onmiddlemousedown` - Function to execute when middle mouse button is pressed over the element
+- `onmiddledoubleclick` - Function to execute when middle mouse button is double-clicked over the element
+- `onx1mouseup` - Function to execute when X1 mouse button is released over the element
+- `onx1mousedown` - Function to execute when X1 mouse button is pressed over the element
+- `onx1doubleclick` - Function to execute when X1 mouse button is double-clicked over the element
+- `onx2mouseup` - Function to execute when X2 mouse button is released over the element
+- `onx2mousedown` - Function to execute when X2 mouse button is pressed over the element
+- `onx2doubleclick` - Function to execute when X2 mouse button is double-clicked over the element
+- `onscrollup` - Function to execute when scrolling up over the element
+- `onscrolldown` - Function to execute when scrolling down over the element
+- `onscrollleft` - Function to execute when scrolling left over the element
+- `onscrollright` - Function to execute when scrolling right over the element
+- `onmouseover` - Function to execute when mouse moves over the element
 - `onmouseleave` - Function to execute when mouse leaves the element area
-- `onmousemove` - Function to execute when mouse moves over the element
 
 ## Example Configuration
 

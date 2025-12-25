@@ -2,7 +2,6 @@
 title: Widget Methods
 description: Methods available on widget objects in Novadesk
 ---
-
 # Widget Methods
 
 Once you create a widget using the `widgetWindow()` constructor, the returned object has several methods for managing UI elements and properties.
@@ -14,102 +13,15 @@ Once you create a widget using the `widgetWindow()` constructor, the returned ob
 Add a text element to the widget.
 
 #### Parameters
+
 - **options** (Object): Configuration options for the text element
 
 ### Options
 
-#### **`id`**
-- **type**: `string`
-- **Required**: `true`
-- **Description**: Unique identifier for the text element
-
-#### **`text`**
-- **type**: `string`
-- **Default**: `""`
-- **Description**: Text content to display
-
-#### **`x`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: X-coordinate of the text element
-
-#### **`y`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Y-coordinate of the text element
-
-#### **`width`**
-- **type**: `number`
-- **Default**: `Auto`
-- **Description**: Width of the text element
-
-#### **`height`**
-- **type**: `number`
-- **Default**: `Auto`
-- **Description**: Height of the text element
-
-#### **`fontsize`**
-- **type**: `number`
-- **Default**: `12`
-- **Description**: Font size in pixels
-
-#### **`fontfamily`**
-- **type**: `string`
-- **Default**: `"Arial"`
-- **Description**: Font family
-
-#### **`color`**
-- **type**: `string`
-- **Default**: `"rgb(0,0,0)"`
-- **Description**: Text color in CSS format
-
-#### **`fontweight`**
-- **type**: `string`
-- **Default**: `"normal"`
-- **Description**: Font weight (`"normal"`, `"bold"`)
-
-#### **`fontstyle`**
-- **type**: `string`
-- **Default**: `"normal"`
-- **Description**: Font style (`"normal"`, `"italic"`)
-
-#### **`align`**
-- **type**: `string`
-- **Default**: `"lefttop"`
-- **Description**: Text alignment (`"lefttop"`, `"centertop"`, `"righttop"`, etc.)
-
-#### **`clipstring`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Clip string behavior (`0` = none, `1` = on, `2` = ellipsis)
-
-#### **`clipstringw`**
-- **type**: `number`
-- **Default**: `-1`
-- **Description**: Maximum width for clipping
-
-#### **`clipstringh`**
-- **type**: `number`
-- **Default**: `-1`
-- **Description**: Maximum height for clipping
-
-#### **`solidcolor`**
-- **type**: `string`
-- **Default**: `""`
-- **Description**: Background color for text area
-
-#### **`solidcolorradius`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Corner radius for solid color background
-
-#### **`rotate`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Rotation angle in degrees
-
+See text UI element for options of text element [here](/api/text-element/).
 
 #### Example
+
 ```javascript
 widget.addText({
     id: "myText",
@@ -127,81 +39,15 @@ widget.addText({
 Add an image element to the widget.
 
 #### Parameters
+
 - **options** (Object): Configuration options for the image element
 
 ### Options
 
-#### **`id`**
-- **type**: `string`
-- **Required**: `true`
-- **Description**: Unique identifier for the image element
-
-#### **`path`**
-- **type**: `string`
-- **Default**: `""`
-- **Description**: Path to the image file
-
-#### **`x`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: X-coordinate of the image element
-
-#### **`y`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Y-coordinate of the image element
-
-#### **`width`**
-- **type**: `number`
-- **Default**: `Auto`
-- **Description**: Width of the image element
-
-#### **`height`**
-- **type**: `number`
-- **Default**: `Auto`
-- **Description**: Height of the image element
-
-#### **`solidcolor`**
-- **type**: `string`
-- **Default**: `""`
-- **Description**: Solid color background
-
-#### **`solidcolorradius`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Corner radius for solid color background
-
-#### **`preserveaspectratio`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Aspect ratio behavior (`0` = stretch, `1` = fit, `2` = crop)
-
-#### **`imagealpha`**
-- **type**: `number`
-- **Default**: `255`
-- **Description**: Image opacity (`0–255`)
-
-#### **`grayscale`**
-- **type**: `boolean`
-- **Default**: `false`
-- **Description**: Whether to apply grayscale filter
-
-#### **`tile`**
-- **type**: `boolean`
-- **Default**: `false`
-- **Description**: Whether to tile the image
-
-#### **`rotate`**
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Rotation angle in degrees
-
-#### **`imagetint`**
-- **type**: `string`
-- **Default**: `""`
-- **Description**: Tint color for the image
+See image UI element for options of image element [here](/api/text-element/)
 
 #### Example
+
 ```javascript
 widget.addImage({
     id: "myImage",
@@ -219,10 +65,12 @@ widget.addImage({
 Update the text content of an existing text element.
 
 #### Parameters
+
 - **id** (string): ID of the text element to update
 - **text** (string): New text content
 
 #### Example
+
 ```javascript
 widget.updateText("myText", "Updated text content");
 ```
@@ -232,10 +80,12 @@ widget.updateText("myText", "Updated text content");
 Update the image source of an existing image element.
 
 #### Parameters
+
 - **id** (string): ID of the image element to update
 - **path** (string): New path to the image file
 
 #### Example
+
 ```javascript
 widget.updateImage("myImage", "assets/new-logo.png");
 ```
@@ -245,9 +95,11 @@ widget.updateImage("myImage", "assets/new-logo.png");
 Remove a UI element by its ID.
 
 #### Parameters
+
 - **id** (string): ID of the element to remove
 
 #### Example
+
 ```javascript
 widget.removeContent("myText");
 ```
@@ -257,6 +109,7 @@ widget.removeContent("myText");
 Remove all UI elements from the widget.
 
 #### Example
+
 ```javascript
 widget.clearContent();
 ```
@@ -268,51 +121,63 @@ widget.clearContent();
 Update widget properties after creation.
 
 #### Parameters
+
 - **options** (Object): Properties to update
 
 #### Options
 
 #### **`x`**
+
 - **type**: `number`
 - **Description**: New X-coordinate
 
 #### **`y`**
+
 - **type**: `number`
 - **Description**: New Y-coordinate
 
 #### **`width`**
+
 - **type**: `number`
 - **Description**: New width
 
 #### **`height`**
+
 - **type**: `number`
 - **Description**: New height
 
 #### **`backgroundcolor`**
+
 - **type**: `string`
 - **Description**: New background color
 
 #### **`opacity`**
+
 - **type**: `number`
 - **Description**: New overall opacity (`0.0–1.0` or `0–255`)
 
 #### **`zpos`**
+
 - **type**: `string`
 - **Description**: New z-order position
 
 #### **`draggable`**
+
 - **type**: `boolean`
 - **Description**: Whether widget is draggable
 
 #### **`clickthrough`**
+
 - **type**: `boolean`
 - **Description**: Whether widget is click-through
 
 #### **`keeponscreen`**
+
 - **type**: `boolean`
 - **Description**: Whether to keep widget on screen
 
 #### Example
+
 ```javascript
 widget.setProperties({
     x: 200,
@@ -329,9 +194,11 @@ widget.setProperties({
 Get current widget properties.
 
 #### Return Value
+
 An object containing the current widget properties.
 
 #### Example
+
 ```javascript
 var props = widget.getProperties();
 novadesk.log("Widget position: " + props.x + ", " + props.y);
@@ -342,6 +209,7 @@ novadesk.log("Widget position: " + props.x + ", " + props.y);
 Close and destroy the widget.
 
 #### Example
+
 ```javascript
 widget.close();
 ```
@@ -351,44 +219,7 @@ widget.close();
 Refresh the widget (reload scripts and redraw).
 
 #### Example
+
 ```javascript
 widget.refresh();
-```
-
-## Event Handling Properties
-
-UI elements can have event handlers assigned through their options. These are special properties that execute JavaScript when specific events occur:
-
-### Mouse Events
-- `onleftmouseup`: Executed when left mouse button is released
-- `onleftmousedown`: Executed when left mouse button is pressed
-- `onleftdoubleclick`: Executed when left mouse button is double-clicked
-- `onrightmouseup`: Executed when right mouse button is released
-- `onrightmousedown`: Executed when right mouse button is pressed
-- `onrightdoubleclick`: Executed when right mouse button is double-clicked
-- `onmiddlemouseup`: Executed when middle mouse button is released
-- `onmiddlemousedown`: Executed when middle mouse button is pressed
-- `onmiddledoubleclick`: Executed when middle mouse button is double-clicked
-- `onx1mouseup`, `onx1mousedown`, `onx1doubleclick`: Executed for X1 mouse button (back button)
-- `onx2mouseup`, `onx2mousedown`, `onx2doubleclick`: Executed for X2 mouse button (forward button)
-- `onmouseover`: Executed when mouse enters the element
-- `onmouseleave`: Executed when mouse leaves the element
-
-### Scroll Events
-- `onscrollup`: Executed when mouse wheel scrolls up
-- `onscrolldown`: Executed when mouse wheel scrolls down
-- `onscrollleft`: Executed when horizontal scroll moves left
-- `onscrollright`: Executed when horizontal scroll moves right
-
-#### Example with Event Handlers
-```javascript
-widget.addText({
-    id: "clickableText",
-    text: "Click me!",
-    x: 10,
-    y: 10,
-    fontsize: 16,
-    color: "blue",
-    onleftmouseup: "novadesk.log('Text was clicked!')"
-});
 ```

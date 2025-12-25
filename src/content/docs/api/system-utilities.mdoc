@@ -8,25 +8,29 @@ description: System utility functions in the Novadesk JavaScript API
 The `novadesk` object provides various system utility functions for accessing system information, managing the application, and handling resources.
 
 
-## novadesk.system.getWorkspaceVariables()
+## novadesk.system.getDisplayMetrics()
 
-Get workspace variables related to screen dimensions and monitor information.
+Get display metrics related to screen dimensions and monitor information.
 
 ### Return Value
-An object containing various screen and workspace dimensions:
-- `WORKAREAX`, `WORKAREAY`, `WORKAREAWIDTH`, `WORKAREAHEIGHT`: Work area of the primary monitor
-- `PWORKAREAX`, `PWORKAREAY`, `PWORKAREAWIDTH`, `PWORKAREAHEIGHT`: Work area of the primary monitor (with 'P' prefix)
-- `SCREENAREAX`, `SCREENAREAY`, `SCREENAREAWIDTH`, `SCREENAREAHEIGHT`: Screen area of the primary monitor
-- `PSCREENAREAX`, `PSCREENAREAY`, `PSCREENAREAWIDTH`, `PSCREENAREAHEIGHT`: Screen area of the primary monitor (with 'P' prefix)
-- `VSCREENAREAX`, `VSCREENAREAY`, `VSCREENAREAWIDTH`, `VSCREENAREAHEIGHT`: Virtual screen dimensions
+An object containing structured information about displays:
+- `primary`: Object containing `workArea` and `screenArea` for the primary monitor.
+- `virtualScreen`: Object containing the full virtual screen dimensions (`x`, `y`, `width`, `height`).
+- `monitors`: An array of monitor objects, each containing `workArea`, `screenArea`, and a unique `id`.
+
+Each area object (`workArea`, `screenArea`) contains:
+- `x`, `y`: Top-left coordinates
+- `width`, `height`: Dimensions in pixels
 
 ### Example
 ```javascript
-var workspace = novadesk.system.getWorkspaceVariables();
-novadesk.log("Screen width: " + workspace.SCREENAREAWIDTH);
-novadesk.log("Screen height: " + workspace.SCREENAREAHEIGHT);
-novadesk.log("Work area X: " + workspace.WORKAREAX);
-novadesk.log("Work area Y: " + workspace.WORKAREAY);
+var metrics = novadesk.system.getDisplayMetrics();
+novadesk.log("Primary width: " + metrics.primary.screenArea.width);
+novadesk.log("Work area X: " + metrics.primary.workArea.x);
+
+// Accessing first monitor in array
+var monitor1 = metrics.monitors[0];
+novadesk.log("Monitor 1 height: " + monitor1.screenArea.height);
 ```
 
 ## novadesk.refresh()

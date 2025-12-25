@@ -1,0 +1,18 @@
+---
+title: Display Metrics
+description: Display metrics for monitors in Novadesk
+---
+
+## novadesk.system.getDisplayMetrics()
+
+Get display metrics related to screen dimensions and monitor information.
+
+### Return Value
+An object containing structured information about displays:
+- `primary`: Object containing `workArea` and `screenArea` for the primary monitor.
+- `virtualScreen`: Object containing the full virtual screen dimensions (`x`, `y`, `width`, `height`).
+- `monitors`: An array of monitor objects, each containing `workArea`, `screenArea`, and a unique `id`.
+
+Each area object (`workArea`, `screenArea`) contains:
+- `x`, `y`: Top-left coordinates
+- `width`, `height`: Dimensions in pixels

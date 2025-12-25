@@ -2,7 +2,6 @@
 title: widgetWindow()
 description: Create and manage desktop widget windows in Novadesk
 ---
-
 # widgetWindow()
 
 The `widgetWindow()` constructor creates a new desktop widget window that can display UI elements like text and images. Widget windows are transparent, layerable, and can be positioned anywhere on the desktop.
@@ -16,48 +15,57 @@ var widget = new widgetWindow(options);
 ## Parameters
 
 ### options (Object)
+
 An object containing configuration options for the widget window.
 
 #### Position and Size Options
 
-#### **`id`** 
+#### **`id`**
+
 - **type**: `string`
 - **Default**: `Auto`
 - **Description**: Unique identifier for the widget
 
 #### **`x`**
+
 - **type**: `number`
-- **Default**: `CW_USEDEFAULT`
+- **Default**: `0`
 - **Description**: X-coordinate of the widget position
 
 #### **`y`**
+
 - **type**: `number`
-- **Default**: `CW_USEDEFAULT`
+- **Default**: `0`
 - **Description**: Y-coordinate of the widget position
 
 #### **`width`**
+
 - **type**: `number`
-- **Default**: `Auto`
+- **Default**: `0 (Auto size to content)`
 - **Description**: Width of the widget in pixels
 
 #### **`height`**
+
 - **type**: `number`
-- **Default**: `Auto`
+- **Default**: `0 (Auto size to content)`
 - **Description**: Height of the widget in pixels
 
 ### Visual Options
 
 #### **`backgroundcolor`**
-- **type**: `string`
+
+- **type**: `Color string`
 - **Default**: `"rgba(0,0,0,0)"`
-- **Description**: Background color in CSS format (supports rgba, rgb, hex)
+- **Description**: Background color in CSS format.
 
 #### **`opacity`**
+
 - **type**: `number`
-- **Default**: `255`
-- **Description**: Overall window opacity (0-255)
+- **Default**: `1`
+- **Description**: Overall window opacity (0-1)
 
 #### **`zpos`**
+
 - **type**: `string`
 - **Default**: `"ondesktop"`
 - **Description**: Z-order position: "normal", "onbottom", "ondesktop", "ontop", "ontopmost"
@@ -65,21 +73,25 @@ An object containing configuration options for the widget window.
 ### Behavior Options
 
 #### **`draggable`**
+
 - **type**: `boolean`
 - **Default**: `true`
 - **Description**: Whether the widget can be dragged by the user
 
 #### **`clickthrough`**
+
 - **type**: `boolean`
 - **Default**: `false`
 - **Description**: Whether mouse clicks pass through the widget
 
 #### **`keeponscreen`**
+
 - **type**: `boolean`
 - **Default**: `false`
 - **Description**: Whether to keep the widget within screen bounds
 
 #### **`snapedges`**
+
 - **type**: `boolean`
 - **Default**: `true`
 - **Description**: Whether to snap to other widgets and screen edges

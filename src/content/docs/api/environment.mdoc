@@ -1,0 +1,40 @@
+---
+title: Environment Methods
+description: Environment functions in the Novadesk JavaScript API
+---
+
+## novadesk.getEnv(name)
+
+Get the value of an environment variable.
+
+### Parameters
+- **name** (string): Name of the environment variable
+
+### Return Value
+The value of the environment variable, or `null` if it doesn't exist.
+
+### Example
+```javascript
+var username = novadesk.getEnv("USERNAME");
+novadesk.log("Current user: " + username);
+
+var tempPath = novadesk.getEnv("TEMP");
+novadesk.log("Temp directory: " + tempPath);
+```
+
+## novadesk.getAllEnv()
+
+Get all environment variables as an object.
+
+### Return Value
+An object containing all environment variables as key-value pairs.
+
+### Example
+```javascript
+var allEnv = novadesk.getAllEnv();
+novadesk.log("Total environment variables: " + Object.keys(allEnv).length);
+
+// Log all variables
+for (var key in allEnv) {
+    novadesk.log(key + " = " + allEnv[key]);
+}

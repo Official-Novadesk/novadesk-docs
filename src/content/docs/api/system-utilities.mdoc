@@ -7,60 +7,6 @@ description: System utility functions in the Novadesk JavaScript API
 
 The `novadesk` object provides various system utility functions for accessing system information, managing the application, and handling resources.
 
-## novadesk.getExePath()
-
-Get information about the Novadesk executable path.
-
-### Return Value
-An object with the following properties:
-- `fullPath`: Complete path to the executable
-- `directory`: Directory containing the executable
-- `filename`: Name of the executable file
-
-### Example
-```javascript
-var exeInfo = novadesk.getExePath();
-novadesk.log("Executable path: " + exeInfo.fullPath);
-novadesk.log("Directory: " + exeInfo.directory);
-novadesk.log("Filename: " + exeInfo.filename);
-```
-
-## novadesk.getEnv(name)
-
-Get the value of an environment variable.
-
-### Parameters
-- **name** (string): Name of the environment variable
-
-### Return Value
-The value of the environment variable, or `null` if it doesn't exist.
-
-### Example
-```javascript
-var username = novadesk.getEnv("USERNAME");
-novadesk.log("Current user: " + username);
-
-var tempPath = novadesk.getEnv("TEMP");
-novadesk.log("Temp directory: " + tempPath);
-```
-
-## novadesk.getAllEnv()
-
-Get all environment variables as an object.
-
-### Return Value
-An object containing all environment variables as key-value pairs.
-
-### Example
-```javascript
-var allEnv = novadesk.getAllEnv();
-novadesk.log("Total environment variables: " + Object.keys(allEnv).length);
-
-// Log all variables
-for (var key in allEnv) {
-    novadesk.log(key + " = " + allEnv[key]);
-}
-```
 
 ## novadesk.system.getWorkspaceVariables()
 

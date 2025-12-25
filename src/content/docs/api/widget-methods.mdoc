@@ -16,61 +16,98 @@ Add a text element to the widget.
 #### Parameters
 - **options** (Object): Configuration options for the text element
 
-#### Options
+### Options
 
-**`id`** (string, required)  
-Unique identifier for the text element
+#### **`id`**
+- **type**: `string`
+- **Required**: `true`
+- **Description**: Unique identifier for the text element
 
-**`text`** (string, default: "")  
-Text content to display
+#### **`text`**
+- **type**: `string`
+- **Default**: `""`
+- **Description**: Text content to display
 
-**`x`** (number, default: 0)  
-X-coordinate of the text element
+#### **`x`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: X-coordinate of the text element
 
-**`y`** (number, default: 0)  
-Y-coordinate of the text element
+#### **`y`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Y-coordinate of the text element
 
-**`width`** (number, default: Auto)  
-Width of the text element
+#### **`width`**
+- **type**: `number`
+- **Default**: `Auto`
+- **Description**: Width of the text element
 
-**`height`** (number, default: Auto)  
-Height of the text element
+#### **`height`**
+- **type**: `number`
+- **Default**: `Auto`
+- **Description**: Height of the text element
 
-**`fontsize`** (number, default: 12)  
-Font size in pixels
+#### **`fontsize`**
+- **type**: `number`
+- **Default**: `12`
+- **Description**: Font size in pixels
 
-**`fontfamily`** (string, default: "Arial")  
-Font family
+#### **`fontfamily`**
+- **type**: `string`
+- **Default**: `"Arial"`
+- **Description**: Font family
 
-**`color`** (string, default: "rgb(0,0,0)")  
-Text color in CSS format
+#### **`color`**
+- **type**: `string`
+- **Default**: `"rgb(0,0,0)"`
+- **Description**: Text color in CSS format
 
-**`fontweight`** (string, default: "normal")  
-Font weight ("normal", "bold")
+#### **`fontweight`**
+- **type**: `string`
+- **Default**: `"normal"`
+- **Description**: Font weight (`"normal"`, `"bold"`)
 
-**`fontstyle`** (string, default: "normal")  
-Font style ("normal", "italic")
+#### **`fontstyle`**
+- **type**: `string`
+- **Default**: `"normal"`
+- **Description**: Font style (`"normal"`, `"italic"`)
 
-**`align`** (string, default: "lefttop")  
-Text alignment ("lefttop", "centertop", "righttop", etc.)
+#### **`align`**
+- **type**: `string`
+- **Default**: `"lefttop"`
+- **Description**: Text alignment (`"lefttop"`, `"centertop"`, `"righttop"`, etc.)
 
-**`clipstring`** (number, default: 0)  
-Clip string behavior (0=none, 1=on, 2=ellipsis)
+#### **`clipstring`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Clip string behavior (`0` = none, `1` = on, `2` = ellipsis)
 
-**`clipstringw`** (number, default: -1)  
-Maximum width for clipping
+#### **`clipstringw`**
+- **type**: `number`
+- **Default**: `-1`
+- **Description**: Maximum width for clipping
 
-**`clipstringh`** (number, default: -1)  
-Maximum height for clipping
+#### **`clipstringh`**
+- **type**: `number`
+- **Default**: `-1`
+- **Description**: Maximum height for clipping
 
-**`solidcolor`** (string, default: "")  
-Background color for text area
+#### **`solidcolor`**
+- **type**: `string`
+- **Default**: `""`
+- **Description**: Background color for text area
 
-**`solidcolorradius`** (number, default: 0)  
-Corner radius for solid color background
+#### **`solidcolorradius`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Corner radius for solid color background
 
-**`rotate`** (number, default: 0)  
-Rotation angle in degrees
+#### **`rotate`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Rotation angle in degrees
+
 
 #### Example
 ```javascript
@@ -92,49 +129,77 @@ Add an image element to the widget.
 #### Parameters
 - **options** (Object): Configuration options for the image element
 
-#### Options
+### Options
 
-**`id`** (string, required)  
-Unique identifier for the image element
+#### **`id`**
+- **type**: `string`
+- **Required**: `true`
+- **Description**: Unique identifier for the image element
 
-**`path`** (string, default: "")  
-Path to the image file
+#### **`path`**
+- **type**: `string`
+- **Default**: `""`
+- **Description**: Path to the image file
 
-**`x`** (number, default: 0)  
-X-coordinate of the image element
+#### **`x`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: X-coordinate of the image element
 
-**`y`** (number, default: 0)  
-Y-coordinate of the image element
+#### **`y`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Y-coordinate of the image element
 
-**`width`** (number, default: Auto)  
-Width of the image element
+#### **`width`**
+- **type**: `number`
+- **Default**: `Auto`
+- **Description**: Width of the image element
 
-**`height`** (number, default: Auto)  
-Height of the image element
+#### **`height`**
+- **type**: `number`
+- **Default**: `Auto`
+- **Description**: Height of the image element
 
-**`solidcolor`** (string, default: "")  
-Solid color background
+#### **`solidcolor`**
+- **type**: `string`
+- **Default**: `""`
+- **Description**: Solid color background
 
-**`solidcolorradius`** (number, default: 0)  
-Corner radius for solid color background
+#### **`solidcolorradius`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Corner radius for solid color background
 
-**`preserveaspectratio`** (number, default: 0)  
-Aspect ratio behavior (0=stretch, 1=fit, 2=crop)
+#### **`preserveaspectratio`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Aspect ratio behavior (`0` = stretch, `1` = fit, `2` = crop)
 
-**`imagealpha`** (number, default: 255)  
-Image opacity (0-255)
+#### **`imagealpha`**
+- **type**: `number`
+- **Default**: `255`
+- **Description**: Image opacity (`0–255`)
 
-**`grayscale`** (boolean, default: false)  
-Whether to apply grayscale filter
+#### **`grayscale`**
+- **type**: `boolean`
+- **Default**: `false`
+- **Description**: Whether to apply grayscale filter
 
-**`tile`** (boolean, default: false)  
-Whether to tile the image
+#### **`tile`**
+- **type**: `boolean`
+- **Default**: `false`
+- **Description**: Whether to tile the image
 
-**`rotate`** (number, default: 0)  
-Rotation angle in degrees
+#### **`rotate`**
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Rotation angle in degrees
 
-**`imagetint`** (string, default: "")  
-Tint color for the image
+#### **`imagetint`**
+- **type**: `string`
+- **Default**: `""`
+- **Description**: Tint color for the image
 
 #### Example
 ```javascript
@@ -207,35 +272,45 @@ Update widget properties after creation.
 
 #### Options
 
-**`x`** (number)  
-New X-coordinate
+#### **`x`**
+- **type**: `number`
+- **Description**: New X-coordinate
 
-**`y`** (number)  
-New Y-coordinate
+#### **`y`**
+- **type**: `number`
+- **Description**: New Y-coordinate
 
-**`width`** (number)  
-New width
+#### **`width`**
+- **type**: `number`
+- **Description**: New width
 
-**`height`** (number)  
-New height
+#### **`height`**
+- **type**: `number`
+- **Description**: New height
 
-**`backgroundcolor`** (string)  
-New background color
+#### **`backgroundcolor`**
+- **type**: `string`
+- **Description**: New background color
 
-**`opacity`** (number)  
-New overall opacity (0.0-1.0 or 0-255)
+#### **`opacity`**
+- **type**: `number`
+- **Description**: New overall opacity (`0.0–1.0` or `0–255`)
 
-**`zpos`** (string)  
-New z-order position
+#### **`zpos`**
+- **type**: `string`
+- **Description**: New z-order position
 
-**`draggable`** (boolean)  
-Whether widget is draggable
+#### **`draggable`**
+- **type**: `boolean`
+- **Description**: Whether widget is draggable
 
-**`clickthrough`** (boolean)  
-Whether widget is click-through
+#### **`clickthrough`**
+- **type**: `boolean`
+- **Description**: Whether widget is click-through
 
-**`keeponscreen`** (boolean)  
-Whether to keep widget on screen
+#### **`keeponscreen`**
+- **type**: `boolean`
+- **Description**: Whether to keep widget on screen
 
 #### Example
 ```javascript

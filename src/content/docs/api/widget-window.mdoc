@@ -20,47 +20,71 @@ An object containing configuration options for the widget window.
 
 #### Position and Size Options
 
-**`id`** (string, default: Auto-generated)  
-Unique identifier for the widget
+#### **`id`** 
+- **type**: `string`
+- **Default**: `Auto`
+- **Description**: Unique identifier for the widget
 
-**`x`** (number, default: CW_USEDEFAULT)  
-X-coordinate of the widget position
+#### **`x`**
+- **type**: `number`
+- **Default**: `CW_USEDEFAULT`
+- **Description**: X-coordinate of the widget position
 
-**`y`** (number, default: CW_USEDEFAULT)  
-Y-coordinate of the widget position
+#### **`y`**
+- **type**: `number`
+- **Default**: `CW_USEDEFAULT`
+- **Description**: Y-coordinate of the widget position
 
-**`width`** (number, default: Auto)  
-Width of the widget in pixels
+#### **`width`**
+- **type**: `number`
+- **Default**: `Auto`
+- **Description**: Width of the widget in pixels
 
-**`height`** (number, default: Auto)  
-Height of the widget in pixels
+#### **`height`**
+- **type**: `number`
+- **Default**: `Auto`
+- **Description**: Height of the widget in pixels
 
-#### Visual Options
+### Visual Options
 
-**`backgroundcolor`** (string, default: "rgba(0,0,0,0)")  
-Background color in CSS format (supports rgba, rgb, hex)
+#### **`backgroundcolor`**
+- **type**: `string`
+- **Default**: `"rgba(0,0,0,0)"`
+- **Description**: Background color in CSS format (supports rgba, rgb, hex)
 
-**`opacity`** (number, default: 255)  
-Overall window opacity (0-255)
+#### **`opacity`**
+- **type**: `number`
+- **Default**: `255`
+- **Description**: Overall window opacity (0-255)
 
-**`zpos`** (string, default: "ondesktop")  
-Z-order position: "normal", "onbottom", "ondesktop", "ontop", "ontopmost"
+#### **`zpos`**
+- **type**: `string`
+- **Default**: `"ondesktop"`
+- **Description**: Z-order position: "normal", "onbottom", "ondesktop", "ontop", "ontopmost"
 
-#### Behavior Options
+### Behavior Options
 
-**`draggable`** (boolean, default: true)  
-Whether the widget can be dragged by the user
+#### **`draggable`**
+- **type**: `boolean`
+- **Default**: `true`
+- **Description**: Whether the widget can be dragged by the user
 
-**`clickthrough`** (boolean, default: false)  
-Whether mouse clicks pass through the widget
+#### **`clickthrough`**
+- **type**: `boolean`
+- **Default**: `false`
+- **Description**: Whether mouse clicks pass through the widget
 
-**`keeponscreen`** (boolean, default: false)  
-Whether to keep the widget within screen bounds
+#### **`keeponscreen`**
+- **type**: `boolean`
+- **Default**: `false`
+- **Description**: Whether to keep the widget within screen bounds
 
-**`snapedges`** (boolean, default: true)  
-Whether to snap to other widgets and screen edges
+#### **`snapedges`**
+- **type**: `boolean`
+- **Default**: `true`
+- **Description**: Whether to snap to other widgets and screen edges
 
-## Return Value
+#### Return Value
 
 Returns a widget object with methods for adding and managing UI elements.
 

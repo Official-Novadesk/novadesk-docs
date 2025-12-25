@@ -2,7 +2,6 @@
 title: Image Element
 description: Image UI element in Novadesk with all options and methods.
 ---
-
 # Image Element
 
 The **Image** element allows you to display images in widgets with various transformation and styling options.
@@ -13,7 +12,11 @@ Use the `addImage()` method on a widget object to add an image element:
 
 ```js
 widget.addImage(options);
-````
+```
+
+## General Element Options
+
+See general element options [here](/api/general-elements-options/):
 
 ## Image Element Options
 
@@ -23,6 +26,10 @@ widget.addImage(options);
 * **Default**: `""`
 * **Description**:
   Path to the image file.
+
+---
+
+
 
 #### **`preserveaspectratio`**
 
@@ -37,12 +44,21 @@ widget.addImage(options);
   * **`1`** — Fit image within dimensions while maintaining aspect ratio
   * **`2`** — Crop image to fill dimensions while maintaining aspect ratio
 
+---
+
+
+
 #### **`imagealpha`**
 
 * **Type**: `number`
 * **Default**: `255`
 * **Description**:
   Image opacity value in the range `0–255`.
+
+
+---
+
+
 
 #### **`grayscale`**
 
@@ -51,12 +67,20 @@ widget.addImage(options);
 * **Description**:
   Applies a grayscale filter to the image when enabled.
 
+---
+
+
+
 #### **`tile`**
 
 * **Type**: `boolean`
 * **Default**: `false`
 * **Description**:
   Repeats (tiles) the image to fill the element area.
+
+---
+
+
 
 #### **`imagetint`**
 
@@ -66,12 +90,20 @@ widget.addImage(options);
   Tint color applied to the image.
   Accepts CSS color formats (`rgb`, `rgba`, hex).
 
+---
+
+
+
 #### **`colormatrix`**
 
 * **Type**: `array`
 * **Default**: `[]`
 * **Description**:
   25-element color transformation matrix used for advanced color effects.
+
+---
+
+
 
 ## Preserve Aspect Ratio Options
 
@@ -188,6 +220,7 @@ widget.updateImage("basicImage", "assets/new-logo.png");
 ## Supported Image Formats
 
 Novadesk supports the following image formats:
+
 - PNG
 - JPEG
 - BMP
@@ -198,17 +231,10 @@ Novadesk supports the following image formats:
 ## Best Practices
 
 1. **Optimize images**: Use appropriately sized images to avoid unnecessary resource usage.
-
 2. **Consider aspect ratio**: Use `preserveaspectratio` options to maintain image quality when resizing.
-
 3. **Use relative paths**: Store images in the `Widgets/assets/` directory and use relative paths.
-
 4. **Apply padding for spacing**: Use padding properties instead of adjusting coordinates for internal spacing.
-
 5. **Use alpha channel wisely**: Consider the visual impact of image opacity on your widget design.
-
 6. **Test with different images**: Verify that your layout works with images of different dimensions.
-
 7. **Cache images**: For frequently changing images, consider the performance impact of reloading.
-
 8. **Consider accessibility**: Ensure images have appropriate contrast and size for readability.

@@ -10,11 +10,19 @@ description: Options available for use with all elements in Novadesk application
 - **Required**: `true`
 - **Description**: Unique identifier for the elements.
 
+---
+
+
+
 #### **`x,y`**
 
 - **type**: `number`
 - **default**:`0`
 - **Description**: Specifies the x (horizontal) and y (vertical) position of the element in pixels relative to the top-left edge of the widget.
+
+---
+
+
 
 #### **`width,height`**
 
@@ -22,11 +30,19 @@ description: Options available for use with all elements in Novadesk application
 - **default**: `auto calculate`
 - **Description**: Specifies the width and height of the element in pixels.
 
+---
+
+
+
 #### **`solidcolor,solidcolor2`**
 
 - **type**: `string`
 - **Default**: `""`
 - **Description**: Color of the element background. If `SolidColor2` is also specified, the background is a gradient composed of `SolidColor` and `SolidColor2`.
+
+---
+
+
 
 #### **`solidcolorradius`**
 
@@ -34,11 +50,19 @@ description: Options available for use with all elements in Novadesk application
 - **Default**: `0`
 - **Description**: Corner radius for solid color background
 
+---
+
+
+
 #### **`gradientangle`**
 
 - **type**: `number`
 - **Default**: `0`
 - **Description**: Angle of the gradient in degrees when both `SolidColor` and `SolidColor2` are defined.
+
+---
+
+
 
 #### **`rotate`**
 
@@ -46,11 +70,19 @@ description: Options available for use with all elements in Novadesk application
 - **Default**: `0`
 - **Description**: Rotation angle in degrees
 
+---
+
+
+
 #### **`antialias`**
 
 - **type**: `bool`
 - **Default**: `true`
 - **Description**: If set to `true`, antialising (edge smoothing) is used when the element is drawn.
+
+---
+
+
 
 #### **`beveltype`**
 
@@ -63,6 +95,10 @@ description: Options available for use with all elements in Novadesk application
     **0** :  No bevel is applied
     **1** : Raised bevel effect
     **2**: Sunken bevel effect
+
+---
+
+
 
 #### **`bevelcolor, bevelcolor2`**
 
@@ -83,6 +119,10 @@ description: Options available for use with all elements in Novadesk application
       - `bevelcolor2`
         - Applied to the **top** and **left** edges
 
+---
+
+
+
 #### **`Padding`**
 
 - **Format**: `Left, Top, Right, Bottom`
@@ -99,6 +139,10 @@ description: Options available for use with all elements in Novadesk application
   Padding=5,10,5,10
   ```
 
+---
+
+
+
 #### **`transformmatrix`**
 
 - **type**: `array`
@@ -108,6 +152,7 @@ description: Options available for use with all elements in Novadesk application
 # Mouse Actions
 
 ### Mouse Events
+
 - `onleftmouseup`: Executed when left mouse button is released
 - `onleftmousedown`: Executed when left mouse button is pressed
 - `onleftdoubleclick`: Executed when left mouse button is double-clicked

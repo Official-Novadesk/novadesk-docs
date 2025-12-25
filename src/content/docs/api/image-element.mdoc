@@ -1,159 +1,88 @@
 ---
 title: Image Element
-description: Image UI element in Novadesk with all options and methods
+description: Image UI element in Novadesk with all options and methods.
 ---
 
 # Image Element
 
-The Image element allows you to display images in your widgets with various transformation and styling options.
+The **Image** element allows you to display images in widgets with various transformation and styling options.
 
 ## Adding an Image Element
 
 Use the `addImage()` method on a widget object to add an image element:
 
-```javascript
+```js
 widget.addImage(options);
-```
+````
 
 ## Image Element Options
 
-**`id`** (string, required)  
-Unique identifier for the image element
+#### **`path`**
 
-**`path`** (string, default: "")  
-Path to the image file
+* **Type**: `string`
+* **Default**: `""`
+* **Description**:
+  Path to the image file.
 
-**`x`** (number, default: 0)  
-X-coordinate of the image element
+#### **`preserveaspectratio`**
 
-**`y`** (number, default: 0)  
-Y-coordinate of the image element
+* **Type**: `number`
+* **Default**: `0`
+* **Description**:
+  Controls how the image maintains its aspect ratio.
 
-**`width`** (number, default: Auto)  
-Width of the image element (auto-calculated if not specified)
+  **Valid values:**
 
-**`height`** (number, default: Auto)  
-Height of the image element (auto-calculated if not specified)
+  * **`0`** — Stretch image to fill specified dimensions
+  * **`1`** — Fit image within dimensions while maintaining aspect ratio
+  * **`2`** — Crop image to fill dimensions while maintaining aspect ratio
 
-**`solidcolor`** (string, default: "")  
-Solid color background for the image area
+#### **`imagealpha`**
 
-**`solidcolorradius`** (number, default: 0)  
-Corner radius for solid color background
+* **Type**: `number`
+* **Default**: `255`
+* **Description**:
+  Image opacity value in the range `0–255`.
 
-**`preserveaspectratio`** (number, default: 0)  
-Aspect ratio behavior (0=stretch, 1=fit, 2=crop)
+#### **`grayscale`**
 
-**`imagealpha`** (number, default: 255)  
-Image opacity (0-255)
+* **Type**: `boolean`
+* **Default**: `false`
+* **Description**:
+  Applies a grayscale filter to the image when enabled.
 
-**`grayscale`** (boolean, default: false)  
-Whether to apply grayscale filter
+#### **`tile`**
 
-**`tile`** (boolean, default: false)  
-Whether to tile the image
+* **Type**: `boolean`
+* **Default**: `false`
+* **Description**:
+  Repeats (tiles) the image to fill the element area.
 
-**`rotate`** (number, default: 0)  
-Rotation angle in degrees
+#### **`imagetint`**
 
-**`imagetint`** (string, default: "")  
-Tint color for the image in CSS format
+* **Type**: `string`
+* **Default**: `""`
+* **Description**:
+  Tint color applied to the image.
+  Accepts CSS color formats (`rgb`, `rgba`, hex).
 
-**`transformmatrix`** (array, default: [])  
-6-element transformation matrix [a, b, c, d, e, f]
+#### **`colormatrix`**
 
-**`colormatrix`** (array, default: [])  
-25-element color transformation matrix
+* **Type**: `array`
+* **Default**: `[]`
+* **Description**:
+  25-element color transformation matrix used for advanced color effects.
 
-**`paddingleft`** (number, default: 0)  
-Left padding in pixels
+## Preserve Aspect Ratio Options
 
-**`paddingtop`** (number, default: 0)  
-Top padding in pixels
+**`0`**
+Stretch the image to fill the specified dimensions.
 
-**`paddingright`** (number, default: 0)  
-Right padding in pixels
+**`1`**
+Fit the image within the dimensions while maintaining its aspect ratio.
 
-**`paddingbottom`** (number, default: 0)  
-Bottom padding in pixels
-
-### Preserve Aspect Ratio Options
-
-**`0`**  
-Stretch image to fill specified dimensions
-
-**`1`**  
-Fit image within dimensions, maintaining aspect ratio
-
-**`2`**  
-Crop image to fill dimensions, maintaining aspect ratio
-
-## Image Element Event Options
-
-Image elements can respond to various mouse events:
-
-**`onleftmouseup`**  
-Executed when left mouse button is released
-
-**`onleftmousedown`**  
-Executed when left mouse button is pressed
-
-**`onleftdoubleclick`**  
-Executed when left mouse button is double-clicked
-
-**`onrightmouseup`**  
-Executed when right mouse button is released
-
-**`onrightmousedown`**  
-Executed when right mouse button is pressed
-
-**`onrightdoubleclick`**  
-Executed when right mouse button is double-clicked
-
-**`onmiddlemouseup`**  
-Executed when middle mouse button is released
-
-**`onmiddlemousedown`**  
-Executed when middle mouse button is pressed
-
-**`onmiddledoubleclick`**  
-Executed when middle mouse button is double-clicked
-
-**`onx1mouseup`**  
-Executed when X1 mouse button is released (back button)
-
-**`onx1mousedown`**  
-Executed when X1 mouse button is pressed
-
-**`onx1doubleclick`**  
-Executed when X1 mouse button is double-clicked
-
-**`onx2mouseup`**  
-Executed when X2 mouse button is released (forward button)
-
-**`onx2mousedown`**  
-Executed when X2 mouse button is pressed
-
-**`onx2doubleclick`**  
-Executed when X2 mouse button is double-clicked
-
-**`onmouseover`**  
-Executed when mouse enters the element
-
-**`onmouseleave`**  
-Executed when mouse leaves the element
-
-**`onscrollup`**  
-Executed when mouse wheel scrolls up
-
-**`onscrolldown`**  
-Executed when mouse wheel scrolls down
-
-**`onscrollleft`**  
-Executed when horizontal scroll moves left
-
-**`onscrollright`**  
-Executed when horizontal scroll moves right
+**`2`**
+Crop the image to fill the dimensions while maintaining its aspect ratio.
 
 ## Examples
 

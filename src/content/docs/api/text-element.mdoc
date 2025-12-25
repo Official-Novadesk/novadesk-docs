@@ -1,183 +1,178 @@
 ---
 title: Text Element
-description: Text UI element in Novadesk with all options and methods
+description: Text UI element in Novadesk with all options and methods.
 ---
 
 # Text Element
 
-The Text element allows you to display text content in your widgets with various styling options.
+The **Text** element allows you to display text content in widgets with various styling and layout options.
+
+---
 
 ## Adding a Text Element
 
-Use the `addText()` method on a widget object to add a text element:
+Use the `addText()` method on a widget object:
 
-```javascript
+```js
 widget.addText(options);
-```
+````
+
+---
 
 ## Text Element Options
 
-**`id`** (string, required)  
-Unique identifier for the text element
+---
 
-**`text`** (string, default: "")  
-Text content to display
+#### **`text`**
 
-**`x`** (number, default: 0)  
-X-coordinate of the text element
+* **Type**: `string`
+* **Default**: `""`
+* **Description**:
+  Text content to display.
 
-**`y`** (number, default: 0)  
-Y-coordinate of the text element
+---
 
-**`width`** (number, default: Auto)  
-Width of the text element (auto-calculated if not specified)
+#### **`fontsize`**
 
-**`height`** (number, default: Auto)  
-Height of the text element (auto-calculated if not specified)
+* **Type**: `number`
+* **Default**: `12`
+* **Description**:
+  Font size in pixels.
 
-**`fontsize`** (number, default: 12)  
-Font size in pixels
+---
 
-**`fontfamily`** (string, default: "Arial")  
-Font family name
+#### **`fontfamily`**
 
-**`color`** (string, default: "rgb(0,0,0)")  
-Text color in CSS format (supports rgba, rgb, hex)
+* **Type**: `string`
+* **Default**: `"Arial"`
+* **Description**:
+  Font family name.
 
-**`fontweight`** (string, default: "normal")  
-Font weight ("normal", "bold")
+---
 
-**`fontstyle`** (string, default: "normal")  
-Font style ("normal", "italic")
+#### **`color`**
 
-**`align`** (string, default: "lefttop")  
-Text alignment (see alignment options below)
+* **Type**: `string`
+* **Default**: `"rgb(0,0,0)"`
+* **Description**:
+  Text color in CSS format.
+  Supports `rgb()`, `rgba()`, and hex values.
 
-**`clipstring`** (number, default: 0)  
-Clip string behavior (0=none, 1=on, 2=ellipsis)
+---
 
-**`clipstringw`** (number, default: -1)  
-Maximum width for clipping when clipstring is enabled
+#### **`fontweight`**
 
-**`clipstringh`** (number, default: -1)  
-Maximum height for clipping when clipstring is enabled
+* **Type**: `string`
+* **Default**: `"normal"`
+* **Description**:
+  Font weight of the text.
 
-**`solidcolor`** (string, default: "")  
-Background color for the text area
+  **Valid values:**
 
-**`solidcolorradius`** (number, default: 0)  
-Corner radius for solid color background
+  * `"normal"`
+  * `"bold"`
 
-**`rotate`** (number, default: 0)  
-Rotation angle in degrees
+---
 
-**`paddingleft`** (number, default: 0)  
-Left padding in pixels
+#### **`fontstyle`**
 
-**`paddingtop`** (number, default: 0)  
-Top padding in pixels
+* **Type**: `string`
+* **Default**: `"normal"`
+* **Description**:
+  Font style of the text.
 
-**`paddingright`** (number, default: 0)  
-Right padding in pixels
+  **Valid values:**
 
-**`paddingbottom`** (number, default: 0)  
-Bottom padding in pixels
+  * `"normal"`
+  * `"italic"`
 
-### Alignment Options
+---
 
-**`"lefttop"` or `"left"`**  
-Left aligned, top vertical
+#### **`align`**
 
-**`"centertop"`**  
-Center aligned, top vertical
+* **Type**: `string`
+* **Default**: `"lefttop"`
+* **Description**:
+  Controls horizontal and vertical text alignment.
 
-**`"righttop"`**  
-Right aligned, top vertical
+  See **Alignment Options** below.
 
-**`"leftcenter"`**  
-Left aligned, center vertical
+---
 
-**`"centercenter"`**  
-Center aligned, center vertical
+#### **`clipstring`**
 
-**`"rightcenter"`**  
-Right aligned, center vertical
+* **Type**: `number`
+* **Default**: `0`
+* **Description**:
+  Enables text clipping behavior.
 
-**`"leftbottom"`**  
-Left aligned, bottom vertical
+  **Valid values:**
 
-**`"centerbottom"`**  
-Center aligned, bottom vertical
+  * **`0`** — No clipping
+  * **`1`** — Clip text
+  * **`2`** — Clip text with ellipsis (`...`)
 
-**`"rightbottom"`**  
-Right aligned, bottom vertical
+---
 
-## Text Element Event Options
+#### **`clipstringw`**
 
-Text elements can respond to various mouse events:
+* **Type**: `number`
+* **Default**: `-1`
+* **Description**:
+  Maximum width (in pixels) used for text clipping when `clipstring` is enabled.
 
-**`onleftmouseup`**  
-Executed when left mouse button is released
+---
 
-**`onleftmousedown`**  
-Executed when left mouse button is pressed
+#### **`clipstringh`**
 
-**`onleftdoubleclick`**  
-Executed when left mouse button is double-clicked
+* **Type**: `number`
+* **Default**: `-1`
+* **Description**:
+  Maximum height (in pixels) used for text clipping when `clipstring` is enabled.
 
-**`onrightmouseup`**  
-Executed when right mouse button is released
+---
 
-**`onrightmousedown`**  
-Executed when right mouse button is pressed
+## Alignment Options
 
-**`onrightdoubleclick`**  
-Executed when right mouse button is double-clicked
+---
 
-**`onmiddlemouseup`**  
-Executed when middle mouse button is released
+#### **Left aligned**
 
-**`onmiddlemousedown`**  
-Executed when middle mouse button is pressed
+* **`"lefttop"`** or **`"left"`**
+  Left aligned, top vertical
 
-**`onmiddledoubleclick`**  
-Executed when middle mouse button is double-clicked
+* **`"leftcenter"`**
+  Left aligned, center vertical
 
-**`onx1mouseup`**  
-Executed when X1 mouse button is released (back button)
+* **`"leftbottom"`**
+  Left aligned, bottom vertical
 
-**`onx1mousedown`**  
-Executed when X1 mouse button is pressed
+---
 
-**`onx1doubleclick`**  
-Executed when X1 mouse button is double-clicked
+#### **Center aligned**
 
-**`onx2mouseup`**  
-Executed when X2 mouse button is released (forward button)
+* **`"centertop"`**
+  Center aligned, top vertical
 
-**`onx2mousedown`**  
-Executed when X2 mouse button is pressed
+* **`"centercenter"`**
+  Center aligned, center vertical
 
-**`onx2doubleclick`**  
-Executed when X2 mouse button is double-clicked
+* **`"centerbottom"`**
+  Center aligned, bottom vertical
 
-**`onmouseover`**  
-Executed when mouse enters the element
+---
 
-**`onmouseleave`**  
-Executed when mouse leaves the element
+#### **Right aligned**
 
-**`onscrollup`**  
-Executed when mouse wheel scrolls up
+* **`"righttop"`**
+  Right aligned, top vertical
 
-**`onscrolldown`**  
-Executed when mouse wheel scrolls down
+* **`"rightcenter"`**
+  Right aligned, center vertical
 
-**`onscrollleft`**  
-Executed when horizontal scroll moves left
+* **`"rightbottom"`**
+  Right aligned, bottom vertical
 
-**`onscrollright`**  
-Executed when horizontal scroll moves right
 
 ## Examples
 

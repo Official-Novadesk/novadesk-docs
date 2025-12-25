@@ -48,6 +48,7 @@ export default defineConfig({
 						{
 							label: 'UI Elements API',
 							items: [
+								{ label: 'General Options', link: '/api/general-elements-options/' },
 								{ label: 'Text Element', link: '/api/text-element/' },
 								{ label: 'Image Element', link: '/api/image-element/' },
 							],

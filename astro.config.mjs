@@ -48,8 +48,8 @@ export default defineConfig({
                 { label: "Hotkey Management", link: "/api/hotkeys/" },
                 { label: "Timers", link: "/api/timers/" },
                 {
-                  label: "Workspace Variables",
-                  link: "/api/workspace-variables/",
+                  label: "Display Metrics",
+                  link: "/api/display-metrics/",
                 },
                 {
                   label: "Configuration Directives",

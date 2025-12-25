@@ -16,3 +16,10 @@ An object containing structured information about displays:
 Each area object (`workArea`, `screenArea`) contains:
 - `x`, `y`: Top-left coordinates
 - `width`, `height`: Dimensions in pixels
+
+### Example
+```javascript
+var metrics = novadesk.system.getDisplayMetrics();
+novadesk.log("Primary screen resolution: " + metrics.primary.screenArea.width + "x" +
+metrics.primary.screenArea.height);
+```

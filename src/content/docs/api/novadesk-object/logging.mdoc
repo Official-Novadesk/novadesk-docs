@@ -1,0 +1,45 @@
+---
+title: Logging
+description: Logging functions in the Novadesk JavaScript API
+---
+
+Novadesk provides several logging functions to help debug and monitor your widgets.
+
+## novadesk.log(...args)
+
+Log an informational message to the console and log file.
+
+### Parameters
+- **...args** (any): Values to log.
+
+### Example
+```javascript
+novadesk.log("Application started");
+novadesk.log("User:", "John Doe", "Version:", "1.0.0");
+```
+---
+## novadesk.error(...args)
+
+Log an error message to the console and log file.
+
+### Parameters
+- **...args** (any): Values to log as an error.
+
+### Example
+```javascript
+novadesk.error("Failed to load configuration file");
+novadesk.error("Error code:", 404, "Message:", "File not found");
+```
+---
+## novadesk.debug(...args)
+
+Log a debug message to the console and log file. Debug messages are only shown when debug logging is enabled. See how to enable debug logging using [configuration directives](/api/novadesk-object/configuration-directives/#enabledebugging).
+
+### Parameters
+- **...args** (any): Values to log as debug information.
+
+### Example
+```javascript
+novadesk.debug("Debug: Entering function calculatePosition");
+novadesk.debug("Debug: Current widget position:", x, y);
+```

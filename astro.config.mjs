@@ -41,7 +41,7 @@ export default defineConfig({
             {
               label: "Novadesk Object",
               items: [
-                { label: "Logging", link: "/api/logging/" },
+                { label: "Logging", link: "/api/novadesk-object/logging/" },
                 { label: "System Utilities", link: "/api/system-utilities/" },
                 { label: "Environment Variables", link: "/api/environment/" },
                 { label: "Path Utilities", link: "/api/paths/" },
@@ -53,7 +53,7 @@ export default defineConfig({
                 },
                 {
                   label: "Configuration Directives",
-                  link: "/api/configuration/",
+                  link: "/api/novadesk-object/configuration-directives/",
                 },
               ],
             },
@@ -62,7 +62,7 @@ export default defineConfig({
               items: [
                 {
                   label: "General Options",
-                  link: "/api/general-elements-options/",
+                  link: "/api/ui-elements-api/general-elements-options/",
                 },
                 { label: "Text Element", link: "/api/ui-elements-api/text-element/" },
                 { label: "Image Element", link: "/api/ui-elements-api/image-element/" },

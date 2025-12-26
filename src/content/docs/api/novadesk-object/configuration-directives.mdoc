@@ -1,0 +1,61 @@
+---
+title: Configuration Directives
+description: Configuration directives for controlling Novadesk behavior
+---
+
+Configuration directives are placed at the top of your JavaScript files to control Novadesk's behavior. These directives are processed before the script is executed.
+
+## Syntax
+
+Configuration directives are start with `!` followed by the directive name:
+
+```javascript
+// !directiveName;
+```
+
+## Available Directives
+
+### enableDebugging
+
+Enable debug logging to see detailed information about widget operations.
+
+#### Example
+```javascript
+!enableDebugging;
+
+novadesk.debug("This debug message will now appear");
+```
+---
+### logToFile
+
+Enable logging to a file in addition to the console. The log file will be created in the same directory as the executable.
+
+#### Example
+```javascript
+!logToFile;
+
+novadesk.log("This message will be written to the log file");
+```
+---
+### disableLogging
+
+Disable all logging output, which can improve performance in production environments.
+
+#### Example
+```javascript
+!disableLogging;
+
+novadesk.log("This message will not appear anywhere");
+```
+---
+### hideTrayIcon
+
+Hide the Novadesk tray icon in the system notification area.
+
+#### Example
+```javascript
+!hideTrayIcon;
+
+// The tray icon will be hidden
+novadesk.log("Application running without tray icon");
+```

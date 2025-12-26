@@ -2,7 +2,6 @@
 title: Widget Methods
 description: Methods available on widget objects in Novadesk
 ---
-# Widget Methods
 
 Once you create a widget using the `widgetWindow()` constructor, the returned object has several methods for managing UI
 elements and properties.
@@ -25,8 +24,8 @@ See text UI element for options of text element [here](/api/ui-elements-api/text
 
 ```javascript
 widget.addText({
-    option:"value",
-    anotherOption:"value"
+    id:"myText",
+    text:"Hello World!"
 })
 ```
 ---
@@ -46,9 +45,9 @@ See image UI element for options of image element [here](/api/ui-elements-api/im
 #### Syntax
 
 ```javascript
-widget.addText({
-    option:"value",
-    anotherOption:"value"
+widget.addImage({
+    id:"myImage",
+    url:"path/to/image.png"
 })
 ```
 ---
@@ -65,9 +64,9 @@ Update properties of an existing UI element. This is a general-purpose method th
 #### Syntax
 
 ```javascript
-widget.setElementProperties("element-id", {
-    option:"value",
-    anotherOption:"value"
+widget.setElementProperties("myText", {
+    x:20,
+    y:20
 });
 ```
 ---

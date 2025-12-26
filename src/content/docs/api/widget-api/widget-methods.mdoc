@@ -19,21 +19,17 @@ Add a text element to the widget.
 
 ### Options
 
-See text UI element for options of text element [here](/api/text-element/).
+See text UI element for options of text element [here](/api/ui-elements-api/text-element/).
 
-#### Example
+#### Syntax
 
 ```javascript
 widget.addText({
-id: "myText",
-text: "Hello, World!",
-x: 10,
-y: 10,
-fontsize: 16,
-fontcolor: "white",
-fontface: "Segoe UI"
-});
+    option:"value",
+    anotherOption:"value"
+})
 ```
+---
 
 ### addImage(options)
 
@@ -45,21 +41,17 @@ Add an image element to the widget.
 
 ### Options
 
-See image UI element for options of image element [here](/api/image-element/)
+See image UI element for options of image element [here](/api/ui-elements-api/image-element/)
 
-#### Example
+#### Syntax
 
 ```javascript
-widget.addImage({
-id: "myImage",
-path: "assets/logo.png",
-x: 20,
-y: 20,
-width: 100,
-height: 50,
-preserveaspectratio: 1 // Fit to dimensions maintaining aspect ratio
-});
+widget.addText({
+    option:"value",
+    anotherOption:"value"
+})
 ```
+---
 
 ### setElementProperties(id, props)
 
@@ -70,22 +62,15 @@ Update properties of an existing UI element. This is a general-purpose method th
 - **id** (string): ID of the element to update
 - **props** (Object): Properties to change
 
-#### Example
+#### Syntax
 
 ```javascript
-// Update text content and color
-widget.setElementProperties("myText", {
-text: "Updated text content",
-fontcolor: "rgba(255, 0, 0, 1.0)"
-});
-
-// Move an image and change its opacity
-widget.setElementProperties("myImage", {
-x: 100,
-imagealpha: 128
+widget.setElementProperties("element-id", {
+    option:"value",
+    anotherOption:"value"
 });
 ```
-
+---
 ### removeElements(ids)
 
 Remove one or more UI elements from the widget.
@@ -128,7 +113,7 @@ novadesk.log("Text position: " + props.x + ", " + props.y);
 novadesk.log("Current text: " + props.text);
 }
 ```
-
+---
 ## Widget Management Methods
 
 ### setProperties(options)
@@ -139,71 +124,17 @@ Update widget properties after creation.
 
 - **options** (Object): Properties to update
 
-#### Options
-
-#### **`x`**
-
-- **type**: `number`
-- **Description**: New X-coordinate
-
-#### **`y`**
-
-- **type**: `number`
-- **Description**: New Y-coordinate
-
-#### **`width`**
-
-- **type**: `number`
-- **Description**: New width
-
-#### **`height`**
-
-- **type**: `number`
-- **Description**: New height
-
-#### **`backgroundcolor`**
-
-- **type**: `string`
-- **Description**: New background color
-
-#### **`opacity`**
-
-- **type**: `number`
-- **Description**: New overall opacity (`0.0–1.0` or `0–255`)
-
-#### **`zpos`**
-
-- **type**: `string`
-- **Description**: New z-order position
-
-#### **`draggable`**
-
-- **type**: `boolean`
-- **Description**: Whether widget is draggable
-
-#### **`clickthrough`**
-
-- **type**: `boolean`
-- **Description**: Whether widget is click-through
-
-#### **`keeponscreen`**
-
-- **type**: `boolean`
-- **Description**: Whether to keep widget on screen
+See [Widget Options](/api/widget-api/widget-window/#options-object) for a list of available options.
 
 #### Example
 
 ```javascript
 widget.setProperties({
 x: 200,
-y: 200,
-width: 300,
-height: 150,
-backgroundcolor: "rgba(100,100,100,0.8)",
-zpos: "ontop"
+y: 200
 });
 ```
-
+---
 ### getProperties()
 
 Get current widget properties.
@@ -218,7 +149,7 @@ An object containing the current widget properties.
 var props = widget.getProperties();
 novadesk.log("Widget position: " + props.x + ", " + props.y);
 ```
-
+---
 ### close()
 
 Close and destroy the widget.
@@ -228,7 +159,7 @@ Close and destroy the widget.
 ```javascript
 widget.close();
 ```
-
+---
 ### refresh()
 
 Refresh the widget (reload scripts and redraw).

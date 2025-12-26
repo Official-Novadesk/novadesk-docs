@@ -34,8 +34,8 @@ export default defineConfig({
             {
               label: "Widget API",
               items: [
-                { label: "widgetWindow()", link: "/api/widget-window/" },
-                { label: "Widget Methods", link: "/api/widget-methods/" },
+                { label: "widgetWindow()", link: "/api/widget-api/widget-window/" },
+                { label: "Widget Methods", link: "/api/widget-api/widget-methods/" },
               ],
             },
             {
@@ -64,8 +64,8 @@ export default defineConfig({
                   label: "General Options",
                   link: "/api/general-elements-options/",
                 },
-                { label: "Text Element", link: "/api/text-element/" },
-                { label: "Image Element", link: "/api/image-element/" },
+                { label: "Text Element", link: "/api/ui-elements-api/text-element/" },
+                { label: "Image Element", link: "/api/ui-elements-api/image-element/" },
               ],
             },
             {

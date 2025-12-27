@@ -43,14 +43,7 @@ export default defineConfig({
               items: [
                 { label: "Logging", link: "/api/novadesk-object/logging/" },
                 { label: "System Utilities", link: "/api/system-utilities/" },
-                { label: "Environment Variables", link: "/api/environment/" },
                 { label: "Path Utilities", link: "/api/paths/" },
-                { label: "Hotkey Management", link: "/api/hotkeys/" },
-                { label: "Timers", link: "/api/timers/" },
-                {
-                  label: "Display Metrics",
-                  link: "/api/display-metrics/",
-                },
                 {
                   label: "Configuration Directives",
                   link: "/api/novadesk-object/configuration-directives/",
@@ -71,11 +64,20 @@ export default defineConfig({
             {
               label: "System Monitors",
               items: [
-                { label: "CPU Monitor", link: "/api/cpu-monitor/" },
-                { label: "Memory Monitor", link: "/api/memory-monitor/" },
-                { label: "Network Monitor", link: "/api/network-monitor/" },
-                { label: "Mouse Monitor", link: "/api/mouse-monitor/" },
-                { label: "Disk Monitor", link: "/api/disk-monitor/" },
+                { label: "CPU Monitor", link: "/api/system-monitors/cpu-monitor/" },
+                { label: "Memory Monitor", link: "/api/system-monitors/memory-monitor/" },
+                { label: "Network Monitor", link: "/api/system-monitors/network-monitor/" },
+                { label: "Mouse Monitor", link: "/api/system-monitors/mouse-monitor/" },
+                { label: "Disk Monitor", link: "/api/system-monitors/disk-monitor/" },
+              ],
+            },
+            {
+              label: "System API",
+              items: [
+                { label: "Environment Variables", link: "/api/system-api/environment-variables/" },
+                { label: "Hotkey Management", link: "/api/system-api/hotkeys/" },
+                { label: "Timers", link: "/api/system-api/timers/" },
+                { label: "Display Metrics", link: "/api/system-api/display-metrics/" },
               ],
             },
           ],

@@ -1,0 +1,65 @@
+---
+title: Memory Monitor
+description: Monitor system memory usage in Novadesk
+---
+
+The Memory monitor class allows you to monitor system memory usage including total, available, and used memory as well
+as memory load percentage.
+
+## Creating a Memory Monitor
+
+```javascript
+var memory = new system.memory();
+```
+
+## Methods
+
+### `stats()`
+
+Get current memory statistics.
+
+#### Return Value
+An object containing memory statistics:
+
+**`total`** (number)
+Total physical memory in bytes
+
+**`available`** (number)
+Available physical memory in bytes
+
+**`used`** (number)
+Used physical memory in bytes
+
+**`percent`** (number)
+Memory load percentage (0-100)
+---
+### `destroy()`
+
+Destroy the memory monitor and free its resources.
+
+
+## Example
+
+```javascript
+// Create memory monitor
+var memory = new system.memory();
+
+// Update every 2 seconds
+var intervalId = setInterval(function () {
+    var stats = memory.stats();
+
+    // Convert bytes to GB for display
+    var totalGB = (stats.total / (1024 * 1024 * 1024)).toFixed(2);
+    var usedGB = (stats.used / (1024 * 1024 * 1024)).toFixed(2);
+    var availableGB = (stats.available / (1024 * 1024 * 1024)).toFixed(2);
+
+    novadesk.log("Memory - Total: " + totalGB + "GB, Used: " + usedGB + "GB, Available: " + availableGB + "GB");
+    novadesk.log("Memory Load: " + stats.percent + "%");
+}, 1000);
+
+setTimeout(function () {
+    clearInterval(intervalId);
+    memory.destroy();
+    novadesk.log("Memory Monitor Destroyed");
+}, 5000)
+```

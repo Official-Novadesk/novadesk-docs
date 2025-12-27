@@ -1,9 +1,9 @@
 ---
-title: Environment Methods
-description: Environment functions in the Novadesk JavaScript API
+title: Environment Variables
+description: Environment variables in the Novadesk JavaScript API
 ---
 
-## novadesk.getEnv(name)
+## system.getEnv(name)
 
 Get the value of an environment variable.
 
@@ -36,5 +36,5 @@ novadesk.log("Total environment variables: " + Object.keys(allEnv).length);
 
 // Log all variables
 for (var key in allEnv) {
-    novadesk.log(key + " = " + allEnv[key]);
+novadesk.log(key + " = " + allEnv[key]);
 }

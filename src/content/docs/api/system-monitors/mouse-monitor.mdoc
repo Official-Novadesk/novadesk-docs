@@ -1,0 +1,48 @@
+---
+title: Mouse Monitor
+description: Monitor mouse position in Novadesk
+---
+
+The Mouse monitor class allows you to monitor the current mouse cursor position on the screen.
+
+## Creating a Mouse Monitor
+
+```javascript
+var mouse = new system.mouse();
+```
+
+## Methods
+
+### `position()`
+
+Get the current mouse cursor position.
+
+#### Return Value
+An object containing mouse coordinates:
+
+**`x`** (number)
+X-coordinate of the mouse cursor
+
+**`y`** (number)
+Y-coordinate of the mouse cursor
+---
+### `destroy()`
+
+Destroy the mouse monitor and free its resources.
+
+## Example
+
+```javascript
+var mouse = new system.mouse();
+
+var intervalId = setInterval(function () {
+    var pos = mouse.position();
+    novadesk.log("Mouse Position: X=" + pos.x + ", Y=" + pos.y);
+}, 100);
+
+setTimeout(function () {
+    clearInterval(intervalId);
+    mouse.destroy();
+    novadesk.log("Mouse Monitor Destroyed");
+}, 5000);
+```

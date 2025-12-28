@@ -174,4 +174,74 @@ Right aligned, center vertical
 * **`"rightbottom"`**
 Right aligned, bottom vertical
 
+## Example
 
+```javascript
+// create widget window
+var sysWidget = new widgetWindow({
+    id: "sysWidget",
+    width: 450,
+    height: 180,
+    backgroundcolor: "rgba(30, 30, 40, 0.9)",
+    zpos: "ontop",
+    draggable: true,
+});
+
+// simple text
+sysWidget.addText({
+    id: "simpleText",
+    text: "SimpleText",
+    x: 10, 
+    y: 20,
+    fontsize: 20,
+    fontcolor: "rgb(255, 255, 255)",
+    fontface:"consolas",
+    fontweight: "bold",
+    onleftmouseup: "sysWidget.refresh();"
+});
+
+// solid color text
+sysWidget.addText({
+    id: "SolidColorText",
+    text: "Solid Color",
+    x: 135, 
+    y: 15,
+    width:140,
+    height:30,
+    fontsize: 20,
+    fontcolor: "rgb(255, 255, 255)",
+    solidcolor:"rgb(27, 213, 67)",
+    textalign:"centercenter",
+});
+
+// round solid color text   
+sysWidget.addText({
+    id: "RoundSolidColor",
+    text: "Round",
+    x: 300, 
+    y: 15,
+    width:120,
+    height:30,
+    fontsize: 20,
+    fontcolor: "rgb(255, 255, 255)",
+    solidcolor:"rgb(27, 117, 213)",
+    solidcolorradius:8,
+    textalign:"centercenter",
+});
+
+// rotate text
+sysWidget.addText({
+    id: "RotateText",
+    text: "Rotate 45",
+    x: 10, 
+    y: 100,
+    fontsize: 20,
+    fontcolor: "rgb(255, 255, 255)",
+    rotate:45,
+    fontstyle: "italic",
+});
+```
+
+## Preview 
+
+![Widget Preview](/src/assets/images/textPreview.png)

@@ -74,7 +74,7 @@ export default defineConfig({
               label: "System API",
               items: [
                 { label: "Environment Variables", link: "/api/system-api/environment-variables/" },
-                { label: "Hotkey Management", link: "/api/system-api/hotkeys/" },
+                { label: "Hotkey Management", link: "/api/system-api/hotkey-management/" },
                 { label: "Timers", link: "/api/system-api/timers/" },
                 { label: "Display Metrics", link: "/api/system-api/display-metrics/" },
               ],

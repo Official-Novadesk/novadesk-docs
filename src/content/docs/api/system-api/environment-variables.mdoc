@@ -3,38 +3,53 @@ title: Environment Variables
 description: Environment variables in the Novadesk JavaScript API
 ---
 
-## system.getEnv(name)
+## system.getEnv([name])
 
 Get the value of an environment variable.
 
 ### Parameters
-- **name** (string): Name of the environment variable
+- **name** (string, optional): Name of the environment variable. If omitted, returns all environment variables.
 
 ### Return Value
-The value of the environment variable, or `null` if it doesn't exist.
+The value of the environment variable, or `null` if it doesn't exist. If no parameter is provided, returns an object containing all environment variables.
 
-### Example
+{% aside type="tip" %}
+
+Omitting the parameter will return all environment variables.
+```js
+var allEnv = system.getEnv();
+```
+{% /aside %}
+
+## Examples
+
+### Getting a Specific Environment Variable
+
 ```javascript
-var username = novadesk.getEnv("USERNAME");
+// Get the PATH environment variable
+var path = system.getEnv("PATH");
+novadesk.log("Current PATH: " + path);
+
+// Get the username
+var username = system.getEnv("USERNAME");
 novadesk.log("Current user: " + username);
 
-var tempPath = novadesk.getEnv("TEMP");
-novadesk.log("Temp directory: " + tempPath);
+// Get the TEMP directory
+var tempDir = system.getEnv("TEMP");
+novadesk.log("Temp directory: " + tempDir);
 ```
 
-## novadesk.getAllEnv()
+### Getting All Environment Variables
 
-Get all environment variables as an object.
-
-### Return Value
-An object containing all environment variables as key-value pairs.
-
-### Example
 ```javascript
-var allEnv = novadesk.getAllEnv();
+// Get all environment variables as an object
+var allEnv = system.getEnv();
 novadesk.log("Total environment variables: " + Object.keys(allEnv).length);
 
-// Log all variables
+// Iterate through all environment variables
 for (var key in allEnv) {
-novadesk.log(key + " = " + allEnv[key]);
+    if (allEnv.hasOwnProperty(key)) {
+        novadesk.log(key + " = " + allEnv[key]);
+    }
 }
+```

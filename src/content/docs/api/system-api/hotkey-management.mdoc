@@ -1,0 +1,94 @@
+---
+title: Hotkey Management
+description: Register and manage global hotkeys in Novadesk
+---
+
+Novadesk allows you to register global hotkeys that work system-wide, enabling you to control your widgets and applications from anywhere.
+
+### `system.registerHotkey(hotkey, callback)`
+
+Register a global hotkey and bind it to a callback.
+
+## Parameters
+
+#### **`hotkey`**
+- **Type:** `string`
+- **Description:**  
+  The key combination to register.  
+  **Examples:** `"Ctrl+Alt+R"`, `"Win+D"`, `"Space"`
+---
+#### **`callback`**
+- **Type:** `function | object`
+- **Description:**  
+  The handler invoked when the hotkey is used. This can be either:
+  - A **function** executed on key press, or
+  - An **object** with the following optional handlers:
+    - `onKeyDown`: called when the hotkey is pressed
+    - `onKeyUp`: called when the hotkey is released
+
+---
+### `system.unregisterHotkey(id)`
+
+Unregister a previously registered hotkey.
+
+### Parameters
+- **`id`**
+  - **Type:** `number`
+  - **Description:**  
+    The unique hotkey identifier returned by `novadesk.registerHotkey`.
+
+---
+## `Supported Keys`
+
+### Modifier Keys
+- `Ctrl`
+- `Alt`
+- `Shift`
+- `Win` (Windows key)
+---
+### Alphanumeric Keys
+- Letters: `A`–`Z`
+- Numbers: `0`–`9`
+---
+### Function Keys
+- `F1`–`F12`
+---
+### Special Keys
+- `Space`
+- `Enter`
+- `Escape`
+- `Tab`
+- `Backspace`
+- `Delete`
+- `Insert`
+- `Home`
+- `End`
+- `PageUp`
+- `PageDown`
+- Arrow keys: `Up`, `Down`, `Left`, `Right`
+
+
+## Example
+```javascript
+var hotkeyId = system.registerHotkey("Win+D", function() {
+    novadesk.log("Win+D pressed");
+});
+
+var hotkeyId2 = system.registerHotkey("Space", {
+    onKeyDown: function() {
+        novadesk.log("SPACE DOWN (Global)");
+    },
+    onKeyUp: function() {
+        novadesk.log("SPACE UP (Global)");
+    }
+});
+
+setTimeout(function() {
+    // Later, unregister the hotkey
+    system.unregisterHotkey(hotkeyId);
+    novadesk.log("Hotkey Id unregistered");
+    system.unregisterHotkey(hotkeyId2);
+    novadesk.log("Hotkey Id2 unregistered");
+}, 5000);
+```
+

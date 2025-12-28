@@ -38,6 +38,10 @@ Log a debug message to the console and log file. Debug messages are only shown w
 ### Parameters
 - **...args** (any): Values to log as debug information.
 
+{% aside type="caution" %}
+Debugging messages are only shown when debug logging is enabled. See how to enable debug logging using [configuration directives](/api/novadesk-object/configuration-directives/#enabledebugging).
+{% /aside %}
+
 ### Example
 ```javascript
 novadesk.debug("Debug: Entering function calculatePosition");

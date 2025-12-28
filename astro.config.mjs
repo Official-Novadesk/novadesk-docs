@@ -9,7 +9,7 @@ export default defineConfig({
   integrations: [
     markdoc(),
     starlight({
-      title: "Novadesk Documentation",
+      title: "Novadesk Docs",
       social: [
         {
           icon: "github",
@@ -19,11 +19,9 @@ export default defineConfig({
       ],
       sidebar: [
         { label: "Home", link: "/" },
-        { label: "Getting Started", link: "/getting-started/" },
         {
           label: "Introduction",
           items: [
-            { label: "Overview", link: "/" },
             { label: "Getting Started", link: "/getting-started/" },
             { label: "Installation", link: "/installation/" },
           ],

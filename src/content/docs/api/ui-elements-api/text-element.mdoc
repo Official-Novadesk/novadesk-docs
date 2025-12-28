@@ -3,8 +3,6 @@ title: Text Element
 description: Text UI element in Novadesk with all options and methods.
 ---
 
-# Text Element
-
 The **Text** element allows you to display text content in widgets with various styling and layout options.
 
 ---
@@ -154,7 +152,7 @@ Left aligned, bottom vertical
 
 #### **Center aligned**
 
-* **`"centertop"`**
+* **`"centertop"`** or **`"center"`**
 Center aligned, top vertical
 
 * **`"centercenter"`**
@@ -167,7 +165,7 @@ Center aligned, bottom vertical
 
 #### **Right aligned**
 
-* **`"righttop"`**
+* **`"righttop"`** or **`"right"`**
 Right aligned, top vertical
 
 * **`"rightcenter"`**
@@ -177,114 +175,3 @@ Right aligned, center vertical
 Right aligned, bottom vertical
 
 
-## Examples
-
-### Basic Text Element
-
-```javascript
-widget.addText({
-id: "basicText",
-text: "Hello, World!",
-x: 10,
-y: 10,
-fontsize: 16,
-color: "white"
-});
-```
-
-### Styled Text Element
-
-```javascript
-widget.addText({
-id: "styledText",
-text: "Styled Text",
-x: 20,
-y: 20,
-fontsize: 20,
-fontface: "Segoe UI",
-fontcolor: "rgba(255,255,255,0.9)",
-fontweight: "bold",
-fontstyle: "italic",
-textalign: "centercenter",
-solidcolor: "rgba(0,0,0,0.5)",
-solidcolorradius: 5
-});
-```
-
-### Text with Event Handler
-
-```javascript
-widget.addText({
-id: "clickableText",
-text: "Click me!",
-x: 30,
-y: 30,
-fontsize: 14,
-fontcolor: "blue",
-onleftmouseup: "novadesk.log('Text was clicked!')"
-});
-```
-
-### Text with Rotation and Padding
-
-```javascript
-widget.addText({
-id: "rotatedText",
-text: "Rotated Text",
-x: 50,
-y: 50,
-fontsize: 16,
-fontcolor: "red",
-rotate: 45, // Rotate 45 degrees
-paddingleft: 10,
-paddingtop: 5,
-paddingright: 10,
-paddingbottom: 5
-});
-```
-
-### Text with Clipping
-
-```javascript
-widget.addText({
-id: "clippedText",
-text: "This is a very long text that will be clipped",
-x: 100,
-y: 100,
-width: 100,
-height: 30,
-fontsize: 12,
-fontcolor: "white",
-clipstring: 2, // Ellipsis clipping
-clipstringw: 100,
-clipstringh: 30
-});
-```
-
-## Updating Text Properties
-
-Use the `setElementProperties()` method to change any properties of an existing text element:
-
-```javascript
-// Update the text content and color
-widget.setElementProperties("basicText", {
-text: "New text content!",
-fontcolor: "yellow"
-});
-```
-
-## Best Practices
-
-1. **Use appropriate font sizes**: Ensure text is readable on different screen sizes and resolutions.
-
-2. **Consider text alignment**: Use appropriate alignment for better visual presentation.
-
-3. **Use padding for spacing**: Apply padding instead of adjusting coordinates for internal spacing.
-
-4. **Limit text width**: Use clipping options when dealing with variable-length text.
-
-5. **Test with different languages**: Consider text length variations when localizing your widgets.
-
-6. **Optimize for performance**: Avoid updating text content too frequently as it can impact performance.
-
-7. **Use contrasting colors**: Ensure text is readable against its background by using appropriate colors.

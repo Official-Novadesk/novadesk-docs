@@ -26,11 +26,7 @@ See general element options [here](/api/general-elements-options/):
 * **Default**: `""`
 * **Description**:
 Path to the image file.
-
 ---
-
-
-
 #### **`preserveaspectratio`**
 
 * **Type**: `number`
@@ -43,22 +39,14 @@ Controls how the image maintains its aspect ratio.
 * **`0`** — Stretch image to fill specified dimensions
 * **`1`** — Fit image within dimensions while maintaining aspect ratio
 * **`2`** — Crop image to fill dimensions while maintaining aspect ratio
-
 ---
-
-
-
 #### **`imagealpha`**
 
 * **Type**: `number`
 * **Default**: `255`
 * **Description**:
 Image opacity value in the range `0–255`.
-
-
 ---
-
-
 
 #### **`grayscale`**
 
@@ -66,22 +54,14 @@ Image opacity value in the range `0–255`.
 * **Default**: `false`
 * **Description**:
 Applies a grayscale filter to the image when enabled.
-
 ---
-
-
-
 #### **`tile`**
 
 * **Type**: `boolean`
 * **Default**: `false`
 * **Description**:
 Repeats (tiles) the image to fill the element area.
-
 ---
-
-
-
 #### **`imagetint`**
 
 * **Type**: `string`
@@ -89,23 +69,16 @@ Repeats (tiles) the image to fill the element area.
 * **Description**:
 Tint color applied to the image.
 Accepts CSS color formats (`rgb`, `rgba`, hex).
-
 ---
-
-
-
 #### **`colormatrix`**
 
 * **Type**: `array`
 * **Default**: `[]`
 * **Description**:
 25-element color transformation matrix used for advanced color effects.
-
 ---
 
-
-
-## Preserve Aspect Ratio Options
+## `Preserve Aspect Ratio Options`
 
 **`0`**
 Stretch the image to fill the specified dimensions.
@@ -116,111 +89,7 @@ Fit the image within the dimensions while maintaining its aspect ratio.
 **`2`**
 Crop the image to fill the dimensions while maintaining its aspect ratio.
 
-## Examples
-
-### Basic Image Element
-
-```javascript
-widget.addImage({
-id: "basicImage",
-path: "assets/logo.png",
-x: 10,
-y: 10,
-width: 100,
-height: 50
-});
-```
-
-### Image with Aspect Ratio Preservation
-
-```javascript
-widget.addImage({
-id: "fittedImage",
-path: "assets/photo.jpg",
-x: 120,
-y: 10,
-width: 150,
-height: 100,
-preserveaspectratio: 1 // Fit to dimensions maintaining aspect ratio
-});
-```
-
-### Image with Styling
-
-```javascript
-widget.addImage({
-id: "styledImage",
-path: "assets/icon.png",
-x: 280,
-y: 10,
-width: 80,
-height: 80,
-solidcolor: "rgba(200,200,200,0.8)",
-solidcolorradius: 10,
-imagealpha: 200 // 78% opacity
-});
-```
-
-### Image with Rotation and Grayscale
-
-```javascript
-widget.addImage({
-id: "rotatedImage",
-path: "assets/image.png",
-x: 10,
-y: 70,
-width: 100,
-height: 100,
-rotate: 45, // Rotate 45 degrees
-grayscale: true // Apply grayscale filter
-});
-```
-
-### Image with Tint and Padding
-
-```javascript
-widget.addImage({
-id: "tintedImage",
-path: "assets/button.png",
-x: 120,
-y: 120,
-width: 60,
-height: 60,
-imagetint: "rgba(255,0,0,0.5)", // Red tint
-paddingleft: 5,
-paddingtop: 5,
-paddingright: 5,
-paddingbottom: 5
-});
-```
-
-### Image with Event Handler
-
-```javascript
-widget.addImage({
-id: "clickableImage",
-path: "assets/clickable.png",
-x: 200,
-y: 120,
-width: 50,
-height: 50,
-onleftmouseup: "novadesk.log('Image was clicked!')"
-});
-```
-
-## Updating Image Properties
-
-Use the `setElementProperties()` method to change properties of an existing image element:
-
-```javascript
-// Update the image source and opacity
-widget.setElementProperties("basicImage", {
-path: "assets/new-logo.png",
-imagealpha: 128
-});
-```
-
-## Supported Image Formats
+## `Supported Image Formats`
 
 Novadesk supports the following image formats:
 
@@ -230,14 +99,3 @@ Novadesk supports the following image formats:
 - GIF
 - TIFF
 - ICO
-
-## Best Practices
-
-1. **Optimize images**: Use appropriately sized images to avoid unnecessary resource usage.
-2. **Consider aspect ratio**: Use `preserveaspectratio` options to maintain image quality when resizing.
-3. **Use relative paths**: Store images in the `Widgets/assets/` directory and use relative paths.
-4. **Apply padding for spacing**: Use padding properties instead of adjusting coordinates for internal spacing.
-5. **Use alpha channel wisely**: Consider the visual impact of image opacity on your widget design.
-6. **Test with different images**: Verify that your layout works with images of different dimensions.
-7. **Cache images**: For frequently changing images, consider the performance impact of reloading.
-8. **Consider accessibility**: Ensure images have appropriate contrast and size for readability.

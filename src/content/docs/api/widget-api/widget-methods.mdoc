@@ -8,7 +8,7 @@ elements and properties.
 
 ## UI Element Methods
 
-### addText(options)
+### `addText(options)`
 
 Add a text element to the widget.
 
@@ -20,7 +20,7 @@ Add a text element to the widget.
 
 See text UI element for options of text element [here](/api/ui-elements-api/text-element/).
 
-#### Syntax
+#### Example
 
 ```javascript
 widget.addText({
@@ -30,7 +30,7 @@ widget.addText({
 ```
 ---
 
-### addImage(options)
+### `addImage(options)`
 
 Add an image element to the widget.
 
@@ -42,7 +42,7 @@ Add an image element to the widget.
 
 See image UI element for options of image element [here](/api/ui-elements-api/image-element/)
 
-#### Syntax
+#### Example
 
 ```javascript
 widget.addImage({
@@ -52,7 +52,7 @@ widget.addImage({
 ```
 ---
 
-### setElementProperties(id, props)
+### `setElementProperties(id, props)`
 
 Update properties of an existing UI element. This is a general-purpose method that replaces specific update functions.
 
@@ -61,7 +61,7 @@ Update properties of an existing UI element. This is a general-purpose method th
 - **id** (string): ID of the element to update
 - **props** (Object): Properties to change
 
-#### Syntax
+#### Example
 
 ```javascript
 widget.setElementProperties("myText", {
@@ -70,13 +70,17 @@ widget.setElementProperties("myText", {
 });
 ```
 ---
-### removeElements(ids)
+### `removeElements(ids)`
 
 Remove one or more UI elements from the widget.
 
 #### Parameters
 
 - **ids** (string|Array|null): ID of a single element, an array of IDs, or `null`/`undefined` to remove all elements.
+
+{% aside type="caution" %}
+Leaving the `ids` parameter empty or setting it to `null`/`undefined` will remove all elements from the widget.
+{% /aside %}
 
 #### Example
 
@@ -91,7 +95,7 @@ widget.removeElements(["img1", "img2", "text3"]);
 widget.removeElements();
 ```
 
-### getElementProperties(id)
+### `getElementProperties(id)`
 
 Retrieve the current properties of a UI element.
 
@@ -108,14 +112,14 @@ An object containing all current properties of the element, or `null` if the ele
 ```javascript
 var props = widget.getElementProperties("myText");
 if (props) {
-novadesk.log("Text position: " + props.x + ", " + props.y);
-novadesk.log("Current text: " + props.text);
+    novadesk.log("Text position: " + props.x + ", " + props.y);
+    novadesk.log("Current text: " + props.text);
 }
 ```
 ---
 ## Widget Management Methods
 
-### setProperties(options)
+### `setProperties(options)`
 
 Update widget properties after creation.
 
@@ -129,12 +133,12 @@ See [Widget Options](/api/widget-api/widget-window/#options-object) for a list o
 
 ```javascript
 widget.setProperties({
-x: 200,
-y: 200
+    x: 200,
+    y: 200
 });
 ```
 ---
-### getProperties()
+### `getProperties()`
 
 Get current widget properties.
 
@@ -149,7 +153,7 @@ var props = widget.getProperties();
 novadesk.log("Widget position: " + props.x + ", " + props.y);
 ```
 ---
-### close()
+### `close()`
 
 Close and destroy the widget.
 
@@ -159,7 +163,7 @@ Close and destroy the widget.
 widget.close();
 ```
 ---
-### refresh()
+### `refresh()`
 
 Refresh the widget (reload scripts and redraw).
 

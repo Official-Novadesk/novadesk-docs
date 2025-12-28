@@ -1,25 +1,52 @@
 ---
 title: Display Metrics
-description: Display metrics for monitors in Novadesk
+description: Retrieve screen and monitor display metrics in Novadesk
 ---
 
-## novadesk.system.getDisplayMetrics()
+## `system.getDisplayMetrics()`
 
-Get display metrics related to screen dimensions and monitor information.
+Returns detailed information about screen dimensions, work areas, and connected monitors.
 
-### Return Value
-An object containing structured information about displays:
-- `primary`: Object containing `workArea` and `screenArea` for the primary monitor.
-- `virtualScreen`: Object containing the full virtual screen dimensions (`x`, `y`, `width`, `height`).
-- `monitors`: An array of monitor objects, each containing `workArea`, `screenArea`, and a unique `id`.
+---
 
-Each area object (`workArea`, `screenArea`) contains:
+## Return Value
+
+An object containing structured display data with the following properties:
+
+- **`primary`**  
+  Information about the primary monitor.
+  - `workArea`: The usable desktop area (excluding taskbars, docks, etc.)
+  - `screenArea`: The full screen resolution
+
+- **`virtualScreen`**  
+  Represents the combined desktop space across all monitors.
+  - `x`, `y`: Top-left coordinates of the virtual screen
+  - `width`, `height`: Total dimensions in pixels
+
+- **`monitors`**  
+  An array of objects describing each connected monitor.
+  - `id`: A unique identifier for the monitor
+  - `workArea`: Usable desktop area for that monitor
+  - `screenArea`: Full resolution of that monitor
+
+---
+
+### Area Object Structure
+
+Both `workArea` and `screenArea` objects contain:
+
 - `x`, `y`: Top-left coordinates
 - `width`, `height`: Dimensions in pixels
 
+---
+
 ### Example
+
 ```javascript
-var metrics = novadesk.system.getDisplayMetrics();
-novadesk.log("Primary screen resolution: " + metrics.primary.screenArea.width + "x" +
-metrics.primary.screenArea.height);
-```
+var metrics = system.getDisplayMetrics();
+
+novadesk.log(
+  "Primary screen resolution: " +
+  metrics.primary.screenArea.width + "x" +
+  metrics.primary.screenArea.height
+);

@@ -3,19 +3,25 @@ title: Timer Functions
 description: Timer functions for scheduling code execution in Novadesk
 ---
 
-# Timer Functions
-
 Novadesk provides several timer functions to schedule code execution, similar to those found in browsers and Node.js.
 
-## setTimeout(callback, delay)
+## `setTimeout(callback, delay)`
 
 Execute a function after a specified delay.
 
-### Parameters
-- **callback** (function): Function to execute after the delay
-- **delay** (number): Delay in milliseconds before executing the callback
+### `Parameters`
+- **`callback`**
+  - **Type:** `function`
+  - **Description:**  
+    The function to execute after the specified delay.
 
-### Return Value
+- **`delay`**
+  - **Type:** `number`
+  - **Description:**  
+    The delay, in milliseconds, before the callback is executed.
+
+
+### `Return Value`
 A timer ID that can be used to cancel the timer with `clearTimeout`.
 
 ### Example
@@ -28,16 +34,22 @@ var timerId = setTimeout(function() {
 // Cancel the timer before it executes
 // clearTimeout(timerId);
 ```
-
-## setInterval(callback, interval)
+---
+## `setInterval(callback, interval)`
 
 Execute a function repeatedly at specified intervals.
 
-### Parameters
-- **callback** (function): Function to execute repeatedly
-- **interval** (number): Interval in milliseconds between executions
+### `Parameters`
+- **`callback`**
+  - **Type:** `function`
+  - **Description:**  
+    The function to execute repeatedly.
+- **`interval`**
+  - **Type:** `number`
+  - **Description:**  
+    The interval, in milliseconds, between executions.
 
-### Return Value
+### `Return Value`
 A timer ID that can be used to cancel the timer with `clearInterval`.
 
 ### Example
@@ -53,13 +65,17 @@ setTimeout(function() {
     novadesk.log("Interval stopped");
 }, 10000);
 ```
-
-## clearTimeout(id)
+---
+## `clearTimeout(id)`
 
 Cancel a timer created with `setTimeout`.
 
-### Parameters
-- **id** (number): Timer ID returned by `setTimeout`
+### `Parameters`
+- **`id`**
+  - **Type:** `number`
+  - **Description:**  
+    The timer identifier returned by `setTimeout`, used to cancel or manage the scheduled callback.
+
 
 ### Example
 ```javascript
@@ -72,12 +88,15 @@ clearTimeout(timerId);
 novadesk.log("Timer cancelled");
 ```
 
-## clearInterval(id)
+## `clearInterval(id)`
 
 Cancel a timer created with `setInterval`.
 
-### Parameters
-- **id** (number): Timer ID returned by `setInterval`
+### `Parameters`
+- **`id`**
+  - **Type:** `number`
+  - **Description:**  
+    The timer identifier returned by `setInterval`, used to cancel or manage the scheduled callback.
 
 ### Example
 ```javascript
@@ -91,15 +110,18 @@ setTimeout(function() {
     novadesk.log("Interval stopped");
 }, 5000);
 ```
-
-## setImmediate(callback)
+---
+## `setImmediate(callback)`
 
 Execute a function as soon as possible in the next event loop iteration.
 
-### Parameters
-- **callback** (function): Function to execute
+### `Parameters`
+- **`callback`**
+  - **Type:** `function`
+  - **Description:**  
+    The function to execute as soon as possible in the next event loop iteration.
 
-### Return Value
+### `Return Value`
 An ID that can be used to cancel the immediate callback.
 
 ### Example
@@ -116,126 +138,3 @@ novadesk.log("Second");
 // Second
 // This runs after current execution completes
 ```
-
-## process.nextTick(callback)
-
-Execute a function as soon as possible, similar to `setImmediate`.
-
-### Parameters
-- **callback** (function): Function to execute
-
-### Example
-```javascript
-novadesk.log("Start");
-
-process.nextTick(function() {
-    novadesk.log("This runs on next tick");
-});
-
-novadesk.log("End");
-// Output order:
-// Start
-// End
-// This runs on next tick
-```
-
-## Practical Examples
-
-### Updating Widget Content Periodically
-```javascript
-var clockWidget = new widgetWindow({
-    id: "clockWidget",
-    x: 100,
-    y: 100,
-    width: 200,
-    height: 50
-});
-
-clockWidget.addText({
-    id: "timeText",
-    text: "Loading...",
-    x: 10,
-    y: 10,
-    fontsize: 16,
-    color: "white"
-});
-
-// Update the time every second
-setInterval(function() {
-    var now = new Date();
-    var timeString = now.toLocaleTimeString();
-    clockWidget.updateText("timeText", timeString);
-}, 1000);
-```
-
-### Delayed Actions
-```javascript
-novadesk.log("Starting process...");
-
-setTimeout(function() {
-    novadesk.log("Process completed after 3 seconds");
-}, 3000);
-
-// Show a temporary notification
-var notification = new widgetWindow({
-    id: "notification",
-    x: 100,
-    y: 100,
-    width: 300,
-    height: 80,
-    backgroundcolor: "rgba(0,0,0,0.8)",
-    zpos: "ontopmost"
-});
-
-notification.addText({
-    id: "msg",
-    text: "Processing complete!",
-    x: 10,
-    y: 10,
-    fontsize: 16,
-    color: "white"
-});
-
-// Remove the notification after 5 seconds
-setTimeout(function() {
-    notification.close();
-}, 5000);
-```
-
-### Memory Management with Timers
-```javascript
-// Keep references to timer IDs to properly clean up
-var timers = [];
-
-// Create multiple intervals
-timers.push(setInterval(function() {
-    novadesk.log("Timer 1 running");
-}, 1000));
-
-timers.push(setInterval(function() {
-    novadesk.log("Timer 2 running");
-}, 2000));
-
-// Clean up all timers when needed
-function cleanupTimers() {
-    timers.forEach(function(timerId) {
-        clearInterval(timerId);
-    });
-    timers = [];
-    novadesk.log("All timers cleared");
-}
-```
-
-## Best Practices
-
-1. **Always clean up timers**: Store timer IDs and clear them when no longer needed to prevent memory leaks.
-
-2. **Use appropriate intervals**: Don't set intervals too frequently as it can impact performance.
-
-3. **Handle errors in callbacks**: Wrap timer callbacks in try-catch blocks to prevent unhandled exceptions.
-
-4. **Consider performance**: Be mindful of the frequency of timer-based updates, especially when updating UI elements.
-
-5. **Use setTimeout for delayed execution**: Use `setTimeout` instead of `setInterval` if you need more control over when the next execution happens.
-
-6. **Avoid blocking operations**: Don't perform heavy computations in timer callbacks as they can block the UI.

@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import markdoc from "@astrojs/markdoc";
 import starlightScrollToTop from "starlight-scroll-to-top";
+import starlightFullViewMode from 'starlight-fullview-mode'
 
 // https://astro.build/config
 export default defineConfig({
@@ -77,13 +78,13 @@ export default defineConfig({
                 { label: "Display Metrics", link: "/api/system-api/display-metrics/" },
               ],
             },
-            {
-              label: "Guides",
-              items: [
-                { label: "CLI Commands", link: "/guides/cli-commands/" },
-                { label: "Colors", link: "/guides/colors/" }
-              ],
-            },
+          ],
+        },
+        {
+          label: "Guides",
+          items: [
+            { label: "CLI Commands", link: "/guides/cli-commands/" },
+            { label: "Colors", link: "/guides/colors/" }
           ],
         },
       ],
@@ -102,6 +103,7 @@ export default defineConfig({
           // Control homepage visibility
           showOnHomepage: false,
         }),
+        starlightFullViewMode(),
       ],
     }),
   ],

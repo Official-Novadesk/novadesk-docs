@@ -14,7 +14,7 @@ Add a text element to the widget.
 
 #### Parameters
 
-- **options** (Object): Configuration options for the text element
+- **options** (Object): Configuration options for the text element. `id` is required and must be unique.
 
 ### Options
 
@@ -24,8 +24,8 @@ See text UI element for options of text element [here](/api/ui-elements-api/text
 
 ```javascript
 widget.addText({
-    id:"myText",
-    text:"Hello World!"
+id:"myText",
+text:"Hello World!"
 })
 ```
 ---
@@ -36,7 +36,7 @@ Add an image element to the widget.
 
 #### Parameters
 
-- **options** (Object): Configuration options for the image element
+- **options** (Object): Configuration options for the image element. `id` is required and must be unique.
 
 ### Options
 
@@ -46,8 +46,8 @@ See image UI element for options of image element [here](/api/ui-elements-api/im
 
 ```javascript
 widget.addImage({
-    id:"myImage",
-    url:"path/to/image.png"
+id:"myImage",
+url:"path/to/image.png"
 })
 ```
 ---
@@ -58,15 +58,15 @@ Update properties of an existing UI element. This is a general-purpose method th
 
 #### Parameters
 
-- **id** (string): ID of the element to update
+- **id** (string): ID of the element to update (cannot be changed)
 - **props** (Object): Properties to change
 
 #### Example
 
 ```javascript
 widget.setElementProperties("myText", {
-    x:20,
-    y:20
+x:20,
+y:20
 });
 ```
 ---
@@ -112,8 +112,8 @@ An object containing all current properties of the element, or `null` if the ele
 ```javascript
 var props = widget.getElementProperties("myText");
 if (props) {
-    novadesk.log("Text position: " + props.x + ", " + props.y);
-    novadesk.log("Current text: " + props.text);
+novadesk.log("Text position: " + props.x + ", " + props.y);
+novadesk.log("Current text: " + props.text);
 }
 ```
 ---
@@ -125,7 +125,7 @@ Update widget properties after creation.
 
 #### Parameters
 
-- **options** (Object): Properties to update
+- **options** (Object): Properties to update. Note: `id` cannot be changed.
 
 See [Widget Options](/api/widget-api/widget-window/#options-object) for a list of available options.
 
@@ -133,8 +133,8 @@ See [Widget Options](/api/widget-api/widget-window/#options-object) for a list o
 
 ```javascript
 widget.setProperties({
-    x: 200,
-    y: 200
+x: 200,
+y: 200
 });
 ```
 ---
@@ -171,4 +171,64 @@ Refresh the widget (reload scripts and redraw).
 
 ```javascript
 widget.refresh();
+```
+---
+
+## Context Menu Methods
+
+### `addContextMenuItem(label, action)`
+
+Add a custom item to the widget's right-click context menu.
+
+#### Parameters
+
+- **label** (string): The text to display in the menu.
+- **action** (string): The JavaScript code to execute when clicked.
+
+#### Example
+
+```javascript
+widget.addContextMenuItem("Say Hello", "novadesk.log('Hello from context menu!');");
+```
+---
+
+### `removeContextMenuItem(label)`
+
+Remove a specific custom item from the context menu by its label.
+
+#### Parameters
+
+- **label** (string): The label of the item to remove.
+
+#### Example
+
+```javascript
+widget.removeContextMenuItem("Say Hello");
+```
+---
+
+### `clearContextMenu()`
+
+Remove all custom items from the context menu.
+
+#### Example
+
+```javascript
+widget.clearContextMenu();
+```
+---
+
+### `showDefaultContextMenuItems(show)`
+
+Control the visibility of the default Novadesk menu items (Refresh, Exit Widget, Close App).
+
+#### Parameters
+
+- **show** (boolean): `true` to show default items, `false` to hide them.
+
+#### Example
+
+```javascript
+// Hide default items to have a fully custom menu
+widget.showDefaultContextMenuItems(false);
 ```

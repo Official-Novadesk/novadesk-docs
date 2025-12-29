@@ -22,10 +22,10 @@ An object containing configuration options for the widget window.
 #### **`id`**
 
 - **type**: `string`
-- **Default**: `Auto`
-- **Description**: Unique identifier for the widget
+- **Default**: `Required`
+- **Description**: Unique identifier for the widget. This ID is also used as the window title.
 {% aside type="caution" %}
-id is required for novadesk app to preserve the current state of the widget in settings file.
+`id` is mandatory and must be unique across all widgets. It cannot be changed after creation.
 {% /aside %}
 ---
 

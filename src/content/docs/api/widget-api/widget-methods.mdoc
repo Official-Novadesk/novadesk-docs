@@ -185,9 +185,13 @@ widget.refresh();
 
 ## Context Menu Methods
 
+{% aside type="note" %}
+The following methods are **only** accessible within the `widgetWindow` object inside a UI script.
+{% /aside %}
+
 ### `addContextMenuItem(label, action)`
 
-Add a custom item to the widget's right-click context menu.
+Add a custom item to the widget's right-click context menu. Available only in UI scripts.
 
 #### Parameters
 
@@ -203,7 +207,7 @@ widget.addContextMenuItem("Say Hello", "novadesk.log('Hello from context menu!')
 
 ### `removeContextMenuItem(label)`
 
-Remove a specific custom item from the context menu by its label.
+Remove a specific custom item from the context menu by its label. Available only in UI scripts.
 
 #### Parameters
 
@@ -218,7 +222,7 @@ widget.removeContextMenuItem("Say Hello");
 
 ### `clearContextMenu()`
 
-Remove all custom items from the context menu.
+Remove all custom items from the context menu. Available only in UI scripts.
 
 #### Example
 
@@ -229,7 +233,7 @@ widget.clearContextMenu();
 
 ### `showDefaultContextMenuItems(show)`
 
-Control the visibility of the default Novadesk menu items (Refresh, Exit Widget, Close App).
+Control the visibility of the default Novadesk menu items (Refresh, Exit Widget, Close App). Available only in UI scripts.
 
 #### Parameters
 

@@ -3,14 +3,23 @@ title: Widget Methods
 description: Methods available on widget objects in Novadesk
 ---
 
-Once you create a widget using the `widgetWindow()` constructor, the returned object has several methods for managing UI
-elements and properties.
+Once you create a widget using the `widgetWindow()` constructor, the returned object has several methods for managing
+window properties. However, UI elements (text, images, etc.) can only be managed within a dedicated **UI Script**.
+
+{% aside type="caution" %}
+The methods listed under **UI Element Methods** are only available when called from a script specified in the widget's
+`script` option. These methods are unavailable in the main application script.
+{% /aside %}
 
 ## UI Element Methods
 
+{% aside type="note" %}
+The following methods are **only** accessible within the `widgetWindow` object inside a UI script.
+{% /aside %}
+
 ### `addText(options)`
 
-Add a text element to the widget.
+Add a text element to the widget. Available only in UI scripts.
 
 #### Parameters
 
@@ -20,19 +29,19 @@ Add a text element to the widget.
 
 See text UI element for options of text element [here](/api/ui-elements-api/text-element/).
 
-#### Example
+#### Example (UI Script)
 
 ```javascript
-widget.addText({
-id:"myText",
-text:"Hello World!"
-})
+widgetWindow.addText({
+id: "myText",
+text: "Hello World!"
+});
 ```
 ---
 
 ### `addImage(options)`
 
-Add an image element to the widget.
+Add an image element to the widget. Available only in UI scripts.
 
 #### Parameters
 
@@ -42,19 +51,19 @@ Add an image element to the widget.
 
 See image UI element for options of image element [here](/api/ui-elements-api/image-element/)
 
-#### Example
+#### Example (UI Script)
 
 ```javascript
-widget.addImage({
-id:"myImage",
-url:"path/to/image.png"
-})
+widgetWindow.addImage({
+id: "myImage",
+path: "path/to/image.png"
+});
 ```
 ---
 
 ### `setElementProperties(id, props)`
 
-Update properties of an existing UI element. This is a general-purpose method that replaces specific update functions.
+Update properties of an existing UI element. Available only in UI scripts.
 
 #### Parameters
 
@@ -72,7 +81,7 @@ y:20
 ---
 ### `removeElements(ids)`
 
-Remove one or more UI elements from the widget.
+Remove one or more UI elements from the widget. Available only in UI scripts.
 
 #### Parameters
 
@@ -97,7 +106,7 @@ widget.removeElements();
 
 ### `getElementProperties(id)`
 
-Retrieve the current properties of a UI element.
+Retrieve the current properties of a UI element. Available only in UI scripts.
 
 #### Parameters
 

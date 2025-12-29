@@ -3,7 +3,8 @@ title: widgetWindow()
 description: Create and manage desktop widget windows in Novadesk
 ---
 
-The `widgetWindow()` constructor creates a new desktop widget window that can display UI elements like text and images. Widget windows are transparent, layerable, and can be positioned anywhere on the desktop.
+The `widgetWindow()` constructor creates a new desktop widget window that can display UI elements like text and images.
+Widget windows are transparent, layerable, and can be positioned anywhere on the desktop.
 
 ## Syntax
 
@@ -114,6 +115,17 @@ When no background color is specified, the widget will be transparent.
 - **Description**: Whether to snap to other widgets and screen edges
 ---
 
+#### **`script`**
+
+- **type**: `string`
+- **Default**: `None`
+- **Description**: Path to a dedicated JavaScript file that manages the widget's UI elements.
+{% aside type="caution" %}
+UI elements (text, images, etc.) can **only** be created and modified within the dedicated UI script. The main script
+can only control window-level properties.
+{% /aside %}
+
+
 
 # Z-Order Positions
 
@@ -150,20 +162,21 @@ Widgets can be positioned at different levels in the window stack:
 ---
 ## Widget Methods
 
-Once a widget is created, you can use several methods. For more information, see [Widget Methods](/api/widget-api/widget-methods/).
+Once a widget is created, you can use several methods. For more information, see [Widget
+Methods](/api/widget-api/widget-methods/).
 
 ## Example
 
 ```javascript
-var widgetWindow = new widgetWindow({
-    id: "widgetWindow",
-    width: 200,
-    height: 100,
-    backgroundcolor: "rgb(30,30,30)"
-})
+var widget = new widgetWindow({
+id: "myWidget",
+width: 300,
+height: 150,
+backgroundcolor: "rgba(30, 30, 40, 0.9)",
+script: "my_widget_ui.js"
+});
 ```
 
-## Preview 
+## Preview
 
 ![Widget Preview](/src/assets/images/widgetPreview.png)
-

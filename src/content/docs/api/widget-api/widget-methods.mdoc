@@ -3,18 +3,18 @@ title: Widget Methods
 description: Methods available on widget objects in Novadesk
 ---
 
-Once you create a widget using the `widgetWindow()` constructor, the returned object has several methods for managing
-window properties. However, UI elements (text, images, etc.) can only be managed within a dedicated **UI Script**.
+Novadesk enforces a **Strict Separation of Concerns** between the **Main script** (application logic) and **UI scripts** (visual presentation).
 
-{% aside type="caution" %}
-The methods listed under **UI Element Methods** are only available when called from a script specified in the widget's
-`script` option. These methods are unavailable in the main application script.
+{% aside type="note" %}
+- **Main Script**: Manages widget windows (creation, positioning, lifecycle). It **cannot** directly add UI elements.
+- **UI Script**: Manages visual elements (text, images, interactions). It **cannot** directly change window-level properties.
+- **Communication**: Use the global `ipc` object to communicate between these contexts.
 {% /aside %}
 
 ## UI Element Methods
 
 {% aside type="note" %}
-The following methods are **only** accessible within the `widgetWindow` object inside a UI script.
+The following methods are **only** accessible within the `win` object inside a UI script. They are **unavailable** in the main application script.
 {% /aside %}
 
 ### `addText(options)`
@@ -32,9 +32,9 @@ See text UI element for options of text element [here](/api/ui-elements-api/text
 #### Example (UI Script)
 
 ```javascript
-widgetWindow.addText({
-id: "myText",
-text: "Hello World!"
+win.addText({
+  id: "myText",
+  text: "Hello World!"
 });
 ```
 ---
@@ -54,9 +54,9 @@ See image UI element for options of image element [here](/api/ui-elements-api/im
 #### Example (UI Script)
 
 ```javascript
-widgetWindow.addImage({
-id: "myImage",
-path: "path/to/image.png"
+win.addImage({
+  id: "myImage",
+  path: "path/to/image.png"
 });
 ```
 ---
@@ -73,9 +73,9 @@ Update properties of an existing UI element. Available only in UI scripts.
 #### Example
 
 ```javascript
-widget.setElementProperties("myText", {
-x:20,
-y:20
+win.setElementProperties("myText", {
+  x: 20,
+  y: 20
 });
 ```
 ---
@@ -95,13 +95,13 @@ Leaving the `ids` parameter empty or setting it to `null`/`undefined` will remov
 
 ```javascript
 // Remove a single element
-widget.removeElements("myText");
+win.removeElements("myText");
 
 // Remove multiple elements
-widget.removeElements(["img1", "img2", "text3"]);
+win.removeElements(["img1", "img2", "text3"]);
 
 // Clear all content
-widget.removeElements();
+win.removeElements();
 ```
 
 ### `getElementProperties(id)`
@@ -119,14 +119,18 @@ An object containing all current properties of the element, or `null` if the ele
 #### Example
 
 ```javascript
-var props = widget.getElementProperties("myText");
+var props = win.getElementProperties("myText");
 if (props) {
-novadesk.log("Text position: " + props.x + ", " + props.y);
-novadesk.log("Current text: " + props.text);
+  novadesk.log("Text position: " + props.x + ", " + props.y);
+  novadesk.log("Current text: " + props.text);
 }
 ```
 ---
 ## Widget Management Methods
+
+{% aside type="note" %}
+The following methods are **only** accessible from the **Main script** on a `widgetWindow` object instance. They are **unavailable** in UI scripts.
+{% /aside %}
 
 ### `setProperties(options)`
 
@@ -138,18 +142,20 @@ Update widget properties after creation.
 
 See [Widget Options](/api/widget-api/widget-window/#options-object) for a list of available options.
 
-#### Example
+#### Example (Main Script)
 
 ```javascript
+var widget = new widgetWindow({ id: "my-widget" });
+
 widget.setProperties({
-x: 200,
-y: 200
+  x: 200,
+  y: 200
 });
 ```
 ---
 ### `getProperties()`
 
-Get current widget properties.
+Get current widget properties. Available only in the main script.
 
 #### Return Value
 
@@ -164,7 +170,7 @@ novadesk.log("Widget position: " + props.x + ", " + props.y);
 ---
 ### `close()`
 
-Close and destroy the widget.
+Close and destroy the widget. Available only in the main script.
 
 #### Example
 
@@ -174,7 +180,7 @@ widget.close();
 ---
 ### `refresh()`
 
-Refresh the widget (reload scripts and redraw).
+Refresh the widget (reload scripts and redraw). Available only in the main script.
 
 #### Example
 
@@ -186,7 +192,7 @@ widget.refresh();
 ## Context Menu Methods
 
 {% aside type="note" %}
-The following methods are **only** accessible within the `widgetWindow` object inside a UI script.
+The following methods are **only** accessible within the `win` object inside a UI script.
 {% /aside %}
 
 ### `addContextMenuItem(label, action)`
@@ -201,7 +207,7 @@ Add a custom item to the widget's right-click context menu. Available only in UI
 #### Example
 
 ```javascript
-widget.addContextMenuItem("Say Hello", "novadesk.log('Hello from context menu!');");
+win.addContextMenuItem("Say Hello", "novadesk.log('Hello from context menu!');");
 ```
 ---
 
@@ -216,7 +222,7 @@ Remove a specific custom item from the context menu by its label. Available only
 #### Example
 
 ```javascript
-widget.removeContextMenuItem("Say Hello");
+win.removeContextMenuItem("Say Hello");
 ```
 ---
 
@@ -227,7 +233,7 @@ Remove all custom items from the context menu. Available only in UI scripts.
 #### Example
 
 ```javascript
-widget.clearContextMenu();
+win.clearContextMenu();
 ```
 ---
 
@@ -243,5 +249,45 @@ Control the visibility of the default Novadesk menu items (Refresh, Exit Widget,
 
 ```javascript
 // Hide default items to have a fully custom menu
-widget.showDefaultContextMenuItems(false);
+win.showDefaultContextMenuItems(false);
+```
+
+---
+
+## Inter-Process Communication (IPC)
+
+The `ipc` global object allows you to send data between the Main script and UI script.
+
+### `ipc.on(channel, callback)`
+
+Register a listener for a specific channel.
+
+#### Parameters
+- **channel** (string): The name of the channel.
+- **callback** (function): Function to run when data is received.
+
+### `ipc.send(channel, data)`
+
+Send data to the other script context.
+
+#### Parameters
+- **channel** (string): The name of the channel.
+- **data** (any): The data to send.
+
+#### Example
+
+**Main Script:**
+```javascript
+ipc.on("get-cpu", () => {
+  ipc.send("cpu-data", system.cpu().usage());
+});
+```
+
+**UI Script:**
+```javascript
+ipc.send("get-cpu");
+
+ipc.on("cpu-data", (data) => {
+  novadesk.log("CPU Usage: " + data);
+});
 ```

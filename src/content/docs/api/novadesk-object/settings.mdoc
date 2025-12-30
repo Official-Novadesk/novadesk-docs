@@ -3,8 +3,12 @@ title: Configuration Methods
 description: Programmatically control Novadesk configuration via JavaScript
 ---
 
-Novadesk provides several methods to control global application behavior programmatically.These methods can be called at any time and their values are
+Novadesk provides several methods to control global application behavior programmatically. These methods can be called at any time and their values are
 persisted to `settings.json`.
+
+{% aside type="caution" %}
+Configuration methods are **only available in the Main script**. UI scripts cannot modify global application settings.
+{% /aside %}
 
 ## `novadesk.saveLogToFile(bool)`
 

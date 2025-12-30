@@ -9,16 +9,16 @@ The **Text** element allows you to display text content in widgets with various 
 
 ## Adding a Text Element
 
-Use the `addText()` method on a widget object:
+Use the `addText()` method on the `win` object inside a **UI Script**:
 
 ```js
-widget.addText(options);
-````
+win.addText(options);
+```
 
 ---
 ## General Element Options
 
-See general element options [here](/api/general-elements-options/):
+See general element options [here](/api/ui-elements-api/general-elements-options/):
 ---
 ## Text Element Options
 
@@ -176,6 +176,8 @@ Right aligned, bottom vertical
 
 ## Example
 
+{% tabs %}
+{% tabitem label="index.js (Main Script)" %}
 ```javascript
 // create widget window
 var sysWidget = new widgetWindow({
@@ -185,10 +187,14 @@ var sysWidget = new widgetWindow({
     backgroundcolor: "rgba(30, 30, 40, 0.9)",
     zpos: "ontop",
     draggable: true,
+    script: "ui.js"
 });
-
+```
+{% /tabitem %}
+{% tabitem label="ui.js (UI Script)" %}
+```javascript
 // simple text
-sysWidget.addText({
+win.addText({
     id: "simpleText",
     text: "SimpleText",
     x: 10, 
@@ -196,12 +202,11 @@ sysWidget.addText({
     fontsize: 20,
     fontcolor: "rgb(255, 255, 255)",
     fontface:"consolas",
-    fontweight: "bold",
-    onleftmouseup: "sysWidget.refresh();"
+    fontweight: "bold"
 });
 
 // solid color text
-sysWidget.addText({
+win.addText({
     id: "SolidColorText",
     text: "Solid Color",
     x: 135, 
@@ -215,7 +220,7 @@ sysWidget.addText({
 });
 
 // round solid color text   
-sysWidget.addText({
+win.addText({
     id: "RoundSolidColor",
     text: "Round",
     x: 300, 
@@ -230,7 +235,7 @@ sysWidget.addText({
 });
 
 // rotate text
-sysWidget.addText({
+win.addText({
     id: "RotateText",
     text: "Rotate 45",
     x: 10, 
@@ -241,6 +246,8 @@ sysWidget.addText({
     fontstyle: "italic",
 });
 ```
+{% /tabitem %}
+{% /tabs %}
 
 ## Preview 
 

@@ -3,7 +3,12 @@ title: widgetWindow()
 description: Create and manage desktop widget windows in Novadesk
 ---
 
-The `widgetWindow()` constructor creates a new desktop widget window that can display UI elements like text and images.
+The `widgetWindow` class is the primary interface for creating and managing desktop widgets.
+
+{% aside type="caution" %}
+The `widgetWindow` constructor is **only available in the Main script**. UI scripts run within an existing window and cannot create new ones.
+{% /aside %}
+A `widgetWindow` creates a new desktop window that can display UI elements like text and images.
 Widget windows are transparent, layerable, and can be positioned anywhere on the desktop.
 
 ## Syntax
@@ -120,9 +125,11 @@ When no background color is specified, the widget will be transparent.
 - **type**: `string`
 - **Default**: `None`
 - **Description**: Path to a dedicated JavaScript file that manages the widget's UI elements.
-{% aside type="caution" %}
-UI elements (text, images, etc.) can **only** be created and modified within the dedicated UI script. The main script
-can only control window-level properties.
+{% aside type="important" %}
+Novadesk uses a **Strict Separation of Concerns**:
+- **UI Elements** (text, images, etc.) can **only** be created and modified within the dedicated UI script using the global `win` object.
+- **Window Management** (position, opacity, etc.) can **only** be controlled from the main script via the widget object instance.
+- Both scripts use the global `ipc` object for communication.
 {% /aside %}
 
 
@@ -167,15 +174,18 @@ Methods](/api/widget-api/widget-methods/).
 
 ## Example
 
+{% tabs %}
+{% tabitem label="index.js" %}
 ```javascript
 var widget = new widgetWindow({
-id: "myWidget",
-width: 300,
-height: 150,
-backgroundcolor: "rgba(30, 30, 40, 0.9)",
-script: "my_widget_ui.js"
+  id: "myWidget",
+  width: 300,
+  height: 150,
+  backgroundcolor: "rgba(30, 30, 40, 0.9)",
 });
 ```
+{% /tabitem %}
+{% /tabs %}
 
 ## Preview
 

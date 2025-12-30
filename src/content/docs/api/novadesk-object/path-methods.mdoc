@@ -3,7 +3,7 @@ title: Path Methods
 description: Path functions in the Novadesk JavaScript API
 ---
 
-## `novadesk.getExePath()`
+## `system.getExePath()`
 
 Get information about the Novadesk executable path.
 
@@ -18,13 +18,9 @@ An object with the following properties:
 ### Example
 
 ```javascript
-
-var exeInfo = novadesk.getExePath();
+var exeInfo = system.getExePath();
 
 novadesk.log("Executable path: " + exeInfo.fullPath);
-
 novadesk.log("Directory: " + exeInfo.directory);
-
 novadesk.log("Filename: " + exeInfo.filename);
-
 ```

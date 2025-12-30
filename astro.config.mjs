@@ -30,13 +30,6 @@ export default defineConfig({
           label: "API Reference",
           items: [
             {
-              label: "Widget API",
-              items: [
-                { label: "widgetWindow()", link: "/api/widget-api/widget-window/" },
-                { label: "Widget Methods", link: "/api/widget-api/widget-methods/" },
-              ],
-            },
-            {
               label: "Novadesk Object",
               items: [
                 { label: "Logging", link: "/api/novadesk-object/logging/" },
@@ -56,6 +49,7 @@ export default defineConfig({
                 },
                 { label: "Text Element", link: "/api/ui-elements-api/text-element/" },
                 { label: "Image Element", link: "/api/ui-elements-api/image-element/" },
+                { label: "Bar Element", link: "/api/ui-elements-api/bar-element/" },
               ],
             },
             {

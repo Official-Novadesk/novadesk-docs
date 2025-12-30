@@ -1,0 +1,95 @@
+---
+title: Bar Element
+description: Documentation for the Novadesk Bar element type.
+---
+
+The `bar` element is used to create visual indicators like progress bars, level meters, or health bars. It supports horizontal and vertical orientations and a wide range of styling options.
+
+## Creating a Bar
+
+You can add a bar to your widget using the `win.addBar(options)` method.
+
+```javascript
+win.addBar({
+  id: "myProgressBar",
+  x: 10,
+  y: 10,
+  width: 200,
+  height: 20,
+  value: 0.5, // 50% filled
+  barcolor: "rgba(0, 255, 0, 1)", // Green bar
+  solidcolor: "rgba(30, 30, 30, 0.8)", // Dark background
+  orientation: "horizontal",
+  barcornerradius: 5
+});
+```
+
+## Options
+
+The bar element inherits all [Common Element Options](../common-options) and adds the following:
+
+### `value`
+- **Type**: `number`
+- **Default**: `0.0`
+- **Description**: The fill level of the bar, from `0.0` (empty) to `1.0` (full).
+
+### `orientation`
+- **Type**: `string`
+- **Default**: `"horizontal"`
+- **Description**: The layout direction of the bar.
+    - `"horizontal"`: Fills from left to right.
+    - `"vertical"`: Fills from bottom to top.
+
+### `barcornerradius`
+- **Type**: `number`
+- **Default**: `0`
+- **Description**: Rounding radius for the corners of the bar fill itself.
+
+### `barcolor`
+- **Type**: `string`
+- **Description**: The color of the filled portion of the bar. Supports `rgb()`, `rgba()`, and hex strings.
+
+### `barcolor2`
+- **Type**: `string`
+- **Description**: The second color for a gradient fill of the bar.
+
+### `baralpha` / `baralpha2`
+- **Type**: `number` (0-255)
+- **Description**: Explicit alpha values for the bar colors. Usually handled within the `rgba()` string.
+
+### `bargradientangle`
+- **Type**: `number`
+- **Default**: `0.0`
+- **Description**: The angle of the gradient if `barcolor2` is provided.
+
+## Updating a Bar
+
+You can update a bar's value or styling dynamically using `win.setElementProperties(id, options)`.
+
+```javascript
+// Update progress to 75%
+win.setElementProperties("myProgressBar", {
+  value: 0.75
+});
+```
+
+## Example: CPU Usage Bar
+
+```javascript
+const cpu = novadesk.subscribe("cpu");
+
+win.addBar({
+  id: "cpuBar",
+  x: 10, y: 10,
+  width: 100, height: 10,
+  barcolor: "rgba(100, 200, 255, 1)",
+  solidcolor: "rgba(0, 0, 0, 0.5)",
+  value: 0
+});
+
+cpu.on("change", (data) => {
+  win.setElementProperties("cpuBar", {
+    value: data.total / 100
+  });
+});
+```

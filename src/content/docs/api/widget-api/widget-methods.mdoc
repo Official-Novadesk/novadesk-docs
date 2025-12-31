@@ -3,18 +3,21 @@ title: Widget Methods
 description: Methods available on widget objects in Novadesk
 ---
 
-Novadesk enforces a **Strict Separation of Concerns** between the **Main script** (application logic) and **UI scripts** (visual presentation).
+Novadesk enforces a **Strict Separation of Concerns** between the **Main script** (application logic) and **UI scripts**
+(visual presentation).
 
 {% aside type="note" %}
 - **Main Script**: Manages widget windows (creation, positioning, lifecycle). It **cannot** directly add UI elements.
-- **UI Script**: Manages visual elements (text, images, interactions). It **cannot** directly change window-level properties.
+- **UI Script**: Manages visual elements (text, images, interactions). It **cannot** directly change window-level
+properties.
 - **Communication**: Use the global `ipc` object to communicate between these contexts.
 {% /aside %}
 
 ## UI Element Methods
 
 {% aside type="note" %}
-The following methods are **only** accessible within the `win` object inside a UI script. They are **unavailable** in the main application script.
+The following methods are **only** accessible within the `win` object inside a UI script. They are **unavailable** in
+the main application script.
 {% /aside %}
 
 ### `addText(options)`
@@ -33,8 +36,8 @@ See text UI element for options of text element [here](/api/ui-elements-api/text
 
 ```javascript
 win.addText({
-  id: "myText",
-  text: "Hello World!"
+id: "myText",
+text: "Hello World!"
 });
 ```
 ---
@@ -55,8 +58,8 @@ See image UI element for options of image element [here](/api/ui-elements-api/im
 
 ```javascript
 win.addImage({
-  id: "myImage",
-  path: "path/to/image.png"
+id: "myImage",
+path: "path/to/image.png"
 });
 ```
 ---
@@ -74,8 +77,8 @@ Update properties of an existing UI element. Available only in UI scripts.
 
 ```javascript
 win.setElementProperties("myText", {
-  x: 20,
-  y: 20
+x: 20,
+y: 20
 });
 ```
 ---
@@ -121,15 +124,16 @@ An object containing all current properties of the element, or `null` if the ele
 ```javascript
 var props = win.getElementProperties("myText");
 if (props) {
-  novadesk.log("Text position: " + props.x + ", " + props.y);
-  novadesk.log("Current text: " + props.text);
+novadesk.log("Text position: " + props.x + ", " + props.y);
+novadesk.log("Current text: " + props.text);
 }
 ```
 ---
 ## Widget Management Methods
 
 {% aside type="note" %}
-The following methods are **only** accessible from the **Main script** on a `widgetWindow` object instance. They are **unavailable** in UI scripts.
+The following methods are **only** accessible from the **Main script** on a `widgetWindow` object instance. They are
+**unavailable** in UI scripts.
 {% /aside %}
 
 ### `setProperties(options)`
@@ -148,8 +152,8 @@ See [Widget Options](/api/widget-api/widget-window/#options-object) for a list o
 var widget = new widgetWindow({ id: "my-widget" });
 
 widget.setProperties({
-  x: 200,
-  y: 200
+x: 200,
+y: 200
 });
 ```
 ---
@@ -176,6 +180,34 @@ Close and destroy the widget. Available only in the main script.
 
 ```javascript
 widget.close();
+```
+---
+### `on(eventName, callback)`
+
+Register a listener for widget lifecycle events. Available only in the main script.
+
+#### Parameters
+
+- **eventName** (string): The name of the event.
+- `"refresh"`: Executes when the widget is refreshed (scripts reloaded).
+- `"close"`: Executes **before** the window is destroyed.
+- `"closed"`: Executes **after** the window has been destroyed.
+- **callback** (function): Function to execute when the event occurs.
+
+#### Example
+
+```javascript
+widget.on("refresh", function() {
+novadesk.log("Widget is refreshing!");
+});
+
+widget.on("close", function() {
+novadesk.log("Cleaning up before close...");
+});
+
+widget.on("closed", function() {
+novadesk.log("Window is now gone.");
+});
 ```
 ---
 ### `refresh()`
@@ -239,7 +271,8 @@ win.clearContextMenu();
 
 ### `showDefaultContextMenuItems(show)`
 
-Control the visibility of the default Novadesk menu items (Refresh, Exit Widget, Close App). Available only in UI scripts.
+Control the visibility of the default Novadesk menu items (Refresh, Exit Widget, Close App). Available only in UI
+scripts.
 
 #### Parameters
 
@@ -279,7 +312,7 @@ Send data to the other script context.
 **Main Script:**
 ```javascript
 ipc.on("get-cpu", () => {
-  ipc.send("cpu-data", system.cpu().usage());
+ipc.send("cpu-data", system.cpu().usage());
 });
 ```
 
@@ -288,6 +321,6 @@ ipc.on("get-cpu", () => {
 ipc.send("get-cpu");
 
 ipc.on("cpu-data", (data) => {
-  novadesk.log("CPU Usage: " + data);
+novadesk.log("CPU Usage: " + data);
 });
 ```

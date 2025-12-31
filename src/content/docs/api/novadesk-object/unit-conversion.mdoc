@@ -1,0 +1,91 @@
+---
+title: Unit Conversion
+description: Built-in utilities for format and unit conversion.
+---
+
+The `novadesk.units` module provides convenient helper functions for formatting sizes, times, and converting units.
+
+## Bytes Formatting
+
+### `novadesk.units.formatBytes(bytes, decimals)`
+
+Formats a number of bytes into a human-readable string (e.g., "1.5 MB").
+
+- **bytes**: `number` - The value in bytes.
+- **decimals**: `number` (optional, default: 2) - Number of decimal places.
+
+```javascript
+novadesk.units.formatBytes(1500); // "1.46 KB"
+novadesk.units.formatBytes(1024, 0); // "1 KB"
+novadesk.units.formatBytes(123456789); // "117.74 MB"
+```
+
+## Time Formatting
+
+### `novadesk.units.formatSeconds(seconds)`
+
+Formats a duration in seconds into a "HH:MM:SS" string.
+
+- **seconds**: `number` - Total seconds.
+
+```javascript
+novadesk.units.formatSeconds(3665); // "01:01:05"
+novadesk.units.formatSeconds(65); // "00:01:05"
+```
+
+## Temperature Conversion
+
+### `novadesk.units.convertTemperature(value, from, to)`
+
+Converts a temperature value between Celsius, Fahrenheit, and Kelvin.
+
+- **value**: `number` - The temperature value to convert.
+- **from**: `string` - The source unit ("C", "F", "K").
+- **to**: `string` - The target unit ("C", "F", "K").
+
+```javascript
+novadesk.units.convertTemperature(100, "C", "F"); // 212
+novadesk.units.convertTemperature(0, "K", "C"); // -273.15
+```
+
+## Percentage Formatting
+
+### `novadesk.units.formatPercentage(value, decimals)`
+
+Formats a normalized value (0.0 to 1.0) into a percentage string.
+
+- **value**: `number` - The value to format (e.g., 0.5).
+- **decimals**: `number` (optional, default: 0) - Number of decimal places.
+
+```javascript
+novadesk.units.formatPercentage(0.5); // "50%"
+novadesk.units.formatPercentage(1.0); // "100%"
+novadesk.units.formatPercentage(0.1234); // "12%"
+novadesk.units.formatPercentage(0.1234, 1); // "12.3%"
+```
+
+## Normalization Helpers
+
+### `novadesk.units.calculateProgress(value, total)`
+
+Calculates a normalized progress value (0.0 to 1.0).
+
+- **value**: `number` - Current value.
+- **total**: `number` - Total/Max value.
+
+```javascript
+novadesk.units.calculateProgress(50, 100); // 0.5
+novadesk.units.calculateProgress(200, 100); // 1.0 (clamped)
+```
+
+### `novadesk.units.parsePercentage(value)`
+
+Parses a value into a normalized float (0.0 to 1.0). Handles percentage strings and raw numbers.
+
+- **value**: `string` | `number` - Input value (e.g., "50%", 50, 0.5).
+
+```javascript
+novadesk.units.parsePercentage("50%"); // 0.5
+novadesk.units.parsePercentage(75); // 0.75
+novadesk.units.parsePercentage(0.2); // 0.2
+```

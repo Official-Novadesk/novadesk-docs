@@ -37,7 +37,8 @@ export default defineConfig({
                   label: "Settings",
                   link: "/api/novadesk-object/settings/",
                 },
-                { label: "Utility Methods", link: "/api/novadesk-object/utility-methods/" }
+                { label: "Utility Methods", link: "/api/novadesk-object/utility-methods/" },
+                { label: "Unit Conversion", link: "/api/novadesk-object/unit-conversion/" },
               ],
             },
             {
@@ -60,6 +61,12 @@ export default defineConfig({
                 { label: "Network Monitor", link: "/api/system-monitors/network-monitor/" },
                 { label: "Mouse Monitor", link: "/api/system-monitors/mouse-monitor/" },
                 { label: "Disk Monitor", link: "/api/system-monitors/disk-monitor/" },
+              ],
+            },
+            {
+              label: "Utilities",
+              items: [
+                { label: 'Unit Conversion', link: '/api/unit-conversion/' },
               ],
             },
             {

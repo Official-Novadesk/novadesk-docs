@@ -3,7 +3,8 @@ title: Bar Element
 description: Documentation for the Novadesk Bar element type.
 ---
 
-The `bar` element is used to create visual indicators like progress bars, level meters, or health bars. It supports horizontal and vertical orientations and a wide range of styling options.
+The `bar` element is used to create visual indicators like progress bars, level meters, or health bars. It supports
+horizontal and vertical orientations and a wide range of styling options.
 
 ## Creating a Bar
 
@@ -11,22 +12,23 @@ You can add a bar to your widget using the `win.addBar(options)` method.
 
 ```javascript
 win.addBar({
-  id: "myProgressBar",
-  x: 10,
-  y: 10,
-  width: 200,
-  height: 20,
-  value: 0.5, // 50% filled
-  barcolor: "rgba(0, 255, 0, 1)", // Green bar
-  solidcolor: "rgba(30, 30, 30, 0.8)", // Dark background
-  orientation: "horizontal",
-  barcornerradius: 5
+id: "myProgressBar",
+x: 10,
+y: 10,
+width: 200,
+height: 20,
+value: 0.5, // 50% filled
+barcolor: "rgba(0, 255, 0, 1)", // Green bar
+solidcolor: "rgba(30, 30, 30, 0.8)", // Dark background
+orientation: "horizontal",
+barcornerradius: 5
 });
 ```
 
 ## Options
 
-The bar element inherits all [Common Element Options](../common-options) and adds the following:
+The bar element inherits all [General Element Options](/api/ui-elements-api/general-elements-options/) and adds the
+following:
 
 ### `value`
 - **Type**: `number`
@@ -37,8 +39,8 @@ The bar element inherits all [Common Element Options](../common-options) and add
 - **Type**: `string`
 - **Default**: `"horizontal"`
 - **Description**: The layout direction of the bar.
-    - `"horizontal"`: Fills from left to right.
-    - `"vertical"`: Fills from bottom to top.
+- `"horizontal"`: Fills from left to right.
+- `"vertical"`: Fills from bottom to top.
 
 ### `barcornerradius`
 - **Type**: `number`
@@ -69,7 +71,7 @@ You can update a bar's value or styling dynamically using `win.setElementPropert
 ```javascript
 // Update progress to 75%
 win.setElementProperties("myProgressBar", {
-  value: 0.75
+value: 0.75
 });
 ```
 
@@ -79,17 +81,17 @@ win.setElementProperties("myProgressBar", {
 const cpu = novadesk.subscribe("cpu");
 
 win.addBar({
-  id: "cpuBar",
-  x: 10, y: 10,
-  width: 100, height: 10,
-  barcolor: "rgba(100, 200, 255, 1)",
-  solidcolor: "rgba(0, 0, 0, 0.5)",
-  value: 0
+id: "cpuBar",
+x: 10, y: 10,
+width: 100, height: 10,
+barcolor: "rgba(100, 200, 255, 1)",
+solidcolor: "rgba(0, 0, 0, 0.5)",
+value: 0
 });
 
 cpu.on("change", (data) => {
-  win.setElementProperties("cpuBar", {
-    value: data.total / 100
-  });
+win.setElementProperties("cpuBar", {
+value: data.total / 100
+});
 });
 ```

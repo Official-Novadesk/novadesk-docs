@@ -1,0 +1,44 @@
+---
+title: Execute Command
+description: Launch external programs, files, or URLs using the system API
+---
+
+## `system.execute(target, [parameters], [workingDir], [show])`
+
+Launches an external application, opens a file, or opens a URL in the default browser.
+
+### Parameters
+
+- **`target`** (string, required)  
+  The path to the executable, file, or a URL.
+- **`parameters`** (string, optional)  
+  Command-line arguments to pass to the target (only used if `target` is an executable).
+- **`workingDir`** (string, optional)  
+  The directory in which the command should be executed.
+- **`show`** (string | number, optional)  
+  Controls how the window is shown. Defaults to `"normal"`.  
+  Supported strings: `"hide"`, `"normal"`, `"minimized"`, `"maximized"`.  
+  Alternatively, use Windows `SW_*` integer constants.
+
+### Return Value
+
+Returns `true` if the shell command was successfully initiated, otherwise `false`.
+
+---
+
+### Examples
+
+#### Launch an Application
+```javascript
+system.execute("notepad.exe");
+```
+
+#### Open a URL
+```javascript
+system.execute("https://www.google.com");
+```
+
+#### Run a Command with Parameters
+```javascript
+system.execute("cmd.exe", "/c dir", "C:\\", "normal");
+```

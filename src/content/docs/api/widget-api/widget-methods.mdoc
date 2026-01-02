@@ -229,30 +229,31 @@ The following methods are **only** accessible within the `win` object inside a U
 
 ### `setContextMenu(items)`
 
-Sets the entire custom context menu for the widget. This replaces any previously set custom menu items. Available only in UI scripts.
+Sets the entire custom context menu for the widget. This replaces any previously set custom menu items. Available only
+in UI scripts.
 
 #### Parameters
 
 - **items** (Array): An array of menu item objects. Each object can have:
-    - `text` (string): The text to display for the item.
-    - `action` (function): A callback function executed when the item is clicked.
-    - `type` (string): If set to `"separator"`, renders a line separator.
-    - `checked` (boolean): If `true`, a checkmark is displayed next to the item.
-    - `items` (Array): An array of sub-menu items (creates a nested menu).
+- `text` (string): The text to display for the item.
+- `action` (function): A callback function executed when the item is clicked.
+- `type` (string): If set to `"separator"`, renders a line separator.
+- `checked` (boolean): If `true`, a checkmark is displayed next to the item.
+- `items` (Array): An array of sub-menu items (creates a nested menu).
 
 #### Example
 
 ```javascript
 win.setContextMenu([
-  { 
-    text: "Toggle Submenu", 
-    items: [
-      { text: "Option A", action: () => novadesk.log("A") },
-      { text: "Option B", checked: true, action: () => novadesk.log("B") }
-    ]
-  },
-  { type: "separator" },
-  { text: "Refresh", action: () => win.refresh() }
+{
+text: "Toggle Submenu",
+items: [
+{ text: "Option A", action: () => novadesk.log("A") },
+{ text: "Option B", checked: true, action: () => novadesk.log("B") }
+]
+},
+{ type: "separator" },
+{ text: "Refresh", action: () => win.refresh() }
 ]);
 ```
 ---
@@ -287,6 +288,11 @@ win.disableContextMenu(true);
 
 Control the visibility of the default Novadesk menu items (Refresh, Exit Widget, Close App). Available only in UI
 scripts.
+
+{% aside type="note" %}
+Clicking the default **Refresh** menu item now reloads **all** widgets and scripts globally, equivalent to the Tray menu
+refresh.
+{% /aside %}
 
 #### Parameters
 

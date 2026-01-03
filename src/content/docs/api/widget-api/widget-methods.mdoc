@@ -20,75 +20,123 @@ The following methods are **only** accessible within the `win` object inside a U
 the main application script.
 {% /aside %}
 
-### `addText(options)`
+### **`addText(options)`**
 
-Add a text element to the widget. Available only in UI scripts.
+Add a text element to the widget.  
+Available only in UI scripts.
 
-#### Parameters
+---
 
-- **options** (Object): Configuration options for the text element. `id` is required and must be unique.
+###### **`options`**
+
+* **Type**: `Object`
+* **Required**: Yes
+* **Description**:
+Configuration options for the text element.  
+The **`id`** property is required and must be unique.
+
+---
 
 ### Options
 
-See text UI element for options of text element [here](/api/ui-elements-api/text-element/).
+See the Text UI element documentation for all available options:  
+[Text Element Options](/api/ui-elements-api/text-element/)
+
+---
 
 #### Example (UI Script)
 
-```javascript
+```js
 win.addText({
-id: "myText",
-text: "Hello World!"
+  id: "myText",
+  text: "Hello World!"
 });
+
 ```
 ---
 
-### `addImage(options)`
+### **`addImage(options)`**
 
-Add an image element to the widget. Available only in UI scripts.
+Add an image element to the widget.  
+Available only in UI scripts.
 
-#### Parameters
+---
 
-- **options** (Object): Configuration options for the image element. `id` is required and must be unique.
+###### **`options`**
+
+* **Type**: `Object`
+* **Required**: Yes
+* **Description**:
+Configuration options for the image element.  
+The **`id`** property is required and must be unique.
+
+---
 
 ### Options
 
-See image UI element for options of image element [here](/api/ui-elements-api/image-element/)
+See the Image UI element documentation for all available options:  
+[Image Element Options](/api/ui-elements-api/image-element/)
+
+---
 
 #### Example (UI Script)
 
-```javascript
+```js
 win.addImage({
-id: "myImage",
-path: "path/to/image.png"
+  id: "myImage",
+  path: "path/to/image.png"
 });
 ```
 ---
 
-### `setElementProperties(id, props)`
+### **`setElementProperties(id, props)`**
 
 Update properties of an existing UI element. Available only in UI scripts.
 
-#### Parameters
+---
 
-- **id** (string): ID of the element to update (cannot be changed)
-- **props** (Object): Properties to change
+###### **`id`**
+
+* **Type**: `string`
+* **Required**: Yes
+* **Description**:
+ID of the element to update (cannot be changed)
+
+---
+
+###### **`props`**
+
+* **Type**: `Object`
+* **Required**: Yes
+* **Description**:
+Properties to change
+
+---
 
 #### Example
 
 ```javascript
 win.setElementProperties("myText", {
-x: 20,
-y: 20
+  x: 20,
+  y: 20
 });
 ```
 ---
-### `removeElements(ids)`
+### **`removeElements(ids)`**
 
-Remove one or more UI elements from the widget. Available only in UI scripts.
+Remove one or more UI elements from the widget.  
+Available only in UI scripts.
 
-#### Parameters
+---
 
-- **ids** (string|Array|null): ID of a single element, an array of IDs, or `null`/`undefined` to remove all elements.
+###### **`ids`**
+
+* **Type**: `string | Array | null`
+* **Description**:
+- A single element ID
+- An array of element IDs
+- `null` or `undefined` to remove **all** elements from the widget
+
 
 {% aside type="caution" %}
 Leaving the `ids` parameter empty or setting it to `null`/`undefined` will remove all elements from the widget.
@@ -107,17 +155,28 @@ win.removeElements(["img1", "img2", "text3"]);
 win.removeElements();
 ```
 
-### `getElementProperties(id)`
+### **`getElementProperties(id)`**
 
-Retrieve the current properties of a UI element. Available only in UI scripts.
+Retrieve the current properties of a UI element.  
+Available only in UI scripts.
 
-#### Parameters
+---
 
-- **id** (string): ID of the element
+###### **`id`**
+
+* **Type**: `string`
+* **Description**:
+ID of the UI element.
+
+---
 
 #### Return Value
 
-An object containing all current properties of the element, or `null` if the element is not found.
+* **Type**: `Object | null`
+* **Description**:
+An object containing all current properties of the element.  
+Returns `null` if the element is not found.
+
 
 #### Example
 

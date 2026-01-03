@@ -182,17 +182,27 @@ Close and destroy the widget. Available only in the main script.
 widget.close();
 ```
 ---
-### `on(eventName, callback)`
+### **`on(eventName, callback)`**
 
-Register a listener for widget lifecycle events. Available only in the main script.
+###### **`eventName`**
 
-#### Parameters
+* **Type**: `string`
+* **Description**:
+Name of the lifecycle event.
 
-- **eventName** (string): The name of the event.
-- `"refresh"`: Executes when the widget is refreshed (scripts reloaded).
-- `"close"`: Executes **before** the window is destroyed.
-- `"closed"`: Executes **after** the window has been destroyed.
-- **callback** (function): Function to execute when the event occurs.
+Available values:
+- `"refresh"` – Executes when the widget is refreshed (scripts reloaded)
+- `"close"` – Executes **before** the window is destroyed
+- `"closed"` – Executes **after** the window has been destroyed
+
+---
+
+###### **`callback`**
+
+* **Type**: `function`
+* **Description**:
+Function executed when the specified event occurs.
+
 
 #### Example
 
@@ -309,38 +319,68 @@ win.showDefaultContextMenuItems(false);
 
 ## Inter-Process Communication (IPC)
 
-The `ipc` global object allows you to send data between the Main script and UI script.
+The global **`ipc`** object allows data exchange between the **Main script** and the **UI script**.
 
-### `ipc.on(channel, callback)`
+---
 
-Register a listener for a specific channel.
+### **`ipc.on(channel, callback)`**
 
-#### Parameters
-- **channel** (string): The name of the channel.
-- **callback** (function): Function to run when data is received.
+Register a listener for a specific IPC channel.
 
-### `ipc.send(channel, data)`
+###### **`channel`**
+
+* **Type**: `string`
+* **Description**:
+Name of the channel to listen on.
+
+---
+
+###### **`callback`**
+
+* **Type**: `function`
+* **Description**:
+Function executed when data is received on the channel.
+
+---
+
+### **`ipc.send(channel, data)`**
 
 Send data to the other script context.
 
-#### Parameters
-- **channel** (string): The name of the channel.
-- **data** (any): The data to send.
+###### **`channel`**
+
+* **Type**: `string`
+* **Description**:
+Name of the channel to send data on.
+
+---
+
+###### **`data`**
+
+* **Type**: `any`
+* **Description**:
+Data to send to the receiving script.
+
 
 #### Example
 
-**Main Script:**
+{% tabs %}
+{% tabitem label="index.js" %}
 ```javascript
-ipc.on("get-cpu", () => {
-ipc.send("cpu-data", system.cpu().usage());
+ipc.on("get-message-from-widget", function() {
+  novadesk.log("Call received from widget");
+  ipc.send("send-message-to-widget", "Hello from main script");
 });
 ```
+{% /tabitem %}
 
-**UI Script:**
+{% tabitem label="welcome.js" %}
 ```javascript
-ipc.send("get-cpu");
+ipc.send("get-message-from-widget");
 
-ipc.on("cpu-data", (data) => {
-novadesk.log("CPU Usage: " + data);
+ipc.on("send-message-to-widget", function(data) {
+novadesk.log("Message from main script: " + data);
 });
 ```
+{% /tabitem %}
+{% /tabs %}

@@ -49,13 +49,11 @@ The **`id`** property is required and must be unique.
 
 See the Image UI element documentation for all available options:  
 [Image Element Options](/api/ui-elements-api/image-element/)
-
 ---
 
 ### **`setElementProperties(id, props)`**
 
 Update properties of an existing UI element. Available only in UI scripts.
-
 ---
 
 ###### **`id`**
@@ -63,7 +61,6 @@ Update properties of an existing UI element. Available only in UI scripts.
 * **Type**: `string`
 * **Description**:
 ID of the element to update (cannot be changed)
-
 ---
 
 ###### **`props`**
@@ -71,7 +68,6 @@ ID of the element to update (cannot be changed)
 * **Type**: `Object`
 * **Description**:
 Properties to change of the element.
-
 ---
 
 #### Example
@@ -86,8 +82,6 @@ win.setElementProperties("myText", {
 ### **`removeElements(ids)`**
 
 Remove one or more UI elements from the widget.Available only in UI scripts.
-
----
 
 ###### **`ids`**
 
@@ -118,14 +112,12 @@ win.removeElements();
 ### **`getElementProperties(id)`**
 
 Retrieve the current properties of a UI element.Available only in UI scripts.
----
 
 ###### **`id`**
 
 * **Type**: `string`
 * **Description**:
 ID of the UI element.
-
 ---
 
 #### Return Value
@@ -154,7 +146,6 @@ The following methods are **only** accessible from the [Main script](/guides/scr
 ### **`setProperties(options)`**
 
 Update widget properties after creation.
-
 ---
 
 ###### **`options`**
@@ -201,6 +192,16 @@ Close and destroy the widget. Available only in the main script.
 widget.close();
 ```
 ---
+### `refresh()`
+
+Refresh the widget (reload scripts and redraw). Available only in the main script.
+
+#### Example
+
+```javascript
+widget.refresh();
+```
+---
 ### **`on(eventName, callback)`**
 
 ###### **`eventName`**
@@ -213,7 +214,6 @@ Available values:
 - `"refresh"` : Executes when the widget is refreshed (scripts reloaded)
 - `"close"` : Executes **before** the window is destroyed
 - `"closed"` : Executes **after** the window has been destroyed
-
 ---
 
 ###### **`callback`**
@@ -221,7 +221,6 @@ Available values:
 * **Type**: `function`
 * **Description**:
 Function executed when the specified event occurs.
-
 
 #### Example
 
@@ -239,16 +238,6 @@ widget.on("closed", function () {
 });
 ```
 ---
-### `refresh()`
-
-Refresh the widget (reload scripts and redraw). Available only in the main script.
-
-#### Example
-
-```javascript
-widget.refresh();
-```
----
 
 ## Context Menu Methods
 
@@ -258,10 +247,7 @@ The following methods are **only** accessible in Main script.
 
 ### **`setContextMenu(items)`**
 
-Sets the entire custom context menu for the widget.  
-This replaces any previously set custom menu items.  
-Available only in Main script.
-
+Sets the entire custom context menu for the widget.This replaces any previously set custom menu items.Available only in Main script.
 ---
 
 ###### **`items`**
@@ -354,7 +340,6 @@ Completely disables the context menu for the widget.Available only in Main scrip
 * **Type**: `boolean`
 * **Description**:
 Set to `true` to disable the context menu. Set to `false` to enable it.
-
 ---
 
 #### Example
@@ -374,7 +359,6 @@ Controls the visibility of the default Novadesk context menu items (Refresh, Exi
 * **Description**:
   Set to `true` to show default menu items.
   Set to `false` to hide them.
-
 ---
 
 #### Example
@@ -398,7 +382,6 @@ Register a listener for a specific IPC channel.
 * **Type**: `string`
 * **Description**:
 Name of the channel to listen on.
-
 ---
 
 ###### **`callback`**
@@ -406,7 +389,6 @@ Name of the channel to listen on.
 * **Type**: `function`
 * **Description**:
 Function executed when data is received on the channel.
-
 ---
 
 ### **`ipc.send(channel, data)`**
@@ -418,7 +400,6 @@ Send data to the other script context.
 * **Type**: `string`
 * **Description**:
 Name of the channel to send data on.
-
 ---
 
 ###### **`data`**
@@ -426,7 +407,6 @@ Name of the channel to send data on.
 * **Type**: `any`
 * **Description**:
 Data to send to the receiving script.
-
 
 #### Example
 

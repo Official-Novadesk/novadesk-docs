@@ -37,18 +37,6 @@ export default defineConfig({
               ],
             },
             {
-              label: "Novadesk Object",
-              items: [
-                { label: "Logging", link: "/api/novadesk-object/logging/" },
-                {
-                  label: "Settings",
-                  link: "/api/novadesk-object/settings/",
-                },
-                { label: "Utility Methods", link: "/api/novadesk-object/utility-methods/" },
-                { label: "Tray API", link: "/api/novadesk-object/tray-api/" },
-              ],
-            },
-            {
               label: "UI Elements API",
               items: [
                 {
@@ -58,6 +46,18 @@ export default defineConfig({
                 { label: "Text Element", link: "/api/ui-elements-api/text-element/" },
                 { label: "Image Element", link: "/api/ui-elements-api/image-element/" },
                 { label: "Bar Element", link: "/api/ui-elements-api/bar-element/" },
+              ],
+            },
+            {
+              label: "Novadesk Object",
+              items: [
+                { label: "Logging", link: "/api/novadesk-object/logging/" },
+                {
+                  label: "Settings",
+                  link: "/api/novadesk-object/settings/",
+                },
+                { label: "Utility Methods", link: "/api/novadesk-object/utility-methods/" },
+                { label: "Tray API", link: "/api/novadesk-object/tray-api/" },
               ],
             },
             {

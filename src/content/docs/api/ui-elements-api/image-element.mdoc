@@ -2,13 +2,10 @@
 title: Image Element
 description: Image UI element in Novadesk with all options and methods.
 ---
-# Image Element
-
-The **Image** element allows you to display images in widgets with various transformation and styling options.
 
 ## Adding an Image Element
 
-Use the `addImage()` method on the `win` object within a **UI Script**:
+Use the `addImage()` method on the `win` object within a [UI Script](/guides/script-types/#ui-script-the-face):
 
 ```js
 win.addImage(options);
@@ -17,6 +14,7 @@ win.addImage(options);
 ## General Element Options
 
 See general element options [here](/api/ui-elements-api/general-elements-options/):
+---
 
 ## Image Element Options
 
@@ -27,6 +25,7 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 * **Description**:
 Path to the image file.
 ---
+
 #### **`preserveaspectratio`**
 
 * **Type**: `number`
@@ -34,12 +33,13 @@ Path to the image file.
 * **Description**:
 Controls how the image maintains its aspect ratio.
 
-**Valid values:**
+* **Valid values**:
+  - **`0`** — Stretch image to fill the specified dimensions
+  - **`1`** — Fit image within dimensions while maintaining aspect ratio
+  - **`2`** — Crop image to fill dimensions while maintaining aspect ratio
 
-* **`0`** — Stretch image to fill specified dimensions
-* **`1`** — Fit image within dimensions while maintaining aspect ratio
-* **`2`** — Crop image to fill dimensions while maintaining aspect ratio
 ---
+
 #### **`imagealpha`**
 
 * **Type**: `number`

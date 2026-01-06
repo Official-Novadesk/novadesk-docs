@@ -12,8 +12,6 @@ description: Options available for use with all elements in Novadesk application
 
 ---
 
-
-
 #### **`x,y`**
 
 - **type**: `number`
@@ -23,8 +21,6 @@ top-left edge of the widget.
 
 ---
 
-
-
 #### **`width,height`**
 
 - **type**: `number`
@@ -32,8 +28,6 @@ top-left edge of the widget.
 - **Description**: Specifies the width and height of the element in pixels.
 
 ---
-
-
 
 #### **`solidcolor,solidcolor2`**
 
@@ -44,106 +38,88 @@ composed of `SolidColor` and `SolidColor2`.
 
 ---
 
+#### **`gradientangle`**
 
+- **type**: `number`
+- **Default**: `0`
+- **Description**: Angle of the gradient in degrees when both `SolidColor` and `SolidColor2` are defined.
+---
 
 #### **`solidcolorradius`**
 
 - **type**: `number`
 - **Default**: `0`
 - **Description**: Corner radius for solid color background
-
 ---
-
-
-
-#### **`gradientangle`**
-
-- **type**: `number`
-- **Default**: `0`
-- **Description**: Angle of the gradient in degrees when both `SolidColor` and `SolidColor2` are defined.
-
----
-
-
 
 #### **`rotate`**
 
 - **type**: `number`
 - **Default**: `0`
 - **Description**: Rotation angle in degrees
-
 ---
-
-
 
 #### **`antialias`**
 
 - **type**: `bool`
 - **Default**: `true`
 - **Description**: If set to `true`, antialising (edge smoothing) is used when the element is drawn.
-
 ---
-
-
 
 #### **`beveltype`**
 
-- **Type**: `string`
-- **Default**: `"none"`
-- **Description**:
-- Draws a bevel around the edges of the rectangle defined by `height` and `width`.
-- Controls the visual style of the bevel.
-- **Valid values**:
-- `"none"`: No bevel
-- `"raised"`: Raised bevel effect
-- `"sunken"`: Sunken bevel effect
-- `"emboss"`: Embossed effect (3D border)
-- `"pillow"`: Pillow effect (Faded inside)
+* **Type**: `string`
+* **Default**: `"none"`
+* **Description**: Draws a bevel around the edges of the rectangle defined by `width` and `height`.  
+Controls the visual style of the bevel.
 
+* **Valid values**:
+  - **`"none"`** : No bevel
+  - **`"raised"`** : Raised bevel effect
+  - **`"sunken"`** : Sunken bevel effect
+  - **`"emboss"`** : Embossed effect (3D border)
+  - **`"pillow"`** : Pillow effect (faded inside)
 ---
-
-
 
 #### **`bevelwidth`**
 
-- **Type**: `number`
-- **Default**: `1`
-- **Description**:
-- Sets the width of the bevel in pixels.
-- Optional; defaults to 1 when a `beveltype` is specified.
-
+* **Type**: `number`
+* **Default**: `1`
+* **Description**:
+Sets the width of the bevel in pixels.  
+Optional; defaults to `1` when a `beveltype` is specified.
 ---
 
+#### **`bevelcolor`, `bevelcolor2`**
 
+* **Type**: `string` (RGBA)
+* **Default**:
+  - **`bevelcolor`**: `"255,255,255,200"`
+  - **`bevelcolor2`**: `"0,0,0,150"`
+* **Description**:
+Used when `beveltype` is enabled.Controls the colors applied to the bevel edges.
 
-#### **`bevelcolor, bevelcolor2`**
-
-- **Type**: `string` (RGBA)
-- **Default**: `"255,255,255,200"` (`bevelcolor`), `"0,0,0,150"` (`bevelcolor2`)
-- **Description**:
-- Used when `beveltype` is active.
-- Controls the colors applied to the bevel edges.
-- **Behavior**:
-- For `raised` and `sunken` types, these colors create the highlight and shadow effects.
-- `bevelcolor` usually acts as the "primary" or "highlight" color, while `bevelcolor2` provides the contrast.
-
+* **Behavior**:
+  - For **`raised`** and **`sunken`** bevel types, these colors create highlight and shadow effects.
+  - **`bevelcolor`** typically acts as the primary (highlight) color.
+  - **`bevelcolor2`** provides the contrasting (shadow) color.
 ---
-
-
 
 #### **`padding`**
 
-- **Type**: `number | array`
-- **Default**: `0`
-- **Description**:
-- Adds padding (in pixels) around the content of the element.
-- The padding area is drawn using the colors defined by `solidcolor` and `solidcolor2`.
-- **Syntax**:
-- `padding: 10` (All sides = 10px)
-- `padding: [horizontal, vertical]` (e.g., `[5, 10]`)
-- `padding: [left, top, right, bottom]` (e.g., `[5, 10, 15, 20]`)
-- **Example**:
-```javascript
+* **Type**: `number | array`
+* **Default**: `0`
+* **Description**:
+Adds padding (in pixels) around the content of the element.  
+The padding area is drawn using the colors defined by `solidcolor` and `solidcolor2`.
+
+* **Syntax**:
+  - `padding: 10` : All sides set to 10px
+  - `padding: [horizontal, vertical]` : e.g. `[5, 10]`
+  - `padding: [left, top, right, bottom]` : e.g. `[5, 10, 15, 20]`
+
+* **Example**:
+```js
 padding: [5, 10, 5, 10]
 ```
 

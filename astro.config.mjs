@@ -24,6 +24,7 @@ export default defineConfig({
           items: [
             { label: "Getting Started", link: "/getting-started/" },
             { label: "Installation", link: "/installation/" },
+            { label: "Creating First Widget", link: "/guides/creating-first-widget/" },
           ],
         },
         {

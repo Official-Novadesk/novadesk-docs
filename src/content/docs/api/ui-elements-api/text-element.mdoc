@@ -102,17 +102,15 @@ See **Alignment Options** below.
 
 #### **`clipstring`**
 
-* **Type**: `number`
-* **Default**: `0`
+* **Type**: `string`
+* **Default**: `"none"`
 * **Description**:
-Enables text clipping behavior.
+Controls text clipping behavior when the content exceeds the available space.
 
-**Valid values:**
-
-* **`0`** — No clipping
-* **`1`** — Clip text
-* **`2`** — Clip text with ellipsis (`...`)
-
+* **Valid values**:
+  - **`"none"`** : No clipping
+  - **`"clip"`** : Clips the text and appends an ellipsis (`...`) when it exceeds the specified `width`.If the `height` allows multiple lines, the text wraps until the height limit is reached, then clips.
+  - **`"ellipsis"`** : Clips the text and appends an ellipsis (`...`)
 ---
 
 #### **`clipstringw`**

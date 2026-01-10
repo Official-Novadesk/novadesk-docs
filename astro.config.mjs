@@ -52,13 +52,18 @@ export default defineConfig({
             {
               label: "App Object",
               items: [
-                { label: "Logging", link: "/api/app-object/logging/" },
                 {
                   label: "Settings",
                   link: "/api/app-object/settings/",
                 },
                 { label: "Utility Methods", link: "/api/app-object/utility-methods/" },
                 { label: "Tray API", link: "/api/app-object/tray-api/" },
+              ],
+            },
+            {
+              label: "Console",
+              items: [
+                { label: "Logging", link: "/api/console/logging/" }
               ],
             },
             {
@@ -82,13 +87,13 @@ export default defineConfig({
                 { label: "JSON API", link: "/api/system-api/json-api/" },
               ],
             },
+          {
+            label:"Include",link: "/api/include/",
+          },
+          {
+            label:"Path Api",link: "/api/path-api/",
+          },
           ],
-        },
-        {
-          label:"Path Api",
-          items: [
-            { label: "Path", link: "/api/path-api/" },
-          ]
         },
         {
           label: "Guides",

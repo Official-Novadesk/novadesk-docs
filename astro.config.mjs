@@ -50,36 +50,30 @@ export default defineConfig({
               ],
             },
             {
-              label: "Novadesk Object",
+              label: "App Object",
               items: [
-                { label: "Logging", link: "/api/novadesk-object/logging/" },
+                { label: "Logging", link: "/api/app-object/logging/" },
                 {
                   label: "Settings",
-                  link: "/api/novadesk-object/settings/",
+                  link: "/api/app-object/settings/",
                 },
-                { label: "Utility Methods", link: "/api/novadesk-object/utility-methods/" },
-                { label: "Tray API", link: "/api/novadesk-object/tray-api/" },
-              ],
-            },
-            {
-              label: "System Monitors",
-              items: [
-                { label: "CPU Monitor", link: "/api/system-monitors/cpu-monitor/" },
-                { label: "Memory Monitor", link: "/api/system-monitors/memory-monitor/" },
-                { label: "Network Monitor", link: "/api/system-monitors/network-monitor/" },
-                { label: "Mouse Monitor", link: "/api/system-monitors/mouse-monitor/" },
-                { label: "Disk Monitor", link: "/api/system-monitors/disk-monitor/" },
-              ],
-            },
-            {
-              label: "Utilities",
-              items: [
-                { label: 'Unit Conversion', link: '/api/unit-conversion/' },
+                { label: "Utility Methods", link: "/api/app-object/utility-methods/" },
+                { label: "Tray API", link: "/api/app-object/tray-api/" },
               ],
             },
             {
               label: "System API",
               items: [
+                {
+                  label: "System Monitors",
+                  items: [
+                    { label: "CPU Monitor", link: "/api/system-api/system-monitors/cpu-monitor/" },
+                    { label: "Memory Monitor", link: "/api/system-api/system-monitors/memory-monitor/" },
+                    { label: "Network Monitor", link: "/api/system-api/system-monitors/network-monitor/" },
+                    { label: "Mouse Monitor", link: "/api/system-api/system-monitors/mouse-monitor/" },
+                    { label: "Disk Monitor", link: "/api/system-api/system-monitors/disk-monitor/" },
+                  ],
+                },
                 { label: "Environment Variables", link: "/api/system-api/environment-variables/" },
                 { label: "Hotkey Management", link: "/api/system-api/hotkey-management/" },
                 { label: "Timers", link: "/api/system-api/timers/" },
@@ -88,9 +82,13 @@ export default defineConfig({
                 { label: "JSON API", link: "/api/system-api/json-api/" },
               ],
             },
-            { label: "App API", link: "/api/app-api/" },
-            { label: "Path API", link: "/api/path-api/" },
           ],
+        },
+        {
+          label:"Path Api",
+          items: [
+            { label: "Path", link: "/api/path-api/" },
+          ]
         },
         {
           label: "Guides",

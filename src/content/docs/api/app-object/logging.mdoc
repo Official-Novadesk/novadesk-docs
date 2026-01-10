@@ -1,11 +1,11 @@
 ---
 title: Logging
-description: Logging functions in the Novadesk JavaScript API
+description: Logging functions via the standard console object.
 ---
 
-Novadesk provides several logging functions to help debug and monitor your widgets.
+Novadesk provides several logging functions via the standard `console` object to help debug and monitor your widgets.
 
-## `novadesk.log(...args)`
+## `console.log(...args)`
 
 Log an informational message to the console and log file.
 
@@ -14,11 +14,11 @@ Log an informational message to the console and log file.
 
 ### Example
 ```javascript
-novadesk.log("Application started");
-novadesk.log("User:", "John Doe", "Version:", "1.0.0");
+console.log("Application started");
+console.log("User:", "John Doe", "Version:", "1.0.0");
 ```
 ---
-## `novadesk.error(...args)`
+## `console.error(...args)`
 
 Log an error message to the console and log file.
 
@@ -27,27 +27,27 @@ Log an error message to the console and log file.
 
 ### Example
 ```javascript
-novadesk.error("Failed to load configuration file");
-novadesk.error("Error code:", 404, "Message:", "File not found");
+console.error("Failed to load configuration file");
+console.error("Error code:", 404, "Message:", "File not found");
 ```
 ---
-## `novadesk.debug(...args)`
+## `console.debug(...args)`
 
 Log a debug message to the console and log file. Debug messages are only shown when debug logging is enabled. See how to
-enable debug logging using [Configuration Methods](/api/novadesk-object/settings).
+enable debug logging using [Configuration Methods](/api/app-object/settings).
 
 ### Parameters
 - **...args** (any): Values to log as debug information.
 
 {% aside type="caution" %}
 Debugging messages are only shown when debug logging is enabled. See how to enable debug logging using [Configuration
-Methods](/api/novadesk-object/settings).
+Methods](/api/app-object/settings).
 {% /aside %}
 
 ### Example
 ```javascript
-novadesk.debug("Debug: Entering function calculatePosition");
-novadesk.debug("Debug: Current widget position:", x, y);
+console.debug("Debug: Entering function calculatePosition");
+console.debug("Debug: Current widget position:", x, y);
 ```
 
 ---
@@ -55,4 +55,4 @@ novadesk.debug("Debug: Current widget position:", x, y);
 ## Global Configuration
 
 You can also control global logging behavior (such as saving to a file or disabling logging entirely) using the
-[Configuration Methods](/api/novadesk-object/settings).
+[Configuration Methods](/api/app-object/settings).

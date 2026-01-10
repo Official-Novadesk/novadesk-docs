@@ -1,11 +1,11 @@
 ---
 title: Utility Methods
-description: General utility methods available on the novadesk object.
+description: General utility methods available on the app object.
 ---
 
-The `novadesk` object provides several utility methods for script execution and application management.
+The `app` object provides several utility methods for script execution and application management.
 
-## `novadesk.include(path)`
+## `app.include(path)`
 
 Includes and executes another JavaScript file within the current script context. This is useful for modularizing your code or including shared libraries.
 
@@ -17,21 +17,21 @@ Includes and executes another JavaScript file within the current script context.
 
 ```javascript
 // Include a common utility file
-novadesk.include("scripts/utils.js");
+app.include("scripts/utils.js");
 
 // Now you can use functions defined in utils.js
 const result = formatCurrency(1500);
-novadesk.log("Formatted:", result);
+console.log("Formatted:", result);
 ```
 
 {% aside %}
- - `novadesk.include` executes the script immediately in the **global scope** of your current script.
+ - `app.include` executes the script immediately in the **global scope** of your current script.
  - If the file does not exist or contains syntax errors, an error will be thrown.
 {% /aside %}
 
 ---
 
-## `novadesk.refresh()`
+## `app.refresh()`
 
 **Availability**: Main Script Only
 
@@ -41,5 +41,5 @@ Reloads all active widget scripts. This is useful for programmatically applying 
 
 ```javascript
 // Programmatically trigger a full refresh of all widgets
-novadesk.refresh();
+app.refresh();
 ```

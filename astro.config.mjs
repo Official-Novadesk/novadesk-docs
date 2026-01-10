@@ -22,9 +22,9 @@ export default defineConfig({
         {
           label: "Introduction",
           items: [
-            { label: "Getting Started", link: "/getting-started/" },
-            { label: "Installation", link: "/installation/" },
-            { label: "Creating First Widget", link: "/guides/creating-first-widget/" },
+            { label: "Getting Started", link: "/introduction/getting-started/" },
+            { label: "Installation", link: "/introduction/installation/" },
+            { label: "Creating First Widget", link: "/introduction/creating-first-widget/" },
           ],
         },
         {
@@ -93,6 +93,9 @@ export default defineConfig({
           {
             label:"Path Api",link: "/api/path-api/",
           },
+          {
+            label:"Global Variables",link: "/api/global-variables/",
+          },
           ],
         },
         {
@@ -100,8 +103,7 @@ export default defineConfig({
           items: [
             { label: "CLI Commands", link: "/guides/cli-commands/" },
             { label: "Colors", link: "/guides/colors/" },
-            { label: "Script Types", link: "/guides/script-types/" },
-            { label: "Script Environment", link: "/guides/script-environment/" },
+            { label: "Script Types", link: "/guides/script-types/" }
           ],
         },
       ],

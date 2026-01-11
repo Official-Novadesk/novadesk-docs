@@ -3,8 +3,6 @@ title: Logging
 description: Logging functions via the standard console object.
 ---
 
-Novadesk provides several logging functions via the standard `console` object to help debug and monitor your widgets.
-
 ## `console.log(...args)`
 
 Log an informational message to the console and log file.
@@ -33,26 +31,18 @@ console.error("Error code:", 404, "Message:", "File not found");
 ---
 ## `console.debug(...args)`
 
-Log a debug message to the console and log file. Debug messages are only shown when debug logging is enabled. See how to
-enable debug logging using [Configuration Methods](/api/app-object/settings).
+Log a debug message to the console and log file.
+
+{% aside type="caution" %}
+Debug messages are only shown when debug logging is enabled. See how to enable debug logging using [Configuration Methods](/api/app-object/settings).
+{% /aside %}
 
 ### Parameters
 - **...args** (any): Values to log as debug information.
-
-{% aside type="caution" %}
-Debugging messages are only shown when debug logging is enabled. See how to enable debug logging using [Configuration
-Methods](/api/app-object/settings).
-{% /aside %}
 
 ### Example
 ```javascript
 console.debug("Debug: Entering function calculatePosition");
 console.debug("Debug: Current widget position:", x, y);
 ```
-
 ---
-
-## Global Configuration
-
-You can also control global logging behavior (such as saving to a file or disabling logging entirely) using the
-[Configuration Methods](/api/app-object/settings).

@@ -3,32 +3,28 @@ title: Utility Methods
 description: General utility methods available on the app object.
 ---
 
-The `app` object provides several utility methods for script execution and application management.
+{% aside type="caution" %}
+Utility methods are **available only in the Main script**.
+{% /aside %}
 
 ## `app.exit()`
 
-**Availability**: Main Script Only
-
-Exits the Novadesk application.
+**Description**: Exits the Novadesk application.
 
 ### Example
-
 ```javascript
 // Exit the application
 app.exit();
 ```
-
 ---
-
 ## `app.refresh()`
 
-**Availability**: Main Script Only
-
-Reloads all active widget scripts. This is useful for programmatically applying changes that require a full reload of the script environment.
+**Description**: Reloads all active widget scripts. This is useful for programmatically applying changes that require a full reload of the script environment.
 
 ### Example
-
 ```javascript
 // Programmatically trigger a full refresh of all widgets
 app.refresh();
 ```
+---
+

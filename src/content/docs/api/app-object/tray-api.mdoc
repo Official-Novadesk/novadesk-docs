@@ -14,7 +14,6 @@ Tray methods are **only available in the Main script**. UI scripts cannot modify
 Sets the context menu for the application's system tray icon.
 
 ### Parameters
-
 - **items** (Array): An array of menu item objects. Each object can have:
   - `text` (string): The text to display for the item.
   - `action` (function): A callback function executed when the item is clicked.
@@ -23,51 +22,62 @@ Sets the context menu for the application's system tray icon.
   - `items` (Array): An array of sub-menu items (creates a nested menu).
 
 ### Example
-
 ```javascript
+// index.js
 app.setTrayMenu([
-  { text: "Open App", action: () => console.log("Opening...") },
+  {
+    text: "Open App",
+    action: function () {
+      console.log("Opening...");
+    }
+  },
   { type: "separator" },
   {
     text: "Settings",
     items: [
-      { text: "Dark Mode", checked: true, action: () => toggleDark() },
-      { text: "Launch at Startup", checked: false }
+      {
+        text: "Dark Mode",
+        checked: true,
+        action: function () {
+          toggleDark();
+        }
+      },
+      {
+        text: "Launch at Startup",
+        checked: false
+      }
     ]
   },
   { type: "separator" },
-  { text: "Exit", action: () => app.exit() }
+  {
+    text: "Exit",
+    action: function () {
+      app.exit();
+    }
+  }
 ]);
 ```
-
 ---
-
 ## `app.clearTrayMenu()`
 
 Removes all custom items from the tray menu.
-
 ---
-
 ## `app.showDefaultTrayItems(show)`
 
 Controls the visibility of default system tray items (like "Exit").
 
 ### Parameters
-
 - **show** (boolean): `true` to show default items, `false` to hide them.
-
 ---
-
 ## `app.hideTrayIcon(hide)`
 
 Dynamically hides or shows the system tray icon.
 
 ### Parameters
-
 - **hide** (boolean): `true` to hide the icon, `false` to show it.
 
 ### Example
-
 ```javascript
 app.hideTrayIcon(true);
 ```
+---

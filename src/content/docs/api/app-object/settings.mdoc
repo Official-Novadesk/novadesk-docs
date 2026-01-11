@@ -15,7 +15,10 @@ Configuration methods are **only available in the Main script**. UI scripts cann
 Enables or disables logging to a file (`novadesk.log`) in the application directory.
 
 ### Parameters
-- **bool** (boolean): `true` to enable file logging, `false` to disable.
+
+###### **`bool`**
+* **Type**: `boolean`
+* **Description**: `true` to enable file logging, `false` to disable.
 
 ### Example
 ```javascript
@@ -28,7 +31,10 @@ app.saveLogToFile(true);
 Sets the global log level. When enabled, debug-level messages will be visible in the console and log file.
 
 ### Parameters
-- **bool** (boolean): `true` to enable debug logging, `false` to use standard informational logging.
+
+###### **`bool`**
+* **Type**: `boolean`
+* **Description**: `true` to enable debug logging, `false` to use standard informational logging.
 
 ### Example
 ```javascript
@@ -41,7 +47,10 @@ console.debug("Detailed diagnostic information");
 Completely disables or enables all logging output (both console and file).
 
 ### Parameters
-- **bool** (boolean): `true` to silence all logs, `false` to resume logging based on other settings.
+
+###### **`bool`**
+* **Type**: `boolean`
+* **Description**: `true` to silence all logs, `false` to resume logging based on other settings.
 
 ### Example
 ```javascript
@@ -54,7 +63,10 @@ app.disableLogging(true);
 Dynamically shows or hides the Novadesk icon in the system tray.
 
 ### Parameters
-- **bool** (boolean): `true` to hide the icon, `false` to show it.
+
+###### **`bool`**
+* **Type**: `boolean`
+* **Description**: `true` to hide the icon, `false` to show it.
 
 ### Example
 ```javascript

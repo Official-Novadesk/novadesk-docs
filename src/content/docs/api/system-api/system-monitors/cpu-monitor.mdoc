@@ -13,32 +13,42 @@ System monitors are **only available in the Main script**. UI scripts should req
 ## Creating a CPU Monitor
 
 ```javascript
-var cpu = new system.cpu([options]);
+var cpu = new system.cpu(options);
 ```
 
 ### Parameters
 
-**options** (Object, optional): Configuration options for the CPU monitor
+###### **`options`**
+* **Type**: `Object`
+* **Required**: No
+* **Description**: Configuration options for the CPU monitor.
 
-**`processor`** (number, default: 0 (all processors))
-Processor number to monitor (0 for all processors, 1+ for specific cores)
+###### **`processor`**
+* **Type**: `number`
+* **Default**: `0` (all processors)
+* **Description**: Processor number to monitor (0 for all processors, 1+ for specific cores).
+---
 
 # Methods
 
-### `usage()`
+### **`usage()`**
 
 Get the current CPU usage percentage.
 
-#### Return Value
-A number representing the CPU usage percentage (0-100).
+### Return Value
+* **Type**: `number`
+* **Description**: CPU usage percentage (0-100).
 ---
-### `destroy()`
+  
+### **`destroy()`**
 
 Destroy the CPU monitor and free its resources.
+---
 
 ## Example
 
 ```javascript
+// index.js
 // Create CPU monitors
 var overallCPU = new system.cpu();
 var core1CPU = new system.cpu({ processor: 1 });
@@ -47,8 +57,8 @@ var core1CPU = new system.cpu({ processor: 1 });
 var intervalId = setInterval(function () {
     var overallUsage = overallCPU.usage();
     var core1Usage = core1CPU.usage();
-    novadesk.log("Overall CPU: " + overallUsage + "%");
-    novadesk.log("Core 1 CPU: " + core1Usage + "%");
+    console.log("Overall CPU: " + overallUsage + "%");
+    console.log("Core 1 CPU: " + core1Usage + "%");
 }, 1000);
 
 // Destroy monitors and clean up the interval when done
@@ -56,7 +66,7 @@ setTimeout(function () {
     clearInterval(intervalId);
     overallCPU.destroy();
     core1CPU.destroy();
-    novadesk.log("CPU Monitors Destroyed");
+    console.log("CPU Monitors Destroyed");
 }, 5000);
 
 ```

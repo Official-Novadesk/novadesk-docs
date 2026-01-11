@@ -131,8 +131,8 @@ An object containing all current properties of the element.  Returns `null` if t
 ```javascript
 var props = win.getElementProperties("myText");
 if (props) {
-  novadesk.log("Text position: " + props.x + ", " + props.y);
-  novadesk.log("Current text: " + props.text);
+  console.log("Text position: " + props.x + ", " + props.y);
+  console.log("Current text: " + props.text);
 }
 ```
 ---
@@ -179,7 +179,7 @@ An object containing the current widget properties.
 
 ```javascript
 var props = widget.getProperties();
-novadesk.log("Widget position: " + props.x + ", " + props.y);
+console.log("Widget position: " + props.x + ", " + props.y);
 ```
 ---
 ### `close()`
@@ -226,15 +226,15 @@ Function executed when the specified event occurs.
 
 ```javascript
 widget.on("refresh", function () {
-  novadesk.log("Widget is refreshing!");
+  console.log("Widget is refreshing!");
 });
 
 widget.on("close", function () {
-  novadesk.log("Cleaning up before close...");
+  console.log("Cleaning up before close...");
 });
 
 widget.on("closed", function () {
-  novadesk.log("Window is now gone.");
+  console.log("Window is now gone.");
 });
 ```
 ---
@@ -294,14 +294,14 @@ widget.setContextMenu([
       {
         text: "Option A",
         action: function () {
-          novadesk.log("A");
+          console.log("A");
         }
       },
       {
         text: "Option B",
         checked: true,
         action: function () {
-          novadesk.log("B");
+          console.log("B");
         }
       }
     ]
@@ -414,7 +414,7 @@ Data to send to the receiving script.
 {% tabitem label="index.js" %}
 ```javascript
 ipc.on("get-message-from-widget", function() {
-  novadesk.log("Call received from widget");
+  console.log("Call received from widget");
   ipc.send("send-message-to-widget", "Hello from main script");
 });
 ```
@@ -425,7 +425,7 @@ ipc.on("get-message-from-widget", function() {
 ipc.send("get-message-from-widget");
 
 ipc.on("send-message-to-widget", function(data) {
-novadesk.log("Message from main script: " + data);
+console.log("Message from main script: " + data);
 });
 ```
 {% /tabitem %}

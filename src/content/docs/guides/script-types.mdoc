@@ -31,7 +31,7 @@ var myWidget = new widgetWindow({
 // Use system monitors and timers
 var cpu = new system.cpu();
 setInterval(() => {
-  novadesk.log("CPU usage: " + cpu.usage());
+  console.log("CPU usage: " + cpu.usage());
 }, 1000);
 
 // Control window via the instance

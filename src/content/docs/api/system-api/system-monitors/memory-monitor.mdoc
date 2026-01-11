@@ -18,33 +18,40 @@ var memory = new system.memory();
 
 ## Methods
 
-### `stats()`
+### **`stats()`**
 
 Get current memory statistics.
 
-#### Return Value
-An object containing memory statistics:
+### Return Value
+* **Type**: `Object`
+* **Description**: An object containing memory statistics:
 
-**`total`** (number)
-Total physical memory in bytes
+###### **`total`**
+* **Type**: `number`
+* **Description**: Total physical memory in bytes.
 
-**`available`** (number)
-Available physical memory in bytes
+###### **`available`**
+* **Type**: `number`
+* **Description**: Available physical memory in bytes.
 
-**`used`** (number)
-Used physical memory in bytes
+###### **`used`**
+* **Type**: `number`
+* **Description**: Used physical memory in bytes.
 
-**`percent`** (number)
-Memory load percentage (0-100)
+###### **`percent`**
+* **Type**: `number`
+* **Description**: Memory load percentage (0-100).
 ---
-### `destroy()`
+  
+### **`destroy()`**
 
 Destroy the memory monitor and free its resources.
-
+---
 
 ## Example
 
 ```javascript
+// index.js
 // Create memory monitor
 var memory = new system.memory();
 
@@ -57,13 +64,13 @@ var intervalId = setInterval(function () {
     var usedGB = (stats.used / (1024 * 1024 * 1024)).toFixed(2);
     var availableGB = (stats.available / (1024 * 1024 * 1024)).toFixed(2);
 
-    novadesk.log("Memory - Total: " + totalGB + "GB, Used: " + usedGB + "GB, Available: " + availableGB + "GB");
-    novadesk.log("Memory Load: " + stats.percent + "%");
+    console.log("Memory - Total: " + totalGB + "GB, Used: " + usedGB + "GB, Available: " + availableGB + "GB");
+    console.log("Memory Load: " + stats.percent + "%");
 }, 1000);
 
 setTimeout(function () {
     clearInterval(intervalId);
     memory.destroy();
-    novadesk.log("Memory Monitor Destroyed");
+    console.log("Memory Monitor Destroyed");
 }, 5000)
 ```

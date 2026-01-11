@@ -36,7 +36,7 @@ Execute a function after a specified delay.
 ```js
 // Execute a function after 3 seconds
 var timerId = setTimeout(function() {
-  novadesk.log("This runs after 3 seconds");
+  console.log("This runs after 3 seconds");
 }, 3000);
 
 // Cancel the timer before it executes
@@ -70,13 +70,13 @@ Execute a function repeatedly at specified intervals.
 ```js
 // Execute a function every 2 seconds
 var intervalId = setInterval(function() {
-  novadesk.log("This runs every 2 seconds");
+  console.log("This runs every 2 seconds");
 }, 2000);
 
 // Cancel the interval after 10 seconds
 setTimeout(function() {
   clearInterval(intervalId);
-  novadesk.log("Interval stopped");
+  console.log("Interval stopped");
 }, 10000);
 ```
 
@@ -94,12 +94,12 @@ Cancel a timer created with `setTimeout`.
 
 ```js
 var timerId = setTimeout(function() {
-  novadesk.log("This will not run");
+  console.log("This will not run");
 }, 5000);
 
 // Cancel the timer
 clearTimeout(timerId);
-novadesk.log("Timer cancelled");
+console.log("Timer cancelled");
 ```
 
 ## **`clearInterval(id)`**
@@ -116,13 +116,13 @@ Cancel a timer created with `setInterval`.
 
 ```js
 var intervalId = setInterval(function() {
-  novadesk.log("This runs repeatedly");
+  console.log("This runs repeatedly");
 }, 1000);
 
 // Stop the interval after 5 seconds
 setTimeout(function() {
   clearInterval(intervalId);
-  novadesk.log("Interval stopped");
+  console.log("Interval stopped");
 }, 5000);
 ```
 
@@ -145,13 +145,13 @@ Execute a function as soon as possible in the next event loop iteration.
 ### Example
 
 ```js
-novadesk.log("First");
+console.log("First");
 
 setImmediate(function() {
-  novadesk.log("This runs after current execution completes");
+  console.log("This runs after current execution completes");
 });
 
-novadesk.log("Second");
+console.log("Second");
 
 // Output order:
 // First

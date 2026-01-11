@@ -18,33 +18,39 @@ var network = new system.network();
 
 ## Methods
 
-### `stats()`
+### **`stats()`**
 
 Get current network statistics.
 
-#### Return Value
-An object containing network statistics:
+### Return Value
+* **Type**: `Object`
+* **Description**: An object containing network statistics:
 
-**`netIn`** (number)
-Incoming network bytes per second
+###### **`netIn`**
+* **Type**: `number`
+* **Description**: Incoming network bytes per second.
 
-**`netOut`** (number)
-Outgoing network bytes per second
+###### **`netOut`**
+* **Type**: `number`
+* **Description**: Outgoing network bytes per second.
 
-**`totalIn`** (number)
-Total incoming bytes since monitor creation
+###### **`totalIn`**
+* **Type**: `number`
+* **Description**: Total incoming bytes since monitor creation.
 
-**`totalOut`** (number)
-Total outgoing bytes since monitor creation
+###### **`totalOut`**
+* **Type**: `number`
+* **Description**: Total outgoing bytes since monitor creation.
 ---
-
-### `destroy()`
+  
+### **`destroy()`**
 
 Destroy the network monitor and free its resources.
 
 ## Complete Example
 
 ```javascript
+// index.js
 var network = new system.network();
 
 var intervalId = setInterval(function () {
@@ -58,13 +64,13 @@ var intervalId = setInterval(function () {
     var totalInMB = (stats.totalIn / (1024 * 1024)).toFixed(2);
     var totalOutMB = (stats.totalOut / (1024 * 1024)).toFixed(2);
 
-    novadesk.log("Network - In: " + netInKB + " KB/s, Out: " + netOutKB + " KB/s");
-    novadesk.log("Total - In: " + totalInMB + " MB, Out: " + totalOutMB + " MB");
+    console.log("Network - In: " + netInKB + " KB/s, Out: " + netOutKB + " KB/s");
+    console.log("Total - In: " + totalInMB + " MB, Out: " + totalOutMB + " MB");
 }, 1000);
 
 setTimeout(function () {
     clearInterval(intervalId);
     network.destroy();
-    novadesk.log("Network Monitor Destroyed");
+    console.log("Network Monitor Destroyed");
 }, 5000);
 ```

@@ -12,51 +12,63 @@ System monitors are **only available in the Main script**. UI scripts should req
 ## Creating a Disk Monitor
 
 ```javascript
-var disk = new system.Disk([options]);
+var disk = new system.disk(options);
 ```
 
 ### Parameters
 
-**options** (Object, optional): Configuration options for the disk monitor
+###### **`options`**
+* **Type**: `Object`
+* **Required**: No
+* **Description**: Configuration options for the disk monitor.
 
-**`drive`** (string, default: All drives)  
-Drive letter to monitor (e.g., "C:", "D:")
+###### **`drive`**
+* **Type**: `string`
+* **Default**: All drives
+* **Description**: Drive letter to monitor (e.g., "C:", "D:").
+---
 
 ## Methods
 
-### `stats()`
+### **`stats()`**
 
 Get current disk statistics.
 
-#### Return Value
-For a single drive monitor:
-An object containing disk statistics:
+### Return Value
+* **Type**: `Object | Array`
+* **Description**: For a single drive monitor, returns an object containing disk statistics:
 
-**`drive`** (string)  
-Drive letter
+###### **`drive`**
+* **Type**: `string`
+* **Description**: Drive letter.
 
-**`total`** (number)  
-Total disk space in bytes
+###### **`total`**
+* **Type**: `number`
+* **Description**: Total disk space in bytes.
 
-**`free`** (number)  
-Free disk space in bytes
+###### **`free`**
+* **Type**: `number`
+* **Description**: Free disk space in bytes.
 
-**`used`** (number)  
-Used disk space in bytes
+###### **`used`**
+* **Type**: `number`
+* **Description**: Used disk space in bytes.
 
-**`percent`** (number)  
-Disk usage percentage (0-100)
+###### **`percent`**
+* **Type**: `number`
+* **Description**: Disk usage percentage (0-100).
 
-For an all-drives monitor:
-An array of objects, each containing disk statistics for each drive.
+For an all-drives monitor, returns an array of objects, each containing disk statistics for a drive.
 ---
-### `destroy()`
+  
+### **`destroy()`**
 
 Destroy the disk monitor and free its resources.
 
 ## Complete Example
 
 ```javascript
+// index.js
 var cDrive = new system.disk({ drive: "C:" });
 var allDisks = new system.disk();  // Monitor all drives
 
@@ -69,7 +81,7 @@ var intervalId = setInterval(function () {
     var cUsedGB = (cStats.used / (1024 * 1024 * 1024)).toFixed(2);
     var cFreeGB = (cStats.free / (1024 * 1024 * 1024)).toFixed(2);
 
-    novadesk.log("C: Drive - Total: " + cTotalGB + "GB, Used: " + cUsedGB + "GB, Free: " + cFreeGB + "GB (" + cStats.percent + "%)");
+    console.log("C: Drive - Total: " + cTotalGB + "GB, Used: " + cUsedGB + "GB, Free: " + cFreeGB + "GB (" + cStats.percent + "%)");
 
     var allStats = allDisks.stats();
     for (var i = 0; i < allStats.length; i++) {
@@ -78,7 +90,7 @@ var intervalId = setInterval(function () {
         var usedGB = (drive.used / (1024 * 1024 * 1024)).toFixed(2);
         var freeGB = (drive.free / (1024 * 1024 * 1024)).toFixed(2);
 
-        novadesk.log(drive.drive + " Drive - Total: " + totalGB + "GB, Used: " + usedGB + "GB, Free: " + freeGB + "GB (" + drive.percent + "%)");
+        console.log(drive.drive + " Drive - Total: " + totalGB + "GB, Used: " + usedGB + "GB, Free: " + freeGB + "GB (" + drive.percent + "%)");
     }
 }, 5000);
 
@@ -86,6 +98,6 @@ setTimeout(function () {
     clearInterval(intervalId);
     cDrive.destroy();
     allDisks.destroy();
-    novadesk.log("Disk Monitor Destroyed");
+    console.log("Disk Monitor Destroyed");
 }, 30000);
 ```

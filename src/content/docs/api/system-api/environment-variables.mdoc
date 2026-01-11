@@ -7,15 +7,19 @@ description: Environment variables in the Novadesk JavaScript API
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 {% /aside %}
 
-## `system.getEnv(name)`
+## **`system.getEnv(name)`**
 
 Get the value of an environment variable.
 
-### Parameters
-- **name** (string, optional): Name of the environment variable. If omitted, returns all environment variables.
+###### **`name`**
+* **Type**: `string`
+* **Description**: Name of the environment variable. If omitted, all environment variables are returned.
+---
 
 ### Return Value
-The value of the environment variable, or `null` if it doesn't exist. If no parameter is provided, returns an object containing all environment variables.
+* **Type**: `string | Object | null`
+* **Description**: Returns the value of the environment variable, `null` if it does not exist, or an object containing all environment variables when no name is provided.
+---
 
 {% aside type="tip" %}
 

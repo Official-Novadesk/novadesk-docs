@@ -17,36 +17,41 @@ var mouse = new system.mouse();
 
 ## Methods
 
-### `position()`
+### **`position()`**
 
 Get the current mouse cursor position.
 
-#### Return Value
-An object containing mouse coordinates:
+### Return Value
+* **Type**: `Object`
+* **Description**: An object containing mouse coordinates:
 
-**`x`** (number)
-X-coordinate of the mouse cursor
+###### **`x`**
+* **Type**: `number`
+* **Description**: X-coordinate of the mouse cursor.
 
-**`y`** (number)
-Y-coordinate of the mouse cursor
+###### **`y`**
+* **Type**: `number`
+* **Description**: Y-coordinate of the mouse cursor.
 ---
-### `destroy()`
+  
+### **`destroy()`**
 
 Destroy the mouse monitor and free its resources.
 
 ## Example
 
 ```javascript
+// index.js
 var mouse = new system.mouse();
 
 var intervalId = setInterval(function () {
     var pos = mouse.position();
-    novadesk.log("Mouse Position: X=" + pos.x + ", Y=" + pos.y);
+    console.log("Mouse Position: X=" + pos.x + ", Y=" + pos.y);
 }, 100);
 
 setTimeout(function () {
     clearInterval(intervalId);
     mouse.destroy();
-    novadesk.log("Mouse Monitor Destroyed");
+    console.log("Mouse Monitor Destroyed");
 }, 5000);
 ```

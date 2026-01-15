@@ -66,7 +66,7 @@ An object containing configuration options for the widget window.
 
 ### Visual Options
 
-#### **`backgroundcolor`**
+#### **`backgroundColor`**
 
 - **type**: `Color string`
 - **Default**: `"rgba(0,0,0,0)"`
@@ -84,24 +84,13 @@ When no background color is specified, the widget will be transparent.
 - **Description**: Overall window opacity (0-1)
 ---
 
-#### **`zpos`**
+#### **`zPos`**
 
 Controls the widget’s **Z-order (stacking order)** relative to other windows and widgets.
 
 * **Type**: `string`
 * **Default**: `"ondesktop"`
-
-**Allowed values:**
-
-* **[`normal`](/api/widget-api/widget-window/#normal)**
-
-* **[`onbottom`](/api/widget-api/widget-window/#onbottom)**
-
-* **[`ondesktop`](/api/widget-api/widget-window/#ondesktop)**
-
-* **[`ontop`](/api/widget-api/widget-window/#ontop)**
-
-* **[`ontopmost`](/api/widget-api/widget-window/#ontopmost)**
+* **Allowed values:** `"normal"`, `"onbottom"`, `"ondesktop"`, `"ontop"`, `"ontopmost"`
 ---
 
 ### Behavior Options
@@ -113,25 +102,43 @@ Controls the widget’s **Z-order (stacking order)** relative to other windows a
 - **Description**: Whether the widget can be dragged by the user
 ---
 
-#### **`clickthrough`**
+#### **`clickThrough`**
 
 - **type**: `boolean`
 - **Default**: `false`
 - **Description**: Whether mouse clicks pass through the widget
 ---
 
-#### **`keeponscreen`**
+#### **`keepOnScreen`**
 
 - **type**: `boolean`
 - **Default**: `false`
 - **Description**: Whether to keep the widget within screen bounds
 ---
 
-#### **`snapedges`**
+#### **`snapEdges`**
 
 - **type**: `boolean`
 - **Default**: `true`
 - **Description**: Whether to snap to other widgets and screen edges
+---
+
+#### **`show`**
+
+- **type**: `boolean`
+- **Default**: `true`
+- **Description**: Controls the initial visibility of the widget.
+---
+
+#### **`dynamicWindowSize`**
+
+- **type**: `boolean`
+- **Default**: `false`
+- **Description**: When enabled, the window automatically adjusts its width and height to fit the bounding box of its UI elements whenever they are updated. **This overrides any fixed `width` and `height` properties.**
+
+{% aside %}
+Even if `dynamicWindowSize` is `false`, Novadesk will automatically calculate the window size **once** during initialization if no `width` or `height` are provided.
+{% /aside %}
 ---
 
 #### **`script`**
@@ -183,8 +190,7 @@ Widgets can be positioned at different levels in the window stack:
 
 ## Widget Methods
 
-Once a widget is created, you can use several methods. For more information, see [Widget
-Methods](/api/widget-api/widget-methods/).
+Once a widget is created, you can use several methods. For more information, see [Widget Methods](/api/widget-api/widget-methods/).
 
 ## Example
 
@@ -194,7 +200,7 @@ var widget = new widgetWindow({
   id: "myWidget",
   width: 300,
   height: 150,
-  backgroundcolor: "rgba(30, 30, 40, 0.9)",
+  backgroundColor: "rgba(30, 30, 40, 0.9)",
 });
 ```
 

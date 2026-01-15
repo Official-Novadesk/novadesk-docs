@@ -26,7 +26,7 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 Path to the image file.
 ---
 
-#### **`preserveaspectratio`**
+#### **`preserveAspectRatio`**
 
 * **Type**: `string`
 * **Default**: `"stretch"`
@@ -39,7 +39,7 @@ Controls how the image maintains its aspect ratio.
   - **`"crop"`** : Crop image to fill dimensions while maintaining aspect ratio
 ---
 
-#### **`imagealpha`**
+#### **`imageAlpha`**
 
 * **Type**: `number`
 * **Default**: `255`
@@ -61,7 +61,7 @@ Applies a grayscale filter to the image when enabled.
 * **Description**:
 Repeats (tiles) the image to fill the element area.
 ---
-#### **`imagetint`**
+#### **`imageTint`**
 
 * **Type**: `string`
 * **Default**: `""`
@@ -69,7 +69,7 @@ Repeats (tiles) the image to fill the element area.
 Tint color applied to the image.
 Accepts CSS color formats (`rgb`, `rgba`, hex).
 ---
-#### **`colormatrix`**
+#### **`colorMatrix`**
 
 * **Type**: `array` (25 numbers)
 * **Default**: `[]`
@@ -81,7 +81,7 @@ The array must contain 25 numbers representing the matrix values (row-major orde
 * **Example**:
 ```javascript
 // Grayscale matrix
-colormatrix: [
+colorMatrix: [
    0.33, 0.33, 0.33, 0, 0,
    0.59, 0.59, 0.59, 0, 0,
    0.11, 0.11, 0.11, 0, 0,

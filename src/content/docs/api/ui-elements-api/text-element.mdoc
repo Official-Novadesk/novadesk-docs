@@ -33,7 +33,7 @@ Text content to display.
 
 ---
 
-#### **`fontsize`**
+#### **`fontSize`**
 
 * **Type**: `number`
 * **Default**: `12`
@@ -42,7 +42,7 @@ Font size in pixels.
 
 ---
 
-#### **`fontface`**
+#### **`fontFace`**
 
 * **Type**: `string`
 * **Default**: `"Arial"`
@@ -51,7 +51,7 @@ Font face name.
 
 ---
 
-#### **`fontcolor`**
+#### **`fontColor`**
 
 * **Type**: `string`
 * **Default**: `"rgb(0,0,0)"`
@@ -61,7 +61,7 @@ Supports `rgb()`, `rgba()`, and hex values.
 
 ---
 
-#### **`fontweight`**
+#### **`fontWeight`**
 
 * **Type**: `string`
 * **Default**: `"normal"`
@@ -75,7 +75,7 @@ Font weight of the text.
 
 ---
 
-#### **`fontstyle`**
+#### **`fontStyle`**
 
 * **Type**: `string`
 * **Default**: `"normal"`
@@ -89,7 +89,7 @@ Font style of the text.
 
 ---
 
-#### **`textalign`**
+#### **`textAlign`**
 
 * **Type**: `string`
 * **Default**: `"lefttop"`
@@ -100,7 +100,7 @@ See **Alignment Options** below.
 
 ---
 
-#### **`clipstring`**
+#### **`clipString`**
 
 * **Type**: `string`
 * **Default**: `"none"`
@@ -109,7 +109,7 @@ Controls text clipping behavior when the content exceeds the available space.
 
 * **Valid values**:
   - **`"none"`** : No clipping
-  - **`"clip"`** : Clips the text and appends an ellipsis (`...`) when it exceeds the specified `width`.If the `height` allows multiple lines, the text wraps until the height limit is reached, then clips.
+  - **`"clip"`** : Clips the text and appends an ellipsis (`...`) when it exceeds the specified `width`.
   - **`"ellipsis"`** : Clips the text and appends an ellipsis (`...`)
 ---
 
@@ -166,8 +166,8 @@ var sysWidget = new widgetWindow({
     id: "sysWidget",
     width: 450,
     height: 180,
-    backgroundcolor: "rgba(30, 30, 40, 0.9)",
-    zpos: "ontop",
+    backgroundColor: "rgba(30, 30, 40, 0.9)",
+    zPos: "ontop",
     draggable: true,
     script: "ui.js"
 });
@@ -181,10 +181,10 @@ win.addText({
     text: "SimpleText",
     x: 10, 
     y: 20,
-    fontsize: 20,
-    fontcolor: "rgb(255, 255, 255)",
-    fontface:"consolas",
-    fontweight: "bold"
+    fontSize: 20,
+    fontColor: "rgb(255, 255, 255)",
+    fontFace:"consolas",
+    fontWeight: "bold"
 });
 
 // solid color text
@@ -195,10 +195,10 @@ win.addText({
     y: 15,
     width:140,
     height:30,
-    fontsize: 20,
-    fontcolor: "rgb(255, 255, 255)",
-    solidcolor:"rgb(27, 213, 67)",
-    textalign:"centercenter",
+    fontSize: 20,
+    fontColor: "rgb(255, 255, 255)",
+    solidColor:"rgb(27, 213, 67)",
+    textAlign:"centercenter",
 });
 
 // round solid color text   
@@ -209,11 +209,11 @@ win.addText({
     y: 15,
     width:120,
     height:30,
-    fontsize: 20,
-    fontcolor: "rgb(255, 255, 255)",
-    solidcolor:"rgb(27, 117, 213)",
-    solidcolorradius:8,
-    textalign:"centercenter",
+    fontSize: 20,
+    fontColor: "rgb(255, 255, 255)",
+    solidColor:"rgb(27, 117, 213)",
+    solidColorRadius:8,
+    textAlign:"centercenter",
 });
 
 // rotate text
@@ -222,10 +222,10 @@ win.addText({
     text: "Rotate 45",
     x: 10, 
     y: 100,
-    fontsize: 20,
-    fontcolor: "rgb(255, 255, 255)",
+    fontSize: 20,
+    fontColor: "rgb(255, 255, 255)",
     rotate:45,
-    fontstyle: "italic",
+    fontStyle: "italic",
 });
 ```
 {% /tabitem %}

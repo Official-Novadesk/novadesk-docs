@@ -18,10 +18,10 @@ y: 10,
 width: 200,
 height: 20,
 value: 0.5, // 50% filled
-barcolor: "rgba(0, 255, 0, 1)", // Green bar
-solidcolor: "rgba(30, 30, 30, 0.8)", // Dark background
+barColor: "rgba(0, 255, 0, 1)", // Green bar
+solidColor: "rgba(30, 30, 30, 0.8)", // Dark background
 orientation: "horizontal",
-barcornerradius: 5
+barCornerRadius: 5
 });
 ```
 
@@ -42,27 +42,27 @@ following:
 - `"horizontal"`: Fills from left to right.
 - `"vertical"`: Fills from bottom to top.
 
-### `barcornerradius`
+### `barCornerRadius`
 - **Type**: `number`
 - **Default**: `0`
 - **Description**: Rounding radius for the corners of the bar fill itself.
 
-### `barcolor`
+### `barColor`
 - **Type**: `string`
 - **Description**: The color of the filled portion of the bar. Supports `rgb()`, `rgba()`, and hex strings.
 
-### `barcolor2`
+### `barColor2`
 - **Type**: `string`
 - **Description**: The second color for a gradient fill of the bar.
 
-### `baralpha` / `baralpha2`
+### `barAlpha` / `barAlpha2`
 - **Type**: `number` (0-255)
 - **Description**: Explicit alpha values for the bar colors. Usually handled within the `rgba()` string.
 
-### `bargradientangle`
+### `barGradientAngle`
 - **Type**: `number`
 - **Default**: `0.0`
-- **Description**: The angle of the gradient if `barcolor2` is provided.
+- **Description**: The angle of the gradient if `barColor2` is provided.
 
 ## Updating a Bar
 
@@ -84,8 +84,8 @@ win.addBar({
 id: "cpuBar",
 x: 10, y: 10,
 width: 100, height: 10,
-barcolor: "rgba(100, 200, 255, 1)",
-solidcolor: "rgba(0, 0, 0, 0.5)",
+barColor: "rgba(100, 200, 255, 1)",
+solidColor: "rgba(0, 0, 0, 0.5)",
 value: 0
 });
 

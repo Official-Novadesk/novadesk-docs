@@ -60,6 +60,8 @@ The C++ SDK provides a wrapper to safely register functions and properties witho
 | `RegisterString(name, value)` | Registers a string property. |
 | `RegisterNumber(name, value)` | Registers a numeric property. |
 | `RegisterBool(name, value)` | Registers a boolean property. |
+| `RegisterObject(name, callback)` | Creates a nested object and allows defining properties using a callback. |
+| `RegisterArray(name, vector)` | Registers an array of strings or numbers from a C++ vector. |
 | `RegisterFunction(name, func)` | Registers a standard Duktape C function. |
 | `RegisterStringFunction(name, value)` | Helper to register a function that returns a constant string. |
 
@@ -81,7 +83,12 @@ NOVADESK_ADDON_INIT(ctx) {
     novadesk::Addon addon(ctx);
     
     addon.RegisterString("version", "1.1.0");
-    addon.RegisterStringFunction("greet", "Hello from C++!");
+    
+    // Nesting an object
+    addon.RegisterObject("utils", [](novadesk::Addon& utils) {
+        utils.RegisterStringFunction("ping", "pong");
+        utils.RegisterArray("data", {1.0, 2.0, 3.0});
+    });
 }
 ```
 
@@ -89,6 +96,7 @@ NOVADESK_ADDON_INIT(ctx) {
 ```javascript
 const myAddon = system.loadAddon("my_addon.dll");
 if (myAddon) {
-    console.log(myAddon.greet()); // "Hello from C++!"
+    console.log(myAddon.utils.ping()); // "pong"
+    console.log(myAddon.utils.data[0]); // 1.0
 }
 ```

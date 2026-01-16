@@ -28,6 +28,21 @@ Loads a native addon DLL from the specified path.
 
 ---
 
+### `system.unloadAddon(path)`
+
+Unloads a native addon DLL and calls its `NovadeskAddonUnload` hook if defined.
+
+#### Arguments
+
+* **`path`** (`string`): The relative or absolute path to the `.dll` file. Must match the path used in `loadAddon()`.
+
+#### Return Value
+
+* **Type**: `boolean`
+* **Description**: Returns `true` if the addon was successfully unloaded, or `false` if it wasn't found.
+
+---
+
 ## **C++ SDK Overview**
 
 To develop an addon, use the official **Novadesk Addon SDK**. 
@@ -40,7 +55,7 @@ Addons must define an initialization entry point. An optional unload hook is als
 #include <NovadeskAPI/novadesk_addon.h>
 
 // Required: Called when system.loadAddon() is invoked
-NOVADESK_ADDON_INIT(ctx) {
+NOVADESK_ADDON_INIT(ctx, hMsgWnd) {
     novadesk::Addon addon(ctx);
     addon.RegisterString("version", "1.0.0");
 }
@@ -65,6 +80,36 @@ The C++ SDK provides a wrapper to safely register functions and properties witho
 | `RegisterFunction(name, func)` | Registers a standard Duktape C function. |
 | `RegisterStringFunction(name, value)` | Helper to register a function that returns a constant string. |
 
+### Lifecycle & Threads (`Dispatcher`)
+
+Addons can run background threads and safely communicate with the main JS thread using the `Dispatcher`.
+
+```cpp
+NOVADESK_ADDON_INIT(ctx, hMsgWnd) {
+    novadesk::Dispatcher dispatcher(hMsgWnd);
+    
+    // In a background thread:
+    dispatcher.Dispatch([](void* data) {
+         // This runs on the MAIN THREAD
+         // You can safely call JS functions here
+    });
+}
+```
+
+### JavaScript Callbacks (`JsFunction`)
+
+The `JsFunction` class allow you to capture a JS function and call it from C++.
+
+```cpp
+addon.RegisterFunction("onEvent", [](duk_context* ctx) -> duk_ret_t {
+    novadesk::JsFunction cb(ctx, 0);
+    if (cb.IsValid()) {
+        cb.Call("Optional Data");
+    }
+    return 0;
+});
+```
+
 ### Build Requirements
 
 * **Architecture**: Must target **Win32 (x86)**.
@@ -79,9 +124,8 @@ The C++ SDK provides a wrapper to safely register functions and properties witho
 ```cpp
 #include <NovadeskAPI/novadesk_addon.h>
 
-NOVADESK_ADDON_INIT(ctx) {
+NOVADESK_ADDON_INIT(ctx, hMsgWnd) {
     novadesk::Addon addon(ctx);
-    
     addon.RegisterString("version", "1.1.0");
     
     // Nesting an object
@@ -98,5 +142,9 @@ const myAddon = system.loadAddon("my_addon.dll");
 if (myAddon) {
     console.log(myAddon.utils.ping()); // "pong"
     console.log(myAddon.utils.data[0]); // 1.0
+    
+    myAddon.onEvent((msg) => {
+        console.log("Received: " + msg);
+    });
 }
 ```

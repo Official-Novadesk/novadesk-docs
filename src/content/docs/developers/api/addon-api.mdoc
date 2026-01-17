@@ -1,0 +1,241 @@
+---
+title: Addon API (Native)
+description: Technical guide for building native C++ addons for Novadesk.
+---
+
+This guide covers the technical details of the **Novadesk Addon SDK**, used to build native Win32 (x86) DLLs that integrate with the Novadesk JavaScript engine.
+
+## **Architecture**
+
+Novadesk addons are **engine-agnostic**. Instead of linking against a specific JavaScript engine (like Duktape), addons interact with Novadesk via a provided **Host API** table. This ensures binary compatibility even if the underlying engine is updated.
+
+---
+
+## **C++ Entry Points**
+
+### `NOVADESK_ADDON_INIT`
+
+The primary entry point for any addon. It is called by Novadesk when `system.loadAddon()` is executed.
+
+```cpp
+#include <NovadeskAPI/novadesk_addon.h>
+
+NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
+    // ctx: Opaque handle to the JS context
+    // hMsgWnd: Window handle for thread-safe dispatching
+    // host: Pointer to the Host API (Never use this directly, use novadesk::Addon wrapper)
+    
+    novadesk::Addon addon(ctx, host);
+    addon.RegisterString("version", "1.0.0");
+}
+```
+
+### `NOVADESK_ADDON_UNLOAD`
+
+Optional hook called when the addon is manually unloaded or when Novadesk reloads scripts.
+
+```cpp
+NOVADESK_ADDON_UNLOAD() {
+    // Cleanup your background threads, global memory, etc.
+}
+```
+
+---
+
+## **Host API Functions**
+
+The `novadesk::Addon` helper class provides a convenient wrapper around the low-level Host API.
+
+### **Registering Data**
+
+Native addons export functionality by adding properties to the object returned by `system.loadAddon()`. Use the following methods on the `novadesk::Addon` instance.
+
+#### `RegisterString(name, value)`
+Registers a static string property.
+```cpp
+addon.RegisterString("version", "1.2.0");
+addon.RegisterString("author", "Novadesk Team");
+```
+
+#### `RegisterNumber(name, value)`
+Registers a numeric property (supports `double`, `int`, `float`).
+```cpp
+addon.RegisterNumber("maxConnections", 100);
+addon.RegisterNumber("pi", 3.14159);
+```
+
+#### `RegisterBool(name, value)`
+Registers a boolean property.
+```cpp
+addon.RegisterBool("isEnabled", true);
+```
+
+#### `RegisterArray(name, values)`
+Registers an array of either strings or numbers.
+```cpp
+// String array
+addon.RegisterArray("tags", {"native", "performance", "win32"});
+
+// Number array
+addon.RegisterArray("levels", {1.0, 5.5, 10.0});
+```
+
+#### `RegisterObject(name, callback)`
+Creates a nested object to organize your API. The callback receives a new `novadesk::Addon` instance representing the sub-object.
+```cpp
+addon.RegisterObject("utils", [](novadesk::Addon& utils) {
+    utils.RegisterString("status", "ok");
+    utils.RegisterNumber("id", 12345);
+});
+```
+
+### **Registering Functions**
+
+Functions are registered with a name, a C++ lambda or function pointer, and the number of expected arguments (`nargs`).
+
+```cpp
+addon.RegisterFunction("hello", [](novadesk_context ctx) -> int {
+    // 'ctx' is the JS context handle
+    return 0; // Returning 0 means no value is returned to JS
+}, 0);
+```
+
+---
+
+## **Handling Arguments (In Detail)**
+
+When a JavaScript function calls your native addon, use the `Addon` utility methods to safely retrieve arguments from the stack.
+
+### `GetNumber(index)`
+Retrieves a numeric value at the specified stack index (0-based).
+
+```cpp
+// JS: addon.sum(10, 20)
+addon.RegisterFunction("sum", [host](novadesk_context ctx) -> int {
+    novadesk::Addon helper(ctx, host);
+    
+    double a = helper.GetNumber(0); // 10
+    double b = helper.GetNumber(1); // 20
+    
+    // Return the result
+    host->PushNumber(ctx, a + b);
+    return 1; // 1 means we pushed one return value
+}, 2);
+```
+
+### `GetString(index)`
+Retrieves a string value.
+
+```cpp
+// JS: addon.greet("World")
+addon.RegisterFunction("greet", [host](novadesk_context ctx) -> int {
+    novadesk::Addon helper(ctx, host);
+    const char* name = helper.GetString(0);
+    
+    std::string response = "Hello, " + std::string(name) + "!";
+    host->PushString(ctx, response.c_str());
+    return 1;
+}, 1);
+```
+
+### `GetBool(index)`
+Retrieves a boolean value.
+
+---
+
+## **Type Safety & Validation**
+
+Always validate arguments before using them to prevent addon crashes or engine errors.
+
+Always validate arguments before using them to prevent addon crashes or engine errors.
+
+#### `IsNumber(index)`
+Returns true if the argument at the specified `index` is a numeric type.
+
+#### `IsString(index)`
+Returns true if the argument is a string.
+
+#### `IsBool(index)`
+Returns true if the argument is a boolean.
+
+#### `IsFunction(index)`
+Returns true if the argument is a JavaScript function (callback).
+
+#### `IsNull(index)`
+Returns true if the argument is `null` or `undefined`.
+
+### **Example: Robust Math**
+
+```cpp
+addon.RegisterFunction("multiply", [host](novadesk_context ctx) -> int {
+    novadesk::Addon helper(ctx, host);
+    
+    if (!helper.IsNumber(0) || !helper.IsNumber(1)) {
+        helper.ThrowError("multiply() requires two numbers!");
+        return 0;
+    }
+    
+    host->PushNumber(ctx, helper.GetNumber(0) * helper.GetNumber(1));
+    return 1;
+}, 2);
+```
+
+---
+
+## **Thread Safety & Callbacks**
+
+Native addons often perform work in the background. **You must never touch `novadesk_context` or call Host API functions from a background thread.**
+
+### Using the `Dispatcher`
+The `Dispatcher` allows you to send a task from a background thread to the **Main Thread**, where it is safe to interact with JavaScript.
+
+```cpp
+// In INIT:
+auto dispatcher = new novadesk::Dispatcher(hMsgWnd);
+
+// In a thread:
+std::thread([dispatcher]() {
+    // Long running work...
+    double result = 100.0;
+    
+    dispatcher->Dispatch([](void* data) {
+        // THIS CODE RUNS ON THE MAIN THREAD
+        // Safe to use Host API here!
+    });
+}).detach();
+```
+
+---
+
+## **Full Example: System Utilities**
+
+```cpp
+#include <NovadeskAPI/novadesk_addon.h>
+
+NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
+    novadesk::Addon addon(ctx, host);
+
+    // 1. Simple Property
+    addon.RegisterString("author", "Novadesk Team");
+
+    // 2. Nested Utility Object
+    addon.RegisterObject("math", [host](novadesk::Addon& math) {
+        math.RegisterFunction("add", [host](novadesk_context ctx) -> int {
+            novadesk::Addon h(ctx, host);
+            host->PushNumber(ctx, h.GetNumber(0) + h.GetNumber(1));
+            return 1;
+        }, 2);
+    });
+
+    // 3. Status Check with Type Validation
+    addon.RegisterFunction("checkStatus", [host](novadesk_context ctx) -> int {
+        novadesk::Addon h(ctx, host);
+        if (h.IsString(0)) {
+            host->PushBool(ctx, 1);
+        } else {
+            host->PushBool(ctx, 0);
+        }
+        return 1;
+    }, 1);
+}
+```

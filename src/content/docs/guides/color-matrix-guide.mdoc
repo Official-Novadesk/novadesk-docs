@@ -25,6 +25,18 @@ colormatrix: [
 - **Row 5**: Represents global color shifts (translations).
 - **Column W**: Usually 0 for color weights and 1 for the bottom-right identity.
 
+{% aside type="tip" %}
+Novadesk supports both **20 numbers (5x4 Direct2D format)** and **25 numbers (5x5 standard format)**. If 25 numbers are provided, Novadesk automatically converts them to the 5x4 format by skipping the 5th column ("W") of each row.
+{% /aside %}
+
+## Combining Effects
+
+Image elements process effects sequentially:
+1. **Grayscale Stage**: If `grayscale: true` is set, it is applied first.
+2. **Modification Stage**: Your `colormatrix` or `imageTint` is then applied to the grayscale result.
+
+This allows you to, for example, turn an image into grayscale and then use a Color Matrix to apply a custom sepia or duotone tint.
+
 ## Original Image
 
 All examples below apply transformations to this original image:

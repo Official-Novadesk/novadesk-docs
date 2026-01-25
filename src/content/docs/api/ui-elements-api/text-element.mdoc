@@ -94,9 +94,10 @@ See **Alignment Options** below.
 Controls text clipping behavior when the content exceeds the available space.
 
 * **Valid values**:
-  - **`"none"`** : No clipping
-  - **`"clip"`** : Clips the text and appends an ellipsis (`...`) when it exceeds the specified `width`.
-  - **`"ellipsis"`** : Clips the text and appends an ellipsis (`...`)
+  - **`"none"`** : No clipping. Text will automatically wrap if a `width` is provided.
+  - **`"clip"`** : Clips the text at the element's boundaries (Single line).
+  - **`"ellipsis"`** : Clips the text and appends an ellipsis (`...`) (Single line).
+  - **`"wrap"`** : Explicitly enables multiline word wrapping.
 ---
 
 ## Alignment Options

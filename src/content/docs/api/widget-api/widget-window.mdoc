@@ -31,8 +31,8 @@ An object containing configuration options for the widget window.
 - **type**: `string`
 - **Default**: `Required`
 - **Description**: Unique identifier for the widget. This ID is also used as the window title.
-{% aside type="caution" %}
-`id` is mandatory and must be unique across all widgets. It cannot be changed after creation.
+{% aside type="note" %}
+`id` is mandatory. If you create a widget with an ID that already exists, the **existing widget will be closed and replaced** by the new one.
 {% /aside %}
 ---
 
@@ -128,17 +128,6 @@ Controls the widget’s **Z-order (stacking order)** relative to other windows a
 - **type**: `boolean`
 - **Default**: `true`
 - **Description**: Controls the initial visibility of the widget.
----
-
-#### **`dynamicWindowSize`**
-
-- **type**: `boolean`
-- **Default**: `false`
-- **Description**: When enabled, the window automatically adjusts its width and height to fit the bounding box of its UI elements whenever they are updated. **This overrides any fixed `width` and `height` properties.**
-
-{% aside %}
-Even if `dynamicWindowSize` is `false`, Novadesk will automatically calculate the window size **once** during initialization if no `width` or `height` are provided.
-{% /aside %}
 ---
 
 #### **`script`**

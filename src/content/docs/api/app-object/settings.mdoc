@@ -73,3 +73,23 @@ Dynamically shows or hides the Novadesk icon in the system tray.
 // Run in "stealth" mode
 app.hideTrayIcon(true);
 ```
+---
+## `app.useHardwareAcceleration(bool)`
+
+Enables or disables Direct2D hardware acceleration.
+
+### Parameters
+
+###### **`bool`**
+* **Type**: `boolean`
+* **Description**: `true` to use hardware-accelerated rendering (Default), `false` to use software rendering.
+
+{% aside type="note" %}
+Changing this setting requires an **application restart** to take effect.
+{% /aside %}
+
+### Example
+```javascript
+// Enable hardware acceleration
+app.useHardwareAcceleration(true);
+```

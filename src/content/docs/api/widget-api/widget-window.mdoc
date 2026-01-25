@@ -31,8 +31,8 @@ An object containing configuration options for the widget window.
 - **type**: `string`
 - **Default**: `Required`
 - **Description**: Unique identifier for the widget. This ID is also used as the window title.
-{% aside type="caution" %}
-`id` is mandatory and must be unique across all widgets. It cannot be changed after creation.
+{% aside type="note" %}
+`id` is mandatory. If you create a widget with an ID that already exists, the **existing widget will be closed and replaced** by the new one.
 {% /aside %}
 ---
 

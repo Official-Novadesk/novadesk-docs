@@ -14,7 +14,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/Novadesk/Novadesk",
+          href: "https://github.com/Official-Novadesk/novadesk-docs",
         },
       ],
       sidebar: [

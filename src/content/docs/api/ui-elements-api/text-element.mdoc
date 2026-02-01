@@ -47,20 +47,37 @@ Font face name.
 
 * **Type**: `string`
 * **Default**: `"rgb(0,0,0)"`
-* **Description**:[color](/guides/colors/) of the text.
+* **Description**: [color](/guides/colors/) or [gradients](/guides/colors/#gradients) of the text.
 ---
 
 #### **`fontWeight`**
 
-* **Type**: `string`
-* **Default**: `"normal"`
+* **Type**: `string | number`
+* **Default**: `"normal"` (400)
 * **Description**:
-Font weight of the text.
+Font weight of the text. Supports numerical weights (100-900) or descriptive strings.
 
-**Valid values:**
+**Valid string values:**
 
-* `"normal"`
-* `"bold"`
+* `"thin"` (100)
+* `"extralight"`, `"ultralight"` (200)
+* `"light"` (300)
+* `"normal"`, `"regular"` (400)
+* `"medium"` (500)
+* `"semibold"`, `"demibold"` (600)
+* `"bold"` (700)
+* `"extrabold"`, `"ultrabold"` (800)
+* `"black"`, `"heavy"` (900)
+
+**Numerical values:** Any value between `100` and `900`.
+---
+
+#### **`fontPath`**
+
+* **Type**: `string`
+* **Default**: `""`
+* **Description**:
+Path to a custom font file (`.ttf`, `.otf`). If provided, Novadesk will load and use this font instead of searching system fonts.
 ---
 
 #### **`fontStyle`**
@@ -74,6 +91,46 @@ Font style of the text.
 
 * `"normal"`
 * `"italic"`
+---
+
+#### **`underLine`**
+
+* **Type**: `boolean`
+* **Default**: `false`
+* **Description**:
+Draws a line under the text.
+---
+
+#### **`strikeThrough`**
+
+* **Type**: `boolean`
+* **Default**: `false`
+* **Description**:
+Draws a line through the text.
+---
+
+#### **`case`**
+
+* **Type**: `string`
+* **Default**: `"normal"`
+* **Description**:
+Forces the text to a specific case.
+
+**Valid values:**
+
+* `"normal"` : Maintains original casing.
+* `"upper"` : converts ALL TEXT TO UPPERCASE.
+* `"lower"` : converts all text to lowercase.
+* `"capitalize"` : Capitalizes The First Letter Of Each Word.
+* `"sentence"` : Capitalizes the first letter of the first word.
+---
+
+#### **`letterSpacing`**
+
+* **Type**: `number`
+* **Default**: `0`
+* **Description**:
+Sets the spacing between characters in pixels. Can be positive (wider) or negative (tighter).
 ---
 
 #### **`textAlign`**
@@ -138,6 +195,38 @@ Right aligned, center vertical
 
 * **`"rightbottom"`**
 Right aligned, bottom vertical
+
+## Inline Styling
+
+Novadesk supports rich text formatting using HTML-like tags within the `text` property. These tags allow you to style specific segments of text differently.
+
+### Supported Tags
+
+* **`<b>`** : **Bold** text.
+* **`<i>`** : *Italic* text.
+* **`<u>`** : <ins>Underlined</ins> text.
+* **`<s>`** : ~~Strikethrough~~ text.
+* **`<color=value>`** : Changes text color or [gradient](/guides/colors/#gradients).
+  - Example: `<color=#f00>Red Text</color>`
+  - Example: `<color=linearGradient(0,#f00,#0f0)>Gradient Text</color>`
+* **`<size=value>`** : Changes font size in pixels.
+  - Example: `<size=24>Large Text</size>`
+* **`<font=name>`** : Changes font face.
+  - Example: `<font=Consolas>Monospaced Text</font>`
+* **`<case=value>`** : Changes text case.
+  - Valid values: `upper`, `lower`, `capitalize`, `sentence`, `normal`.
+  - Example: `<case=upper>this will be uppercase</case>`
+
+### Usage Example
+
+```javascript
+win.addText({
+    text: "This is <b>Bold</b> and <color=#00ff00>Green</color> text.",
+    fontSize: 18
+});
+```
+
+---
 
 ## Example
 

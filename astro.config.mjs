@@ -45,7 +45,7 @@ export default defineConfig({
                   label: "General Options",
                   link: "/api/ui-elements-api/general-elements-options/",
                 },
-                { label: "Text Element", link: "/api/ui-elements-api/text-element/" },
+                { label: "Text Element", link: "/api/ui-elements-api/text-element/",badge: { text: 'Enhanced' } },
                 { label: "Image Element", link: "/api/ui-elements-api/image-element/" },
                 { label: "Bar Element", link: "/api/ui-elements-api/bar-element/" },
               ],

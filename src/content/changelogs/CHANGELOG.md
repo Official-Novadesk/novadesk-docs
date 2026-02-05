@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.3.0.0-beta] - 2026-02-05
+###### 📅 5th February, 2026 
+
+### Added
+
+- Extended fontWeight support with string and numeric values.
+  - String values: thin, extralight or ultralight, light, regular, medium, semibold or semi-bold, bold, extrabold or ultrabold, black
+  - Numeric values: 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+- Added fontPath property for loading custom fonts in the text element
+- Added inline style tag support for the text element
+- Added fontColor support for gradient colors
+- Added fontShadow support for text
+- Added letterSpacing property for the text element
+- Added case property for the text element
+- Added underline property for the text element
+- Added strikethrough property for the text element
+
+### Supported Inline Tags
+
+- `<b>` : Bold text
+- `<i>` : Italic text
+- `<u>` : Underlined text
+- `<s>` : Strikethrough text
+- `<color=value>` : Changes text color or applies a gradient  
+  Example: `<color=#f00>Red Text</color>`  
+  Example: `<color=linearGradient(0,#f00,#0f0)>Gradient Text</color>`
+- `<size=value>` : Changes font size in pixels  
+  Example: `<size=24>Large Text</size>`
+- `<font=name>` : Changes font face  
+  Example: `<font=Consolas>Monospaced Text</font>`
+- `<case=value>` : Changes text case  
+  Valid values:
+  - `normal` : Maintains original casing
+  - `upper` : Converts all text to uppercase
+  - `lower` : Converts all text to lowercase
+  - `capitalize` : Capitalizes the first letter of each word
+  - `sentence` : Capitalizes the first letter of the first word  
+  Example: `<case=upper>this will be uppercase</case>`
+
+
 ## [0.2.0.0-beta] - 2026-01-30
 ###### 📅 30th January, 2026 
 

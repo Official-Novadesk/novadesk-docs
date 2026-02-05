@@ -95,3 +95,40 @@ color: "#4CAF50"       // Material Design Green
 backgroundcolor: "#ff000080"  // Red with 50% transparency
 backgroundcolor: "#00ff00ff"  // Green fully opaque
 ```
+
+## Gradients
+
+Novadesk supports linear and radial gradients.
+
+### `Linear Gradient`
+
+Specifies a linear transition between multiple colors.
+
+**Syntax:**
+```javascript
+linearGradient(angle, color1, color2, ...)
+```
+
+* **`angle`** : A raw number representing the angle in degrees (e.g., `90` for vertical top-to-bottom). 
+
+**Example:**
+```javascript
+fontColor: "linearGradient(0, #ff8c00, #ff0080)"    // Horizontal gradient
+fontColor: "linearGradient(90, #f00, #0f0, #00f)"  // Vertical 3-color gradient
+```
+
+### `Radial Gradient`
+
+Specifies a radial transition from a center point.
+
+**Syntax:**
+```javascript
+radialGradient(shape, color1, color2, ...)
+```
+
+* **`shape`** : Either `"circle"` or `"ellipse"`.
+
+**Example:**
+```javascript
+fontColor: "radialGradient(circle, #ffff00, #ff0000)"
+```

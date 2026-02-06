@@ -95,11 +95,6 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Developers',
-      items: ['developers/api/addon-api'],
-    },
-        {
-      type: 'category',
       label: 'Guides',
       items: [
         'guides/script-types',
@@ -109,6 +104,12 @@ const sidebars: SidebarsConfig = {
         'guides/transform-matrix-guide',
       ],
     },
+    {
+      type: 'category',
+      label: 'Developers',
+      items: ['developers/api/addon-api'],
+    },
+    'changelog',
   ],
 };
 

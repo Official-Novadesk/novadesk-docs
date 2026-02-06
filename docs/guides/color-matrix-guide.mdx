@@ -3,6 +3,8 @@ title: Color Matrix Guide
 description: Comprehensive guide on using 5x5 Color Matrices for advanced image manipulation in Novadesk.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::tip
 **Learning Tip**: Start with simple transformations like grayscale and invert before moving to complex effects like sepia or polaroid. Each example builds upon fundamental matrix concepts.
 :::
@@ -46,12 +48,12 @@ For example, to make all colors warmer:
 
 For a pixel with original values [R, G, B, A], the new values [R', G', B', A'] are calculated as:
 
-```
-R' = (RR×R) + (RG×G) + (RB×B) + (RA×A) + RW
+<CodeBlock language="text">
+  {`R' = (RR×R) + (RG×G) + (RB×B) + (RA×A) + RW
 G' = (GR×R) + (GG×G) + (GB×B) + (GA×A) + GW
 B' = (BR×R) + (BG×G) + (BB×B) + (BA×A) + BW
-A' = (AR×R) + (AG×G) + (AB×B) + (AA×A) + AW
-```
+A' = (AR×R) + (AG×G) + (AB×B) + (AA×A) + AW`}
+</CodeBlock>
 
 Where:
 - **RR, RG, RB, RA**: Weights for calculating new Red
@@ -63,13 +65,14 @@ Where:
 ### Key Matrix Properties
 
 1. **Identity Matrix**: Leaves colors unchanged
-   ```javascript
-   [1, 0, 0, 0, 0,
-    0, 1, 0, 0, 0,
-    0, 0, 1, 0, 0,
-    0, 0, 0, 1, 0,
-    0, 0, 0, 0, 1]
-   ```
+   
+<CodeBlock language="javascript">
+  {`[1, 0, 0, 0, 0,
+  0, 1, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0,
+  0, 0, 0, 0, 1]`}
+</CodeBlock>
 
 2. **Scaling**: Multiplies channel values
    - Values > 1: Brighten/amplify
@@ -96,7 +99,7 @@ Understanding these fundamentals will help you craft precisely the visual effect
 
 ## Understanding the Matrix
 
-The color matrix operates on the RGBA color vector of each pixel. While pixels are typically represented as `[R, G, B, A]`, the matrix transformation uses a 5-element vector `[R, G, B, A, 1]` to enable color translations (offsets) and more complex transformations.
+The color matrix operates on the RGBA color vector of each pixel. While pixels are typically represented as \`[R, G, B, A]\`, the matrix transformation uses a 5-element vector \`[R, G, B, A, 1]\` to enable color translations (offsets) and more complex transformations.
 
 :::note
 **Mathematical Foundation**: Think of each pixel's color as a point in 4-dimensional space. The matrix defines how to transform this point to create new colors.
@@ -104,15 +107,15 @@ The color matrix operates on the RGBA color vector of each pixel. While pixels a
 
 The 5x5 matrix is flattened into a 25-element array in your code. Here's how to visualize the transformation:
 
-```javascript
-colorMatrix: [
-   RR, RG, RB, RA, RW,  // Red component weights
-   GR, GG, GB, GA, GW,  // Green component weights
-   BR, BG, BB, BA, BW,  // Blue component weights
-   AR, AG, AB, AA, AW,  // Alpha component weights
-   TR, TG, TB, TA, TW   // Translations (offsets)
-]
-```
+<CodeBlock language="javascript">
+  {`colorMatrix: [
+  RR, RG, RB, RA, RW,  // Red component weights
+  GR, GG, GB, GA, GW,  // Green component weights
+  BR, BG, BB, BA, BW,  // Blue component weights
+  AR, AG, AB, AA, AW,  // Alpha component weights
+  TR, TG, TB, TA, TW   // Translations (offsets)
+]`}
+</CodeBlock>
 
 - **Rows 1-4**: Determine how much each input channel contributes to the output Red, Green, Blue, and Alpha values respectively.
 - **Row 5**: Represents global color shifts (translations) added to all pixels.
@@ -124,16 +127,16 @@ colorMatrix: [
 
 :::tip
 Novadesk supports both **20 numbers (5x4 Direct2D format)** and **25 numbers (5x5 standard format)**. If 25 numbers are provided, Novadesk automatically converts them to the 5x4 format by skipping the 5th column ("W") of each row.
-:::
+::: 
 
 ## Combining Effects
 
 Image elements process effects in a specific sequence:
-1. **Grayscale Stage**: If `grayscale: true` is set, it converts the image to grayscale first using luminance weights (0.33R + 0.59G + 0.11B).
-2. **Modification Stage**: Your `colormatrix` or `imageTint` is then applied to either the original color image or the grayscale result.
+1. **Grayscale Stage**: If \`grayscale: true\` is set, it converts the image to grayscale first using luminance weights (0.33R + 0.59G + 0.11B).
+2. **Modification Stage**: Your \`colormatrix\` or \`imageTint\` is then applied to either the original color image or the grayscale result.
 
 :::tip
-**Creative Workflow**: Use `grayscale: true` + color matrix to create duotone effects, or apply color matrices to full-color images for dramatic color grading.
+**Creative Workflow**: Use \`grayscale: true\` + color matrix to create duotone effects, or apply color matrices to full-color images for dramatic color grading.
 :::
 
 This allows you to, for example, turn an image into grayscale and then use a Color Matrix to apply a custom sepia or duotone tint.
@@ -156,18 +159,18 @@ Converts the image to grayscale by calculating luminance (perceived brightness) 
 **Key Concept**: Human eyes perceive green as brighter than red, and red as brighter than blue. That's why green gets the highest weight (0.59) in the luminance calculation.
 :::
 
-```javascript
-// Grayscale - preserves luminance perception
+<CodeBlock language="javascript">
+{`// Grayscale - preserves luminance perception
 colorMatrix: [
   0.33, 0.33, 0.33, 0, 0,  // New Red = avg(R,G,B)
   0.59, 0.59, 0.59, 0, 0,  // New Green = avg(R,G,B) 
   0.11, 0.11, 0.11, 0, 0,  // New Blue = avg(R,G,B)
   0,    0,    0,    1, 0,  // Alpha unchanged
   0,    0,    0,    0, 1   // No color shift
-  ]
-```
+  ]`}
+</CodeBlock>
 
-**Mathematical Formula**: `Luminance = 0.33×R + 0.59×G + 0.11×B`
+**Mathematical Formula**: \`Luminance = 0.33×R + 0.59×G + 0.11×B\`
 
 ![Grayscale](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/ColorMatrix/GreyScale.png?raw=true)
 
@@ -178,13 +181,12 @@ colorMatrix: [
 Inverts all color channels by subtracting each value from 1.0 (or 255 in 8-bit), producing a photographic negative effect.
 
 :::note
-**Formula**: `New_Value = 1.0 - Original_Value`
+**Formula**: \`New_Value = 1.0 - Original_Value\`
 
-This is achieved by multiplying by -1 and adding 1: `(-1 × Original) + 1`
+This is achieved by multiplying by -1 and adding 1: \`(-1 × Original) + 1\`
 :::
-
-```javascript
-// Invert - creates photographic negative
+<CodeBlock language="javascript">
+{`// Invert - creates photographic negative
 colorMatrix: [
   -1,  0,  0,  0,  0,   // New Red = -Old_Red
    0, -1,  0,  0,  0,   // New Green = -Old_Green
@@ -192,7 +194,8 @@ colorMatrix: [
    0,  0,  0,  1,  0,   // Alpha unchanged
    1,  1,  1,  0,  1    // Add 1 to each RGB channel
    ]
-```
+`}
+</CodeBlock>
 
 **Result**: Light colors become dark, dark colors become light, creating a classic negative film effect.
 
@@ -208,8 +211,8 @@ Swaps the Red and Blue channels, effectively converting between RGB and BGR colo
 **Use Case**: Different graphics APIs and file formats use different channel orders. This transformation helps convert between RGB (most common) and BGR (used in some Windows APIs).
 :::
 
-```javascript
-// Swap RGB to BGR - channel reordering
+<CodeBlock language="javascript">
+{`// Swap RGB to BGR - channel reordering
 colorMatrix: [
   0, 0, 1, 0, 0,  // New Red = Old Blue
   0, 1, 0, 0, 0,  // New Green = Old Green (unchanged)
@@ -217,7 +220,8 @@ colorMatrix: [
   0, 0, 0, 1, 0,  // Alpha unchanged
   0, 0, 0, 0, 1   // No color shift
 ]
-```
+`}
+</CodeBlock>
 
 **Matrix Logic**: This is essentially a permutation matrix that rearranges the color channels without changing their values.
 
@@ -233,20 +237,20 @@ Applies a warm, brownish tone characteristic of vintage photographs from the ear
 **Historical Context**: Sepia toning was originally used to increase the archival life of photographs and became associated with nostalgia and antiquity.
 :::
 
-```javascript
-// Sepia - vintage photographic effect
+<CodeBlock language="javascript">
+{`// Sepia - vintage photographic effect
 colorMatrix: [
   0.393, 0.349, 0.272, 0, 0,  // New Red emphasizes warm tones
   0.769, 0.686, 0.534, 0, 0,  // New Green boosted for golden effect
   0.189, 0.168, 0.131, 0, 0,  // New Blue reduced for warmth
   0,     0,     0,     1, 0,  // Alpha unchanged
   0,     0,     0,     0, 1   // No additional color shift
-]
-```
+]`}
+</CodeBlock>
 
 **Color Theory**: The matrix reduces blue contribution while boosting red and green, creating the characteristic amber-brown tone.
 
-![Sepia](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/ColorMatrix/Swap%20RGB%20to%20BGR.png?raw=true)
+![Sepia](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/ColorMatrix/Sepia.png?raw=true)
 
 ---
 
@@ -258,16 +262,16 @@ Creates a stark black and white effect by amplifying differences and shifting th
 **Contrast Enhancement**: Values above 1.0 amplify the signal, while negative translations in the last row push mid-values toward extremes (black or white).
 :::
 
-```javascript
-// High Contrast Black & White
+<CodeBlock language="javascript">
+{`// High Contrast Black & White
 colorMatrix: [
    1.5,  1.5,  1.5, 0, 0,   // Amplify all channels by 1.5x
    1.5,  1.5,  1.5, 0, 0,   // Same amplification for consistency
    1.5,  1.5,  1.5, 0, 0,   // Uniform treatment
    0,    0,    0,   1, 0,   // Alpha unchanged
   -1,   -1,   -1,   0, 1    // Subtract 1 from each channel
-]
-```
+]`}
+</CodeBlock>
 
 **Effect**: Light areas become whiter, dark areas become darker, eliminating subtle gray tones.
 
@@ -279,16 +283,17 @@ colorMatrix: [
 
 Simulates the high-contrast, slightly shifted look of instant film.
 
-```javascript
-// Polaroid Color
+<CodeBlock language="javascript">
+{`// Polaroid Color
 colorMatrix: [
   1.438, -0.062, -0.062, 0, 0,
  -0.122,  1.378, -0.122, 0, 0,
  -0.016, -0.016,  1.483, 0, 0,
   0,      0,      0,     1, 0,
  -0.03,   0.05,  -0.02, 0, 1
-]
-```
+]`}
+</CodeBlock>
+
 ![Polaroid](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/ColorMatrix/Polaroid%20Color.png?raw=true)
 
 ---
@@ -301,16 +306,16 @@ Converts white pixels to transparent by subtracting RGB values from the alpha ch
 **Real-world Application**: Perfect for preparing logos or icons with white backgrounds for overlay on different colored surfaces.
 :::
 
-```javascript
-// White to Alpha - makes white areas transparent
+<CodeBlock language="javascript">
+{`// White to Alpha - makes white areas transparent
 colorMatrix: [
   1, 0, 0, -1, 0,   // New Red = Old_Red - Alpha
   0, 1, 0, -1, 0,   // New Green = Old_Green - Alpha
   0, 0, 1, -1, 0,   // New Blue = Old_Blue - Alpha
   0, 0, 0,  1, 0,   // Preserve original alpha
   0, 0, 0,  0, 1    // No additional shift
-]
-```
+]`}
+</CodeBlock>
 
 **Logic**: Pure white pixels (R=1, G=1, B=1) become transparent because `New_RGB = 1 - 1 = 0`. Other colors remain visible.
 

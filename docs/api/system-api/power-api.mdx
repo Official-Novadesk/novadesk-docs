@@ -3,6 +3,8 @@ title: Power API
 description: Access system power and battery status in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -59,8 +61,8 @@ Retrieves current power and battery information.
 
 ### Example
 
-```javascript
-var power = system.getPowerStatus();
+<CodeBlock language="javascript">
+  {`var power = system.getPowerStatus();
 
 if (power) {
     console.log("Source: " + (power.acline ? "AC Power" : "Battery"));
@@ -70,5 +72,5 @@ if (power) {
     if (power.status === 1) {
         console.log("Status: Charging");
     }
-}
-```
+}`}
+</CodeBlock>

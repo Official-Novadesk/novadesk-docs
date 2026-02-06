@@ -3,6 +3,8 @@ title: Timer Functions
 description: Timer functions for scheduling code execution in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 Novadesk provides several timer functions to schedule code execution, similar to those found in browsers and Node.js.
 
 :::warning
@@ -33,15 +35,15 @@ Execute a function after a specified delay.
 
 ### Example
 
-```js
-// Execute a function after 3 seconds
+<CodeBlock language="js">
+  {`// Execute a function after 3 seconds
 var timerId = setTimeout(function() {
   console.log("This runs after 3 seconds");
 }, 3000);
 
 // Cancel the timer before it executes
-// clearTimeout(timerId);
-```
+// clearTimeout(timerId);`}
+</CodeBlock>
 
 ## **`setInterval(callback, interval)`**
 
@@ -67,8 +69,8 @@ Execute a function repeatedly at specified intervals.
 
 ### Example
 
-```js
-// Execute a function every 2 seconds
+<CodeBlock language="js">
+  {`// Execute a function every 2 seconds
 var intervalId = setInterval(function() {
   console.log("This runs every 2 seconds");
 }, 2000);
@@ -77,8 +79,8 @@ var intervalId = setInterval(function() {
 setTimeout(function() {
   clearInterval(intervalId);
   console.log("Interval stopped");
-}, 10000);
-```
+}, 10000);`}
+</CodeBlock>
 
 ## **`clearTimeout(id)`**
 
@@ -92,15 +94,15 @@ Cancel a timer created with `setTimeout`.
 
 ### Example
 
-```js
-var timerId = setTimeout(function() {
+<CodeBlock language="js">
+  {`var timerId = setTimeout(function() {
   console.log("This will not run");
 }, 5000);
 
 // Cancel the timer
 clearTimeout(timerId);
-console.log("Timer cancelled");
-```
+console.log("Timer cancelled");`}
+</CodeBlock>
 
 ## **`clearInterval(id)`**
 
@@ -114,8 +116,8 @@ Cancel a timer created with `setInterval`.
 
 ### Example
 
-```js
-var intervalId = setInterval(function() {
+<CodeBlock language="js">
+  {`var intervalId = setInterval(function() {
   console.log("This runs repeatedly");
 }, 1000);
 
@@ -123,8 +125,8 @@ var intervalId = setInterval(function() {
 setTimeout(function() {
   clearInterval(intervalId);
   console.log("Interval stopped");
-}, 5000);
-```
+}, 5000);`}
+</CodeBlock>
 
 ## **`setImmediate(callback)`**
 
@@ -144,8 +146,8 @@ Execute a function as soon as possible in the next event loop iteration.
 
 ### Example
 
-```js
-console.log("First");
+<CodeBlock language="js">
+  {`console.log("First");
 
 setImmediate(function() {
   console.log("This runs after current execution completes");
@@ -156,5 +158,5 @@ console.log("Second");
 // Output order:
 // First
 // Second
-// This runs after current execution completes
-```
+// This runs after current execution completes`}
+</CodeBlock>

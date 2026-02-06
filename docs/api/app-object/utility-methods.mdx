@@ -3,6 +3,8 @@ title: Utility Methods
 description: General utility methods available on the app object.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 Utility methods are **available only in the Main script**.
 :::
@@ -12,20 +14,20 @@ Utility methods are **available only in the Main script**.
 **Description**: Exits the Novadesk application.
 
 ### Example
-```javascript
-// Exit the application
-app.exit();
-```
+<CodeBlock language="javascript">
+  {`// Exit the application
+app.exit();`}
+</CodeBlock>
 ---
 ## `app.refresh()`
 
 **Description**: Reloads all active widget scripts. This is useful for programmatically applying changes that require a full reload of the script environment.
 
 ### Example
-```javascript
-// Programmatically trigger a full refresh of all widgets
-app.refresh();
-```
+<CodeBlock language="javascript">
+  {`// Programmatically trigger a full refresh of all widgets
+app.refresh();`}
+</CodeBlock>
 ---
 ## `app.getProductVersion()`
 
@@ -36,11 +38,11 @@ For standalone widget applications created with the `nwm` build tool, this value
 :::
 
 ### Example
-```javascript
-// Get the current product version
+<CodeBlock language="javascript">
+  {`// Get the current product version
 const version = app.getProductVersion();
-console.log("Product Version: " + version);
-```
+console.log("Product Version: " + version);`}
+</CodeBlock>
 ---
 ## `app.getFileVersion()`
 
@@ -51,54 +53,54 @@ For standalone widget applications created with the `nwm` build tool, this value
 :::
 
 ### Example
-```javascript
-// Get the current file version
+<CodeBlock language="javascript">
+  {`// Get the current file version
 const fileVersion = app.getFileVersion();
-console.log("File Version: " + fileVersion);
-```
+console.log("File Version: " + fileVersion);`}
+</CodeBlock>
 ---
 ## `app.getNovadeskVersion()`
 
 **Description**: Returns the original, hardcoded version of the Novadesk application. Unlike the metadata-based methods, this value is **never changed** by the `nwm` build tool.
 
 ### Example
-```javascript
-// Get the original Novadesk version
+<CodeBlock language="javascript">
+  {`// Get the original Novadesk version
 const novadeskVersion = app.getNovadeskVersion();
-console.log("Original Novadesk Version: " + novadeskVersion);
-```
+console.log("Original Novadesk Version: " + novadeskVersion);`}
+</CodeBlock>
 ---
 ## `app.getAppDataPath()`
 
 **Description**: Returns the absolute path to the Novadesk AppData directory (`%APPDATA%\Novadesk\`). This directory is used for storing persistent settings, logs, and configuration.
 
 ### Example
-```javascript
-// Get the path to Novadesk AppData
+<CodeBlock language="javascript">
+  {`// Get the path to Novadesk AppData
 const appData = app.getAppDataPath();
-console.log("AppData Path: " + appData);
-```
+console.log("AppData Path: " + appData);`}
+</CodeBlock>
 ---
 ## `app.getSettingsFilePath()`
 
 **Description**: Returns the absolute path to the `settings.json` file.
 
 ### Example
-```javascript
-// Get the settings file path
+<CodeBlock language="javascript">
+  {`// Get the settings file path
 const settingsPath = app.getSettingsFilePath();
-console.log("Settings Path: " + settingsPath);
-```
+console.log("Settings Path: " + settingsPath);`}
+</CodeBlock>
 ---
 ## `app.getLogPath()`
 
 **Description**: Returns the absolute path to the current log file (`logs.log`).
 
 ### Example
-```javascript
-// Get the log file path
+<CodeBlock language="javascript">
+  {`// Get the log file path
 const logPath = app.getLogPath();
-console.log("Log Path: " + logPath);
-```
+console.log("Log Path: " + logPath);`}
+</CodeBlock>
 ---
 

@@ -3,6 +3,8 @@ title: Path API
 description: Utilities for working with file and directory paths in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The `path` module provides utilities for working with file and directory paths. It is available globally in both Main and UI scripts.
 
 ## `path.join([...paths])`
@@ -10,10 +12,10 @@ The `path` module provides utilities for working with file and directory paths. 
 Joins all given path segments together using the platform-specific separator (`\`), then normalizes the resulting path.
 
 ### Example
-```javascript
-var fullPath = path.join('C:', 'Users', 'John', 'Desktop', 'widget.js');
-// Returns: "C:\Users\John\Desktop\widget.js"
-```
+<CodeBlock language="javascript">
+  {`var fullPath = path.join('C:', 'Users', 'John', 'Desktop', 'widget.js');
+// Returns: "C:\Users\John\Desktop\widget.js"`}
+</CodeBlock>
 
 ---
 
@@ -22,10 +24,10 @@ var fullPath = path.join('C:', 'Users', 'John', 'Desktop', 'widget.js');
 Resolves a sequence of paths or path segments into an absolute path.
 
 ### Example
-```javascript
-var absolutePath = path.resolve('data', 'settings.json');
-// Returns absolute path relative to the application directory
-```
+<CodeBlock language="javascript">
+  {`var absolutePath = path.resolve('data', 'settings.json');
+// Returns absolute path relative to the application directory`}
+</CodeBlock>
 
 ---
 
@@ -34,10 +36,10 @@ var absolutePath = path.resolve('data', 'settings.json');
 Returns the directory name of a path.
 
 ### Example
-```javascript
-var dir = path.dirname('/app/data/file.txt');
-// Returns: "/app/data"
-```
+<CodeBlock language="javascript">
+  {`var dir = path.dirname('/app/data/file.txt');
+// Returns: "/app/data"`}
+</CodeBlock>
 
 ---
 
@@ -46,13 +48,13 @@ var dir = path.dirname('/app/data/file.txt');
 Returns the last portion of a path.
 
 ### Example
-```javascript
-var file = path.basename('/app/data/file.txt');
+<CodeBlock language="javascript">
+  {`var file = path.basename('/app/data/file.txt');
 // Returns: "file.txt"
 
 var name = path.basename('/app/data/file.txt', '.txt');
-// Returns: "file"
-```
+// Returns: "file"`}
+</CodeBlock>
 
 ---
 
@@ -61,10 +63,10 @@ var name = path.basename('/app/data/file.txt', '.txt');
 Returns the extension of the path.
 
 ### Example
-```javascript
-var ext = path.extname('index.html');
-// Returns: ".html"
-```
+<CodeBlock language="javascript">
+  {`var ext = path.extname('index.html');
+// Returns: ".html"`}
+</CodeBlock>
 
 ---
 
@@ -76,8 +78,8 @@ Returns an object whose properties represent significant elements of the path.
 An object with: `root`, `dir`, `base`, `ext`, `name`.
 
 ### Example
-```javascript
-var parts = path.parse('C:\\path\\to\\file.txt');
+<CodeBlock language="javascript">
+  {`var parts = path.parse('C:\\path\\to\\file.txt');
 /*
 {
   root: 'C:\\',
@@ -86,8 +88,8 @@ var parts = path.parse('C:\\path\\to\\file.txt');
   ext: '.txt',
   name: 'file'
 }
-*/
-```
+*/`}
+</CodeBlock>
 
 ---
 
@@ -96,10 +98,10 @@ var parts = path.parse('C:\\path\\to\\file.txt');
 Determines if a path is an absolute path.
 
 ### Example
-```javascript
-path.isAbsolute("C:\\Users\\Desktop"); // Returns: true
-path.isAbsolute("../images/logo.png"); // Returns: false
-```
+<CodeBlock language="javascript">
+  {`path.isAbsolute("C:\\Users\\Desktop"); // Returns: true
+path.isAbsolute("../images/logo.png"); // Returns: false`}
+</CodeBlock>
 
 ---
 
@@ -108,10 +110,10 @@ path.isAbsolute("../images/logo.png"); // Returns: false
 Normalizes the given path, resolving `..` and `.` segments and correcting slashes.
 
 ### Example
-```javascript
-var normalized = path.normalize("C:\\Users\\Documents\\..\\Desktop\\.\\widget.js");
-// Returns: "C:\Users\Desktop\widget.js"
-```
+<CodeBlock language="javascript">
+  {`var normalized = path.normalize("C:\\Users\\Documents\\..\\Desktop\\.\\widget.js");
+// Returns: "C:\Users\Desktop\widget.js"`}
+</CodeBlock>
 
 ---
 
@@ -120,7 +122,7 @@ var normalized = path.normalize("C:\\Users\\Documents\\..\\Desktop\\.\\widget.js
 Returns the relative path from `from` to `to` based on the current working directory.
 
 ### Example
-```javascript
-var rel = path.relative("C:\\data\\orandea\\test\\aaa", "C:\\data\\orandea\\impl\\bbb");
-// Returns: "..\\..\\impl\\bbb"
-```
+<CodeBlock language="javascript">
+  {`var rel = path.relative("C:\\data\\orandea\\test\\aaa", "C:\\data\\orandea\\impl\\bbb");
+// Returns: "..\\..\\impl\\bbb"`}
+</CodeBlock>

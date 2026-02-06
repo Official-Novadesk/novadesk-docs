@@ -3,6 +3,8 @@ title: Text Element
 description: Text UI element in Novadesk with all options and methods.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -12,9 +14,9 @@ import TabItem from '@theme/TabItem';
 
 Use the `addText()` method on the `win` object inside a **UI Script**:
 
-```js
-win.addText(options);
-```
+<CodeBlock language="js">
+  {`win.addText(options);`}
+</CodeBlock>
 ---
 ## General Element Options
 
@@ -105,16 +107,16 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 
 Examples:
 
-```javascript
-// Single shadow
+<CodeBlock language="javascript">
+  {`// Single shadow
 fontShadow: { x: 4, y: 4, blur: 8, color: "rgba(0,0,0,0.6)" }
 
 // Multiple layered shadows
 fontShadow: [
   { blur: 4, color: "#00ffff" },
   { blur: 10, color: "#00ffff" }
-]
-```
+]`}
+</CodeBlock>
 </Prop>
 
 <Prop name="textAlign" type="string" defaultValue="lefttop">
@@ -193,12 +195,12 @@ Right aligned, bottom vertical
 
 ### Usage Example
 
-```javascript
-win.addText({
+<CodeBlock language="javascript">
+  {`win.addText({
     text: "This is <b>Bold</b> and <color=#00ff00>Green</color> text.",
     fontSize: 18
-});
-```
+});`}
+</CodeBlock>
 
 ---
 
@@ -206,8 +208,8 @@ win.addText({
 
 <Tabs>
   <TabItem value="index-js-main-script" label="index.js (Main Script)" default>
-```javascript
-// create widget window
+<CodeBlock language="javascript">
+  {`// create widget window
 var sysWidget = new widgetWindow({
     id: "sysWidget",
     width: 450,
@@ -216,12 +218,12 @@ var sysWidget = new widgetWindow({
     zPos: "ontop",
     draggable: true,
     script: "ui.js"
-});
-```
+});`}
+</CodeBlock>
   </TabItem>
   <TabItem value="ui-js-ui-script" label="ui.js (UI Script)">
-```javascript
-// simple text
+<CodeBlock language="javascript">
+  {`// simple text
 win.addText({
     id: "simpleText",
     text: "SimpleText",
@@ -272,8 +274,8 @@ win.addText({
     fontColor: "rgb(255, 255, 255)",
     rotate:45,
     fontStyle: "italic",
-});
-```
+});`}
+</CodeBlock>
   </TabItem>
 </Tabs>
 

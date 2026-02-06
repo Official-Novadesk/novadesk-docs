@@ -3,6 +3,8 @@ title: Audio API
 description: Control system volume and play sounds in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -68,18 +70,18 @@ Stops any currently playing sound initiated via `playSound()`.
 ### Examples
 
 #### 1. Volume Control
-```javascript
-// Get current volume
+<CodeBlock language="javascript">
+  {`// Get current volume
 var vol = system.getVolume();
 console.log("Current Volume: " + vol);
 
 // Set volume to 50%
-system.setVolume(50);
-```
+system.setVolume(50);`}
+</CodeBlock>
 
 #### 2. Playing an Alert Sound
-```javascript
-// Play a sound once
+<CodeBlock language="javascript">
+  {`// Play a sound once
 system.playSound("assets/alert.wav");
 
 // Play a background sound on loop
@@ -88,5 +90,5 @@ system.playSound("assets/ambient.wav", true);
 // Stop the sound after 10 seconds
 setTimeout(function() {
     system.stopSound();
-}, 10000);
-```
+}, 10000);`}
+</CodeBlock>

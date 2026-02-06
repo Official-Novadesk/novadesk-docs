@@ -3,6 +3,8 @@ title: Color Formats
 description: Learn about the different color formats supported in Novadesk widgets
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 Novadesk supports multiple color formats for styling your widgets. You can use these formats for properties like `color`, `fontcolor`, `backgroundcolor`, `solidcolor`, and `solidcolor2`.
 
 ## Supported Color Formats
@@ -12,13 +14,13 @@ Novadesk supports multiple color formats for styling your widgets. You can use t
 Use the `rgb()` function to specify colors with red, green, and blue values (0-255).
 
 **Syntax:**
-```javascript
-rgb(red, green, blue)
-```
+<CodeBlock language="javascript">
+  {`rgb(red, green, blue)`}
+</CodeBlock>
 
 **Examples:**
-```javascript
-// Basic RGB colors
+<CodeBlock language="javascript">
+  {`// Basic RGB colors
 color: "rgb(255, 255, 255)"    // White
 color: "rgb(0, 0, 0)"          // Black  
 color: "rgb(255, 0, 0)"        // Red
@@ -30,21 +32,21 @@ color: "rgb(255, 0, 255)"      // Magenta
 
 // Custom colors
 color: "rgb(100, 150, 200)"    // Light blue
-color: "rgb(200, 100, 50)"     // Orange-brown
-```
+color: "rgb(200, 100, 50)"     // Orange-brown`}
+</CodeBlock>
 
 ### `RGBA Format`
 
 Use the `rgba()` function to specify colors with transparency. The alpha value ranges from 0.0 (fully transparent) to 1.0 (fully opaque).
 
 **Syntax:**
-```javascript
-rgba(red, green, blue, alpha)
-```
+<CodeBlock language="javascript">
+  {`rgba(red, green, blue, alpha)`}
+</CodeBlock>
 
 **Examples:**
-```javascript
-// Semi-transparent colors
+<CodeBlock language="javascript">
+  {`// Semi-transparent colors
 backgroundcolor: "rgba(0, 0, 0, 0.5)"        // 50% transparent black
 backgroundcolor: "rgba(255, 255, 255, 0.8)"  // 80% opaque white
 backgroundcolor: "rgba(255, 0, 0, 0.3)"      // 30% opaque red
@@ -55,24 +57,24 @@ solidcolor2: "rgba(0, 100, 255, 200)"        // Blue with alpha 200/255
 
 // Fully opaque (equivalent to RGB)
 color: "rgba(255, 255, 255, 1.0)"            // White
-color: "rgba(0, 0, 0, 1)"                    // Black
-```
+color: "rgba(0, 0, 0, 1)"                    // Black`}
+</CodeBlock>
 
 ### `Hexadecimal Format`
 
 Use hex notation with a `#` prefix for concise color specification.
 
 **Syntax:**
-```javascript
-#RGB        // 3-digit hex (each digit repeated)
+<CodeBlock language="javascript">
+  {`#RGB        // 3-digit hex (each digit repeated)
 #RGBA       // 4-digit hex with alpha
 #RRGGBB     // 6-digit hex
-#RRGGBBAA   // 8-digit hex with alpha
-```
+#RRGGBBAA   // 8-digit hex with alpha`}
+</CodeBlock>
 
 **Examples:**
-```javascript
-// 3-digit hex (shorthand)
+<CodeBlock language="javascript">
+  {`// 3-digit hex (shorthand)
 color: "#fff"          // White (#ffffff)
 color: "#000"          // Black (#000000)
 color: "#f00"          // Red (#ff0000)
@@ -93,8 +95,8 @@ color: "#4CAF50"       // Material Design Green
 
 // 8-digit hex with alpha
 backgroundcolor: "#ff000080"  // Red with 50% transparency
-backgroundcolor: "#00ff00ff"  // Green fully opaque
-```
+backgroundcolor: "#00ff00ff"  // Green fully opaque`}
+</CodeBlock>
 
 ## Gradients
 
@@ -105,30 +107,30 @@ Novadesk supports linear and radial gradients.
 Specifies a linear transition between multiple colors.
 
 **Syntax:**
-```javascript
-linearGradient(angle, color1, color2, ...)
-```
+<CodeBlock language="javascript">
+  {`linearGradient(angle, color1, color2, ...)`}
+</CodeBlock>
 
 * **`angle`** : A raw number representing the angle in degrees (e.g., `90` for vertical top-to-bottom). 
 
 **Example:**
-```javascript
-fontColor: "linearGradient(0, #ff8c00, #ff0080)"    // Horizontal gradient
-fontColor: "linearGradient(90, #f00, #0f0, #00f)"  // Vertical 3-color gradient
-```
+<CodeBlock language="javascript">
+  {`fontColor: "linearGradient(0, #ff8c00, #ff0080)"    // Horizontal gradient
+fontColor: "linearGradient(90, #f00, #0f0, #00f)"  // Vertical 3-color gradient`}
+</CodeBlock>
 
 ### `Radial Gradient`
 
 Specifies a radial transition from a center point.
 
 **Syntax:**
-```javascript
-radialGradient(shape, color1, color2, ...)
-```
+<CodeBlock language="javascript">
+  {`radialGradient(shape, color1, color2, ...)`}
+</CodeBlock>
 
 * **`shape`** : Either `"circle"` or `"ellipse"`.
 
 **Example:**
-```javascript
-fontColor: "radialGradient(circle, #ffff00, #ff0000)"
-```
+<CodeBlock language="javascript">
+  {`fontColor: "radialGradient(circle, #ffff00, #ff0000)"`}
+</CodeBlock>

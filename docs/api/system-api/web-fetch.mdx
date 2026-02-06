@@ -3,6 +3,8 @@ title: Web Fetch API
 description: Asynchronously fetch data from the web or local files in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -36,8 +38,8 @@ Initiates an asynchronous fetch request.
 #### 1. Fetching a Webpage Title
 You can use standard JavaScript Regular Expressions to parse the raw data returned by `system.fetch`.
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 system.fetch("https://www.google.com", function(data) {
     if (data) {
         const match = data.match(/<title>(.*?)<\/title>/);
@@ -49,14 +51,14 @@ system.fetch("https://www.google.com", function(data) {
     } else {
         console.log("Failed to fetch Google.");
     }
-});
-```
+});`}
+</CodeBlock>
 
 #### 2. Fetching and Parsing JSON
 While Novadesk has a dedicated [JSON API](/api/system-api/json-api), `system.fetch` can also be used to retrieve JSON from the web.
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 system.fetch("https://jsonplaceholder.typicode.com/todos/1", function(data) {
     if (data) {
         try {
@@ -67,17 +69,17 @@ system.fetch("https://jsonplaceholder.typicode.com/todos/1", function(data) {
             console.log("Failed to parse JSON response");
         }
     }
-});
-```
+});`}
+</CodeBlock>
 
 #### 3. Reading a Local File
 `system.fetch` treats relative paths (not starting with http/https) as local file paths relative to the executable directory.
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 system.fetch("settings.json", function(data) {
     if (data) {
         console.log("Settings file content length: " + data.length);
     }
-});
-```
+});`}
+</CodeBlock>

@@ -3,6 +3,8 @@ title: Environment Variables
 description: Environment variables in the Novadesk JavaScript API
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -24,17 +26,17 @@ Get the value of an environment variable.
 :::tip
 
 Omitting the parameter will return all environment variables.
-```js
-var allEnv = system.getEnv();
-```
+<CodeBlock language="js">
+  {`var allEnv = system.getEnv();`}
+</CodeBlock>
 :::
 
 ## Examples
 
 ### Getting a Specific Environment Variable
 
-```javascript
-// Get the PATH environment variable
+<CodeBlock language="javascript">
+  {`// Get the PATH environment variable
 var path = system.getEnv("PATH");
 console.log("Current PATH: " + path);
 
@@ -44,13 +46,13 @@ console.log("Current user: " + username);
 
 // Get the TEMP directory
 var tempDir = system.getEnv("TEMP");
-console.log("Temp directory: " + tempDir);
-```
+console.log("Temp directory: " + tempDir);`}
+</CodeBlock>
 
 ### Getting All Environment Variables
 
-```javascript
-// Get all environment variables as an object
+<CodeBlock language="javascript">
+  {`// Get all environment variables as an object
 var allEnv = system.getEnv();
 console.log("Total environment variables: " + Object.keys(allEnv).length);
 
@@ -59,5 +61,5 @@ for (var key in allEnv) {
     if (allEnv.hasOwnProperty(key)) {
         console.log(key + " = " + allEnv[key]);
     }
-}
-```
+}`}
+</CodeBlock>

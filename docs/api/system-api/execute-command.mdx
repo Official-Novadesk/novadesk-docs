@@ -3,6 +3,8 @@ title: Execute Command
 description: Launch external programs, files, or URLs using the system API
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -53,16 +55,16 @@ Launches an external application, opens a file, or opens a URL in the default br
 ### Examples
 
 #### Launch an Application
-```javascript
-system.execute("notepad.exe");
-```
+<CodeBlock language="javascript">
+  {`system.execute("notepad.exe");`}
+</CodeBlock>
 
 #### Open a URL
-```javascript
-system.execute("https://www.google.com");
-```
+<CodeBlock language="javascript">
+  {`system.execute("https://www.google.com");`}
+</CodeBlock>
 
 #### Run a Command with Parameters
-```javascript
-system.execute("cmd.exe", "/c dir", "C:\\", "normal");
-```
+<CodeBlock language="javascript">
+  {`system.execute("cmd.exe", "/c dir", "C:\\", "normal");`}
+</CodeBlock>

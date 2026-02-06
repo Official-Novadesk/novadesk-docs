@@ -3,6 +3,8 @@ title: Hotkey Management
 description: Register and manage global hotkeys in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 Novadesk allows you to register global hotkeys that work system-wide, enabling you to control your widgets and applications from anywhere.
 
 :::warning
@@ -86,8 +88,8 @@ Unregister a previously registered hotkey.
 - Arrow keys: `Up`, `Down`, `Left`, `Right`
 
 ## Example
-```javascript
-var hotkeyId = system.registerHotkey("Win+D", function() {
+<CodeBlock language="javascript">
+  {`var hotkeyId = system.registerHotkey("Win+D", function() {
     console.log("Win+D pressed");
 });
 
@@ -106,5 +108,5 @@ setTimeout(function() {
     console.log("Hotkey Id unregistered");
     system.unregisterHotkey(hotkeyId2);
     console.log("Hotkey Id2 unregistered");
-}, 5000);
-```
+}, 5000);`}
+</CodeBlock>

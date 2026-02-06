@@ -3,6 +3,8 @@ title: Clipboard API
 description: Access Windows System Clipboard in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -39,8 +41,8 @@ Sets the text content of the system clipboard.
 
 ### Example
 
-```javascript
-// Copy text to clipboard
+<CodeBlock language="javascript">
+  {`// Copy text to clipboard
 var success = system.setClipboardText("Copied from Novadesk!");
 if (success) {
     console.log("Text copied!");
@@ -48,5 +50,5 @@ if (success) {
 
 // Read from clipboard
 var text = system.getClipboardText();
-console.log("Clipboard contains: " + text);
-```
+console.log("Clipboard contains: " + text);`}
+</CodeBlock>

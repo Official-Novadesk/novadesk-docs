@@ -3,6 +3,8 @@ title: Tray API
 description: Methods for managing the application's system tray icon and menu via the app object.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The `app` object provides methods to control the application's presence in the system tray.
 
 :::warning
@@ -22,8 +24,8 @@ Sets the context menu for the application's system tray icon.
   - `items` (Array): An array of sub-menu items (creates a nested menu).
 
 ### Example
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 app.setTrayMenu([
   {
     text: "Open App",
@@ -55,8 +57,8 @@ app.setTrayMenu([
       app.exit();
     }
   }
-]);
-```
+]);`}
+</CodeBlock>
 ---
 ## `app.clearTrayMenu()`
 
@@ -77,7 +79,7 @@ Dynamically hides or shows the system tray icon.
 - **hide** (boolean): `true` to hide the icon, `false` to show it.
 
 ### Example
-```javascript
-app.hideTrayIcon(true);
-```
+<CodeBlock language="javascript">
+  {`app.hideTrayIcon(true);`}
+</CodeBlock>
 ---

@@ -3,6 +3,8 @@ title: JSON API
 description: JSON file operations in the Novadesk JavaScript API
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -32,8 +34,8 @@ Reads and parses a JSON file.
 
 <Tabs>
   <TabItem value="index-js" label="index.js" default>
-```javascript
-var config = system.readJson("config.json");
+<CodeBlock language="javascript">
+  {`var config = system.readJson("config.json");
 
 if (config) {
     console.log("Loaded configuration");
@@ -42,30 +44,30 @@ if (config) {
     console.log("Opacity:", config.opacity);
 } else {
     console.log("Failed to load configuration");
-}
-```
+}`}
+</CodeBlock>
   </TabItem>
 
   <TabItem value="style-css" label="style.css">
-```json
-{
+<CodeBlock language="json">
+  {`{
     "settings": {
         "debug": true
     },
     "background": "dark_blue",
     "opacity": 0.8
-}
-```
+}`}
+</CodeBlock>
   </TabItem>
 </Tabs>
 
 **Output**
-```text
-[TimeStamp] [Novadesk] [LOG] Loaded configuration
+<CodeBlock language="text">
+  {`[TimeStamp] [Novadesk] [LOG] Loaded configuration
 [TimeStamp] [Novadesk] [LOG] Debug: true
 [TimeStamp] [Novadesk] [LOG] Background: dark_blue
-[TimeStamp] [Novadesk] [LOG] Opacity: 0.8
-```
+[TimeStamp] [Novadesk] [LOG] Opacity: 0.8`}
+</CodeBlock>
 
 ## **`system.writeJson(path, data)`**
 
@@ -93,8 +95,8 @@ Writes a JavaScript object to a JSON file.
 
 #### 1. Writing a New File
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 var settings = {
     theme: "dark",
     volume: 80,
@@ -105,13 +107,13 @@ if (system.writeJson("settings.json", settings)) {
     console.log("Settings saved successfully");
 } else {
     console.log("Failed to save settings");
-}
-```
+}`}
+</CodeBlock>
 
 #### 2. Updating a Single Value
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 // 1. Read existing config
 var config = system.readJson("config.json");
 
@@ -123,5 +125,5 @@ if (config) {
     if (system.writeJson("config.json", config)) {
         console.log("Config updated successfully");
     }
-}
-```
+}`}
+</CodeBlock>

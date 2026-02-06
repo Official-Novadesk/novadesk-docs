@@ -3,6 +3,8 @@ title: widgetWindow()
 description: Create and manage desktop widget windows in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The `widgetWindow` class is the primary interface for creating and managing desktop widgets.
 
 :::warning
@@ -14,9 +16,9 @@ Widget windows are transparent, layerable, and can be positioned anywhere on the
 
 ## Syntax
 
-```javascript
-var widget = new widgetWindow(options);
-```
+<CodeBlock language="javascript">
+  {`var widget = new widgetWindow(options);`}
+</CodeBlock>
 
 ## Parameters
 
@@ -184,15 +186,15 @@ Once a widget is created, you can use several methods. For more information, see
 
 ## Example
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 var widget = new widgetWindow({
   id: "myWidget",
   width: 300,
   height: 150,
   backgroundColor: "rgba(30, 30, 40, 0.9)",
-});
-```
+});`}
+</CodeBlock>
 
 ## Preview
 

@@ -3,6 +3,8 @@ title: Disk Monitor
 description: Monitor disk usage in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The Disk monitor class allows you to monitor disk usage for specific drives or all drives on the system.
 
 :::warning
@@ -11,9 +13,9 @@ System monitors are **only available in the Main script**. UI scripts should req
 
 ## Creating a Disk Monitor
 
-```javascript
-var disk = new system.disk(options);
-```
+<CodeBlock language="javascript">
+  {`var disk = new system.disk(options);`}
+</CodeBlock>
 
 ### Parameters
 
@@ -67,8 +69,8 @@ Destroy the disk monitor and free its resources.
 
 ## Complete Example
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 var cDrive = new system.disk({ drive: "C:" });
 var allDisks = new system.disk();  // Monitor all drives
 
@@ -99,5 +101,5 @@ setTimeout(function () {
     cDrive.destroy();
     allDisks.destroy();
     console.log("Disk Monitor Destroyed");
-}, 30000);
-```
+}, 30000);`}
+</CodeBlock>

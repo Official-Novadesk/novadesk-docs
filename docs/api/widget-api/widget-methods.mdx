@@ -3,6 +3,8 @@ title: Widget Methods
 description: Methods available on widget objects in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -77,12 +79,12 @@ Properties to change of the element.
 
 #### Example
 
-```javascript
-win.setElementProperties("myText", {
+<CodeBlock language="javascript">
+  {`win.setElementProperties("myText", {
   x: 20,
   y: 20
-});
-```
+});`}
+</CodeBlock>
 ---
 ### **`removeElements(ids)`**
 
@@ -103,16 +105,16 @@ Leaving the `ids` parameter empty or setting it to `null`/`undefined` will remov
 
 #### Example
 
-```javascript
-// Remove a single element
+<CodeBlock language="javascript">
+  {`// Remove a single element
 win.removeElements("myText");
 
 // Remove multiple elements
 win.removeElements(["img1", "img2", "text3"]);
 
 // Clear all content
-win.removeElements();
-```
+win.removeElements();`}
+</CodeBlock>
 
 ### **`getElementProperty(id, propertyName)`**
 
@@ -140,15 +142,15 @@ The value of requested property. Returns `null` if the element is not found, or 
 
 #### Example
 
-```javascript
-var textValue = win.getElementProperty("myText", "text");
+<CodeBlock language="javascript">
+  {`var textValue = win.getElementProperty("myText", "text");
 if (textValue !== null) {
   console.log("Current text: " + textValue);
 }
 
 var xPos = win.getElementProperty("myText", "x");
-console.log("X Position: " + xPos);
-```
+console.log("X Position: " + xPos);`}
+</CodeBlock>
 ---
 ## Widget Management Methods
 
@@ -172,14 +174,14 @@ See [Widget Options](/api/widget-api/widget-window/#options-object) for a list o
 
 #### Example (Main Script)
 
-```javascript
-var widget = new widgetWindow({ id: "my-widget" });
+<CodeBlock language="javascript">
+  {`var widget = new widgetWindow({ id: "my-widget" });
 
 widget.setProperties({
 x: 200,
 y: 200
-});
-```
+});`}
+</CodeBlock>
 ---
 ### `getProperties()`
 
@@ -191,10 +193,10 @@ An object containing the current widget properties.
 
 #### Example
 
-```javascript
-var props = widget.getProperties();
-console.log("Widget position: " + props.x + ", " + props.y);
-```
+<CodeBlock language="javascript">
+  {`var props = widget.getProperties();
+console.log("Widget position: " + props.x + ", " + props.y);`}
+</CodeBlock>
 ---
 ### `close()`
 
@@ -202,9 +204,9 @@ Close and destroy the widget. Available only in the main script.
 
 #### Example
 
-```javascript
-widget.close();
-```
+<CodeBlock language="javascript">
+  {`widget.close();`}
+</CodeBlock>
 ---
 ### `refresh()`
 
@@ -212,9 +214,9 @@ Refresh the widget (reload scripts and redraw). Available only in the main scrip
 
 #### Example
 
-```javascript
-widget.refresh();
-```
+<CodeBlock language="javascript">
+  {`widget.refresh();`}
+</CodeBlock>
 ---
 ### **`on(eventName, callback)`**
 
@@ -240,8 +242,8 @@ Function executed when the specified event occurs.
 
 #### Example
 
-```javascript
-widget.on("refresh", function () {
+<CodeBlock language="javascript">
+  {`widget.on("refresh", function () {
   console.log("Widget is refreshing!");
 });
 
@@ -251,8 +253,8 @@ widget.on("close", function () {
 
 widget.on("closed", function () {
   console.log("Window is now gone.");
-});
-```
+});`}
+</CodeBlock>
 ---
 
 ## Context Menu Methods
@@ -302,8 +304,8 @@ Each menu item may contain:
 
 #### Example
 
-```javascript
-widget.setContextMenu([
+<CodeBlock language="javascript">
+  {`widget.setContextMenu([
   {
     text: "Toggle Submenu",
     items: [
@@ -331,9 +333,8 @@ widget.setContextMenu([
       win.refresh();
     }
   }
-]);
-
-```
+]);`}
+</CodeBlock>
 ---
 
 ### `clearContextMenu()`
@@ -342,9 +343,9 @@ Removes all custom items from the context menu. Available only in Main script.
 
 #### Example
 
-```javascript
-widget.clearContextMenu();
-```
+<CodeBlock language="javascript">
+  {`widget.clearContextMenu();`}
+</CodeBlock>
 ---
 
 ### **`disableContextMenu(disabled)`**
@@ -360,9 +361,9 @@ Set to `true` to disable the context menu. Set to `false` to enable it.
 
 #### Example
 
-```js
-widget.disableContextMenu(true);
-```
+<CodeBlock language="js">
+  {`widget.disableContextMenu(true);`}
+</CodeBlock>
 ---
 
 ### **`showDefaultContextMenuItems(show)`**
@@ -379,10 +380,10 @@ Controls the visibility of the default Novadesk context menu items (Refresh, Exi
 
 #### Example
 
-```js
-// Hide default items to use a fully custom context menu
-widget.showDefaultContextMenuItems(false);
-```
+<CodeBlock language="js">
+  {`// Hide default items to use a fully custom context menu
+widget.showDefaultContextMenuItems(false);`}
+</CodeBlock>
 ---
 
 ## Inter-Process Communication (IPC)
@@ -428,21 +429,21 @@ Data to send to the receiving script.
 
 <Tabs>
   <TabItem value="index-js" label="index.js" default>
-```javascript
-ipc.on("get-message-from-widget", function() {
+<CodeBlock language="javascript">
+  {`ipc.on("get-message-from-widget", function() {
   console.log("Call received from widget");
   ipc.send("send-message-to-widget", "Hello from main script");
-});
-```
+});`}
+</CodeBlock>
   </TabItem>
 
   <TabItem value="welcome-js" label="welcome.js">
-```javascript
-ipc.send("get-message-from-widget");
+<CodeBlock language="javascript">
+  {`ipc.send("get-message-from-widget");
 
 ipc.on("send-message-to-widget", function(data) {
 console.log("Message from main script: " + data);
-});
-```
+});`}
+</CodeBlock>
   </TabItem>
 </Tabs>

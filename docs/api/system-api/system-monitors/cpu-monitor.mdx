@@ -3,6 +3,8 @@ title: CPU Monitor
 description: Monitor CPU usage in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The CPU monitor class allows you to monitor CPU usage on the system. You can monitor overall system CPU usage or
 specific processor cores.
 
@@ -12,9 +14,9 @@ System monitors are **only available in the Main script**. UI scripts should req
 
 ## Creating a CPU Monitor
 
-```javascript
-var cpu = new system.cpu(options);
-```
+<CodeBlock language="javascript">
+  {`var cpu = new system.cpu(options);`}
+</CodeBlock>
 
 ### Parameters
 
@@ -47,8 +49,8 @@ Destroy the CPU monitor and free its resources.
 
 ## Example
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 // Create CPU monitors
 var overallCPU = new system.cpu();
 var core1CPU = new system.cpu({ processor: 1 });
@@ -67,6 +69,5 @@ setTimeout(function () {
     overallCPU.destroy();
     core1CPU.destroy();
     console.log("CPU Monitors Destroyed");
-}, 5000);
-
-```
+}, 5000);`}
+</CodeBlock>

@@ -3,6 +3,8 @@ title: Network Monitor
 description: Monitor network activity in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The Network monitor class allows you to monitor network activity including incoming and outgoing data transfer rates and
 totals.
 
@@ -12,9 +14,9 @@ System monitors are **only available in the Main script**. UI scripts should req
 
 ## Creating a Network Monitor
 
-```javascript
-var network = new system.network();
-```
+<CodeBlock language="javascript">
+  {`var network = new system.network();`}
+</CodeBlock>
 
 ## Methods
 
@@ -49,8 +51,8 @@ Destroy the network monitor and free its resources.
 
 ## Complete Example
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 var network = new system.network();
 
 var intervalId = setInterval(function () {
@@ -72,5 +74,5 @@ setTimeout(function () {
     clearInterval(intervalId);
     network.destroy();
     console.log("Network Monitor Destroyed");
-}, 5000);
-```
+}, 5000);`}
+</CodeBlock>

@@ -3,6 +3,8 @@ title: Addon API
 description: Load and manage native C++ addons from JavaScript.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system.loadAddon()` method is **only available in the Main script**. Native addons are **engine-agnostic** and do not require linking against Duktape.
 :::
@@ -48,8 +50,8 @@ Unloads a previously loaded native addon. This disposes of the native resources 
 
 ## **Example**
 
-```javascript
-// Load a local addon
+<CodeBlock language="javascript">
+  {`// Load a local addon
 const myAddon = system.loadAddon("./utils_addon.dll");
 
 if (myAddon) {
@@ -61,8 +63,8 @@ if (myAddon) {
     
     // Unload when finished (voluntary)
     system.unloadAddon("./utils_addon.dll");
-}
-```
+}`}
+</CodeBlock>
 
 ---
 

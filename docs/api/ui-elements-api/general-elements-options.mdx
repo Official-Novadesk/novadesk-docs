@@ -2,6 +2,9 @@
 title: General Elements Options
 description: Options available for use with all elements in Novadesk applications.
 ---
+
+import CodeBlock from '@theme/CodeBlock';
+
 ## Options
 
 #### **`id`**
@@ -101,9 +104,9 @@ Controls the visual style of the bevel.
   - `padding: [left, top, right, bottom]` : e.g. `[5, 10, 15, 20]`
 
 * **Example**:
-```js
-padding: [5, 10, 5, 10]
-```
+<CodeBlock language="js">
+  {`padding: [5, 10, 5, 10]`}
+</CodeBlock>
 </Prop>
 
 <Prop name="transformMatrix" type="array" defaultValue="[]">
@@ -114,10 +117,10 @@ This allows for advanced 2D transformations including translation, scaling, rota
 `[ ScaleX, SkewY, SkewX, ScaleY, TranslateX, TranslateY ]`
 
 * **Example**:
-```javascript
-// Skew transformation
-transformMatrix: [1, 0.5, 0, 1, 0, 0]
-```
+<CodeBlock language="javascript">
+  {`// Skew transformation
+transformMatrix: [1, 0.5, 0, 1, 0, 0]`}
+</CodeBlock>
 
 # Tooltip Options
 
@@ -168,9 +171,9 @@ Events triggered by the left mouse button.
 - `onLeftDoubleClick`: Button double-clicked
 
 * **Example**:
-```javascript
-onLeftMouseUp: function() { console.log("Left click!"); }
-```
+<CodeBlock language="javascript">
+  {`onLeftMouseUp: function() { console.log("Left click!"); }`}
+</CodeBlock>
 ---
 
 #### **`onRightMouseUp`, `onRightMouseDown`, `onRightDoubleClick`**
@@ -183,9 +186,9 @@ Events triggered by the right mouse button.
 - `onRightDoubleClick`: Button double-clicked
 
 * **Example**:
-```javascript
-onRightMouseUp: function() { console.log("Right click!"); }
-```
+<CodeBlock language="javascript">
+  {`onRightMouseUp: function() { console.log("Right click!"); }`}
+</CodeBlock>
 ---
 
 #### **`onMiddleMouseUp`, `onMiddleMouseDown`, `onMiddleDoubleClick`**
@@ -198,9 +201,9 @@ Events triggered by the middle mouse button (scroll wheel click).
 - `onMiddleDoubleClick`: Button double-clicked
 
 * **Example**:
-```javascript
-onMiddleMouseUp: function() { console.log("Middle click!"); }
-```
+<CodeBlock language="javascript">
+  {`onMiddleMouseUp: function() { console.log("Middle click!"); }`}
+</CodeBlock>
 ---
 
 #### **`onX1MouseUp`, `onX1MouseDown`, `onX1DoubleClick`**
@@ -210,9 +213,9 @@ onMiddleMouseUp: function() { console.log("Middle click!"); }
 Events triggered by the X1 mouse button (usually "Back").
 
 * **Example**:
-```javascript
-onX1MouseUp: function() { console.log("Back button clicked"); }
-```
+<CodeBlock language="javascript">
+  {`onX1MouseUp: function() { console.log("Back button clicked"); }`}
+</CodeBlock>
 ---
 
 #### **`onX2MouseUp`, `onX2MouseDown`, `onX2DoubleClick`**
@@ -222,9 +225,9 @@ onX1MouseUp: function() { console.log("Back button clicked"); }
 Events triggered by the X2 mouse button (usually "Forward").
 
 * **Example**:
-```javascript
-onX2MouseUp: function() { console.log("Forward button clicked"); }
-```
+<CodeBlock language="javascript">
+  {`onX2MouseUp: function() { console.log("Forward button clicked"); }`}
+</CodeBlock>
 ---
 
 #### **`onMouseOver`, `onMouseLeave`**
@@ -236,9 +239,9 @@ Events triggered by mouse movement.
 - `onMouseLeave`: Cursor leaves the element area
 
 * **Example**:
-```javascript
-onMouseOver: function() { console.log("Mouse entered!"); }
-```
+<CodeBlock language="javascript">
+  {`onMouseOver: function() { console.log("Mouse entered!"); }`}
+</CodeBlock>
 ---
 
 #### **`onScrollUp`, `onScrollDown`**
@@ -248,9 +251,9 @@ onMouseOver: function() { console.log("Mouse entered!"); }
 Events triggered by vertical scrolling.
 
 * **Example**:
-```javascript
-onScrollUp: function() { console.log("Scrolled up"); }
-```
+<CodeBlock language="javascript">
+  {`onScrollUp: function() { console.log("Scrolled up"); }`}
+</CodeBlock>
 ---
 
 #### **`onScrollLeft`, `onScrollRight`**
@@ -260,7 +263,7 @@ onScrollUp: function() { console.log("Scrolled up"); }
 Events triggered by horizontal scrolling.
 
 * **Example**:
-```javascript
-onScrollLeft: function() { console.log("Scrolled left"); }
-```
+<CodeBlock language="javascript">
+  {`onScrollLeft: function() { console.log("Scrolled left"); }`}
+</CodeBlock>
 ---

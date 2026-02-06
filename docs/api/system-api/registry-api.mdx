@@ -3,6 +3,8 @@ title: Registry API
 description: Access Windows Registry values in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 :::warning
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 :::
@@ -51,13 +53,13 @@ Writes a value to the Windows Registry. Creates the key if it doesn't exist.
 
 ### Examples
 
-```javascript
-// Read a value
+<CodeBlock language="javascript">
+  {`// Read a value
 var theme = system.readRegistry("HKCU\\Software\\Novadesk", "Theme");
 if (theme) {
     console.log("Current Theme: " + theme);
 }
 
 // Write a value
-system.writeRegistry("HKCU\\Software\\Novadesk", "LastRun", new Date().toString());
-```
+system.writeRegistry("HKCU\\Software\\Novadesk", "LastRun", new Date().toString());`}
+</CodeBlock>

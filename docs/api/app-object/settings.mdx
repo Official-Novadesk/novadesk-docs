@@ -3,6 +3,8 @@ title: Configuration Methods
 description: Programmatically control Novadesk configuration via the app object.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 Novadesk provides several methods to control global application behavior programmatically via the `app` object. These methods can be called at any time and their values are
 persisted to `settings.json` located in the application's AppData directory.
 
@@ -21,10 +23,10 @@ Enables or disables logging to a file (`logs.log`) in the application's AppData 
 * **Description**: `true` to enable file logging, `false` to disable.
 
 ### Example
-```javascript
-// Enable logging to file
-app.saveLogToFile(true);
-```
+<CodeBlock language="javascript">
+  {`// Enable logging to file
+app.saveLogToFile(true);`}
+</CodeBlock>
 ---
 ## `app.enableDebugging(bool)`
 
@@ -37,10 +39,10 @@ Sets the global log level. When enabled, debug-level messages will be visible in
 * **Description**: `true` to enable debug logging, `false` to use standard informational logging.
 
 ### Example
-```javascript
-app.enableDebugging(true);
-console.debug("Detailed diagnostic information");
-```
+<CodeBlock language="javascript">
+  {`app.enableDebugging(true);
+console.debug("Detailed diagnostic information");`}
+</CodeBlock>
 ---
 ## `app.disableLogging(bool)`
 
@@ -53,10 +55,10 @@ Completely disables or enables all logging output (both console and file).
 * **Description**: `true` to silence all logs, `false` to resume logging based on other settings.
 
 ### Example
-```javascript
-// Silence all output for production
-app.disableLogging(true);
-```
+<CodeBlock language="javascript">
+  {`// Silence all output for production
+app.disableLogging(true);`}
+</CodeBlock>
 ---
 ## `app.hideTrayIcon(bool)`
 
@@ -69,10 +71,10 @@ Dynamically shows or hides the Novadesk icon in the system tray.
 * **Description**: `true` to hide the icon, `false` to show it.
 
 ### Example
-```javascript
-// Run in "stealth" mode
-app.hideTrayIcon(true);
-```
+<CodeBlock language="javascript">
+  {`// Run in "stealth" mode
+app.hideTrayIcon(true);`}
+</CodeBlock>
 ---
 ## `app.useHardwareAcceleration(bool)`
 
@@ -89,7 +91,7 @@ Changing this setting requires an **application restart** to take effect.
 :::
 
 ### Example
-```javascript
-// Enable hardware acceleration
-app.useHardwareAcceleration(true);
-```
+<CodeBlock language="javascript">
+  {`// Enable hardware acceleration
+app.useHardwareAcceleration(true);`}
+</CodeBlock>

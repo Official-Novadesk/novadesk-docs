@@ -3,13 +3,15 @@ title: Image Element
 description: Image UI element in Novadesk with all options and methods.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 ## Adding an Image Element
 
 Use the `addImage()` method on the `win` object within a [UI Script](/guides/script-types/#ui-script-the-face):
 
-```js
-win.addImage(options);
-```
+<CodeBlock language="js">
+  {`win.addImage(options);`}
+</CodeBlock>
 
 ## General Element Options
 
@@ -55,16 +57,16 @@ The array can contain either **20 numbers** (5x4 Direct2D format) or **25 number
 If 25 numbers are used, the 5th value of each row (the translation/W column) is automatically handled for compatibility with Direct2D.
 
 * **Example**:
-```javascript
-// Grayscale matrix
+<CodeBlock language="javascript">
+  {`// Grayscale matrix
 colorMatrix: [
    0.33, 0.33, 0.33, 0, 0,
    0.59, 0.59, 0.59, 0, 0,
    0.11, 0.11, 0.11, 0, 0,
    0,    0,    0,    1, 0,
    0,    0,    0,    0, 1
-]
-```
+]`}
+</CodeBlock>
 </Prop>
 
 ## `Supported Image Formats`

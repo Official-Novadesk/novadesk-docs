@@ -3,6 +3,8 @@ title: Creating Your First Widget
 description: A step-by-step guide to creating, running, and building your first Novadesk widget using the nwm tool.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 import FileTree from '@site/src/components/FileTree';
 
 This guide will walk you through the process of creating a simple widget using the **Novadesk Widget Maker (nwm)**.
@@ -15,9 +17,9 @@ Before you begin, ensure you have Novadesk installed and the `nwm.exe` tool avai
 
 Use the `nwm init` command to scaffold a new widget project. Open your terminal and run:
 
-```bash
-nwm init my-first-widget
-```
+<CodeBlock language="bash">
+  {`nwm init my-first-widget`}
+</CodeBlock>
 
 This creates a new directory called `my-first-widget` with the following structure:
 
@@ -39,8 +41,8 @@ The folder structure is determined by the `widget` template. You can add your ow
 
 Open `my-first-widget/ui/ui.js` and edit the text to make it your own:
 
-```javascript
-win.addText({
+<CodeBlock language="javascript">
+  {`win.addText({
     id: "hello_Text",
     x: 10,
     y: 10,
@@ -50,17 +52,17 @@ win.addText({
     fontsize: 16,
     fontcolor: "#000000",
     textalign: "centercenter"
-});
-```
+});`}
+</CodeBlock>
 
 ## 3. Run and Preview
 
 To see your widget in action, use the `nwm run` command from inside the widget directory:
 
-```bash
-cd my-first-widget
-nwm run
-```
+<CodeBlock language="bash">
+  {`cd my-first-widget
+nwm run`}
+</CodeBlock>
 
 This launches Novadesk and loads your widget script. The terminal will remain open to show you any logs or error messages from your widget.
 
@@ -72,9 +74,9 @@ You can right-click the Novadesk tray icon and select **Refresh** to reload your
 
 Once you're happy with your widget, you can build it into a standalone executable using `nwm build`:
 
-```bash
-nwm build
-```
+<CodeBlock language="bash">
+  {`nwm build`}
+</CodeBlock>
 
 This command performs several actions:
 1. **Validation**: Checks `meta.json` for required fields (`name`, `version`, `author`, `description`, `icon`).

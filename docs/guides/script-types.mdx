@@ -3,6 +3,8 @@ title: Script Types
 description: Understanding the difference between Main scripts and UI scripts in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 Novadesk uses two distinct types of JavaScript execution environments to build widgets: **Main Scripts** and **UI Scripts**. Each has a specific role and access level.
 
 ## Main Script (The Brain)
@@ -19,8 +21,8 @@ The Main script acts as the coordinator. It manages high-level logic, sets up ho
 - **Cannot** directly add or modify UI elements (text, images).
 - Has full access to global APIs like `novadesk`, `system`, and `ipc` (including system monitors like `system.cpu()` and timers like `setInterval`).
 
-```javascript
-// Example index.js (Main Script)
+<CodeBlock language="javascript">
+  {`// Example index.js (Main Script)
 var myWidget = new widgetWindow({
   id: "clockWidget",
   width: 300,
@@ -35,8 +37,8 @@ setInterval(function () {
 }, 1000);
 
 // Control window via the instance
-myWidget.setProperties({ x: 100, y: 100 });
-```
+myWidget.setProperties({ x: 100, y: 100 });`}
+</CodeBlock>
 
 ---
 
@@ -56,8 +58,8 @@ The UI script handles everything happening *inside* that specific window. It def
 - **Cannot** use global timers (e.g., `setInterval()` is undefined).
 - **Cannot** create new windows (e.g., `new widgetWindow()` is undefined).
 
-```javascript
-// Example clock_ui.js (UI Script)
+<CodeBlock language="javascript">
+  {`// Example clock_ui.js (UI Script)
 // Use the global 'win' object for UI elements
 win.addText({
   id: "time",
@@ -71,8 +73,8 @@ ipc.send("ui-ready");
 // Listen for messages from Main
 ipc.on("update-color", function (newColor) {
   win.setElementProperties("time", { fontColor: newColor });
-});
-```
+});`}
+</CodeBlock>
 
 ---
 

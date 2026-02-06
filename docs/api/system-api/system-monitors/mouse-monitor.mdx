@@ -3,6 +3,8 @@ title: Mouse Monitor
 description: Monitor mouse position in Novadesk
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 The Mouse monitor class allows you to monitor the current mouse cursor position on the screen.
 
 :::warning
@@ -11,9 +13,9 @@ System monitors are **only available in the Main script**. UI scripts should req
 
 ## Creating a Mouse Monitor
 
-```javascript
-var mouse = new system.mouse();
-```
+<CodeBlock language="javascript">
+  {`var mouse = new system.mouse();`}
+</CodeBlock>
 
 ## Methods
 
@@ -40,8 +42,8 @@ Destroy the mouse monitor and free its resources.
 
 ## Example
 
-```javascript
-// index.js
+<CodeBlock language="javascript">
+  {`// index.js
 var mouse = new system.mouse();
 
 var intervalId = setInterval(function () {
@@ -53,5 +55,5 @@ setTimeout(function () {
     clearInterval(intervalId);
     mouse.destroy();
     console.log("Mouse Monitor Destroyed");
-}, 5000);
-```
+}, 5000);`}
+</CodeBlock>

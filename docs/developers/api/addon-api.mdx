@@ -3,6 +3,8 @@ title: Addon API (Native)
 description: Technical guide for building native C++ addons for Novadesk.
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 This guide covers the technical details of the **Novadesk Addon SDK**, used to build native x64 DLLs that integrate with the Novadesk JavaScript engine.
 
 ## **Architecture**
@@ -17,8 +19,8 @@ Novadesk addons are **engine-agnostic**. Instead of linking against a specific J
 
 The primary entry point for any addon. It is called by Novadesk when `system.loadAddon()` is executed.
 
-```cpp
-#include <NovadeskAPI/novadesk_addon.h>
+<CodeBlock language="cpp">
+  {`#include <NovadeskAPI/novadesk_addon.h>
 
 NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
     // ctx: Opaque handle to the JS context
@@ -27,18 +29,18 @@ NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
     
     novadesk::Addon addon(ctx, host);
     addon.RegisterString("version", "1.0.0");
-}
-```
+}`}
+</CodeBlock>
 
 ### `NOVADESK_ADDON_UNLOAD`
 
 Optional hook called when the addon is manually unloaded or when Novadesk reloads scripts.
 
-```cpp
-NOVADESK_ADDON_UNLOAD() {
+<CodeBlock language="cpp">
+  {`NOVADESK_ADDON_UNLOAD() {
     // Cleanup your background threads, global memory, etc.
-}
-```
+}`}
+</CodeBlock>
 
 ---
 
@@ -52,53 +54,53 @@ Native addons export functionality by adding properties to the object returned b
 
 #### `RegisterString(name, value)`
 Registers a static string property.
-```cpp
-addon.RegisterString("version", "1.2.0");
-addon.RegisterString("author", "Novadesk Team");
-```
+<CodeBlock language="cpp">
+  {`addon.RegisterString("version", "1.2.0");
+addon.RegisterString("author", "Novadesk Team");`}
+</CodeBlock>
 
 #### `RegisterNumber(name, value)`
 Registers a numeric property (supports `double`, `int`, `float`).
-```cpp
-addon.RegisterNumber("maxConnections", 100);
-addon.RegisterNumber("pi", 3.14159);
-```
+<CodeBlock language="cpp">
+  {`addon.RegisterNumber("maxConnections", 100);
+addon.RegisterNumber("pi", 3.14159);`}
+</CodeBlock>
 
 #### `RegisterBool(name, value)`
 Registers a boolean property.
-```cpp
-addon.RegisterBool("isEnabled", true);
-```
+<CodeBlock language="cpp">
+  {`addon.RegisterBool("isEnabled", true);`}
+</CodeBlock>
 
 #### `RegisterArray(name, values)`
 Registers an array of either strings or numbers.
-```cpp
-// String array
+<CodeBlock language="cpp">
+  {`// String array
 addon.RegisterArray("tags", {"native", "performance", "win32"});
 
 // Number array
-addon.RegisterArray("levels", {1.0, 5.5, 10.0});
-```
+addon.RegisterArray("levels", {1.0, 5.5, 10.0});`}
+</CodeBlock>
 
 #### `RegisterObject(name, callback)`
 Creates a nested object to organize your API. The callback receives a new `novadesk::Addon` instance representing the sub-object.
-```cpp
-addon.RegisterObject("utils", [](novadesk::Addon& utils) {
+<CodeBlock language="cpp">
+  {`addon.RegisterObject("utils", [](novadesk::Addon& utils) {
     utils.RegisterString("status", "ok");
     utils.RegisterNumber("id", 12345);
-});
-```
+});`}
+</CodeBlock>
 
 ### **Registering Functions**
 
 Functions are registered with a name, a C++ lambda or function pointer, and the number of expected arguments (`nargs`).
 
-```cpp
-addon.RegisterFunction("hello", [](novadesk_context ctx) -> int {
+<CodeBlock language="cpp">
+  {`addon.RegisterFunction("hello", [](novadesk_context ctx) -> int {
     // 'ctx' is the JS context handle
     return 0; // Returning 0 means no value is returned to JS
-}, 0);
-```
+}, 0);`}
+</CodeBlock>
 
 ---
 
@@ -108,33 +110,33 @@ While high-level registration handles most cases, you can manually push values o
 
 #### `PushString(value)`
 Pushes a null-terminated string onto the stack.
-```cpp
-host->PushString(ctx, "Directly pushed string");
-```
+<CodeBlock language="cpp">
+  {`host->PushString(ctx, "Directly pushed string");`}
+</CodeBlock>
 
 #### `PushNumber(value)`
 Pushes a numeric value.
-```cpp
-host->PushNumber(ctx, 3.14);
-```
+<CodeBlock language="cpp">
+  {`host->PushNumber(ctx, 3.14);`}
+</CodeBlock>
 
 #### `PushBool(value)`
 Pushes a boolean value (as 1 or 0).
-```cpp
-host->PushBool(ctx, 1); // true
-```
+<CodeBlock language="cpp">
+  {`host->PushBool(ctx, 1); // true`}
+</CodeBlock>
 
 #### `PushNull()`
 Pushes a `null` value.
-```cpp
-host->PushNull(ctx);
-```
+<CodeBlock language="cpp">
+  {`host->PushNull(ctx);`}
+</CodeBlock>
 
 #### `PushObject()`
 Pushes a new, empty JavaScript object.
-```cpp
-host->PushObject(ctx);
-```
+<CodeBlock language="cpp">
+  {`host->PushObject(ctx);`}
+</CodeBlock>
 
 ---
 
@@ -145,8 +147,8 @@ When a JavaScript function calls your native addon, use the `Addon` utility meth
 ### `GetNumber(index)`
 Retrieves a numeric value at the specified stack index (0-based).
 
-```cpp
-// JS: addon.sum(10, 20)
+<CodeBlock language="cpp">
+  {`// JS: addon.sum(10, 20)
 addon.RegisterFunction("sum", [host](novadesk_context ctx) -> int {
     novadesk::Addon helper(ctx, host);
     
@@ -156,14 +158,14 @@ addon.RegisterFunction("sum", [host](novadesk_context ctx) -> int {
     // Return the result
     host->PushNumber(ctx, a + b);
     return 1; // 1 means we pushed one return value
-}, 2);
-```
+}, 2);`}
+</CodeBlock>
 
 ### `GetString(index)`
 Retrieves a string value.
 
-```cpp
-// JS: addon.greet("World")
+<CodeBlock language="cpp">
+  {`// JS: addon.greet("World")
 addon.RegisterFunction("greet", [host](novadesk_context ctx) -> int {
     novadesk::Addon helper(ctx, host);
     const char* name = helper.GetString(0);
@@ -171,20 +173,20 @@ addon.RegisterFunction("greet", [host](novadesk_context ctx) -> int {
     std::string response = "Hello, " + std::string(name) + "!";
     host->PushString(ctx, response.c_str());
     return 1;
-}, 1);
-```
+}, 1);`}
+</CodeBlock>
 
 ### `GetBool(index)`
 Retrieves a boolean value as a `bool`.
 
-```cpp
-// JS: addon.test(true)
+<CodeBlock language="cpp">
+  {`// JS: addon.test(true)
 addon.RegisterFunction("test", [host](novadesk_context ctx) -> int {
     novadesk::Addon helper(ctx, host);
     bool val = helper.GetBool(0); // true
     return 0;
-}, 1);
-```
+}, 1);`}
+</CodeBlock>
 
 ---
 
@@ -218,37 +220,37 @@ These methods provide direct control over the JavaScript stack state and error r
 
 #### `GetTop()`
 Returns the number of items currently on the stack.
-```cpp
-int count = helper.GetTop();
-```
+<CodeBlock language="cpp">
+  {`int count = helper.GetTop();`}
+</CodeBlock>
 
 #### `Pop()`
 Removes the top-most item from the stack.
-```cpp
-helper.Pop();
-```
+<CodeBlock language="cpp">
+  {`helper.Pop();`}
+</CodeBlock>
 
 #### `PopN(n)`
 Removes `n` items from the stack.
-```cpp
-helper.PopN(3); // Remove top 3 items
-```
+<CodeBlock language="cpp">
+  {`helper.PopN(3); // Remove top 3 items`}
+</CodeBlock>
 
 #### `ThrowError(message)`
 Improves error reporting by throwing a native JavaScript error. **This immediately interrupts C++ execution of the function.**
-```cpp
-if (idx < 0) {
+<CodeBlock language="cpp">
+  {`if (idx < 0) {
     helper.ThrowError("Index cannot be negative!");
     return 0;
-}
-```
+}`}
+</CodeBlock>
 
 ---
 
 ### **Example: Robust Math**
 
-```cpp
-addon.RegisterFunction("multiply", [host](novadesk_context ctx) -> int {
+<CodeBlock language="cpp">
+  {`addon.RegisterFunction("multiply", [host](novadesk_context ctx) -> int {
     novadesk::Addon helper(ctx, host);
     
     if (!helper.IsNumber(0) || !helper.IsNumber(1)) {
@@ -258,8 +260,8 @@ addon.RegisterFunction("multiply", [host](novadesk_context ctx) -> int {
     
     host->PushNumber(ctx, helper.GetNumber(0) * helper.GetNumber(1));
     return 1;
-}, 2);
-```
+}, 2);`}
+</CodeBlock>
 
 ---
 
@@ -270,8 +272,8 @@ The `JsFunction` class allows you to capture a JavaScript function passed as an 
 #### `JsFunction(ctx, host, index)`
 Captures a function from the specified stack index. Use `IsFunction(index)` first to ensure validity.
 
-```cpp
-addon.RegisterFunction("onComplete", [host](novadesk_context ctx) -> int {
+<CodeBlock language="cpp">
+  {`addon.RegisterFunction("onComplete", [host](novadesk_context ctx) -> int {
     novadesk::Addon helper(ctx, host);
     
     // Capture the function at index 0
@@ -284,8 +286,8 @@ addon.RegisterFunction("onComplete", [host](novadesk_context ctx) -> int {
     }
     
     return 0;
-}, 1);
-```
+}, 1);`}
+</CodeBlock>
 
 ---
 
@@ -296,8 +298,8 @@ Native addons often perform work in the background. **You must never touch `nova
 ### Using the `Dispatcher`
 The `Dispatcher` allows you to send a task from a background thread to the **Main Thread**, where it is safe to interact with JavaScript.
 
-```cpp
-// In INIT:
+<CodeBlock language="cpp">
+  {`// In INIT:
 auto dispatcher = new novadesk::Dispatcher(hMsgWnd);
 
 // In a thread:
@@ -309,8 +311,8 @@ std::thread([dispatcher]() {
         // THIS CODE RUNS ON THE MAIN THREAD
         // Safe to use Host API here!
     });
-}).detach();
-```
+}).detach();`}
+</CodeBlock>
 
 ---
 
@@ -320,38 +322,38 @@ For developers not using the C++ helper classes, all operations can be performed
 
 ### **Object Creation (Raw)**
 To create an object manually:
-```cpp
-host->RegisterObjectStart(ctx, "myObject");
+<CodeBlock language="cpp">
+  {`host->RegisterObjectStart(ctx, "myObject");
 host->RegisterString(ctx, "innerProp", "value");
-host->RegisterObjectEnd(ctx, "myObject");
-```
+host->RegisterObjectEnd(ctx, "myObject");`}
+</CodeBlock>
 
 ### **Array Registration (Raw)**
 To register arrays using raw pointers:
-```cpp
-const char* tags[] = { "alpha", "beta", "gamma" };
+<CodeBlock language="cpp">
+  {`const char* tags[] = { "alpha", "beta", "gamma" };
 host->RegisterArrayString(ctx, "tags", tags, 3);
 
 const double values[] = { 1.1, 2.2, 3.3 };
-host->RegisterArrayNumber(ctx, "values", values, 3);
-```
+host->RegisterArrayNumber(ctx, "values", values, 3);`}
+</CodeBlock>
 
 ### **Callbacks (Raw)**
 The low-level API uses opaque pointers for JS functions:
-```cpp
-void* fnPtr = host->JsGetFunctionPtr(ctx, 0); // Capture function at index 0
+<CodeBlock language="cpp">
+  {`void* fnPtr = host->JsGetFunctionPtr(ctx, 0); // Capture function at index 0
 if (fnPtr) {
     host->PushString(ctx, "Hello from raw C++");
     host->JsCallFunction(ctx, fnPtr, 1); // Call with 1 argument
-}
-```
+}`}
+</CodeBlock>
 
 ---
 
 ## **Full Example: System Utilities**
 
-```cpp
-#include <NovadeskAPI/novadesk_addon.h>
+<CodeBlock language="cpp">
+  {`#include <NovadeskAPI/novadesk_addon.h>
 
 NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
     novadesk::Addon addon(ctx, host);
@@ -378,5 +380,5 @@ NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
         }
         return 1;
     }, 1);
-}
-```
+}`}
+</CodeBlock>

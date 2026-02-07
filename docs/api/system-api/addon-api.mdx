@@ -4,6 +4,7 @@ description: Load and manage native C++ addons from JavaScript.
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import { Method, ReturnValue } from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
@@ -14,42 +15,38 @@ Novadesk allows you to extend its functionality by loading native C++ DLLs (addo
 
 ---
 
-## **Methods**
-
-### `system.loadAddon(path)`
-
-Loads a native addon DLL into the Novadesk environment.
-
-#### Arguments
-
-<Admonition type="tip">
-* **`path`** (`string`): The relative or absolute path to the `.dll` file. 
-    Relative paths are resolved starting from the directory where the current script is located.
-</Admonition>
-
-#### Return Value
-
-* **Type**: `object|null`
-* **Description**: Returns a JavaScript object containing the API exported by the addon, or `null` if the addon fails to load or initialize.
+<Method
+  signature="system.loadAddon(path)"
+  description="Loads a native addon DLL into the Novadesk environment."
+>
+  ### Parameters
+  <Admonition type="tip">
+  * **`path`** (`string`): The relative or absolute path to the `.dll` file. 
+      Relative paths are resolved starting from the directory where the current script is located.
+  </Admonition>
+  
+  <ReturnValue type="object|null">
+    Returns a JavaScript object containing the API exported by the addon, or `null` if the addon fails to load or initialize.
+  </ReturnValue>
+</Method>
 
 ---
 
-### `system.unloadAddon(path)`
-
-Unloads a previously loaded native addon. This disposes of the native resources and calls the addon's optional cleanup code.
-
-#### Arguments
-
-* **`path`** (`string`): The relative or absolute path to the `.dll` file. This **must match exactly** the path provided to `loadAddon()`.
-
-#### Return Value
-
-* **Type**: `boolean`
-* **Description**: Returns `true` if the addon was successfully found and unloaded; `false` otherwise.
+<Method
+  signature="system.unloadAddon(path)"
+  description="Unloads a previously loaded native addon. This disposes of the native resources and calls the addon's optional cleanup code."
+>
+  ### Parameters
+  * **`path`** (`string`): The relative or absolute path to the `.dll` file. This **must match exactly** the path provided to `loadAddon()`.
+  
+  <ReturnValue type="boolean">
+    Returns `true` if the addon was successfully found and unloaded; `false` otherwise.
+  </ReturnValue>
+</Method>
 
 ---
 
-## **Example**
+## Examples
 
 <CodeBlock language="javascript">
   {`// Load a local addon

@@ -4,7 +4,7 @@ description: Asynchronously fetch data from the web or local files in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
@@ -15,8 +15,10 @@ The Web Fetch API provides a simple, asynchronous way to retrieve data from URLs
 
 ---
 
-<Method signature="system.fetch(url, callback)"
-  description="Initiates an asynchronous fetch request.">
+<Method
+  signature="system.fetch(url, callback)"
+  description="Initiates an asynchronous fetch request."
+>
   <MethodParam name="url" type="string">
     The source to fetch from.
     - **Web**: `http://` or `https://` URLs.
@@ -28,7 +30,7 @@ The Web Fetch API provides a simple, asynchronous way to retrieve data from URLs
   </MethodParam>
 </Method>
 
-### Examples
+## Examples
 
 #### 1. Fetching a Webpage Title
 You can use standard JavaScript Regular Expressions to parse the raw data returned by `system.fetch`.

@@ -4,7 +4,7 @@ description: Timer functions for scheduling code execution in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 Novadesk provides several timer functions to schedule code execution, similar to those found in browsers and Node.js.
@@ -13,27 +13,25 @@ Novadesk provides several timer functions to schedule code execution, similar to
 Timer functions are **only available in the Main script**. UI scripts should use main script for timing logic and communicate via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
 </Admonition>
 
-## **`setTimeout(callback, delay)`**
-
-Execute a function after a specified delay.
-
-<Method signature="setTimeout(callback, delay)"
-  description="Execute a function after a specified delay.">
+<Method
+  signature="setTimeout(callback, delay)"
+  description="Execute a function after a specified delay."
+>
   <MethodParam name="callback" type="function">
     Function to execute after the specified delay.
   </MethodParam>
   <MethodParam name="delay" type="number">
     Delay in milliseconds before the callback is executed.
   </MethodParam>
+  
+  <ReturnValue type="number">
+    Timer ID that can be used with `clearTimeout`.
+  </ReturnValue>
 </Method>
 
-### Return Value
+## Examples
 
-* **Type**: `number`
-* **Description**: Timer ID that can be used with `clearTimeout`.
----
-
-### Example
+### Execute a Function After Delay
 
 <CodeBlock language="js">
   {`// Execute a function after 3 seconds
@@ -45,27 +43,23 @@ var timerId = setTimeout(function() {
 // clearTimeout(timerId);`}
 </CodeBlock>
 
-## **`setInterval(callback, interval)`**
-
-Execute a function repeatedly at specified intervals.
-
-<Method signature="setInterval(callback, interval)"
-  description="Execute a function repeatedly at specified intervals.">
+<Method
+  signature="setInterval(callback, interval)"
+  description="Execute a function repeatedly at specified intervals."
+>
   <MethodParam name="callback" type="function">
     Function to execute repeatedly.
   </MethodParam>
   <MethodParam name="interval" type="number">
     Interval in milliseconds between executions.
   </MethodParam>
+  
+  <ReturnValue type="number">
+    Timer ID that can be used with `clearInterval`.
+  </ReturnValue>
 </Method>
 
-### Return Value
-
-* **Type**: `number`
-* **Description**: Timer ID that can be used with `clearInterval`.
----
-
-### Example
+### Execute a Function Repeatedly
 
 <CodeBlock language="js">
   {`// Execute a function every 2 seconds
@@ -91,7 +85,7 @@ Cancel a timer created with `setTimeout`.
   </MethodParam>
 </Method>
 
-### Example
+### Cancel a Timeout
 
 <CodeBlock language="js">
   {`var timerId = setTimeout(function() {
@@ -114,7 +108,7 @@ Cancel a timer created with `setInterval`.
   </MethodParam>
 </Method>
 
-### Example
+### Cancel an Interval
 
 <CodeBlock language="js">
   {`var intervalId = setInterval(function() {
@@ -128,24 +122,20 @@ setTimeout(function() {
 }, 5000);`}
 </CodeBlock>
 
-## **`setImmediate(callback)`**
-
-Execute a function as soon as possible in the next event loop iteration.
-
-<Method signature="setImmediate(callback)"
-  description="Execute a function as soon as possible in the next event loop iteration.">
+<Method
+  signature="setImmediate(callback)"
+  description="Execute a function as soon as possible in the next event loop iteration."
+>
   <MethodParam name="callback" type="function">
     Function to execute in the next event loop iteration.
   </MethodParam>
+  
+  <ReturnValue type="number">
+    ID that can be used to cancel the immediate callback.
+  </ReturnValue>
 </Method>
 
-### Return Value
-
-* **Type**: `number`
-* **Description**: ID that can be used to cancel the immediate callback.
----
-
-### Example
+### Execute in Next Event Loop
 
 <CodeBlock language="js">
   {`console.log("First");

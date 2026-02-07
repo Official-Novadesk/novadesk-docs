@@ -4,7 +4,7 @@ description: Register and manage global hotkeys in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 Novadesk allows you to register global hotkeys that work system-wide, enabling you to control your widgets and applications from anywhere.
@@ -17,8 +17,10 @@ The `system` object is **only available in the Main script**. UI scripts should 
 
 Register a global hotkey and bind it to a callback.
 
-<Method signature="system.registerHotkey(hotkey, callback)"
-  description="Register a global hotkey and bind it to a callback.">
+<Method
+  signature="system.registerHotkey(hotkey, callback)"
+  description="Register a global hotkey and bind it to a callback."
+>
   <MethodParam name="hotkey" type="string">
     The key combination to register.
 
@@ -36,21 +38,16 @@ Register a global hotkey and bind it to a callback.
       - **`onKeyDown`**: Called when the hotkey is pressed
       - **`onKeyUp`**: Called when the hotkey is released
   </MethodParam>
+  
+  <ReturnValue type="number">
+    Hotkey ID that can be used to unregister the hotkey.
+  </ReturnValue>
 </Method>
 
-### Return Value
-
-* **Type**: `number`
-* **Description**: Hotkey ID that can be used to unregister the hotkey.
----
-
-### **`system.unregisterHotkey(id)`**
-
-Unregister a previously registered hotkey.
-
-
-<Method signature="system.unregisterHotkey(id)"
-  description="Unregister a previously registered hotkey.">
+<Method
+  signature="system.unregisterHotkey(id)"
+  description="Unregister a previously registered hotkey."
+>
   <MethodParam name="id" type="number">
     The unique hotkey identifier returned by `system.registerHotkey`.
   </MethodParam>
@@ -88,7 +85,7 @@ Unregister a previously registered hotkey.
 - `PageDown`
 - Arrow keys: `Up`, `Down`, `Left`, `Right`
 
-## Example
+## Examples
 <CodeBlock language="javascript">
   {`var hotkeyId = system.registerHotkey("Win+D", function() {
     console.log("Win+D pressed");

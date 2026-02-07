@@ -4,7 +4,7 @@ description: Access Windows Registry values in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
@@ -15,8 +15,10 @@ The Registry API provides methods to read and write Windows Registry keys.
 
 ---
 
-<Method signature="system.readRegistry(path, valueName)"
-  description="Reads a value from the Windows Registry.">
+<Method
+  signature="system.readRegistry(path, valueName)"
+  description="Reads a value from the Windows Registry."
+>
   <MethodParam name="path" type="string">
     Full path to the registry key. Must start with a root key: `HKCU`, `HKLM`, `HKCR`, or `HKU`.
     - Example: `HKCU\\Software\\Novadesk`
@@ -24,16 +26,18 @@ The Registry API provides methods to read and write Windows Registry keys.
   <MethodParam name="valueName" type="string">
     The name of the value to read. Use an empty string for the (Default) value.
   </MethodParam>
+  
+  <ReturnValue type="string | number | null">
+    Returns the value data if successful. Supports `REG_SZ`, `REG_EXPAND_SZ`, and `REG_DWORD`. Returns `null` if the key or value does not exist.
+  </ReturnValue>
 </Method>
-
-### Return Value
-* **Type**: `string | number | null`
-* **Description**: Returns the value data if successful. Supports `REG_SZ`, `REG_EXPAND_SZ`, and `REG_DWORD`. Returns `null` if the key or value does not exist.
 
 ---
 
-<Method signature="system.writeRegistry(path, valueName, data)"
-  description="Writes a value to the Windows Registry. Creates the key if it doesn't exist.">
+<Method
+  signature="system.writeRegistry(path, valueName, data)"
+  description="Writes a value to the Windows Registry. Creates the key if it doesn't exist."
+>
   <MethodParam name="path" type="string">
     Same as `readRegistry`.
   </MethodParam>
@@ -43,15 +47,15 @@ The Registry API provides methods to read and write Windows Registry keys.
   <MethodParam name="data" type="string | number">
     Data to write. Strings are written as `REG_SZ`, numbers as `REG_DWORD`.
   </MethodParam>
+  
+  <ReturnValue type="boolean">
+    `true` if successful.
+  </ReturnValue>
 </Method>
-
-### Return Value
-* **Type**: `boolean`
-* **Description**: `true` if successful.
 
 ---
 
-### Examples
+## Examples
 
 <CodeBlock language="javascript">
   {`// Read a value

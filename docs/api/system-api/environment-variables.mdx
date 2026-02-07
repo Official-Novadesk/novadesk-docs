@@ -4,7 +4,7 @@ description: Environment variables in the Novadesk JavaScript API
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
@@ -26,9 +26,9 @@ Omitting the parameter will return all environment variables.
 </CodeBlock>
 </Admonition>
   ---
-  <MethodParam name="Return Value" type="string | Object | null">
+  <ReturnValue type="string | Object | null">
     Returns the value of the environment variable, `null` if it does not exist, or an object containing all environment variables when no name is provided.
-  </MethodParam>
+  </ReturnValue>
 </Method>
 
 ## Examples

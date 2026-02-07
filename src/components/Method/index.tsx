@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import { ReturnValue } from '../ReturnValue';
 
 type MethodProps = {
   signature: string;
@@ -53,3 +54,5 @@ export function MethodParam({name, type, children, className}: MethodParamProps)
     </div>
   );
 }
+
+export { ReturnValue };

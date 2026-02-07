@@ -4,7 +4,7 @@ description: Control system volume and play sounds in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import { Method, MethodParam } from '@site/src/components/Method';
+import { Method, MethodParam, ReturnValue } from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
@@ -21,10 +21,10 @@ play WAV audio files.
   signature="system.getVolume()"
   description="Retrieves the current master system volume."
 >
-  <MethodParam name="Return Value" type="number">
+  <ReturnValue type="number">
     An integer between `0` and `100` representing the current volume
     percentage.
-  </MethodParam>
+  </ReturnValue>
 </Method>
 
 <Method
@@ -54,9 +54,9 @@ play WAV audio files.
     called.
   </MethodParam>
   ---
-  <MethodParam name="Return Value" type="boolean">
+  <ReturnValue type="boolean">
     Returns `true` if the sound playback was successfully initiated.
-  </MethodParam>
+  </ReturnValue>
 </Method>
 
 <Method signature="system.stopSound()" 

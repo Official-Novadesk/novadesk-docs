@@ -4,7 +4,7 @@ description: Access Windows System Clipboard in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
@@ -17,9 +17,9 @@ The Clipboard API allows widgets to interact with the system clipboard.
 
 <Method signature="system.getClipboardText()"
   description="Retrieves the current text content of the clipboard.">
-    <MethodParam name="Return Value" type="string|null">
+    <ReturnValue type="string|null">
      The text content of the clipboard, or `null` if the clipboard is empty or does not contain text.
-  </MethodParam>
+  </ReturnValue>
 </Method>
 
 <Method signature="system.setClipboardText(text)"
@@ -29,9 +29,9 @@ The Clipboard API allows widgets to interact with the system clipboard.
     The text to copy to the clipboard.
   </MethodParam>
   ---
-  <MethodParam name="Return Value" type="boolean">
+  <ReturnValue type="boolean">
     `true` if successful.
-  </MethodParam>
+  </ReturnValue>
 </Method>
 
 ## Examples

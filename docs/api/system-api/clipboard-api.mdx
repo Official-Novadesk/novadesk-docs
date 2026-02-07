@@ -13,33 +13,28 @@ The `system` object is **only available in the Main script**. UI scripts should 
 
 The Clipboard API allows widgets to interact with the system clipboard.
 
----
+## Methods
 
-## **`system.getClipboardText()`**
-
-Retrieves the current text content of the clipboard.
----
-
-### Return Value
-* **Type**: `string | null`
-* **Description**: The text content of the clipboard, or `null` if the clipboard is empty or does not contain text.
-
----
-
-<Method signature="system.setClipboardText(text)"
-  description="Sets the text content of the system clipboard.">
-  <MethodParam name="text" type="string">
-    The text to copy to the clipboard.
+<Method signature="system.getClipboardText()"
+  description="Retrieves the current text content of the clipboard.">
+    <MethodParam name="Return Value" type="string|null">
+     The text content of the clipboard, or `null` if the clipboard is empty or does not contain text.
   </MethodParam>
 </Method>
 
-### Return Value
-* **Type**: `boolean`
-* **Description**: `true` if successful.
+<Method signature="system.setClipboardText(text)"
+  description="Sets the text content of the system clipboard.">
+  ### Parameters
+  <MethodParam name="text" type="string">
+    The text to copy to the clipboard.
+  </MethodParam>
+  ---
+  <MethodParam name="Return Value" type="boolean">
+    `true` if successful.
+  </MethodParam>
+</Method>
 
----
-
-### Example
+## Examples
 
 <CodeBlock language="javascript">
   {`// Copy text to clipboard

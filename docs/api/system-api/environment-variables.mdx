@@ -11,28 +11,25 @@ import Admonition from '@theme/Admonition';
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 </Admonition>
 
-## **`system.getEnv(name)`**
-
-Get the value of an environment variable.
+## Methods
 
 <Method signature="system.getEnv(name)"
   description="Get the value of an environment variable.">
+  ### Parameters
   <MethodParam name="name" type="string">
     Name of the environment variable. If omitted, all environment variables are returned.
   </MethodParam>
-</Method>
-
-### Return Value
-* **Type**: `string | Object | null`
-* **Description**: Returns the value of the environment variable, `null` if it does not exist, or an object containing all environment variables when no name is provided.
----
-
-<Admonition type="tip">
+    <Admonition type="tip">
 Omitting the parameter will return all environment variables.
 <CodeBlock language="js">
   {`var allEnv = system.getEnv();`}
 </CodeBlock>
 </Admonition>
+  ---
+  <MethodParam name="Return Value" type="string | Object | null">
+    Returns the value of the environment variable, `null` if it does not exist, or an object containing all environment variables when no name is provided.
+  </MethodParam>
+</Method>
 
 ## Examples
 

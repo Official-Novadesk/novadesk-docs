@@ -11,11 +11,7 @@ import Admonition from '@theme/Admonition';
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 </Admonition>
 
-## **`system.execute(target, [parameters], [workingDir], [show])`**
-
-Launches an external application, opens a file, or opens a URL in the default browser.
-
----
+## Methods
 
 <Method signature="system.execute(target, [parameters], [workingDir], [show])"
   description="Launches an external application, opens a file, or opens a URL in the default browser.">
@@ -39,15 +35,13 @@ Launches an external application, opens a file, or opens a URL in the default br
     - **`"minimized"`**
     - **`"maximized"`**
   </MethodParam>
+  ---
+  <MethodParam name="Return Value" type="boolean">
+    Returns `true` if the command was successfully initiated.Returns `false` if the operation fails.
+  </MethodParam>
 </Method>
 
-### Return Value
-
-* **Type**: `boolean`
-* **Description**: Returns `true` if the command was successfully initiated.Returns `false` if the operation fails.
----
-
-### Examples
+## Examples
 
 #### Launch an Application
 <CodeBlock language="javascript">

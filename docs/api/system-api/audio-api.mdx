@@ -4,65 +4,71 @@ description: Control system volume and play sounds in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import {Method, MethodParam} from '@site/src/components/Method';
+import { Method, MethodParam } from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
 
 <Admonition type="warning">
-The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
+  The `system` object is **only available in the Main script**.
+  UI scripts should communicate with the main script via
+  [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc)
+  if they need system data.
 </Admonition>
 
-The Audio API provides methods to control the master system volume and play WAV audio files.
+The Audio API provides methods to control the master system volume and
+play WAV audio files.
 
----
-
-## **`system.getVolume()`**
-
-Retrieves the current master system volume.
----
-
-### Return Value
-
-* **Type**: `number`
-* **Description**: An integer between `0` and `100` representing the current volume percentage.
-
----
-
-<Method signature="system.setVolume(level)"
-  description="Sets the master system volume.">
-  <MethodParam name="level" type="number">
-    An integer between `0` and `100` representing the target volume percentage. Values outside this range will be clamped.
+<Method
+  signature="system.getVolume()"
+  description="Retrieves the current master system volume."
+>
+  <MethodParam name="Return Value" type="number">
+    An integer between `0` and `100` representing the current volume
+    percentage.
   </MethodParam>
 </Method>
 
-<Method signature="system.playSound(path, [loop])"
-  description="Plays a WAV audio file asynchronously.">
+<Method
+  signature="system.setVolume(level)"
+  description="Sets the master system volume."
+>
+### Parameters
+  <MethodParam name="level" type="number">
+    An integer between `0` and `100` representing the target volume
+    percentage. Values outside this range will be clamped.
+  </MethodParam>
+</Method>
+
+<Method
+  signature="system.playSound(path, [loop])"
+  description="Plays a WAV audio file asynchronously."
+>
+### Parameters
   <MethodParam name="path" type="string">
     Path to the WAV file. Can be absolute or relative to the widget script.
   </MethodParam>
+
   <MethodParam name="loop" type="boolean">
     **Default**: `false`
 
-    If `true`, the sound will loop continuously until `stopSound()` is called.
+    If `true`, the sound will loop continuously until `stopSound()` is
+    called.
+  </MethodParam>
+  ---
+  <MethodParam name="Return Value" type="boolean">
+    Returns `true` if the sound playback was successfully initiated.
   </MethodParam>
 </Method>
 
-### Return Value
+<Method signature="system.stopSound()" 
+description="Stops any currently playing sound initiated via playSound()."
+/>
 
-* **Type**: `boolean`
-* **Description**: Returns `true` if the sound playback was successfully initiated.
+## Examples
 
----
+### 1. Volume Control
 
-## **`system.stopSound()`**
-
-Stops any currently playing sound initiated via `playSound()`.
----
-
-### Examples
-
-#### 1. Volume Control
 <CodeBlock language="javascript">
-  {`// Get current volume
+{`// Get current volume
 var vol = system.getVolume();
 console.log("Current Volume: " + vol);
 
@@ -70,7 +76,8 @@ console.log("Current Volume: " + vol);
 system.setVolume(50);`}
 </CodeBlock>
 
-#### 2. Playing an Alert Sound
+### 2. Playing an Alert Sound
+
 <CodeBlock language="javascript">
   {`// Play a sound once
 system.playSound("assets/alert.wav");
@@ -79,7 +86,7 @@ system.playSound("assets/alert.wav");
 system.playSound("assets/ambient.wav", true);
 
 // Stop the sound after 10 seconds
-setTimeout(function() {
+setTimeout(function () {
     system.stopSound();
 }, 10000);`}
 </CodeBlock>

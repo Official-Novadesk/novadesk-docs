@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 type MethodProps = {
   signature: string;
   description?: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 };
 
@@ -17,13 +17,20 @@ type MethodParamProps = {
 };
 
 export function Method({signature, description, children, className}: MethodProps) {
+  const slug = signature
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
   return (
-    <div className={clsx(styles.method, className)}>
+    <div className={clsx(styles.method, className)} id={slug}>
       <div className={styles.header}>
-        <span className={styles.signature}>{signature}</span>
+        <a className={styles.signature} href={`#${slug}`}>
+          {signature}
+        </a>
       </div>
       {description && <div className={styles.description}>{description}</div>}
-      <div className={styles.params}>{children}</div>
+      {children && <div className={styles.params}>{children}</div>}
     </div>
   );
 }

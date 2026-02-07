@@ -4,10 +4,12 @@ description: Control system volume and play sounds in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 The Audio API provides methods to control the master system volume and play WAV audio files.
 
@@ -25,35 +27,24 @@ Retrieves the current master system volume.
 
 ---
 
-## **`system.setVolume(level)`**
+<Method signature="system.setVolume(level)"
+  description="Sets the master system volume.">
+  <MethodParam name="level" type="number">
+    An integer between `0` and `100` representing the target volume percentage. Values outside this range will be clamped.
+  </MethodParam>
+</Method>
 
-Sets the master system volume.
----
+<Method signature="system.playSound(path, [loop])"
+  description="Plays a WAV audio file asynchronously.">
+  <MethodParam name="path" type="string">
+    Path to the WAV file. Can be absolute or relative to the widget script.
+  </MethodParam>
+  <MethodParam name="loop" type="boolean">
+    **Default**: `false`
 
-###### **`level`**
-
-* **Type**: `number`
-* **Description**: An integer between `0` and `100` representing the target volume percentage. Values outside this range will be clamped.
-
----
-
-## **`system.playSound(path, [loop])`**
-
-Plays a WAV audio file asynchronously.
----
-
-###### **`path`**
-
-* **Type**: `string`
-* **Description**: Path to the WAV file. Can be absolute or relative to the widget script.
----
-
-###### **`loop`** (Optional)
-
-* **Type**: `boolean`
-* **Default**: `false`
-* **Description**: If `true`, the sound will loop continuously until `stopSound()` is called.
----
+    If `true`, the sound will loop continuously until `stopSound()` is called.
+  </MethodParam>
+</Method>
 
 ### Return Value
 

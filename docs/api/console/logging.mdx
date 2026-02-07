@@ -4,13 +4,15 @@ description: Logging functions via the standard console object.
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 ## `console.log(...args)`
 
 Log an informational message to the console and log file.
 
-### Parameters
-- **...args** (any): Values to log.
+<Prop name="...args" type="any">
+  Values to log.
+</Prop>
 
 ### Example
 <CodeBlock language="javascript">
@@ -22,8 +24,9 @@ console.log("User:", "John Doe", "Version:", "1.0.0");`}
 
 Log a warning message to the console and log file.
 
-### Parameters
-- **...args** (any): Values to log as a warning.
+<Prop name="...args" type="any">
+  Values to log as a warning.
+</Prop>
 
 ### Example
 <CodeBlock language="javascript">
@@ -35,8 +38,9 @@ console.warn("Low memory warning:", 1024, "MB remaining");`}
 
 Log an error message to the console and log file.
 
-### Parameters
-- **...args** (any): Values to log as an error.
+<Prop name="...args" type="any">
+  Values to log as an error.
+</Prop>
 
 ### Example
 <CodeBlock language="javascript">
@@ -48,12 +52,13 @@ console.error("Error code:", 404, "Message:", "File not found");`}
 
 Log a debug message to the console and log file.
 
-:::warning
+<Admonition type="warning">
 Debug messages are only shown when debug logging is enabled. See how to enable debug logging using [Configuration Methods](/api/app-object/settings).
-:::
+</Admonition>
 
-### Parameters
-- **...args** (any): Values to log as debug information.
+<Prop name="...args" type="any">
+  Values to log as debug information.
+</Prop>
 
 ### Example
 <CodeBlock language="javascript">

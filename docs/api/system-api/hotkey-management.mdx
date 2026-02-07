@@ -4,39 +4,39 @@ description: Register and manage global hotkeys in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
 Novadesk allows you to register global hotkeys that work system-wide, enabling you to control your widgets and applications from anywhere.
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 ### **`system.registerHotkey(hotkey, callback)`**
 
 Register a global hotkey and bind it to a callback.
 
-###### **`hotkey`**
+<Method signature="system.registerHotkey(hotkey, callback)"
+  description="Register a global hotkey and bind it to a callback.">
+  <MethodParam name="hotkey" type="string">
+    The key combination to register.
 
-* **Type**: `string`
-* **Description**: The key combination to register.
+    Examples:
+    - `"Ctrl+Alt+R"`
+    - `"Win+D"`
+    - `"Space"`
+  </MethodParam>
+  <MethodParam name="callback" type="function | Object">
+    Handler invoked when the hotkey is used.
 
-Examples:
-- `"Ctrl+Alt+R"`
-- `"Win+D"`
-- `"Space"`
----
-
-###### **`callback`**
-
-* **Type**: `function | Object`
-* **Description**: Handler invoked when the hotkey is used.
-
-This can be:
-- A **function** executed on key press
-- An **Object** with optional handlers:
-  - **`onKeyDown`**: Called when the hotkey is pressed
-  - **`onKeyUp`**: Called when the hotkey is released
----
+    This can be:
+    - A **function** executed on key press
+    - An **Object** with optional handlers:
+      - **`onKeyDown`**: Called when the hotkey is pressed
+      - **`onKeyUp`**: Called when the hotkey is released
+  </MethodParam>
+</Method>
 
 ### Return Value
 
@@ -49,11 +49,12 @@ This can be:
 Unregister a previously registered hotkey.
 
 
-###### **`id`**
-
-* **Type**: `number`
-* **Description**: The unique hotkey identifier returned by `system.registerHotkey`.
----
+<Method signature="system.unregisterHotkey(id)"
+  description="Unregister a previously registered hotkey.">
+  <MethodParam name="id" type="number">
+    The unique hotkey identifier returned by `system.registerHotkey`.
+  </MethodParam>
+</Method>
 
 ## Supported Keys
 

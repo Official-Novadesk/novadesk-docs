@@ -4,6 +4,7 @@ description: A step-by-step guide to creating, running, and building your first 
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 import FileTree from '@site/src/components/FileTree';
 
@@ -23,9 +24,9 @@ Use the `nwm init` command to scaffold a new widget project. Open your terminal 
 
 This creates a new directory called `my-first-widget` with the following structure:
 
-:::note
+<Admonition type="note">
 The folder structure is determined by the `widget` template. You can add your own folders (like `lib`, `styles`, etc.) and `nwm build` will automatically include them.
-:::
+</Admonition>
 
 <FileTree title="Widget Structure">
   <FileTree.Folder name="my-first-widget" defaultOpen>
@@ -66,9 +67,9 @@ nwm run`}
 
 This launches Novadesk and loads your widget script. The terminal will remain open to show you any logs or error messages from your widget.
 
-:::tip
+<Admonition type="tip">
 You can right-click the Novadesk tray icon and select **Refresh** to reload your script after making changes.
-:::
+</Admonition>
 
 ## 4. Build for Distribution
 

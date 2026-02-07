@@ -4,13 +4,14 @@ description: Monitor network activity in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 The Network monitor class allows you to monitor network activity including incoming and outgoing data transfer rates and
 totals.
 
-:::warning
+<Admonition type="warning">
 System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
-:::
+</Admonition>
 
 ## Creating a Network Monitor
 

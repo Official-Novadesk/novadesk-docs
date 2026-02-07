@@ -4,10 +4,11 @@ description: Load and manage native C++ addons from JavaScript.
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system.loadAddon()` method is **only available in the Main script**. Native addons are **engine-agnostic** and do not require linking against Duktape.
-:::
+</Admonition>
 
 Novadesk allows you to extend its functionality by loading native C++ DLLs (addons). This is useful for performance-critical tasks or accessing system features not available in JavaScript.
 
@@ -21,10 +22,10 @@ Loads a native addon DLL into the Novadesk environment.
 
 #### Arguments
 
-:::tip
+<Admonition type="tip">
 * **`path`** (`string`): The relative or absolute path to the `.dll` file. 
     Relative paths are resolved starting from the directory where the current script is located.
-:::
+</Admonition>
 
 #### Return Value
 
@@ -68,6 +69,6 @@ if (myAddon) {
 
 ---
 
-:::tip
+<Admonition type="tip">
 Looking to build your own native addon? Check out the [Addon SDK Developer Guide](../../../developers/api/addon-api).
-:::
+</Admonition>

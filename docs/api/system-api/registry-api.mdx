@@ -4,28 +4,27 @@ description: Access Windows Registry values in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 The Registry API provides methods to read and write Windows Registry keys.
 
 ---
 
-## **`system.readRegistry(path, valueName)`**
-
-Reads a value from the Windows Registry.
----
-
-###### **`path`**
-* **Type**: `string`
-* **Description**: Full path to the registry key. Must start with a root key: `HKCU`, `HKLM`, `HKCR`, or `HKU`.
-    * Example: `HKCU\\Software\\Novadesk`
-
-###### **`valueName`**
-* **Type**: `string`
-* **Description**: The name of the value to read. Use an empty string for the (Default) value.
+<Method signature="system.readRegistry(path, valueName)"
+  description="Reads a value from the Windows Registry.">
+  <MethodParam name="path" type="string">
+    Full path to the registry key. Must start with a root key: `HKCU`, `HKLM`, `HKCR`, or `HKU`.
+    - Example: `HKCU\\Software\\Novadesk`
+  </MethodParam>
+  <MethodParam name="valueName" type="string">
+    The name of the value to read. Use an empty string for the (Default) value.
+  </MethodParam>
+</Method>
 
 ### Return Value
 * **Type**: `string | number | null`
@@ -33,17 +32,18 @@ Reads a value from the Windows Registry.
 
 ---
 
-## **`system.writeRegistry(path, valueName, data)`**
-
-Writes a value to the Windows Registry. Creates the key if it doesn't exist.
----
-
-###### **`path`**, **`valueName`**
-* Same as `readRegistry`.
-
-###### **`data`**
-* **Type**: `string | number`
-* **Description**: Data to write. Strings are written as `REG_SZ`, numbers as `REG_DWORD`.
+<Method signature="system.writeRegistry(path, valueName, data)"
+  description="Writes a value to the Windows Registry. Creates the key if it doesn't exist.">
+  <MethodParam name="path" type="string">
+    Same as `readRegistry`.
+  </MethodParam>
+  <MethodParam name="valueName" type="string">
+    Same as `readRegistry`.
+  </MethodParam>
+  <MethodParam name="data" type="string | number">
+    Data to write. Strings are written as `REG_SZ`, numbers as `REG_DWORD`.
+  </MethodParam>
+</Method>
 
 ### Return Value
 * **Type**: `boolean`

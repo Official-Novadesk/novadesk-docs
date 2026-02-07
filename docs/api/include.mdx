@@ -4,6 +4,7 @@ description: Include method in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 ## `include(path)`
 
@@ -23,7 +24,7 @@ const result = formatCurrency(1500);
 console.log("Formatted:", result);`}
 </CodeBlock>
 
-:::note
+<Admonition type="note">
  - `include` executes the script immediately in the **global scope** of your current script.
  - If the file does not exist or contains syntax errors, an error will be thrown.
-:::
+</Admonition>

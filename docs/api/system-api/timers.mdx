@@ -4,28 +4,28 @@ description: Timer functions for scheduling code execution in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
 Novadesk provides several timer functions to schedule code execution, similar to those found in browsers and Node.js.
 
-:::warning
+<Admonition type="warning">
 Timer functions are **only available in the Main script**. UI scripts should use main script for timing logic and communicate via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
-:::
+</Admonition>
 
 ## **`setTimeout(callback, delay)`**
 
 Execute a function after a specified delay.
 
-###### **`callback`**
-
-* **Type**: `function`
-* **Description**: Function to execute after the specified delay.
----
-
-###### **`delay`**
-
-* **Type**: `number`
-* **Description**: Delay in milliseconds before the callback is executed.
----
+<Method signature="setTimeout(callback, delay)"
+  description="Execute a function after a specified delay.">
+  <MethodParam name="callback" type="function">
+    Function to execute after the specified delay.
+  </MethodParam>
+  <MethodParam name="delay" type="number">
+    Delay in milliseconds before the callback is executed.
+  </MethodParam>
+</Method>
 
 ### Return Value
 
@@ -49,17 +49,15 @@ var timerId = setTimeout(function() {
 
 Execute a function repeatedly at specified intervals.
 
-###### **`callback`**
-
-* **Type**: `function`
-* **Description**: Function to execute repeatedly.
----
-
-###### **`interval`**
-
-* **Type**: `number`
-* **Description**: Interval in milliseconds between executions.
----
+<Method signature="setInterval(callback, interval)"
+  description="Execute a function repeatedly at specified intervals.">
+  <MethodParam name="callback" type="function">
+    Function to execute repeatedly.
+  </MethodParam>
+  <MethodParam name="interval" type="number">
+    Interval in milliseconds between executions.
+  </MethodParam>
+</Method>
 
 ### Return Value
 
@@ -86,11 +84,12 @@ setTimeout(function() {
 
 Cancel a timer created with `setTimeout`.
 
-###### **`id`**
-
-* **Type**: `number`
-* **Description**: Timer ID returned by `setTimeout`.
----
+<Method signature="clearTimeout(id)"
+  description="Cancel a timer created with setTimeout.">
+  <MethodParam name="id" type="number">
+    Timer ID returned by `setTimeout`.
+  </MethodParam>
+</Method>
 
 ### Example
 
@@ -108,11 +107,12 @@ console.log("Timer cancelled");`}
 
 Cancel a timer created with `setInterval`.
 
-###### **`id`**
-
-* **Type**: `number`
-* **Description**: Timer ID returned by `setInterval`.
----
+<Method signature="clearInterval(id)"
+  description="Cancel a timer created with setInterval.">
+  <MethodParam name="id" type="number">
+    Timer ID returned by `setInterval`.
+  </MethodParam>
+</Method>
 
 ### Example
 
@@ -132,11 +132,12 @@ setTimeout(function() {
 
 Execute a function as soon as possible in the next event loop iteration.
 
-###### **`callback`**
-
-* **Type**: `function`
-* **Description**: Function to execute in the next event loop iteration.
----
+<Method signature="setImmediate(callback)"
+  description="Execute a function as soon as possible in the next event loop iteration.">
+  <MethodParam name="callback" type="function">
+    Function to execute in the next event loop iteration.
+  </MethodParam>
+</Method>
 
 ### Return Value
 

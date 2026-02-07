@@ -4,6 +4,7 @@ description: Understanding the difference between Main scripts and UI scripts in
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 Novadesk uses two distinct types of JavaScript execution environments to build widgets: **Main Scripts** and **UI Scripts**. Each has a specific role and access level.
 
@@ -97,6 +98,6 @@ Because Main and UI scripts have strict responsibilities, they use the **Inter-P
 - **`ipc.send(channel, data)`**: Send a message to the other context.
 - **`ipc.on(channel, callback)`**: Listen for incoming messages.
 
-:::tip
+<Admonition type="tip">
 A common pattern is to handle system events or heavy logic in the **Main Script** and use `ipc.send()` to tell the **UI Script** what to display.
-:::
+</Admonition>

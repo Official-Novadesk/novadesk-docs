@@ -4,6 +4,7 @@ description: Learn how to use the Novadesk CLI commands to manage your widgets
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 Novadesk supports several command-line arguments that allow you to control the application remotely or customize its behavior. These commands are particularly useful for automation, scripting, or integration with other tools.
 
@@ -41,12 +42,12 @@ Novadesk.exe path/to/custom/script.js`}
 - Quotes are optional but recommended for paths containing spaces
 - Only works when starting a new instance of Novadesk
 
-:::note
+<Admonition type="note">
 Novadesk enforces single-instance execution using a global mutex. When you run a command:
 
 - **If Novadesk is not running:** A new instance starts and processes the command
 - **If Novadesk is already running:** The command is sent to the existing instance via Windows messages
-:::
+</Admonition>
 
 ---
 

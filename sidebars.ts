@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -49,18 +49,19 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'System API',
           items: [
+            'api/system-api/addon-api',
+            'api/system-api/audio-api',
+            'api/system-api/clipboard-api',
+            'api/system-api/display-metrics',
             'api/system-api/environment-variables',
             'api/system-api/execute-command',
-            'api/system-api/display-metrics',
             'api/system-api/hotkey-management',
+            'api/system-api/json-api',
+            'api/system-api/power-api',
+            'api/system-api/registry-api',
             'api/system-api/timers',
             'api/system-api/web-fetch',
-            'api/system-api/json-api',
-            'api/system-api/registry-api',
-            'api/system-api/clipboard-api',
-            'api/system-api/power-api',
-            'api/system-api/audio-api',
-            'api/system-api/addon-api',
+
             {
               type: 'category',
               label: 'System Monitors',

@@ -1,0 +1,48 @@
+import type {ReactNode} from 'react';
+import clsx from 'clsx';
+import styles from './styles.module.css';
+
+type MethodProps = {
+  signature: string;
+  description?: ReactNode;
+  children: ReactNode;
+  className?: string;
+};
+
+type MethodParamProps = {
+  name: string;
+  type?: string;
+  children: ReactNode;
+  className?: string;
+};
+
+export function Method({signature, description, children, className}: MethodProps) {
+  return (
+    <div className={clsx(styles.method, className)}>
+      <div className={styles.header}>
+        <span className={styles.signature}>{signature}</span>
+      </div>
+      {description && <div className={styles.description}>{description}</div>}
+      <div className={styles.params}>{children}</div>
+    </div>
+  );
+}
+
+export function MethodParam({name, type, children, className}: MethodParamProps) {
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+  return (
+    <div className={clsx(styles.param, className)} id={slug}>
+      <div className={styles.paramHeader}>
+        <a className={styles.paramName} href={`#${slug}`}>
+          {name}
+        </a>
+        {type && <span className={styles.paramType}>Type: {type}</span>}
+      </div>
+      <div className={styles.paramBody}>{children}</div>
+    </div>
+  );
+}

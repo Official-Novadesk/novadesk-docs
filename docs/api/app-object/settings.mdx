@@ -4,13 +4,14 @@ description: Programmatically control Novadesk configuration via the app object.
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 Novadesk provides several methods to control global application behavior programmatically via the `app` object. These methods can be called at any time and their values are
 persisted to `settings.json` located in the application's AppData directory.
 
-:::warning
+<Admonition type="warning">
 Configuration methods are **only available in the Main script**. UI scripts cannot modify global application settings.
-:::
+</Admonition>
 
 ## `app.saveLogToFile(bool)`
 
@@ -86,9 +87,9 @@ Enables or disables Direct2D hardware acceleration.
 * **Type**: `boolean`
 * **Description**: `true` to use hardware-accelerated rendering (Default), `false` to use software rendering.
 
-:::note
+<Admonition type="note">
 Changing this setting requires an **application restart** to take effect.
-:::
+</Admonition>
 
 ### Example
 <CodeBlock language="javascript">

@@ -4,78 +4,67 @@ description: Methods available on widget objects in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-
+import Admonition from '@theme/Admonition';
+import {Method, MethodParam} from '@site/src/components/Method';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 
 
 Novadesk enforces a **Strict Separation of Concerns** between the **Main script** (application logic) and **UI scripts**
 (visual presentation).
 
-:::note
+<Admonition type="note">
 - **Main Script**: Manages widget windows (creation, positioning, lifecycle). It **cannot** directly add UI elements.
 - **UI Script**: Manages visual elements (text, images, interactions). It **cannot** directly change window-level
 properties.
 - **Communication**: Use the global [ipc](/api/widget-api/widget-methods/#inter-process-communication-ipc) object to communicate between these contexts.
-:::
+</Admonition>
 
 ## UI Element Methods
 
-:::note
+<Admonition type="note">
 The following methods are **only** accessible within the `win` object inside a UI script. They are **unavailable** in
 the main application script.
-:::
+</Admonition>
 
 ### **`addText(options)`**
 
 Add a text element to the widget.Available only in UI scripts.  
 ---
 
-###### **`options`**
+<Prop name="options" type="Object">
+  Configuration options for the text element.  
+  The **`id`** property is required and must be unique.
 
-* **Type**: `Object`
-* **Description**:
-Configuration options for the text element.  
-The **`id`** property is required and must be unique.
-
-See the Text UI element documentation for all available options:  
-[Text Element Options](/api/ui-elements-api/text-element/)
----
+  See the Text UI element documentation for all available options:  
+  [Text Element Options](/api/ui-elements-api/text-element/)
+</Prop>
 
 ### **`addImage(options)`**
 
 Add an image element to the widget.Available only in UI scripts.  
 
-###### **`options`**
+<Prop name="options" type="Object">
+  Configuration options for the image element.  
+  The **`id`** property is required and must be unique.
 
-* **Type**: `Object`
-* **Description**:
-Configuration options for the image element.  
-The **`id`** property is required and must be unique.
-
-See the Image UI element documentation for all available options:  
-[Image Element Options](/api/ui-elements-api/image-element/)
----
+  See the Image UI element documentation for all available options:  
+  [Image Element Options](/api/ui-elements-api/image-element/)
+</Prop>
 
 ### **`setElementProperties(id, props)`**
 
 Update properties of an existing UI element. Available only in UI scripts.
 ---
 
-###### **`id`**
-
-* **Type**: `string`
-* **Description**:
-ID of the element to update (cannot be changed)
----
-
-###### **`props`**
-
-* **Type**: `Object`
-* **Description**:
-Properties to change of the element.
----
+<Method signature="setElementProperties(id, props)">
+  <MethodParam name="id" type="string">
+    ID of the element to update (cannot be changed).
+  </MethodParam>
+  <MethodParam name="props" type="Object">
+    Properties to change of the element.
+  </MethodParam>
+</Method>
 
 #### Example
 
@@ -90,18 +79,15 @@ Properties to change of the element.
 
 Remove one or more UI elements from the widget.Available only in UI scripts.
 
-###### **`ids`**
+<Prop name="ids" type="string | Array | null">
+  - A single element ID
+  - An array of element IDs
+  - `null` or `undefined` to remove **all** elements from the widget
 
-* **Type**: `string | Array | null`
-* **Description**:
-- A single element ID
-- An array of element IDs
-- `null` or `undefined` to remove **all** elements from the widget
-
-
-:::warning
-Leaving the `ids` parameter empty or setting it to `null`/`undefined` will remove all elements from the widget.
-:::
+<Admonition type="warning">
+  Leaving the `ids` parameter empty or setting it to `null`/`undefined` will remove all elements from the widget.
+</Admonition>
+</Prop>
 
 #### Example
 
@@ -120,19 +106,13 @@ win.removeElements();`}
 
 Retrieve a specific property of a UI element. Available only in UI scripts.
 
-###### **`id`**
+<Prop name="id" type="string">
+  ID of the UI element.
+</Prop>
 
-* **Type**: `string`
-* **Description**:
-ID of the UI element.
----
-
-###### **`propertyName`**
-
-* **Type**: `string`
-* **Description**:
-The name of the property to retrieve (e.g., `"text"`, `"x"`, `"y"`, `"width"`, `"height"`).
----
+<Prop name="propertyName" type="string">
+  The name of the property to retrieve (e.g., `"text"`, `"x"`, `"y"`, `"width"`, `"height"`).
+</Prop>
 
 #### Return Value
 
@@ -154,23 +134,21 @@ console.log("X Position: " + xPos);`}
 ---
 ## Widget Management Methods
 
-:::note
+<Admonition type="note">
 The following methods are **only** accessible from the [Main script](/guides/script-types/#main-script-the-brain) on a [widgetWindow](/api/widget-api/widget-window/) object instance. They are
 **unavailable** in [UI scripts](/guides/script-types/#ui-script-the-face).
-:::
+</Admonition>
 
 ### **`setProperties(options)`**
 
 Update widget properties after creation.
 ---
 
-###### **`options`**
+<Prop name="options" type="Object">
+  Widget properties to update. The **`id`** property cannot be changed.
 
-* **Type**: `Object`
-* **Description**:
-Widget properties to update.The **`id`** property cannot be changed.
-
-See [Widget Options](/api/widget-api/widget-window/#options-object) for a list of available options.
+  See [Widget Options](/api/widget-api/widget-window/#options-object) for a list of available options.
+</Prop>
 
 #### Example (Main Script)
 
@@ -220,25 +198,21 @@ Refresh the widget (reload scripts and redraw). Available only in the main scrip
 ---
 ### **`on(eventName, callback)`**
 
-###### **`eventName`**
+<Method signature="on(eventName, callback)">
+  <MethodParam name="eventName" type="string">
+    Name of the lifecycle event.
 
-* **Type**: `string`
-* **Description**:
-Name of the lifecycle event.
-
-Available values:
-- `"refresh"` : Executes when the widget is refreshed (scripts reloaded)
-- `"close"` : Executes **before** the window is destroyed
-- `"closed"` : Executes **after** the window has been destroyed
-- `"show"` : Executes when the widget becomes visible (via `show: true`)
-- `"hide"` : Executes when the widget is hidden (via `show: false`)
----
-
-###### **`callback`**
-
-* **Type**: `function`
-* **Description**:
-Function executed when the specified event occurs.
+    Available values:
+    - `"refresh"` : Executes when the widget is refreshed (scripts reloaded)
+    - `"close"` : Executes **before** the window is destroyed
+    - `"closed"` : Executes **after** the window has been destroyed
+    - `"show"` : Executes when the widget becomes visible (via `show: true`)
+    - `"hide"` : Executes when the widget is hidden (via `show: false`)
+  </MethodParam>
+  <MethodParam name="callback" type="function">
+    Function executed when the specified event occurs.
+  </MethodParam>
+</Method>
 
 #### Example
 
@@ -259,47 +233,45 @@ widget.on("closed", function () {
 
 ## Context Menu Methods
 
-:::note
+<Admonition type="note">
 The following methods are **only** accessible in Main script.
-:::
+</Admonition>
 
 ### **`setContextMenu(items)`**
 
 Sets the entire custom context menu for the widget.This replaces any previously set custom menu items.Available only in Main script.
 ---
 
-###### **`items`**
+<Prop name="items" type="Array">
+  An array of context menu item objects.
 
-* **Type**: `Array`
-* **Description**:
-An array of context menu item objects.
+  Each menu item may contain:
 
-Each menu item may contain:
-
-- **`text`**
+  - **`text`**
   * **Type**: `string`
   * **Description**:
   Text displayed for the menu item.
 
-- **`action`**
+  - **`action`**
   * **Type**: `function`
   * **Description**:
   Function executed when the item is clicked.
 
-- **`type`**
+  - **`type`**
   * **Type**: `string`
   * **Description**:
   Set to `"separator"` to render a line separator.
 
-- **`checked`**
+  - **`checked`**
   * **Type**: `boolean`
   * **Description**:
   Displays a checkmark next to the item when set to `true`.
 
-- **`items`**
+  - **`items`**
   * **Type**: `Array`
   * **Description**:
   Array of sub-menu items, creating a nested context menu.
+</Prop>
 
 
 #### Example
@@ -352,12 +324,9 @@ Removes all custom items from the context menu. Available only in Main script.
 
 Completely disables the context menu for the widget.Available only in Main script.
 
-###### **`disabled`**
-
-* **Type**: `boolean`
-* **Description**:
-Set to `true` to disable the context menu. Set to `false` to enable it.
----
+<Prop name="disabled" type="boolean">
+  Set to `true` to disable the context menu. Set to `false` to enable it.
+</Prop>
 
 #### Example
 
@@ -370,13 +339,10 @@ Set to `true` to disable the context menu. Set to `false` to enable it.
 
 Controls the visibility of the default Novadesk context menu items (Refresh, Exit Widget, Close App).Available only in Main script.
 
-###### **`show`**
-
-* **Type**: `boolean`
-* **Description**:
+<Prop name="show" type="boolean">
   Set to `true` to show default menu items.
   Set to `false` to hide them.
----
+</Prop>
 
 #### Example
 
@@ -390,40 +356,27 @@ widget.showDefaultContextMenuItems(false);`}
 
 The global **`ipc`** object allows data exchange between the **Main script** and the **UI script**.
 
-### **`ipc.on(channel, callback)`**
+<Method signature="ipc.on(channel, callback)"
+description="Register a listener for a specific IPC channel.">
+  <MethodParam name="channel" type="string">
+    Name of the channel to listen on.
+  </MethodParam>
+  <MethodParam name="callback" type="function">
+    Function executed when data is received on the channel.
+  </MethodParam>
+</Method>
 
-Register a listener for a specific IPC channel.
-
-###### **`channel`**
-
-* **Type**: `string`
-* **Description**:
-Name of the channel to listen on.
----
-
-###### **`callback`**
-
-* **Type**: `function`
-* **Description**:
-Function executed when data is received on the channel.
----
-
-### **`ipc.send(channel, data)`**
-
-Send data to the other script context.
-
-###### **`channel`**
-
-* **Type**: `string`
-* **Description**:
-Name of the channel to send data on.
----
-
-###### **`data`**
-
-* **Type**: `any`
-* **Description**:
-Data to send to the receiving script.
+<Method
+  signature="ipc.send(channel, data)"
+  description="Send data to the other script context."
+>
+  <MethodParam name="channel" type="string">
+    Name of the channel to send data on.
+  </MethodParam>
+  <MethodParam name="data" type="any">
+    Data to send to the receiving script.
+  </MethodParam>
+</Method>
 
 #### Example
 

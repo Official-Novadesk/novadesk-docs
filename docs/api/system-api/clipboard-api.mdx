@@ -4,10 +4,12 @@ description: Access Windows System Clipboard in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 The Clipboard API allows widgets to interact with the system clipboard.
 
@@ -24,14 +26,12 @@ Retrieves the current text content of the clipboard.
 
 ---
 
-## **`system.setClipboardText(text)`**
-
-Sets the text content of the system clipboard.
----
-
-###### **`text`**
-* **Type**: `string`
-* **Description**: The text to copy to the clipboard.
+<Method signature="system.setClipboardText(text)"
+  description="Sets the text content of the system clipboard.">
+  <MethodParam name="text" type="string">
+    The text to copy to the clipboard.
+  </MethodParam>
+</Method>
 
 ### Return Value
 * **Type**: `boolean`

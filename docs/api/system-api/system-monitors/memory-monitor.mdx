@@ -4,13 +4,14 @@ description: Monitor system memory usage in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 The Memory monitor class allows you to monitor system memory usage including total, available, and used memory as well
 as memory load percentage.
 
-:::warning
+<Admonition type="warning">
 System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
-:::
+</Admonition>
 
 ## Creating a Memory Monitor
 

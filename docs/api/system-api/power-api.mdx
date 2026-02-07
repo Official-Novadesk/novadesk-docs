@@ -4,10 +4,11 @@ description: Access system power and battery status in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 The Power API provides information about the system's power source, battery status, and CPU frequency.
 

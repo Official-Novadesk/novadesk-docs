@@ -4,12 +4,13 @@ description: Monitor disk usage in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 The Disk monitor class allows you to monitor disk usage for specific drives or all drives on the system.
 
-:::warning
+<Admonition type="warning">
 System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
-:::
+</Admonition>
 
 ## Creating a Disk Monitor
 

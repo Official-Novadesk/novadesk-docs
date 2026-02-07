@@ -4,10 +4,12 @@ description: Launch external programs, files, or URLs using the system API
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 ## **`system.execute(target, [parameters], [workingDir], [show])`**
 
@@ -15,36 +17,29 @@ Launches an external application, opens a file, or opens a URL in the default br
 
 ---
 
-###### **`target`**
+<Method signature="system.execute(target, [parameters], [workingDir], [show])"
+  description="Launches an external application, opens a file, or opens a URL in the default browser.">
+  <MethodParam name="target" type="string">
+    Path to the executable, file, or a URL.
+  </MethodParam>
+  <MethodParam name="parameters" type="string">
+    Command-line arguments passed to the target. Only used when `target` is an executable.
+  </MethodParam>
+  <MethodParam name="workingDir" type="string">
+    Directory in which the command should be executed.
+  </MethodParam>
+  <MethodParam name="show" type="string | number">
+    **Default**: `"normal"`
 
-* **Type**: `string`
-* **Description**: Path to the executable, file, or a URL.
----
+    Controls how the window is displayed.
 
-###### **`parameters`**
-
-* **Type**: `string`
-* **Description**: Command-line arguments passed to the target. Only used when `target` is an executable.
----
-
-###### **`workingDir`**
-
-* **Type**: `string`
-* **Description**: Directory in which the command should be executed.
----
-
-###### **`show`**
-
-* **Type**: `string | number`
-* **Default**: `"normal"`
-* **Description**: Controls how the window is displayed.
-
-* **Valid values (string)**:
-  - **`"hide"`**
-  - **`"normal"`**
-  - **`"minimized"`**
-  - **`"maximized"`**
----
+    **Valid values (string)**:
+    - **`"hide"`**
+    - **`"normal"`**
+    - **`"minimized"`**
+    - **`"maximized"`**
+  </MethodParam>
+</Method>
 
 ### Return Value
 

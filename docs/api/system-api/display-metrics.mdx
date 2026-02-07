@@ -3,9 +3,11 @@ title: Display Metrics
 description: Retrieve screen and monitor display metrics in Novadesk
 ---
 
-:::warning
+import Admonition from '@theme/Admonition';
+
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 ## **`system.getDisplayMetrics()`**
 

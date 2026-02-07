@@ -4,12 +4,13 @@ description: Methods for managing the application's system tray icon and menu vi
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
 The `app` object provides methods to control the application's presence in the system tray.
 
-:::warning
+<Admonition type="warning">
 Tray methods are **only available in the Main script**. UI scripts cannot modify the system tray.
-:::
+</Admonition>
 
 ## `app.setTrayMenu(items)`
 

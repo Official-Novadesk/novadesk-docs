@@ -4,26 +4,24 @@ description: JSON file operations in the Novadesk JavaScript API
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
-## **`system.readJson(path)`**
-
-Reads and parses a JSON file.
----
-
-###### **`path`**
-
-* **Type**: `string`
-* **Description**: Path to the JSON file.Can be absolute or relative to the widget script.
----
+<Method signature="system.readJson(path)"
+  description="Reads and parses a JSON file.">
+  <MethodParam name="path" type="string">
+    Path to the JSON file. Can be absolute or relative to the widget script.
+  </MethodParam>
+</Method>
 
 ### Return Value
 
@@ -69,22 +67,15 @@ if (config) {
 [TimeStamp] [Novadesk] [LOG] Opacity: 0.8`}
 </CodeBlock>
 
-## **`system.writeJson(path, data)`**
-
-Writes a JavaScript object to a JSON file.
----
-
-###### **`path`**
-
-* **Type**: `string`
-* **Description**: Path to the JSON file.Can be absolute or relative.
----
-
-###### **`data`**
-
-* **Type**: `Object`
-* **Description**: The JavaScript object to serialize and write to the file.
----
+<Method signature="system.writeJson(path, data)"
+  description="Writes a JavaScript object to a JSON file.">
+  <MethodParam name="path" type="string">
+    Path to the JSON file. Can be absolute or relative.
+  </MethodParam>
+  <MethodParam name="data" type="Object">
+    The JavaScript object to serialize and write to the file.
+  </MethodParam>
+</Method>
 
 ### Return Value
 

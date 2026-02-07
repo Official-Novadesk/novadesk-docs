@@ -4,34 +4,29 @@ description: Asynchronously fetch data from the web or local files in Novadesk
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import {Method, MethodParam} from '@site/src/components/Method';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
-:::
+</Admonition>
 
 The Web Fetch API provides a simple, asynchronous way to retrieve data from URLs (HTTP/HTTPS) or local files. It is designed to be non-blocking, ensuring your widgets remain responsive while data is being fetched.
 
 ---
 
-## **`system.fetch(url, callback)`**
-
-Initiates an asynchronous fetch request.
----
-
-###### **`url`**
-
-* **Type**: `string`
-* **Description**: The source to fetch from.
-    * **Web**: `http://` or `https://` URLs.
-    * **Local**: File paths (e.g., `data.txt`) or `file://` URIs (e.g., `file://C:/config.json`).
----
-
-###### **`callback`**
-
-* **Type**: `function(data)`
-* **Description**: The function called when the fetch operation completes.
-    * **`data`**: The raw string content of the fetched source. If the operation fails, this will be `null`.
----
+<Method signature="system.fetch(url, callback)"
+  description="Initiates an asynchronous fetch request.">
+  <MethodParam name="url" type="string">
+    The source to fetch from.
+    - **Web**: `http://` or `https://` URLs.
+    - **Local**: File paths (e.g., `data.txt`) or `file://` URIs (e.g., `file://C:/config.json`).
+  </MethodParam>
+  <MethodParam name="callback" type="function(data)">
+    The function called when the fetch operation completes.
+    - **`data`**: The raw string content of the fetched source. If the operation fails, this will be `null`.
+  </MethodParam>
+</Method>
 
 ### Examples
 

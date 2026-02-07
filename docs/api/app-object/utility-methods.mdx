@@ -4,10 +4,11 @@ description: General utility methods available on the app object.
 ---
 
 import CodeBlock from '@theme/CodeBlock';
+import Admonition from '@theme/Admonition';
 
-:::warning
+<Admonition type="warning">
 Utility methods are **available only in the Main script**.
-:::
+</Admonition>
 
 ## `app.exit()`
 
@@ -33,9 +34,9 @@ app.refresh();`}
 
 **Description**: Returns the product version of Novadesk (defined as `ProductVersion` in the executable metadata).
 
-:::note
+<Admonition type="note">
 For standalone widget applications created with the `nwm` build tool, this value represents the version defined in the widget's `meta.json`.
-:::
+</Admonition>
 
 ### Example
 <CodeBlock language="javascript">
@@ -48,9 +49,9 @@ console.log("Product Version: " + version);`}
 
 **Description**: Returns the core file version of the executable (defined as `FileVersion` in the executable metadata).
 
-:::note
+<Admonition type="note">
 For standalone widget applications created with the `nwm` build tool, this value represents the version defined in the widget's `meta.json`.
-:::
+</Admonition>
 
 ### Example
 <CodeBlock language="javascript">
@@ -103,4 +104,3 @@ const logPath = app.getLogPath();
 console.log("Log Path: " + logPath);`}
 </CodeBlock>
 ---
-

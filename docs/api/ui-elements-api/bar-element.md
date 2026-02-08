@@ -1,3 +1,76 @@
+# Bar Element
+
+Documentation for the Novadesk Bar element type.
+
+## Adding a Bar Element
+
+Use the `addBar()` method on the `win` object within a [UI Script](/guides/script-types/#ui-script-the-face):
+
+```js
+win.addBar(options);
+```
+
+## Bar Options
+
+The bar element inherits all [General Element Options](/api/ui-elements-api/general-elements-options/) and adds the following:
+
+---
+
+### `value`
+
+- **Type**: `number`
+- **Default**: `0.0`
+- **Description**: The fill level of the bar, from `0.0` (empty) to `1.0` (full).
+
+---
+
+### `orientation`
+
+- **Type**: `string`
+- **Default**: `"horizontal"`
+- **Description**: The direction in which the bar fills.
+  - `"horizontal"`: Fills from left to right
+  - `"vertical"`: Fills from bottom to top
+
+---
+
+### `barCornerRadius`
+
+- **Type**: `number`
+- **Default**: `0`
+- **Description**: Corner radius applied to the bar fill.
+
+---
+
+### `barColor`
+
+- **Type**: `string`
+- **Description**: The [color](/guides/colors/) of the filled portion of the bar.
+
+---
+
+### `barColor2`
+
+- **Type**: `string`
+- **Description**: The [color](/guides/colors/) used to create a gradient fill.
+
+---
+
+### `barAlpha`, `barAlpha2`
+
+- **Type**: `number` (0–255)
+- **Description**: Explicit alpha values for the bar colors. Usually unnecessary when using `rgba()` format colors.
+
+---
+
+### `barGradientAngle`
+
+- **Type**: `number`
+- **Default**: `0.0`
+- **Description**: Gradient angle (in degrees) used when `barColor2` is set. Supports the full 360° range for precise control over the fill direction.
+
+---
+
 ## Example
 
 :::tabs
@@ -7,27 +80,26 @@ var exampleBarWindow = new widgetWindow({
     id: "exampleBar",
     width: 300,
     height: 40,
-    backgroundColor:"rgba(255, 255, 255, 1)",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     script: "ui/ui.js",
 });
 ```
 == ui/ui.js
 ```javascript
 win.addBar({
-    id:"cpu-Bar",
-    x:50,
-    y:10,
-    width:200,
-    height:20,
-    value:0.5,
-    barColor:"rgba(20, 232, 115, 1)",
-    solidColor:"rgba(241, 216, 19, 1)",
-    solidColorRadius:8,
-    barCornerRadius:8
-})
+    id: "cpu-Bar",
+    x: 50,
+    y: 10,
+    width: 200,
+    height: 20,
+    value: 0.5,
+    barColor: "rgba(20, 232, 115, 1)",
+    solidColor: "rgba(241, 216, 19, 1)",
+    solidColorRadius: 8,
+    barCornerRadius: 8
+});
 ```
 :::
-
 
 ## Preview
 

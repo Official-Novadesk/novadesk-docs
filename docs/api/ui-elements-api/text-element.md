@@ -1,7 +1,7 @@
 
 # Text Element
- Text UI element in Novadesk with all options and methods.
 
+Text UI element in Novadesk with all options and methods.
 
 ## Adding a Text Element
 
@@ -10,140 +10,140 @@ Use the `addText()` method on the `win` object inside a **UI Script**:
 ```js
 win.addText(options);
 ```
----
+
 ## General Element Options
 
-See general element options [here](/api/ui-elements-api/general-elements-options/):
+See general element options [here](/api/ui-elements-api/general-elements-options/).
+
 ---
 
 ## Text Element Options
+
+### `text`
+
+- **Type**: `string`
+- **Default**: `""`
+- **Description**: Text content to display.
+
 ---
 
-#### **`text`**
+### `fontSize`
 
-* **Type**: `string`
-* **Default**: `""`
-* **Description**:
-Text content to display.
+- **Type**: `number`
+- **Default**: `12`
+- **Description**: Font size in pixels.
+
 ---
 
-#### **`fontSize`**
+### `fontFace`
 
-* **Type**: `number`
-* **Default**: `12`
-* **Description**:
-Font size in pixels.
+- **Type**: `string`
+- **Default**: `"Arial"`
+- **Description**: Font face name.
+
 ---
 
-#### **`fontFace`**
+### `fontColor`
 
-* **Type**: `string`
-* **Default**: `"Arial"`
-* **Description**:
-Font face name.
+- **Type**: `string`
+- **Default**: `"rgb(0,0,0)"`
+- **Description**: [Color](/guides/colors/) or [gradients](/guides/colors/#gradients) of the text.
+
 ---
 
-#### **`fontColor`**
+### `fontWeight`
 
-* **Type**: `string`
-* **Default**: `"rgb(0,0,0)"`
-* **Description**: [color](/guides/colors/) or [gradients](/guides/colors/#gradients) of the text.
----
-
-#### **`fontWeight`**
-
-* **Type**: `string | number`
-* **Default**: `"normal"` (400)
-* **Description**:
-Font weight of the text. Supports numerical weights (100-900) or descriptive strings.
+- **Type**: `string | number`
+- **Default**: `"normal"` (400)
+- **Description**: Font weight of the text. Supports numerical weights (100-900) or descriptive strings.
 
 **Valid string values:**
 
-* `"thin"` (100)
-* `"extralight"`, `"ultralight"` (200)
-* `"light"` (300)
-* `"normal"`, `"regular"` (400)
-* `"medium"` (500)
-* `"semibold"`, `"demibold"` (600)
-* `"bold"` (700)
-* `"extrabold"`, `"ultrabold"` (800)
-* `"black"`, `"heavy"` (900)
+- `"thin"` (100)
+- `"extralight"`, `"ultralight"` (200)
+- `"light"` (300)
+- `"normal"`, `"regular"` (400)
+- `"medium"` (500)
+- `"semibold"`, `"demibold"` (600)
+- `"bold"` (700)
+- `"extrabold"`, `"ultrabold"` (800)
+- `"black"`, `"heavy"` (900)
 
 **Numerical values:** Any value between `100` and `900`.
+
 ---
 
-#### **`fontPath`**
+### `fontPath`
 
-* **Type**: `string`
-* **Default**: `""`
-* **Description**:
-Path to a custom font file (`.ttf`, `.otf`). If provided, Novadesk will load and use this font instead of searching system fonts.
+- **Type**: `string`
+- **Default**: `""`
+- **Description**: Path to a custom font file (`.ttf`, `.otf`). If provided, Novadesk will load and use this font instead of searching system fonts.
+
 ---
 
-#### **`fontStyle`**
+### `fontStyle`
 
-* **Type**: `string`
-* **Default**: `"normal"`
-* **Description**:
-Font style of the text.
+- **Type**: `string`
+- **Default**: `"normal"`
+- **Description**: Font style of the text.
 
 **Valid values:**
 
-* `"normal"`
-* `"italic"`
+- `"normal"`
+- `"italic"`
+
 ---
 
-#### **`underLine`**
+### `underLine`
 
-* **Type**: `boolean`
-* **Default**: `false`
-* **Description**:
-Draws a line under the text.
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Draws a line under the text.
+
 ---
 
-#### **`strikeThrough`*
+### `strikeThrough`
 
-* **Type**: `boolean`
-* **Default**: `false`
-* **Description**:
-Draws a line through the text.
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Draws a line through the text.
+
 ---
 
-#### **`case`*
+### `case`
 
-* **Type**: `string`
-* **Default**: `"normal"`
-* **Description**:
-Forces the text to a specific case.
+- **Type**: `string`
+- **Default**: `"normal"`
+- **Description**: Forces the text to a specific case.
 
 **Valid values:**
 
-* `"normal"` : Maintains original casing.
-* `"upper"` : converts ALL TEXT TO UPPERCASE.
-* `"lower"` : converts all text to lowercase.
-* `"capitalize"` : Capitalizes The First Letter Of Each Word.
-* `"sentence"` : Capitalizes the first letter of the first word.
+- `"normal"`: Maintains original casing.
+- `"upper"`: converts ALL TEXT TO UPPERCASE.
+- `"lower"`: converts all text to lowercase.
+- `"capitalize"`: Capitalizes The First Letter Of Each Word.
+- `"sentence"`: Capitalizes the first letter of the first word.
+
 ---
 
-#### **`letterSpacing`**
+### `letterSpacing`
 
-* **Type**: `number`
-* **Default**: `0`
-* **Description**:
-Sets the spacing between characters in pixels. Can be positive (wider) or negative (tighter).
+- **Type**: `number`
+- **Default**: `0`
+- **Description**: Sets the spacing between characters in pixels. Can be positive (wider) or negative (tighter).
+
 ---
 
-#### **`fontShadow`*
+### `fontShadow`
 
-* **Type**: `object | object[]`
-* **Default**: `[]`
-* **Description**:
-Adds one or more shadows behind the text. Each shadow supports:
+- **Type**: `object | object[]`
+- **Default**: `[]`
+- **Description**: Adds one or more shadows behind the text. Each shadow supports:
 
-* **`x`**: Horizontal offset in pixels (default `0`).
-* **`y`**: Vertical offset in pixels (default `0`).
-* **`blur`**: Blur radius in pixels (default `0`).
-* **`color`**: Shadow color as a [color](/guides/colors/) string (default `"rgba(0,0,0,1)"`).
+- **`x`**: Horizontal offset in pixels (default `0`).
+- **`y`**: Vertical offset in pixels (default `0`).
+- **`blur`**: Blur radius in pixels (default `0`).
+- **`color`**: Shadow color as a [color](/guides/colors/) string (default `"rgba(0,0,0,1)"`).
 
 Examples:
 
@@ -157,89 +157,77 @@ fontShadow: [
   { blur: 10, color: "#00ffff" }
 ]
 ```
+
 ---
 
-#### **`textAlign`**
+### `textAlign`
 
-* **Type**: `string`
-* **Default**: `"lefttop"`
-* **Description**:
-Controls horizontal and vertical text alignment.
+- **Type**: `string`
+- **Default**: `"lefttop"`
+- **Description**: Controls horizontal and vertical text alignment.
 
 See **Alignment Options** below.
+
 ---
 
-#### **`clipString`**
+### `clipString`
 
-* **Type**: `string`
-* **Default**: `"none"`
-* **Description**:
-Controls text clipping behavior when the content exceeds the available space.
+- **Type**: `string`
+- **Default**: `"none"`
+- **Description**: Controls text clipping behavior when the content exceeds the available space.
 
-* **Valid values**:
-  - **`"none"`** : No clipping. Text will automatically wrap if a `width` is provided.
-  - **`"clip"`** : Clips the text at the element's boundaries (Single line).
-  - **`"ellipsis"`** : Clips the text and appends an ellipsis (`...`) (Single line).
-  - **`"wrap"`** : Explicitly enables multiline word wrapping.
+- **Valid values**:
+  - `"none"`: No clipping. Text will automatically wrap if a `width` is provided.
+  - `"clip"`: Clips the text at the element's boundaries (Single line).
+  - `"ellipsis"`: Clips the text and appends an ellipsis (`...`) (Single line).
+  - `"wrap"`: Explicitly enables multiline word wrapping.
+
 ---
 
 ## Alignment Options
 
+### Left aligned
+
+- `"lefttop"` or `"left"`: Left aligned, top vertical
+- `"leftcenter"`: Left aligned, center vertical
+- `"leftbottom"`: Left aligned, bottom vertical
+
 ---
 
-#### **Left aligned**
+### Center aligned
 
-* **`"lefttop"`** or **`"left"`**
-Left aligned, top vertical
+- `"centertop"` or `"center"`: Center aligned, top vertical
+- `"centercenter"`: Center aligned, center vertical
+- `"centerbottom"`: Center aligned, bottom vertical
 
-* **`"leftcenter"`**
-Left aligned, center vertical
-
-* **`"leftbottom"`**
-Left aligned, bottom vertical
 ---
 
-#### **Center aligned**
+### Right aligned
 
-* **`"centertop"`** or **`"center"`**
-Center aligned, top vertical
+- `"righttop"` or `"right"`: Right aligned, top vertical
+- `"rightcenter"`: Right aligned, center vertical
+- `"rightbottom"`: Right aligned, bottom vertical
 
-* **`"centercenter"`**
-Center aligned, center vertical
-
-* **`"centerbottom"`**
-Center aligned, bottom vertical
 ---
 
-#### **Right aligned**
-
-* **`"righttop"`** or **`"right"`**
-Right aligned, top vertical
-
-* **`"rightcenter"`**
-Right aligned, center vertical
-
-* **`"rightbottom"`**
-Right aligned, bottom vertical
-
-## Inline Stylin
+## Inline Styling
 
 Novadesk supports rich text formatting using HTML-like tags within the `text` property. These tags allow you to style specific segments of text differently.
 
 ### Supported Tags
 
-* **`<b>`** : **Bold** text.
-* **`<i>`** : *Italic* text.
-* **`<u>`** : <ins>Underlined</ins> text.
-* **`<s>`** : ~~Strikethrough~~ text.
-* **`<color=value>`** : Changes text color or [gradient](/guides/colors/#gradients).
+- **`<b>`**: **Bold** text.
+- **`<i>`**: *Italic* text.
+- **`<u>`**: <ins>Underlined</ins> text.
+- **`<s>`**: ~~Strikethrough~~ text.
+- **`<color=value>`**: Changes text color or [gradient](/guides/colors/#gradients).
   - Example: `<color=#f00>Red Text</color>`
   - Example: `<color=linearGradient(0,#f00,#0f0)>Gradient Text</color>`
-* **`<size=value>`** : Changes font size in pixels.
+- **`<size=value>`**: Changes font size in pixels.
   - Example: `<size=24>Large Text</size>`
-* **`<font=name>`** : Changes font face.
+- **`<font=name>`**: Changes font face.
   - Example: `<font=Consolas>Monospaced Text</font>`
-* **`<case=value>`** : Changes text case.
+- **`<case=value>`**: Changes text case.
   - Valid values: `upper`, `lower`, `capitalize`, `sentence`, `normal`.
   - Example: `<case=upper>this will be uppercase</case>`
 
@@ -280,7 +268,7 @@ win.addText({
     y: 20,
     fontSize: 20,
     fontColor: "rgb(255, 255, 255)",
-    fontFace:"consolas",
+    fontFace: "consolas",
     fontWeight: "bold"
 });
 
@@ -290,12 +278,12 @@ win.addText({
     text: "Solid Color",
     x: 135, 
     y: 15,
-    width:140,
-    height:30,
+    width: 140,
+    height: 30,
     fontSize: 20,
     fontColor: "rgb(255, 255, 255)",
-    solidColor:"rgb(27, 213, 67)",
-    textAlign:"centercenter",
+    solidColor: "rgb(27, 213, 67)",
+    textAlign: "centercenter"
 });
 
 // round solid color text   
@@ -304,13 +292,13 @@ win.addText({
     text: "Round",
     x: 300, 
     y: 15,
-    width:120,
-    height:30,
+    width: 120,
+    height: 30,
     fontSize: 20,
     fontColor: "rgb(255, 255, 255)",
-    solidColor:"rgb(27, 117, 213)",
-    solidColorRadius:8,
-    textAlign:"centercenter",
+    solidColor: "rgb(27, 117, 213)",
+    solidColorRadius: 8,
+    textAlign: "centercenter"
 });
 
 // rotate text
@@ -321,12 +309,12 @@ win.addText({
     y: 100,
     fontSize: 20,
     fontColor: "rgb(255, 255, 255)",
-    rotate:45,
-    fontStyle: "italic",
+    rotate: 45,
+    fontStyle: "italic"
 });
 ```
 :::
 
-## Preview 
+## Preview
 
 ![Widget Preview](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/textPreview.png?raw=true)

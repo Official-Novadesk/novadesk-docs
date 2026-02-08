@@ -1,13 +1,14 @@
-
 # Color Formats
-Learn about the different color formats supported in Novadesk widgets
 
+Learn about the different color formats supported in Novadesk widgets.
 
 Novadesk supports multiple color formats for styling your widgets. You can use these formats for properties like `color`, `fontcolor`, `backgroundcolor`, `solidcolor`, and `solidcolor2`.
 
 ## Supported Color Formats
 
-### `RGB Format`
+## Solid Colors
+
+### RGB Format
 
 Use the `rgb()` function to specify colors with red, green, and blue values (0-255).
 
@@ -20,7 +21,7 @@ rgb(red, green, blue)
 ```javascript
 // Basic RGB colors
 color: "rgb(255, 255, 255)"    // White
-color: "rgb(0, 0, 0)"          // Black  
+color: "rgb(0, 0, 0)"          // Black
 color: "rgb(255, 0, 0)"        // Red
 color: "rgb(0, 255, 0)"        // Green
 color: "rgb(0, 0, 255)"        // Blue
@@ -33,7 +34,7 @@ color: "rgb(100, 150, 200)"    // Light blue
 color: "rgb(200, 100, 50)"     // Orange-brown
 ```
 
-### `RGBA Format`
+### RGBA Format
 
 Use the `rgba()` function to specify colors with transparency. The alpha value ranges from 0.0 (fully transparent) to 1.0 (fully opaque).
 
@@ -58,7 +59,7 @@ color: "rgba(255, 255, 255, 1.0)"            // White
 color: "rgba(0, 0, 0, 1)"                    // Black
 ```
 
-### `Hexadecimal Format`
+### Hexadecimal Format
 
 Use hex notation with a `#` prefix for concise color specification.
 
@@ -100,7 +101,7 @@ backgroundcolor: "#00ff00ff"  // Green fully opaque
 
 Novadesk supports linear and radial gradients.
 
-### `Linear Gradient`
+### Linear Gradient
 
 Specifies a linear transition between multiple colors.
 
@@ -109,7 +110,7 @@ Specifies a linear transition between multiple colors.
 linearGradient(angle, color1, color2, ...)
 ```
 
-* **`angle`** : A raw number representing the angle in degrees (e.g., `90` for vertical top-to-bottom). 
+- **`angle`**: A raw number representing the angle in degrees (e.g., `90` for vertical top-to-bottom).
 
 **Example:**
 ```javascript
@@ -117,7 +118,7 @@ fontColor: "linearGradient(0, #ff8c00, #ff0080)"    // Horizontal gradient
 fontColor: "linearGradient(90, #f00, #0f0, #00f)"  // Vertical 3-color gradient
 ```
 
-### `Radial Gradient`
+### Radial Gradient
 
 Specifies a radial transition from a center point.
 
@@ -126,7 +127,7 @@ Specifies a radial transition from a center point.
 radialGradient(shape, color1, color2, ...)
 ```
 
-* **`shape`** : Either `"circle"` or `"ellipse"`.
+- **`shape`**: Either `"circle"` or `"ellipse"`.
 
 **Example:**
 ```javascript

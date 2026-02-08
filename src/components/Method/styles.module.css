@@ -5,6 +5,7 @@
   padding: 0.9rem 1.1rem;
   margin: 1.1rem 0 1.6rem;
   box-shadow: 0 14px 28px var(--novadesk-content-shadow);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 20px);
 }
 
 .header {
@@ -53,7 +54,7 @@
   border-radius: 0.85rem;
   padding: 0.7rem 0.85rem;
   position: relative;
-  scroll-margin-top: var(--ifm-navbar-height);
+  scroll-margin-top: calc(var(--ifm-navbar-height) + 20px);
 }
 
 .param:target {

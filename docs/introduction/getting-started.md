@@ -2,7 +2,7 @@
 Learn how to install and start creating widgets with Novadesk
 
 ## Installation
-See the [Installation](/installation/) guide for detailed instructions on how to install Novadesk.
+See the [Installation](/introduction/installation) guide for detailed instructions on how to install Novadesk.
 
 ## What is Novadesk?
 
@@ -31,3 +31,4 @@ Novadesk is ideal for developers who want **fine-grained control**, **high perfo
 
 - **Not a replacement for other applications**  
   Novadesk interacts with existing system components and apps, but it does not replace them.
+

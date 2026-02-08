@@ -4,7 +4,7 @@
 Access Windows System Clipboard in Novadesk.
 
 ::: warning
-The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
 :::
 
 The Clipboard API allows widgets to interact with the system clipboard.
@@ -46,3 +46,4 @@ if (success) {
 var text = system.getClipboardText();
 console.log("Clipboard contains: " + text);
 ```
+

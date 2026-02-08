@@ -39,7 +39,7 @@ Novadesk.exe path/to/custom/script.js
 - Quotes are optional but recommended for paths containing spaces
 - Only works when starting a new instance of Novadesk
 
-{% aside %}
+::: info
 Novadesk enforces single-instance execution using a global mutex. When you run a command:
 
 - **If Novadesk is not running:** A new instance starts and processes the command
@@ -118,3 +118,4 @@ Displays the help menu with usage instructions and available commands.
 nwm -h
 nwm --help
 ```
+

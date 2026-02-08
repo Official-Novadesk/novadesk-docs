@@ -6,7 +6,7 @@ Register and manage global hotkeys in Novadesk.
 Novadesk allows you to register global hotkeys that work system-wide, enabling you to control your widgets and applications from anywhere.
 
 ::: warning
-The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
 :::
 
 ## system.registerHotkey(hotkey, callback)
@@ -101,3 +101,4 @@ setTimeout(function() {
     console.log("Hotkey Id2 unregistered");
 }, 5000);
 ```
+

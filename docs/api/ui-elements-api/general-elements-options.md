@@ -33,7 +33,7 @@ Options available for use with all elements in Novadesk applications.
 
 - **Type**: `string`
 - **Default**: `""`
-- **Description**: [Color](/guides/colors/) of the element background. If `solidColor2` is also specified, the background is a gradient composed of `solidColor` and `solidColor2`.
+- **Description**: [Color](/guides/colors) of the element background. If `solidColor2` is also specified, the background is a gradient composed of `solidColor` and `solidColor2`.
 
 ---
 
@@ -312,3 +312,7 @@ onScrollLeft: function() { console.log("Scrolled left"); }
 ```
 
 ---
+
+
+
+

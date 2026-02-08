@@ -18,3 +18,4 @@ win.addImage(imagePath, 10, 10);
 ## __filename
 
 The absolute path to the current script file.
+

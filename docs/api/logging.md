@@ -62,3 +62,4 @@ Debug messages are only shown when debug logging is enabled. See how to enable d
 console.debug("Debug: Entering function calculatePosition");
 console.debug("Debug: Current widget position:", x, y);
 ``
+

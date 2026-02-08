@@ -4,7 +4,7 @@
 Environment variables in the Novadesk JavaScript API.
 
 ::: warning
-The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
 :::
 
 ## system.getEnv(name)
@@ -61,3 +61,4 @@ for (var key in allEnv) {
     }
 }
 ```
+

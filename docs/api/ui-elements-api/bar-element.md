@@ -4,7 +4,7 @@ Documentation for the Novadesk Bar element type.
 
 ## Adding a Bar Element
 
-Use the `addBar()` method on the `win` object within a [UI Script](/guides/script-types/#ui-script-the-face):
+Use the `addBar()` method on the `win` object within a [UI Script](/guides/script-types#ui-script-the-face):
 
 ```js
 win.addBar(options);
@@ -12,7 +12,7 @@ win.addBar(options);
 
 ## Bar Options
 
-The bar element inherits all [General Element Options](/api/ui-elements-api/general-elements-options/) and adds the following:
+The bar element inherits all [General Element Options](/api/ui-elements-api/general-elements-options) and adds the following:
 
 ---
 
@@ -45,14 +45,14 @@ The bar element inherits all [General Element Options](/api/ui-elements-api/gene
 ### `barColor`
 
 - **Type**: `string`
-- **Description**: The [color](/guides/colors/) of the filled portion of the bar.
+- **Description**: The [color](/guides/colors) of the filled portion of the bar.
 
 ---
 
 ### `barColor2`
 
 - **Type**: `string`
-- **Description**: The [color](/guides/colors/) used to create a gradient fill.
+- **Description**: The [color](/guides/colors) used to create a gradient fill.
 
 ---
 
@@ -104,3 +104,7 @@ win.addBar({
 ## Preview
 
 ![Widget Preview](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/barPreview.png?raw=true)
+
+
+
+

@@ -108,3 +108,4 @@ Returns the relative path from `from` to `to` based on the current working direc
 var rel = path.relative("C:\\data\\orandea\\test\\aaa", "C:\\data\\orandea\\impl\\bbb");
 // Returns: "..\\..\\impl\\bbb"
 ```
+

@@ -133,3 +133,4 @@ radialGradient(shape, color1, color2, ...)
 ```javascript
 fontColor: "radialGradient(circle, #ffff00, #ff0000)"
 ```
+

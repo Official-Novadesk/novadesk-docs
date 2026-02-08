@@ -83,3 +83,4 @@ Dynamically hides or shows the system tray icon.
 ```javascript
 app.hideTrayIcon(true);
 ```
+

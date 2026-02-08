@@ -59,7 +59,7 @@ var widget = new widgetWindow(options);
 
 - **Type**: `Color string`
 - **Default**: `"rgba(0,0,0,0)"`
-- **Description**: [Color](/guides/colors/) of the background of the widget window.
+- **Description**: [Color](/guides/colors) of the background of the widget window.
 
 ::: info
 When no background color is specified, the widget will be transparent.
@@ -121,7 +121,7 @@ Controls the widget's **Z-order (stacking order)** relative to other windows and
 Novadesk uses a **Strict Separation of Concerns**:
 - **UI Elements** (text, images, etc.) can **only** be created and modified within the dedicated UI script using the global `win` object.
 - **Window Management** (position, opacity, etc.) can **only** be controlled from the main script via the widget object instance.
-- Both scripts use the global [ipc](/api/widget-api/widget-methods/#inter-process-communication-ipc) object for communication.
+- Both scripts use the global [ipc](/api/widget-api/widget-methods#inter-process-communication-ipc) object for communication.
 :::
 
 ## Z-Order Positions
@@ -158,7 +158,7 @@ Widgets can be positioned at different levels in the window stack:
 
 ## Widget Methods
 
-Once a widget is created, you can use several methods. For more information, see [Widget Methods](/api/widget-api/widget-methods/).
+Once a widget is created, you can use several methods. For more information, see [Widget Methods](/api/widget-api/widget-methods).
 
 ## Example
 
@@ -175,3 +175,4 @@ var widget = new widgetWindow({
 ## Preview
 
 ![Widget Preview](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/widgetPreview.png?raw=true)
+

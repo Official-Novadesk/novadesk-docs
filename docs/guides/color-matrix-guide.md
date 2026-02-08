@@ -315,3 +315,4 @@ colorMatrix: [
 **Logic**: Pure white pixels (R=1, G=1, B=1) become transparent because `New_RGB = 1 - 1 = 0`. Other colors remain visible.
 
 ![White to Alpha](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/ColorMatrix/White%20to%20Alpha.png?raw=true)
+

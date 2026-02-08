@@ -101,3 +101,4 @@ const logPath = app.getLogPath();
 console.log("Log Path: " + logPath);
 ```
 
+

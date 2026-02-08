@@ -92,3 +92,4 @@ Changing this setting requires an **application restart** to take effect.
 // Enable hardware acceleration
 app.useHardwareAcceleration(true);
 ```
+

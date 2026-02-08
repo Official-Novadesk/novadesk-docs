@@ -58,5 +58,6 @@ if (myAddon) {
 ```
 
 ::: tip
-Looking to build your own native addon? Check out the [Addon SDK Developer Guide](../../../developers/api/addon-api).
+Looking to build your own native addon? Check out the [Addon SDK Developer Guide](/developers/api/addon-api).
 :::
+

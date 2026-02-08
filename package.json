@@ -5,8 +5,8 @@
   },
   "scripts": {
     "start": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
   },
   "dependencies": {
     "@lite-tree/vue": "^1.1.6"

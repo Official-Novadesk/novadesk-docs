@@ -5,7 +5,7 @@ Image UI element in Novadesk with all options and methods.
 
 ## Adding an Image Element
 
-Use the `addImage()` method on the `win` object within a [UI Script](/guides/script-types/#ui-script-the-face):
+Use the `addImage()` method on the `win` object within a [UI Script](/guides/script-types#ui-script-the-face):
 
 ```js
 win.addImage(options);
@@ -13,7 +13,7 @@ win.addImage(options);
 
 ## General Element Options
 
-See general element options [here](/api/ui-elements-api/general-elements-options/).
+See general element options [here](/api/ui-elements-api/general-elements-options).
 
 ---
 
@@ -68,7 +68,7 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 
 - **Type**: `string`
 - **Default**: `""`
-- **Description**: [Color](/guides/colors/) applied to the image.
+- **Description**: [Color](/guides/colors) applied to the image.
 
 ---
 
@@ -76,7 +76,7 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 
 - **Type**: `array` (25 numbers)
 - **Default**: `[]`
-- **Description**: A 5x5 color transformation matrix used for advanced color effects (e.g., brightness, contrast, alpha, color shifting). For a comprehensive guide and more examples, see the [Color Matrix Guide](/guides/color-matrix-guide/). The array can contain either **20 numbers** (5x4 Direct2D format) or **25 numbers** (5x5 Rainmeter format). Elements can use `grayscale` and `colorMatrix` simultaneously; effects are chained sequentially.
+- **Description**: A 5x5 color transformation matrix used for advanced color effects (e.g., brightness, contrast, alpha, color shifting). For a comprehensive guide and more examples, see the [Color Matrix Guide](/guides/color-matrix-guide). The array can contain either **20 numbers** (5x4 Direct2D format) or **25 numbers** (5x5 Rainmeter format). Elements can use `grayscale` and `colorMatrix` simultaneously; effects are chained sequentially.
 
 If 25 numbers are used, the 5th value of each row (the translation/W column) is automatically handled for compatibility with Direct2D.
 
@@ -104,3 +104,7 @@ Novadesk supports the following image formats:
 - GIF
 - TIFF
 - ICO
+
+
+
+

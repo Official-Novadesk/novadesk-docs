@@ -5,7 +5,7 @@ Timer functions for scheduling code execution in Novadesk.
 Novadesk provides several timer functions to schedule code execution, similar to those found in browsers and Node.js.
 
 ::: warning
-Timer functions are **only available in the Main script**. UI scripts should use main script for timing logic and communicate via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
+Timer functions are **only available in the Main script**. UI scripts should use main script for timing logic and communicate via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
 :::
 
 ## setTimeout(callback, delay)
@@ -150,3 +150,4 @@ console.log("Second");
 // Second
 // This runs after current execution completes
 ```
+

@@ -98,3 +98,4 @@ Because Main and UI scripts have strict responsibilities, they use the **Inter-P
 ::: tip
 A common pattern is to handle system events or heavy logic in the **Main Script** and use `ipc.send()` to tell the **UI Script** what to display.
 :::
+

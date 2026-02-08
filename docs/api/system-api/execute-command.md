@@ -4,7 +4,7 @@
 Launch external programs, files, or URLs using the system API.
 
 ::: warning
-The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
 :::
 
 ## system.execute(target, [parameters], [workingDir], [show])
@@ -56,3 +56,4 @@ system.execute("https://www.google.com");
 ```javascript
 system.execute("cmd.exe", "/c dir", "C:\\", "normal");
 ```
+

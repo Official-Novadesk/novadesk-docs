@@ -26,3 +26,4 @@ console.log("Formatted:", result);
 - `include` executes the script immediately in the **global scope** of your current script.
 - If the file does not exist or contains syntax errors, an error will be thrown.
 :::
+

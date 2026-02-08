@@ -6,7 +6,7 @@ Monitor CPU usage in Novadesk.
 The CPU monitor class allows you to monitor CPU usage on the system. You can monitor overall system CPU usage or specific processor cores.
 
 ::: warning
-System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
 :::
 
 ## Creating a CPU Monitor
@@ -66,3 +66,4 @@ setTimeout(function () {
     console.log("CPU Monitors Destroyed");
 }, 5000);
 ```
+

@@ -282,3 +282,4 @@ inv = (1/det) × [d  -b  b×ty-d×tx]
 - **Matrix Singularity**: Avoid matrices with determinant = 0 (non-invertible)
 
 Understanding transformation matrices unlocks powerful control over visual elements in Novadesk, enabling complex animations and precise layout manipulations.
+

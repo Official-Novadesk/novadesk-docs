@@ -7,7 +7,7 @@ Novadesk enforces a **Strict Separation of Concerns** between the **Main script*
 ::: info
 - **Main Script**: Manages widget windows (creation, positioning, lifecycle). It **cannot** directly add UI elements.
 - **UI Script**: Manages visual elements (text, images, interactions). It **cannot** directly change window-level properties.
-- **Communication**: Use the global [ipc](/api/widget-api/widget-methods/#inter-process-communication-ipc) object to communicate between these contexts.
+- **Communication**: Use the global [ipc](#inter-process-communication-ipc) object to communicate between these contexts.
 :::
 
 ## UI Element Methods
@@ -26,7 +26,7 @@ Add a text element to the widget. Available only in UI scripts.
   - **Type**: `Object`
   - **Description**: Configuration options for the text element. The **`id`** property is required and must be unique.
 
-See the Text UI element documentation for all available options: [Text Element Options](/api/ui-elements-api/text-element/)
+See the Text UI element documentation for all available options: [Text Element Options](/api/ui-elements-api/text-element)
 
 ### addImage(options)
 
@@ -38,7 +38,7 @@ Add an image element to the widget. Available only in UI scripts.
   - **Type**: `Object`
   - **Description**: Configuration options for the image element. The **`id`** property is required and must be unique.
 
-See the Image UI element documentation for all available options: [Image Element Options](/api/ui-elements-api/image-element/)
+See the Image UI element documentation for all available options: [Image Element Options](/api/ui-elements-api/image-element)
 
 ### setElementProperties(id, props)
 
@@ -127,7 +127,7 @@ console.log("X Position: " + xPos);
 ## Widget Management Methods
 
 ::: info
-The following methods are **only** accessible from the [Main script](/guides/script-types/#main-script-the-brain) on a [widgetWindow](/api/widget-api/widget-window/) object instance. They are **unavailable** in [UI scripts](/guides/script-types/#ui-script-the-face).
+The following methods are **only** accessible from the [Main script](/guides/script-types#main-script-the-brain) on a [widgetWindow](/api/widget-api/widget-window) object instance. They are **unavailable** in [UI scripts](/guides/script-types#ui-script-the-face).
 :::
 
 ### setProperties(options)
@@ -140,7 +140,7 @@ Update widget properties after creation.
   - **Type**: `Object`
   - **Description**: Widget properties to update. The **`id`** property cannot be changed.
 
-See [Widget Options](/api/widget-api/widget-window/#options-object) for a list of available options.
+See [Widget Options](/api/widget-api/widget-window#options-object) for a list of available options.
 
 ### Example (Main Script)
 
@@ -391,3 +391,4 @@ ipc.on("send-message-to-widget", function(data) {
 });
 ```
 :::
+

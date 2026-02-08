@@ -13,7 +13,7 @@ win.addText(options);
 
 ## General Element Options
 
-See general element options [here](/api/ui-elements-api/general-elements-options/).
+See general element options [here](/api/ui-elements-api/general-elements-options).
 
 ---
 
@@ -47,7 +47,7 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 
 - **Type**: `string`
 - **Default**: `"rgb(0,0,0)"`
-- **Description**: [Color](/guides/colors/) or [gradients](/guides/colors/#gradients) of the text.
+- **Description**: [Color](/guides/colors) or [gradients](/guides/colors#gradients) of the text.
 
 ---
 
@@ -143,7 +143,7 @@ See general element options [here](/api/ui-elements-api/general-elements-options
 - **`x`**: Horizontal offset in pixels (default `0`).
 - **`y`**: Vertical offset in pixels (default `0`).
 - **`blur`**: Blur radius in pixels (default `0`).
-- **`color`**: Shadow color as a [color](/guides/colors/) string (default `"rgba(0,0,0,1)"`).
+- **`color`**: Shadow color as a [color](/guides/colors) string (default `"rgba(0,0,0,1)"`).
 
 Examples:
 
@@ -220,7 +220,7 @@ Novadesk supports rich text formatting using HTML-like tags within the `text` pr
 - **`<i>`**: *Italic* text.
 - **`<u>`**: <ins>Underlined</ins> text.
 - **`<s>`**: ~~Strikethrough~~ text.
-- **`<color=value>`**: Changes text color or [gradient](/guides/colors/#gradients).
+- **`<color=value>`**: Changes text color or [gradient](/guides/colors#gradients).
   - Example: `<color=#f00>Red Text</color>`
   - Example: `<color=linearGradient(0,#f00,#0f0)>Gradient Text</color>`
 - **`<size=value>`**: Changes font size in pixels.
@@ -318,3 +318,7 @@ win.addText({
 ## Preview
 
 ![Widget Preview](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/textPreview.png?raw=true)
+
+
+
+

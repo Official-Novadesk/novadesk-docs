@@ -6,7 +6,7 @@ Monitor mouse position in Novadesk.
 The Mouse monitor class allows you to monitor the current mouse cursor position on the screen.
 
 ::: warning
-System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
 :::
 
 ## Creating a Mouse Monitor
@@ -55,3 +55,4 @@ setTimeout(function () {
     console.log("Mouse Monitor Destroyed");
 }, 5000);
 ```
+

@@ -6,7 +6,7 @@ Monitor disk usage in Novadesk.
 The Disk monitor class allows you to monitor disk usage for specific drives or all drives on the system.
 
 ::: warning
-System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
 :::
 
 ## Creating a Disk Monitor
@@ -100,3 +100,4 @@ setTimeout(function () {
     console.log("Disk Monitor Destroyed");
 }, 30000);
 ```
+

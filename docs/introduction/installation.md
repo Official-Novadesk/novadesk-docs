@@ -61,3 +61,4 @@ Once the files are copied, the installation is complete. You can leave the "Run 
 * Click **Finish** to close the setup wizard.
 
 ![Finish Setup](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/installation/6.png?raw=true)
+

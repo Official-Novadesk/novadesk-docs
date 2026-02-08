@@ -6,7 +6,7 @@ Monitor network activity in Novadesk.
 The Network monitor class allows you to monitor network activity including incoming and outgoing data transfer rates and totals.
 
 ::: warning
-System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
 :::
 
 ## Creating a Network Monitor
@@ -73,3 +73,4 @@ setTimeout(function () {
     console.log("Network Monitor Destroyed");
 }, 5000);
 ```
+

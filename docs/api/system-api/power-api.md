@@ -4,7 +4,7 @@
 Access system power and battery status in Novadesk.
 
 ::: warning
-The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
 :::
 
 The Power API provides information about the system's power source, battery status, and CPU frequency.
@@ -68,3 +68,4 @@ if (power) {
     }
 }
 ```
+

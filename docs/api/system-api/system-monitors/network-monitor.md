@@ -1,10 +1,9 @@
 
 # Network Monitor
- Monitor network activity in Novadesk
 
+Monitor network activity in Novadesk.
 
-The Network monitor class allows you to monitor network activity including incoming and outgoing data transfer rates and
-totals.
+The Network monitor class allows you to monitor network activity including incoming and outgoing data transfer rates and totals.
 
 ::: warning
 System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
@@ -18,32 +17,32 @@ var network = new system.network();
 
 ## Methods
 
-### **`stats()`**
+### stats()
 
 Get current network statistics.
 
 ### Return Value
-* **Type**: `Object`
-* **Description**: An object containing network statistics:
 
-###### **`netIn`**
-* **Type**: `number`
-* **Description**: Incoming network bytes per second.
+- **Type**: `Object`
+- **Description**: An object containing network statistics:
 
-###### **`netOut`**
-* **Type**: `number`
-* **Description**: Outgoing network bytes per second.
+  - **`netIn`**
+    - **Type**: `number`
+    - **Description**: Incoming network bytes per second.
 
-###### **`totalIn`**
-* **Type**: `number`
-* **Description**: Total incoming bytes since monitor creation.
+  - **`netOut`**
+    - **Type**: `number`
+    - **Description**: Outgoing network bytes per second.
 
-###### **`totalOut`**
-* **Type**: `number`
-* **Description**: Total outgoing bytes since monitor creation.
----
-  
-### **`destroy()`**
+  - **`totalIn`**
+    - **Type**: `number`
+    - **Description**: Total incoming bytes since monitor creation.
+
+  - **`totalOut`**
+    - **Type**: `number`
+    - **Description**: Total outgoing bytes since monitor creation.
+
+### destroy()
 
 Destroy the network monitor and free its resources.
 

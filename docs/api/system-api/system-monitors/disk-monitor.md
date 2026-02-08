@@ -1,7 +1,7 @@
 
 # Disk Monitor
- Monitor disk usage in Novadesk
 
+Monitor disk usage in Novadesk.
 
 The Disk monitor class allows you to monitor disk usage for specific drives or all drives on the system.
 
@@ -17,51 +17,50 @@ var disk = new system.disk(options);
 
 ### Parameters
 
-###### **`options`**
-* **Type**: `Object`
-* **Required**: No
-* **Description**: Configuration options for the disk monitor.
+- **`options`**
+  - **Type**: `Object`
+  - **Required**: No
+  - **Description**: Configuration options for the disk monitor.
 
-###### **`drive`**
-* **Type**: `string`
-* **Default**: All drives
-* **Description**: Drive letter to monitor (e.g., "C:", "D:").
----
+- **`drive`**
+  - **Type**: `string`
+  - **Default**: All drives
+  - **Description**: Drive letter to monitor (e.g., "C:", "D:").
 
 ## Methods
 
-### **`stats()`**
+### stats()
 
 Get current disk statistics.
 
 ### Return Value
-* **Type**: `Object | Array`
-* **Description**: For a single drive monitor, returns an object containing disk statistics:
 
-###### **`drive`**
-* **Type**: `string`
-* **Description**: Drive letter.
+- **Type**: `Object | Array`
+- **Description**: For a single drive monitor, returns an object containing disk statistics:
 
-###### **`total`**
-* **Type**: `number`
-* **Description**: Total disk space in bytes.
+  - **`drive`**
+    - **Type**: `string`
+    - **Description**: Drive letter.
 
-###### **`free`**
-* **Type**: `number`
-* **Description**: Free disk space in bytes.
+  - **`total`**
+    - **Type**: `number`
+    - **Description**: Total disk space in bytes.
 
-###### **`used`**
-* **Type**: `number`
-* **Description**: Used disk space in bytes.
+  - **`free`**
+    - **Type**: `number`
+    - **Description**: Free disk space in bytes.
 
-###### **`percent`**
-* **Type**: `number`
-* **Description**: Disk usage percentage (0-100).
+  - **`used`**
+    - **Type**: `number`
+    - **Description**: Used disk space in bytes.
+
+  - **`percent`**
+    - **Type**: `number`
+    - **Description**: Disk usage percentage (0-100).
 
 For an all-drives monitor, returns an array of objects, each containing disk statistics for a drive.
----
-  
-### **`destroy()`**
+
+### destroy()
 
 Destroy the disk monitor and free its resources.
 

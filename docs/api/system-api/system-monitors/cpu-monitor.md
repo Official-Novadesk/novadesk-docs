@@ -1,10 +1,9 @@
 
 # CPU Monitor
- Monitor CPU usage in Novadesk
 
+Monitor CPU usage in Novadesk.
 
-The CPU monitor class allows you to monitor CPU usage on the system. You can monitor overall system CPU usage or
-specific processor cores.
+The CPU monitor class allows you to monitor CPU usage on the system. You can monitor overall system CPU usage or specific processor cores.
 
 ::: warning
 System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
@@ -18,32 +17,30 @@ var cpu = new system.cpu(options);
 
 ### Parameters
 
-###### **`options`**
-* **Type**: `Object`
-* **Required**: No
-* **Description**: Configuration options for the CPU monitor.
+- **`options`**
+  - **Type**: `Object`
+  - **Required**: No
+  - **Description**: Configuration options for the CPU monitor.
 
-###### **`processor`**
-* **Type**: `number`
-* **Default**: `0` (all processors)
-* **Description**: Processor number to monitor (0 for all processors, 1+ for specific cores).
----
+- **`processor`**
+  - **Type**: `number`
+  - **Default**: `0` (all processors)
+  - **Description**: Processor number to monitor (0 for all processors, 1+ for specific cores).
 
-# Methods
+## Methods
 
-### **`usage()`**
+### usage()
 
 Get the current CPU usage percentage.
 
 ### Return Value
-* **Type**: `number`
-* **Description**: CPU usage percentage (0-100).
----
-  
-### **`destroy()`**
+
+- **Type**: `number`
+- **Description**: CPU usage percentage (0-100).
+
+### destroy()
 
 Destroy the CPU monitor and free its resources.
----
 
 ## Example
 
@@ -68,5 +65,4 @@ setTimeout(function () {
     core1CPU.destroy();
     console.log("CPU Monitors Destroyed");
 }, 5000);
-
 ```

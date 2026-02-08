@@ -1,10 +1,9 @@
 
 # Memory Monitor
- Monitor system memory usage in Novadesk
 
+Monitor system memory usage in Novadesk.
 
-The Memory monitor class allows you to monitor system memory usage including total, available, and used memory as well
-as memory load percentage.
+The Memory monitor class allows you to monitor system memory usage including total, available, and used memory as well as memory load percentage.
 
 ::: warning
 System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc).
@@ -18,35 +17,34 @@ var memory = new system.memory();
 
 ## Methods
 
-### **`stats()`**
+### stats()
 
 Get current memory statistics.
 
 ### Return Value
-* **Type**: `Object`
-* **Description**: An object containing memory statistics:
 
-###### **`total`**
-* **Type**: `number`
-* **Description**: Total physical memory in bytes.
+- **Type**: `Object`
+- **Description**: An object containing memory statistics:
 
-###### **`available`**
-* **Type**: `number`
-* **Description**: Available physical memory in bytes.
+  - **`total`**
+    - **Type**: `number`
+    - **Description**: Total physical memory in bytes.
 
-###### **`used`**
-* **Type**: `number`
-* **Description**: Used physical memory in bytes.
+  - **`available`**
+    - **Type**: `number`
+    - **Description**: Available physical memory in bytes.
 
-###### **`percent`**
-* **Type**: `number`
-* **Description**: Memory load percentage (0-100).
----
-  
-### **`destroy()`**
+  - **`used`**
+    - **Type**: `number`
+    - **Description**: Used physical memory in bytes.
+
+  - **`percent`**
+    - **Type**: `number`
+    - **Description**: Memory load percentage (0-100).
+
+### destroy()
 
 Destroy the memory monitor and free its resources.
----
 
 ## Example
 
@@ -72,5 +70,5 @@ setTimeout(function () {
     clearInterval(intervalId);
     memory.destroy();
     console.log("Memory Monitor Destroyed");
-}, 5000)
+}, 5000);
 ```

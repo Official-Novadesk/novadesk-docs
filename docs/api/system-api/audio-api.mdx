@@ -1,7 +1,6 @@
 ---
 title: Audio API
 description: Control system volume and play sounds in Novadesk
-hide_table_of_contents: true
 ---
 
 import CodeBlock from '@theme/CodeBlock';
@@ -17,6 +16,8 @@ import Admonition from '@theme/Admonition';
 
 The Audio API provides methods to control the master system volume and
 play WAV audio files.
+
+## Methods
 
 <Method
   signature="system.getVolume()"
@@ -54,7 +55,7 @@ play WAV audio files.
     If `true`, the sound will loop continuously until `stopSound()` is
     called.
   </MethodParam>
-  ---
+  ### Return
   <ReturnValue type="boolean">
     Returns `true` if the sound playback was successfully initiated.
   </ReturnValue>

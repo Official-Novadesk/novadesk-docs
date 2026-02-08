@@ -13,12 +13,14 @@ The `system` object is **only available in the Main script**. UI scripts should 
 
 The Web Fetch API provides a simple, asynchronous way to retrieve data from URLs (HTTP/HTTPS) or local files. It is designed to be non-blocking, ensuring your widgets remain responsive while data is being fetched.
 
----
+## Methods
 
 <Method
   signature="system.fetch(url, callback)"
   description="Initiates an asynchronous fetch request."
 >
+
+## Parameters
   <MethodParam name="url" type="string">
     The source to fetch from.
     - **Web**: `http://` or `https://` URLs.
@@ -28,9 +30,8 @@ The Web Fetch API provides a simple, asynchronous way to retrieve data from URLs
     The function called when the fetch operation completes.
     - **`data`**: The raw string content of the fetched source. If the operation fails, this will be `null`.
   </MethodParam>
-</Method>
 
-## Examples
+  ## Examples
 
 #### 1. Fetching a Webpage Title
 You can use standard JavaScript Regular Expressions to parse the raw data returned by `system.fetch`.
@@ -80,3 +81,4 @@ system.fetch("settings.json", function(data) {
     }
 });`}
 </CodeBlock>
+</Method>

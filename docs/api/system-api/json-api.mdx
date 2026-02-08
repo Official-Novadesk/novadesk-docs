@@ -6,30 +6,28 @@ description: JSON file operations in the Novadesk JavaScript API
 import CodeBlock from '@theme/CodeBlock';
 import {Method, MethodParam, ReturnValue} from '@site/src/components/Method';
 import Admonition from '@theme/Admonition';
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-
 
 <Admonition type="warning">
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 </Admonition>
 
+## Methods
+
 <Method
   signature="system.readJson(path)"
   description="Reads and parses a JSON file."
 >
+  ### Parameters
   <MethodParam name="path" type="string">
     Path to the JSON file. Can be absolute or relative to the widget script.
   </MethodParam>
-  
+  ### Return
   <ReturnValue type="Object | null">
     Returns the parsed JavaScript object if successful. Returns `null` if the file could not be read or parsed.
   </ReturnValue>
-</Method>
-
-## Examples
+  ## Examples
 
 <Tabs>
   <TabItem value="index-js" label="index.js" default>
@@ -67,24 +65,26 @@ if (config) {
 [TimeStamp] [Novadesk] [LOG] Background: dark_blue
 [TimeStamp] [Novadesk] [LOG] Opacity: 0.8`}
 </CodeBlock>
+</Method>
+
+{/* ========================================================================== */}
 
 <Method
   signature="system.writeJson(path, data)"
   description="Writes a JavaScript object to a JSON file."
 >
+  ### Parameters
   <MethodParam name="path" type="string">
     Path to the JSON file. Can be absolute or relative.
   </MethodParam>
   <MethodParam name="data" type="Object">
     The JavaScript object to serialize and write to the file.
   </MethodParam>
-  
+  ### Return
   <ReturnValue type="boolean">
     Returns `true` if the file was written successfully. Returns `false` if the operation fails.
   </ReturnValue>
-</Method>
-
-## Examples 
+  ## Examples 
 
 #### 1. Writing a New File
 
@@ -120,3 +120,4 @@ if (config) {
     }
 }`}
 </CodeBlock>
+</Method>

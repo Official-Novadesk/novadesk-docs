@@ -13,12 +13,14 @@ The `system` object is **only available in the Main script**. UI scripts should 
 
 The Power API provides information about the system's power source, battery status, and CPU frequency.
 
----
+## Methods
 
 <Method
   signature="system.getPowerStatus()"
   description="Retrieves current power and battery information."
 >
+  ### Return
+
   <ReturnValue type="object | null">
     Returns an object with the following properties, or `null` if the information could not be retrieved.
     
@@ -48,9 +50,7 @@ The Power API provides information about the system's power source, battery stat
     ### `hz` (number)
     Current CPU frequency in Hz (MHz * 1,000,000).
   </ReturnValue>
-</Method>
-
-## Examples
+  ## Examples
 
 <CodeBlock language="javascript">
   {`var power = system.getPowerStatus();
@@ -65,3 +65,4 @@ if (power) {
     }
 }`}
 </CodeBlock>
+</Method>

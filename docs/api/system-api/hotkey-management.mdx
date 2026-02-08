@@ -13,9 +13,7 @@ Novadesk allows you to register global hotkeys that work system-wide, enabling y
 The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods/#inter-process-communication-ipc) if they need system data.
 </Admonition>
 
-### **`system.registerHotkey(hotkey, callback)`**
-
-Register a global hotkey and bind it to a callback.
+## Methods
 
 <Method
   signature="system.registerHotkey(hotkey, callback)"
@@ -38,7 +36,7 @@ Register a global hotkey and bind it to a callback.
       - **`onKeyDown`**: Called when the hotkey is pressed
       - **`onKeyUp`**: Called when the hotkey is released
   </MethodParam>
-  
+  ### Return
   <ReturnValue type="number">
     Hotkey ID that can be used to unregister the hotkey.
   </ReturnValue>

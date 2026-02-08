@@ -13,8 +13,7 @@ The `system.loadAddon()` method is **only available in the Main script**. Native
 
 Novadesk allows you to extend its functionality by loading native C++ DLLs (addons). This is useful for performance-critical tasks or accessing system features not available in JavaScript.
 
----
-
+## Methods
 <Method
   signature="system.loadAddon(path)"
   description="Loads a native addon DLL into the Novadesk environment."
@@ -30,8 +29,6 @@ Novadesk allows you to extend its functionality by loading native C++ DLLs (addo
   </ReturnValue>
 </Method>
 
----
-
 <Method
   signature="system.unloadAddon(path)"
   description="Unloads a previously loaded native addon. This disposes of the native resources and calls the addon's optional cleanup code."
@@ -43,8 +40,6 @@ Novadesk allows you to extend its functionality by loading native C++ DLLs (addo
     Returns `true` if the addon was successfully found and unloaded; `false` otherwise.
   </ReturnValue>
 </Method>
-
----
 
 ## Examples
 
@@ -63,8 +58,6 @@ if (myAddon) {
     system.unloadAddon("./utils_addon.dll");
 }`}
 </CodeBlock>
-
----
 
 <Admonition type="tip">
 Looking to build your own native addon? Check out the [Addon SDK Developer Guide](../../../developers/api/addon-api).

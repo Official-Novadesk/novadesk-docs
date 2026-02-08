@@ -1,7 +1,7 @@
 
 # Tray API
- Methods for managing the application's system tray icon and menu via the app object.
 
+Methods for managing the application's system tray icon and menu via the app object.
 
 The `app` object provides methods to control the application's presence in the system tray.
 
@@ -9,11 +9,12 @@ The `app` object provides methods to control the application's presence in the s
 Tray methods are **only available in the Main script**. UI scripts cannot modify the system tray.
 :::
 
-## `app.setTrayMenu(items)`
+## app.setTrayMenu(items)
 
 Sets the context menu for the application's system tray icon.
 
 ### Parameters
+
 - **items** (Array): An array of menu item objects. Each object can have:
   - `text` (string): The text to display for the item.
   - `action` (function): A callback function executed when the item is clicked.
@@ -57,27 +58,28 @@ app.setTrayMenu([
   }
 ]);
 ```
----
-## `app.clearTrayMenu()`
+
+## app.clearTrayMenu()
 
 Removes all custom items from the tray menu.
----
-## `app.showDefaultTrayItems(show)`
+
+## app.showDefaultTrayItems(show)
 
 Controls the visibility of default system tray items (like "Exit").
 
 ### Parameters
+
 - **show** (boolean): `true` to show default items, `false` to hide them.
----
-## `app.hideTrayIcon(hide)`
+
+## app.hideTrayIcon(hide)
 
 Dynamically hides or shows the system tray icon.
 
 ### Parameters
+
 - **hide** (boolean): `true` to hide the icon, `false` to show it.
 
 ### Example
 ```javascript
 app.hideTrayIcon(true);
 ```
----

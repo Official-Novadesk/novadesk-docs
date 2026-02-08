@@ -1,13 +1,13 @@
 
 # Utility Methods
- General utility methods available on the app object.
 
+General utility methods available on the app object.
 
 ::: warning
 Utility methods are **available only in the Main script**.
 :::
 
-## `app.exit()`
+## app.exit()
 
 **Description**: Exits the Novadesk application.
 
@@ -16,8 +16,8 @@ Utility methods are **available only in the Main script**.
 // Exit the application
 app.exit();
 ```
----
-## `app.refresh()`
+
+## app.refresh()
 
 **Description**: Reloads all active widget scripts. This is useful for programmatically applying changes that require a full reload of the script environment.
 
@@ -26,12 +26,12 @@ app.exit();
 // Programmatically trigger a full refresh of all widgets
 app.refresh();
 ```
----
-## `app.getProductVersion()`
+
+## app.getProductVersion()
 
 **Description**: Returns the product version of Novadesk (defined as `ProductVersion` in the executable metadata).
 
-{% aside %}
+::: info
 For standalone widget applications created with the `nwm` build tool, this value represents the version defined in the widget's `meta.json`.
 :::
 
@@ -41,12 +41,12 @@ For standalone widget applications created with the `nwm` build tool, this value
 const version = app.getProductVersion();
 console.log("Product Version: " + version);
 ```
----
-## `app.getFileVersion()`
+
+## app.getFileVersion()
 
 **Description**: Returns the core file version of the executable (defined as `FileVersion` in the executable metadata).
 
-{% aside %}
+::: info
 For standalone widget applications created with the `nwm` build tool, this value represents the version defined in the widget's `meta.json`.
 :::
 
@@ -56,8 +56,8 @@ For standalone widget applications created with the `nwm` build tool, this value
 const fileVersion = app.getFileVersion();
 console.log("File Version: " + fileVersion);
 ```
----
-## `app.getNovadeskVersion()`
+
+## app.getNovadeskVersion()
 
 **Description**: Returns the original, hardcoded version of the Novadesk application. Unlike the metadata-based methods, this value is **never changed** by the `nwm` build tool.
 
@@ -67,8 +67,8 @@ console.log("File Version: " + fileVersion);
 const novadeskVersion = app.getNovadeskVersion();
 console.log("Original Novadesk Version: " + novadeskVersion);
 ```
----
-## `app.getAppDataPath()`
+
+## app.getAppDataPath()
 
 **Description**: Returns the absolute path to the Novadesk AppData directory (`%APPDATA%\Novadesk\`). This directory is used for storing persistent settings, logs, and configuration.
 
@@ -78,8 +78,8 @@ console.log("Original Novadesk Version: " + novadeskVersion);
 const appData = app.getAppDataPath();
 console.log("AppData Path: " + appData);
 ```
----
-## `app.getSettingsFilePath()`
+
+## app.getSettingsFilePath()
 
 **Description**: Returns the absolute path to the `settings.json` file.
 
@@ -89,8 +89,8 @@ console.log("AppData Path: " + appData);
 const settingsPath = app.getSettingsFilePath();
 console.log("Settings Path: " + settingsPath);
 ```
----
-## `app.getLogPath()`
+
+## app.getLogPath()
 
 **Description**: Returns the absolute path to the current log file (`logs.log`).
 
@@ -100,5 +100,4 @@ console.log("Settings Path: " + settingsPath);
 const logPath = app.getLogPath();
 console.log("Log Path: " + logPath);
 ```
----
 

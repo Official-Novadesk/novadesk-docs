@@ -130,6 +130,10 @@ export default defineConfig({
         items: [
           { text: 'Addon API', link: '/developers/api/addon-api' },
         ]
+      },
+      {
+        text: 'Changelog',
+        link: '/changelogs/Changelog'
       }
     ],
 

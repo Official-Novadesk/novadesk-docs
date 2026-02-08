@@ -1,0 +1,61 @@
+
+# Logging
+ Logging functions via the standard console object.
+
+
+## `console.log(...args)`
+
+Log an informational message to the console and log file.
+
+### Parameters
+- **...args** (any): Values to log.
+
+### Example
+```javascript
+console.log("Application started");
+console.log("User:", "John Doe", "Version:", "1.0.0");
+```
+---
+## `console.warn(...args)`
+
+Log a warning message to the console and log file.
+
+### Parameters
+- **...args** (any): Values to log as a warning.
+
+### Example
+```javascript
+console.warn("Deprecated function used");
+console.warn("Low memory warning:", 1024, "MB remaining");
+```
+---
+## `console.error(...args)`
+
+Log an error message to the console and log file.
+
+### Parameters
+- **...args** (any): Values to log as an error.
+
+### Example
+```javascript
+console.error("Failed to load configuration file");
+console.error("Error code:", 404, "Message:", "File not found");
+```
+---
+## `console.debug(...args)`
+
+Log a debug message to the console and log file.
+
+::: warning
+Debug messages are only shown when debug logging is enabled. See how to enable debug logging using [Configuration Methods](/api/app-object/settings).
+:::
+
+### Parameters
+- **...args** (any): Values to log as debug information.
+
+### Example
+```javascript
+console.debug("Debug: Entering function calculatePosition");
+console.debug("Debug: Current widget position:", x, y);
+```
+---

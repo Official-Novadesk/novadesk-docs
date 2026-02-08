@@ -1,0 +1,120 @@
+
+# CLI Commands
+Learn how to use the Novadesk CLI commands to manage your widgets
+
+
+Novadesk supports several command-line arguments that allow you to control the application remotely or customize its behavior. These commands are particularly useful for automation, scripting, or integration with other tools.
+
+## Available Commands
+
+### `Exit Command`
+
+Gracefully shuts down the Novadesk application.
+
+**Syntax:**
+```bash
+Novadesk.exe /exit
+Novadesk.exe -exit
+Novadesk.exe --exit
+```
+
+**Description:**
+- Cleanly terminates the Novadesk application
+- Removes the system tray icon and releases all resources
+- If Novadesk is already running, the command will be sent to the existing instance
+---
+### `Custom Script Path`
+
+Launch Novadesk with a custom JavaScript file instead of the default script.
+
+**Syntax:**
+```bash
+Novadesk.exe "path/to/custom/script.js"
+Novadesk.exe path/to/custom/script.js
+```
+
+**Description:**
+- Allows you to specify a custom JavaScript file to load on startup
+- Path can be absolute or relative to the Novadesk executable
+- Quotes are optional but recommended for paths containing spaces
+- Only works when starting a new instance of Novadesk
+
+{% aside %}
+Novadesk enforces single-instance execution using a global mutex. When you run a command:
+
+- **If Novadesk is not running:** A new instance starts and processes the command
+- **If Novadesk is already running:** The command is sent to the existing instance via Windows messages
+:::
+
+---
+
+# Novadesk Widget Maker (nwm)
+
+The `nwm` tool is the recommended way to initialize, run, and build Novadesk widgets.
+
+## Commands
+
+### `init`
+
+Scaffolds a new widget project from a template.
+
+**Syntax:**
+```bash
+nwm init <widget-name>
+```
+
+**Description:**
+- Creates a new directory with the specified name.
+- Copies the default `widget` template into the directory.
+- Automatically updates the `name` property in `meta.json`.
+
+### `run`
+
+Launches the current widget in Novadesk.
+
+**Syntax:**
+```bash
+nwm run
+```
+
+**Description:**
+- Must be run from inside a widget directory.
+- Launches `Novadesk.exe` pointing to the local `index.js`.
+- **Waits for the process to exit**, allowing you to see logs and errors in the terminal.
+
+### `build`
+
+Builds a distributable package for your widget.
+
+**Syntax:**
+```bash
+nwm build
+```
+
+**Description:**
+- Validates `meta.json` for required properties (`name`, `version`, `author`, `description`, `icon`).
+- Creates a `dist` folder with the following structure:
+  - `WidgetName.exe` (Renamed Novadesk executable)
+  - `Widgets/` (Contains **recursively copied** scripts and folders)
+- Dynamically sets the executable's internal `ProductName`, `CompanyName`, and `FileDescription`.
+- Supports **arbitrary directory structures**; any folder in your project (except `dist`) will be copied into the output `Widgets/` directory.
+
+### `-v` / `--version`
+
+Shows the current version of the `nwm` tool.
+
+**Syntax:**
+```bash
+nwm -v
+nwm --version
+```
+
+### `-h` / `--help`
+
+Displays the help menu with usage instructions and available commands.
+
+**Syntax:**
+```bash
+nwm -h
+nwm --help
+```

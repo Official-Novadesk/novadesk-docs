@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lite-tree/vue": "^1.1.6",
-    "@miletorix/vitepress-back-to-top-button": "^1.0.3"
+    "@miletorix/vitepress-back-to-top-button": "^1.0.3",
+    "vitepress-component-medium-zoom": "^1.1.1"
   }
 }

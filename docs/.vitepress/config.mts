@@ -19,6 +19,11 @@ export default defineConfig({
       }
     }
   },
+  vite: {
+    ssr: {
+      noExternal: ['vitepress-component-medium-zoom']
+    }
+  },
   markdown: {
     config(md) {
       md.use(tabsMarkdownPlugin)

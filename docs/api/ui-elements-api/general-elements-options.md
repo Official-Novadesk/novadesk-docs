@@ -1,4 +1,3 @@
-
 # General Elements Options
 
 Options available for use with all elements in Novadesk applications.

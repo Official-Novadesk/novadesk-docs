@@ -40,6 +40,42 @@ Add an image element to the widget. Available only in UI scripts.
 
 See the Image UI element documentation for all available options: [Image Element Options](/api/ui-elements-api/image-element)
 
+### addBar(options)
+
+Add a bar element to the widget. Available only in UI scripts.
+
+### Parameters
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Configuration options for the bar element. The **`id`** property is required and must be unique.
+
+See the Bar UI element documentation for all available options: [Bar Element Options](/api/ui-elements-api/bar-element)
+
+### addRoundLine(options)
+
+Add a roundline element to the widget. Available only in UI scripts.
+
+### Parameters
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Configuration options for the roundline element. The **`id`** property is required and must be unique.
+
+See the RoundLine UI element documentation for all available options: [RoundLine Element Options](/api/ui-elements-api/roundline-element)
+
+### addShape(options)
+
+Add a shape element to the widget. Available only in UI scripts.
+
+### Parameters
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Configuration options for the shape element. The **`id`** property is required and must be unique.
+
+See the Shape UI element documentation for all available options: [Shape Element Options](/api/ui-elements-api/shape-element)
+
 ### setElementProperties(id, props)
 
 Update properties of an existing UI element. Available only in UI scripts.

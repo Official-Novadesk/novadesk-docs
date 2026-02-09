@@ -96,6 +96,7 @@ export default defineConfig({
               { text: 'General Elements Options', link: '/api/ui-elements-api/general-elements-options' },
               { text: 'Bar Element', link: '/api/ui-elements-api/bar-element' },
               { text: 'Image Element', link: '/api/ui-elements-api/image-element' },
+              { text: 'RoundLine Element', link: '/api/ui-elements-api/roundline-element' },
               { text: 'Text Element', link: '/api/ui-elements-api/text-element' },
             ]
           },

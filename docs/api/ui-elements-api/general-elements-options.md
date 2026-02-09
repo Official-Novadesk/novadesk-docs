@@ -33,7 +33,7 @@ Options available for use with all elements in Novadesk applications.
 
 - **Type**: `string`
 - **Default**: `""`
-- **Description**: Color of the element background. Support both [Solid Color](/guides/colors#solid-colors) and [Gradient Color](/guides/colors#gradients)
+- **Description**: Color of the element background. Support both [Solid Color](/guides/colors#solid-colors) and [Gradient Color](/guides/colors#gradients) .
 
 ---
 

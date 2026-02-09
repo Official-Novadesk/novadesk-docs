@@ -45,31 +45,7 @@ The bar element inherits all [General Element Options](/api/ui-elements-api/gene
 ### `barColor`
 
 - **Type**: `string`
-- **Description**: The [color](/guides/colors) of the filled portion of the bar.
-
----
-
-### `barColor2`
-
-- **Type**: `string`
-- **Description**: The [color](/guides/colors) used to create a gradient fill.
-
----
-
-### `barAlpha`, `barAlpha2`
-
-- **Type**: `number` (0–255)
-- **Description**: Explicit alpha values for the bar colors. Usually unnecessary when using `rgba()` format colors.
-
----
-
-### `barGradientAngle`
-
-- **Type**: `number`
-- **Default**: `0.0`
-- **Description**: Gradient angle (in degrees) used when `barColor2` is set. Supports the full 360° range for precise control over the fill direction.
-
----
+- **Description**: The Color of the filled portion of the bar. Support both [Solid Color](/guides/colors#solid-colors) and [Gradient Color](/guides/colors#gradients) .
 
 ## Example
 

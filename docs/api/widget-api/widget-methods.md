@@ -188,6 +188,71 @@ Refresh the widget (reload scripts and redraw). Available only in the main scrip
 widget.refresh();
 ```
 
+### setFocus()
+
+Bring the widget window into focus. Available only in the main script.
+
+### Example
+
+```javascript
+widget.setFocus();
+```
+
+### unFocus()
+
+Remove focus from the widget window. Available only in the main script.
+
+### Example
+
+```javascript
+widget.unFocus();
+```
+
+### getHandle()
+
+Get the native window handle for the widget.
+
+### Return Value
+
+- **Type**: `pointer | null`
+- **Description**: Returns the HWND pointer for the widget window, or `null` if unavailable.
+
+### Example
+
+```javascript
+var hWnd = widget.getHandle();
+```
+
+### getInternalPointer()
+
+Get the internal widget pointer.
+
+### Return Value
+
+- **Type**: `pointer | null`
+- **Description**: Returns an internal pointer to the widget instance, or `null` if unavailable.
+
+### Example
+
+```javascript
+var ptr = widget.getInternalPointer();
+```
+
+### getTitle()
+
+Get the current window title for the widget.
+
+### Return Value
+
+- **Type**: `string`
+- **Description**: Window title string. Returns an empty string if unavailable.
+
+### Example
+
+```javascript
+var title = widget.getTitle();
+```
+
 ### on(eventName, callback)
 
 ### Parameters
@@ -202,6 +267,11 @@ widget.refresh();
   - `"closed"`: Executes **after** the window has been destroyed
   - `"show"`: Executes when the widget becomes visible (via `show: true`)
   - `"hide"`: Executes when the widget is hidden (via `show: false`)
+  - `"move"`: Executes after the widget has moved
+  - `"focus"`: Executes when the widget gains focus
+  - `"unFocus"`: Executes when the widget loses focus
+  - `"over"`: Executes when the mouse enters the widget window
+  - `"leave"`: Executes when the mouse leaves the widget window
 
 - **`callback`**
   - **Type**: `function`

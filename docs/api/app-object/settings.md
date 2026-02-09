@@ -3,7 +3,7 @@
 
 Programmatically control Novadesk configuration via the app object.
 
-Novadesk provides several methods to control global application behavior programmatically via the `app` object. These methods can be called at any time and their values are persisted to `settings.json` located in the application's AppData directory.
+Novadesk provides several methods to control global application behavior programmatically via the `app` object. These methods can be called at any time and their values are persisted to `settings.json`. The storage location depends on [Runtime Mode](/guides/runtime-mode).
 
 ::: warning
 Configuration methods are **only available in the Main script**. UI scripts cannot modify global application settings.

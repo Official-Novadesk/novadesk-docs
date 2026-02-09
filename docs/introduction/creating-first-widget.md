@@ -91,3 +91,5 @@ Your finished widget will be in the `dist` folder:
 
 To share your widget, simply zip the contents of the `dist` folder and send it to others. When they run the `.exe`, it will automatically launch your widget with its custom name and identity!
 
+Learn more about the full build and installer flow here: [Widget Build and Installer](/guides/widget-build-and-installer).
+

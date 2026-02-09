@@ -112,7 +112,7 @@ export default defineConfig({
           { text: 'Console Logging', link: '/api/logging' },
           { text: 'Path API', link: '/api/path-api' },
           { text: 'Global Variables', link: '/api/global-variables' },
-          { text: 'Include', link: '/api/include' },
+          { text: 'Modules', link: '/api/modules' },
         ]
       },
       {

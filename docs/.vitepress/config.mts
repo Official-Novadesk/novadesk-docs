@@ -121,6 +121,7 @@ export default defineConfig({
         items: [
           { text: 'Script Types', link: '/guides/script-types' },
           { text: 'CLI Commands', link: '/guides/cli-commands' },
+          { text: 'Containers', link: '/guides/containers' },
           { text: 'Colors', link: '/guides/colors' },
           { text: 'Color Matrix Guide', link: '/guides/color-matrix-guide' },
           { text: 'Transform Matrix Guide', link: '/guides/transform-matrix-guide' },

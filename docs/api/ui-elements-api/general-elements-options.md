@@ -5,63 +5,61 @@ Options available for use with all elements in Novadesk applications.
 
 ## Element Options
 
-### `id`
+### id
 
 - **Type**: `string`
 - **Required**: `true`
 - **Description**: Unique identifier for the elements. If an element with the same ID already exists, it will be **replaced**.
 
----
-
-### `x, y`
+### x, y
 
 - **Type**: `number`
 - **Default**: `0`
 - **Description**: Specifies the x (horizontal) and y (vertical) position of the element in pixels relative to the top-left edge of the widget.
 
----
-
-### `width, height`
+### width, height
 
 - **Type**: `number`
 - **Default**: `auto calculate`
 - **Description**: Specifies the width and height of the element in pixels.
 
----
+### container
 
-### `backgroundColor`
+- **Type**: `string`
+- **Default**: `""`
+- **Description**: Assigns the element to a container element by ID. The container element clips and groups its children for rendering and hit-testing.
+
+::: info
+- The container element must already exist.
+- A container cannot be contained by another container (no nested containers).
+- An element cannot be its own container, and container cycles are not allowed.
+:::
+
+### backgroundColor
 
 - **Type**: `string`
 - **Default**: `""`
 - **Description**: Color of the element background. Support both [Solid Color](/guides/colors#solid-colors) and [Gradient Color](/guides/colors#gradients) .
 
----
-
-### `backgroundColorRadius`
+### backgroundColorRadius
 
 - **Type**: `number`
 - **Default**: `0`
 - **Description**: Sets the corner radius for the element's background in pixels. When greater than 0, this creates rounded corners for the background shape.
 
----
-
-### `rotate`
+### rotate
 
 - **Type**: `number`
 - **Default**: `0`
 - **Description**: Rotation angle in degrees.
 
----
-
-### `antiAlias`
+### antiAlias
 
 - **Type**: `boolean`
 - **Default**: `true`
 - **Description**: If set to `true`, antialiasing (edge smoothing) is used when the element is drawn.
 
----
-
-### `bevelType`
+### bevelType
 
 - **Type**: `string`
 - **Default**: `"none"`
@@ -74,17 +72,13 @@ Options available for use with all elements in Novadesk applications.
   - `"emboss"`: Embossed effect (3D border)
   - `"pillow"`: Pillow effect (faded inside)
 
----
-
-### `bevelWidth`
+### bevelWidth
 
 - **Type**: `number`
 - **Default**: `1`
 - **Description**: Sets the width of the bevel in pixels. Optional; defaults to `1` when a `bevelType` is specified.
 
----
-
-### `bevelColor, bevelColor2`
+### bevelColor, bevelColor2
 
 - **Type**: `color string`
 - **Default**:
@@ -97,9 +91,7 @@ Options available for use with all elements in Novadesk applications.
   - `bevelColor` typically acts as the primary (highlight) color.
   - `bevelColor2` provides the contrasting (shadow) color.
 
----
-
-### `padding`
+### padding
 
 - **Type**: `number | array`
 - **Default**: `0`
@@ -115,9 +107,7 @@ Options available for use with all elements in Novadesk applications.
 padding: [5, 10, 5, 10]
 ```
 
----
-
-### `transformMatrix`
+### transformMatrix
 
 - **Type**: `array` (6 numbers)
 - **Default**: `[]`
@@ -136,25 +126,19 @@ transformMatrix: [1, 0.5, 0, 1, 0, 0]
 
 Options for displaying tooltips when hovering over the element.
 
----
-
-### `tooltipText`
+### tooltipText
 
 - **Type**: `string`
 - **Default**: `""`
 - **Description**: Text to display in the tooltip. If empty, no tooltip is shown.
 
----
-
-### `tooltipTitle`
+### tooltipTitle
 
 - **Type**: `string`
 - **Default**: `""`
 - **Description**: Title text displayed in bold above the tooltip text.
 
----
-
-### `tooltipIcon`
+### tooltipIcon
 
 - **Type**: `string`
 - **Default**: `"none"`
@@ -166,39 +150,29 @@ Options for displaying tooltips when hovering over the element.
   - `"warning"`
   - `"error"`
 
----
-
-### `tooltipBalloon`
+### tooltipBalloon
 
 - **Type**: `boolean`
 - **Default**: `false`
 - **Description**: If `true`, the tooltip is displayed in a cartoon-balloon style.
 
----
-
-### `tooltipMaxWidth`
+### tooltipMaxWidth
 
 - **Type**: `number`
 - **Default**: `1000`
 - **Description**: Maximum width of the tooltip in pixels. Text exceeding this width will wrap to multiple lines.
 
----
-
-### `tooltipMaxHeight`
+### tooltipMaxHeight
 
 - **Type**: `number`
 - **Default**: `1000`
 - **Description**: Maximum height of the tooltip in pixels. This is a hint for the tooltip layout, though actual height is determined by content.
 
----
-
 ## Mouse Actions
 
 Events that trigger JavaScript functions in response to user interaction.
 
----
-
-### `onLeftMouseUp`, `onLeftMouseDown`, `onLeftDoubleClick`
+### onLeftMouseUp, onLeftMouseDown, onLeftDoubleClick
 
 - **Type**: `function`
 - **Description**: Events triggered by the left mouse button.
@@ -211,9 +185,7 @@ Events that trigger JavaScript functions in response to user interaction.
 onLeftMouseUp: function() { console.log("Left click!"); }
 ```
 
----
-
-### `onRightMouseUp`, `onRightMouseDown`, `onRightDoubleClick`
+### onRightMouseUp, onRightMouseDown, onRightDoubleClick
 
 - **Type**: `function`
 - **Description**: Events triggered by the right mouse button.
@@ -226,9 +198,7 @@ onLeftMouseUp: function() { console.log("Left click!"); }
 onRightMouseUp: function() { console.log("Right click!"); }
 ```
 
----
-
-### `onMiddleMouseUp`, `onMiddleMouseDown`, `onMiddleDoubleClick`
+### onMiddleMouseUp, onMiddleMouseDown, onMiddleDoubleClick
 
 - **Type**: `function`
 - **Description**: Events triggered by the middle mouse button (scroll wheel click).
@@ -241,9 +211,7 @@ onRightMouseUp: function() { console.log("Right click!"); }
 onMiddleMouseUp: function() { console.log("Middle click!"); }
 ```
 
----
-
-### `onX1MouseUp`, `onX1MouseDown`, `onX1DoubleClick`
+### onX1MouseUp, onX1MouseDown, onX1DoubleClick
 
 - **Type**: `function`
 - **Description**: Events triggered by the X1 mouse button (usually "Back").
@@ -253,9 +221,7 @@ onMiddleMouseUp: function() { console.log("Middle click!"); }
 onX1MouseUp: function() { console.log("Back button clicked"); }
 ```
 
----
-
-### `onX2MouseUp`, `onX2MouseDown`, `onX2DoubleClick`
+### onX2MouseUp, onX2MouseDown, onX2DoubleClick
 
 - **Type**: `function`
 - **Description**: Events triggered by the X2 mouse button (usually "Forward").
@@ -265,9 +231,7 @@ onX1MouseUp: function() { console.log("Back button clicked"); }
 onX2MouseUp: function() { console.log("Forward button clicked"); }
 ```
 
----
-
-### `onMouseOver`, `onMouseLeave`
+### onMouseOver, onMouseLeave
 
 - **Type**: `function`
 - **Description**: Events triggered by mouse movement.
@@ -279,9 +243,7 @@ onX2MouseUp: function() { console.log("Forward button clicked"); }
 onMouseOver: function() { console.log("Mouse entered!"); }
 ```
 
----
-
-### `onScrollUp`, `onScrollDown`
+### onScrollUp, onScrollDown
 
 - **Type**: `function`
 - **Description**: Events triggered by vertical scrolling.
@@ -291,9 +253,7 @@ onMouseOver: function() { console.log("Mouse entered!"); }
 onScrollUp: function() { console.log("Scrolled up"); }
 ```
 
----
-
-### `onScrollLeft`, `onScrollRight`
+### onScrollLeft, onScrollRight
 
 - **Type**: `function`
 - **Description**: Events triggered by horizontal scrolling.
@@ -302,9 +262,3 @@ onScrollUp: function() { console.log("Scrolled up"); }
 ```javascript
 onScrollLeft: function() { console.log("Scrolled left"); }
 ```
-
----
-
-
-
-

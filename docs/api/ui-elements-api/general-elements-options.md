@@ -58,6 +58,12 @@ Options available for use with all elements in Novadesk applications.
 - **Default**: `true`
 - **Description**: If set to `true`, antialiasing (edge smoothing) is used when the element is drawn.
 
+### show
+
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Controls element visibility. Set to `false` to hide the element without removing it.
+
 ### bevelType
 
 - **Type**: `string`

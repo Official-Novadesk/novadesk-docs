@@ -126,6 +126,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'Script Types', link: '/guides/script-types' },
+          { text: 'Time And Date', link: '/guides/time' },
           { text: 'CLI Commands', link: '/guides/cli-commands' },
           { text: 'Runtime Mode', link: '/guides/runtime-mode' },
           { text: 'Widget Build And Installer', link: '/guides/widget-build-and-installer' },

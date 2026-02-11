@@ -1,4 +1,3 @@
-
 # Script Types
 Understanding the difference between Main scripts and UI scripts in Novadesk
 

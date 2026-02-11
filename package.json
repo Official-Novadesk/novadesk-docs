@@ -1,22 +1,16 @@
 {
-  "name": "novadesk-docs",
-  "type": "module",
-  "version": "1.0.0",
-  "private": false,
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.16",
+    "vitepress-plugin-tabs": "^0.7.3"
+  },
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "start": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@astrojs/markdoc": "^0.13.3",
-    "@astrojs/starlight": "^0.37.1",
-    "@astrojs/starlight-markdoc": "^0.5.1",
-    "astro": "^5.6.1",
-    "sharp": "^0.34.2",
-    "starlight-changelogs": "^0.4.0",
-    "starlight-scroll-to-top": "^0.4.0"
+    "@lite-tree/vue": "^1.1.6",
+    "@miletorix/vitepress-back-to-top-button": "^1.0.3",
+    "vitepress-component-medium-zoom": "^1.1.1"
   }
 }

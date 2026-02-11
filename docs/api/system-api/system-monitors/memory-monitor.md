@@ -1,0 +1,75 @@
+
+# Memory Monitor
+
+Monitor system memory usage in Novadesk.
+
+The Memory monitor class allows you to monitor system memory usage including total, available, and used memory as well as memory load percentage.
+
+::: warning
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
+:::
+
+## Creating a Memory Monitor
+
+```javascript
+var memory = new system.memory();
+```
+
+## Methods
+
+### stats()
+
+Get current memory statistics.
+
+### Return Value
+
+- **Type**: `Object`
+- **Description**: An object containing memory statistics:
+
+  - **`total`**
+    - **Type**: `number`
+    - **Description**: Total physical memory in bytes.
+
+  - **`available`**
+    - **Type**: `number`
+    - **Description**: Available physical memory in bytes.
+
+  - **`used`**
+    - **Type**: `number`
+    - **Description**: Used physical memory in bytes.
+
+  - **`percent`**
+    - **Type**: `number`
+    - **Description**: Memory load percentage (0-100).
+
+### destroy()
+
+Destroy the memory monitor and free its resources.
+
+## Example
+
+```javascript
+// index.js
+// Create memory monitor
+var memory = new system.memory();
+
+// Update every 2 seconds
+var intervalId = setInterval(function () {
+    var stats = memory.stats();
+
+    // Convert bytes to GB for display
+    var totalGB = (stats.total / (1024 * 1024 * 1024)).toFixed(2);
+    var usedGB = (stats.used / (1024 * 1024 * 1024)).toFixed(2);
+    var availableGB = (stats.available / (1024 * 1024 * 1024)).toFixed(2);
+
+    console.log("Memory - Total: " + totalGB + "GB, Used: " + usedGB + "GB, Available: " + availableGB + "GB");
+    console.log("Memory Load: " + stats.percent + "%");
+}, 1000);
+
+setTimeout(function () {
+    clearInterval(intervalId);
+    memory.destroy();
+    console.log("Memory Monitor Destroyed");
+}, 5000);
+```
+

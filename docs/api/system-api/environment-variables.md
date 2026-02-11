@@ -1,0 +1,64 @@
+
+# Environment Variables
+
+Environment variables in the Novadesk JavaScript API.
+
+::: warning
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
+:::
+
+## system.getEnv(name)
+
+Get the value of an environment variable.
+
+### Parameters
+
+- **`name`**
+  - **Type**: `string`
+  - **Description**: Name of the environment variable. If omitted, all environment variables are returned.
+
+### Return Value
+
+- **Type**: `string | Object | null`
+- **Description**: Returns the value of the environment variable, `null` if it does not exist, or an object containing all environment variables when no name is provided.
+
+::: tip
+Omitting the parameter will return all environment variables.
+```js
+var allEnv = system.getEnv();
+```
+:::
+
+## Examples
+
+### Getting a Specific Environment Variable
+
+```javascript
+// Get the PATH environment variable
+var path = system.getEnv("PATH");
+console.log("Current PATH: " + path);
+
+// Get the username
+var username = system.getEnv("USERNAME");
+console.log("Current user: " + username);
+
+// Get the TEMP directory
+var tempDir = system.getEnv("TEMP");
+console.log("Temp directory: " + tempDir);
+```
+
+### Getting All Environment Variables
+
+```javascript
+// Get all environment variables as an object
+var allEnv = system.getEnv();
+console.log("Total environment variables: " + Object.keys(allEnv).length);
+
+// Iterate through all environment variables
+for (var key in allEnv) {
+    if (allEnv.hasOwnProperty(key)) {
+        console.log(key + " = " + allEnv[key]);
+    }
+}
+```
+

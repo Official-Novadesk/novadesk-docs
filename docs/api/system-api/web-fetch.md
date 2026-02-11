@@ -1,0 +1,78 @@
+# Web Fetch API
+
+Asynchronously fetch data from the web or local files in Novadesk.
+
+::: warning
+The `system` object is **only available in the Main script**. UI scripts should communicate with the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc) if they need system data.
+:::
+
+The Web Fetch API provides a simple, asynchronous way to retrieve data from URLs (HTTP/HTTPS) or local files. It is designed to be non-blocking, ensuring your widgets remain responsive while data is being fetched.
+
+## system.fetch(url, callback)
+
+Initiates an asynchronous fetch request.
+
+### Parameters
+
+- **`url`**
+  - **Type**: `string`
+  - **Description**: The source to fetch from.
+    - **Web**: `http://` or `https://` URLs.
+    - **Local**: File paths (e.g., `data.txt`) or `file://` URIs (e.g., `file://C:/config.json`).
+
+- **`callback`**
+  - **Type**: `function(data)`
+  - **Description**: The function called when the fetch operation completes.
+    - **`data`**: The raw string content of the fetched source. If the operation fails, this will be `null`.
+
+## Examples
+
+### 1. Fetching a Webpage Title
+You can use standard JavaScript Regular Expressions to parse the raw data returned by `system.fetch`.
+
+```javascript
+// index.js
+system.fetch("https://www.google.com", function(data) {
+    if (data) {
+        const match = data.match(/<title>(.*?)<\/title>/);
+        if (match) {
+            console.log("Page # " + match[1]);
+        } else {
+            console.log("Fetched successfully, but no title tag found.");
+        }
+    } else {
+        console.log("Failed to fetch Google.");
+    }
+});
+```
+
+### 2. Fetching and Parsing JSON
+While Novadesk has a dedicated [JSON API](/api/system-api/json-api), `system.fetch` can also be used to retrieve JSON from the web.
+
+```javascript
+// index.js
+system.fetch("https://jsonplaceholder.typicode.com/todos/1", function(data) {
+    if (data) {
+        try {
+            var todo = JSON.parse(data);
+            console.log("Task:", todo.title);
+            console.log("Completed:", todo.completed);
+        } catch (e) {
+            console.log("Failed to parse JSON response");
+        }
+    }
+});
+```
+
+### 3. Reading a Local File
+`system.fetch` treats relative paths (not starting with http/https) as local file paths relative to the executable directory.
+
+```javascript
+// index.js
+system.fetch("settings.json", function(data) {
+    if (data) {
+        console.log("Settings file content length: " + data.length);
+    }
+});
+```
+

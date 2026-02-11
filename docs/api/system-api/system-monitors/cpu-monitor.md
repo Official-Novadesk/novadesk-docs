@@ -1,0 +1,69 @@
+
+# CPU Monitor
+
+Monitor CPU usage in Novadesk.
+
+The CPU monitor class allows you to monitor CPU usage on the system. You can monitor overall system CPU usage or specific processor cores.
+
+::: warning
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
+:::
+
+## Creating a CPU Monitor
+
+```javascript
+var cpu = new system.cpu(options);
+```
+
+### Parameters
+
+- **`options`**
+  - **Type**: `Object`
+  - **Required**: No
+  - **Description**: Configuration options for the CPU monitor.
+
+- **`processor`**
+  - **Type**: `number`
+  - **Default**: `0` (all processors)
+  - **Description**: Processor number to monitor (0 for all processors, 1+ for specific cores).
+
+## Methods
+
+### usage()
+
+Get the current CPU usage percentage.
+
+### Return Value
+
+- **Type**: `number`
+- **Description**: CPU usage percentage (0-100).
+
+### destroy()
+
+Destroy the CPU monitor and free its resources.
+
+## Example
+
+```javascript
+// index.js
+// Create CPU monitors
+var overallCPU = new system.cpu();
+var core1CPU = new system.cpu({ processor: 1 });
+
+// Store the interval ID
+var intervalId = setInterval(function () {
+    var overallUsage = overallCPU.usage();
+    var core1Usage = core1CPU.usage();
+    console.log("Overall CPU: " + overallUsage + "%");
+    console.log("Core 1 CPU: " + core1Usage + "%");
+}, 1000);
+
+// Destroy monitors and clean up the interval when done
+setTimeout(function () {
+    clearInterval(intervalId);
+    overallCPU.destroy();
+    core1CPU.destroy();
+    console.log("CPU Monitors Destroyed");
+}, 5000);
+```
+

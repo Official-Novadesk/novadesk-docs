@@ -1,0 +1,76 @@
+
+# Network Monitor
+
+Monitor network activity in Novadesk.
+
+The Network monitor class allows you to monitor network activity including incoming and outgoing data transfer rates and totals.
+
+::: warning
+System monitors are **only available in the Main script**. UI scripts should request monitor data from the main script via [IPC](/api/widget-api/widget-methods#inter-process-communication-ipc).
+:::
+
+## Creating a Network Monitor
+
+```javascript
+var network = new system.network();
+```
+
+## Methods
+
+### stats()
+
+Get current network statistics.
+
+### Return Value
+
+- **Type**: `Object`
+- **Description**: An object containing network statistics:
+
+  - **`netIn`**
+    - **Type**: `number`
+    - **Description**: Incoming network bytes per second.
+
+  - **`netOut`**
+    - **Type**: `number`
+    - **Description**: Outgoing network bytes per second.
+
+  - **`totalIn`**
+    - **Type**: `number`
+    - **Description**: Total incoming bytes since monitor creation.
+
+  - **`totalOut`**
+    - **Type**: `number`
+    - **Description**: Total outgoing bytes since monitor creation.
+
+### destroy()
+
+Destroy the network monitor and free its resources.
+
+## Complete Example
+
+```javascript
+// index.js
+var network = new system.network();
+
+var intervalId = setInterval(function () {
+    var stats = network.stats();
+
+    // Convert bytes to KB/s for display
+    var netInKB = (stats.netIn / 1024).toFixed(2);
+    var netOutKB = (stats.netOut / 1024).toFixed(2);
+
+    // Convert total bytes to MB for display
+    var totalInMB = (stats.totalIn / (1024 * 1024)).toFixed(2);
+    var totalOutMB = (stats.totalOut / (1024 * 1024)).toFixed(2);
+
+    console.log("Network - In: " + netInKB + " KB/s, Out: " + netOutKB + " KB/s");
+    console.log("Total - In: " + totalInMB + " MB, Out: " + totalOutMB + " MB");
+}, 1000);
+
+setTimeout(function () {
+    clearInterval(intervalId);
+    network.destroy();
+    console.log("Network Monitor Destroyed");
+}, 5000);
+```
+

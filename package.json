@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "vitepress": "^2.0.0-alpha.16",
+    "vitepress": "^1.6.4",
     "vitepress-plugin-tabs": "^0.7.3"
   },
   "scripts": {

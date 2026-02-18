@@ -86,6 +86,7 @@ export default defineConfig({
               { text: 'Audio Level', link: '/api/system-api/audio-level' },
               { text: 'Clipboard API', link: '/api/system-api/clipboard-api' },
               { text: 'Display Metrics', link: '/api/system-api/display-metrics' },
+              { text: 'Wallpaper', link: '/api/system-api/wallpaper' },
               { text: 'Environment Variables', link: '/api/system-api/environment-variables' },
               { text: 'Execute Command', link: '/api/system-api/execute-command' },
               { text: 'Hotkey Management', link: '/api/system-api/hotkey-management' },

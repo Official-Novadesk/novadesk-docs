@@ -101,4 +101,30 @@ const logPath = app.getLogPath();
 console.log("Log Path: " + logPath);
 ```
 
+## app.isPortable()
+
+**Description**: Returns `true` when Novadesk is running in portable mode, otherwise `false`.
+
+::: info
+Portable mode is detected at runtime based on the executable location and whether Novadesk can write in that directory.
+:::
+
+### Example
+```javascript
+// Check whether Novadesk is running in portable mode
+const isPortable = app.isPortable();
+console.log("Is Portable: " + isPortable);
+```
+
+## app.isFirstRun()
+
+**Description**: Returns `true` on the first launch when the settings file is missing or empty. Returns `false` on normal subsequent launches.
+
+### Example
+```javascript
+// Check whether this is the first run
+const isFirstRun = app.isFirstRun();
+console.log("Is First Run: " + isFirstRun);
+```
+
 

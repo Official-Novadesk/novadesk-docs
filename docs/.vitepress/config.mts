@@ -78,13 +78,17 @@ export default defineConfig({
                   { text: 'Memory Monitor', link: '/api/system-api/system-monitors/memory-monitor' },
                   { text: 'Mouse Monitor', link: '/api/system-api/system-monitors/mouse-monitor' },
                   { text: 'Network Monitor', link: '/api/system-api/system-monitors/network-monitor' },
+                  { text: 'Now Playing Monitor', link: '/api/system-api/system-monitors/now-playing' },
                 ]
               },
               { text: 'Addon API', link: '/api/system-api/addon-api' },
               { text: 'Audio API', link: '/api/system-api/audio-api' },
               { text: 'Audio Level', link: '/api/system-api/audio-level' },
+              { text: 'Brightness Control', link: '/api/system-api/brightness-control' },
               { text: 'Clipboard API', link: '/api/system-api/clipboard-api' },
               { text: 'Display Metrics', link: '/api/system-api/display-metrics' },
+              { text: 'File Icon Extraction', link: '/api/system-api/file-icon-extraction' },
+              { text: 'Wallpaper', link: '/api/system-api/wallpaper' },
               { text: 'Environment Variables', link: '/api/system-api/environment-variables' },
               { text: 'Execute Command', link: '/api/system-api/execute-command' },
               { text: 'Hotkey Management', link: '/api/system-api/hotkey-management' },
@@ -150,7 +154,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://novadesk.pages.dev/' }
     ]
   }
 })

@@ -62,8 +62,8 @@ win.addBar({
     height: 20,
     value: 0.5,
     barColor: "rgba(20, 232, 115, 1)",
-    solidColor: "rgba(241, 216, 19, 1)",
-    solidColorRadius: 8,
+    backgroundColor: "rgba(241, 216, 19, 1)",
+    backgroundColorRadius: 8,
     barCornerRadius: 8
 });
 ```

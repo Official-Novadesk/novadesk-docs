@@ -34,6 +34,18 @@ Options available for use with all elements in Novadesk applications.
 - An element cannot be its own container, and container cycles are not allowed.
 :::
 
+### group
+
+- **Type**: `string`
+- **Default**: `""`
+- **Description**: Assigns the element to a logical group name. Elements in the same group can be updated or removed together using widget UI methods.
+
+::: info
+Group is independent of `container`:
+- `container` controls rendering/hit-testing hierarchy.
+- `group` is a logical label for batch operations.
+:::
+
 ### backgroundColor
 
 - **Type**: `string`
@@ -100,7 +112,7 @@ Options available for use with all elements in Novadesk applications.
 
 - **Type**: `number | array`
 - **Default**: `0`
-- **Description**: Adds padding (in pixels) around the content of the element. The padding area is drawn using the colors defined by `solidColor` and `solidColor2`.
+- **Description**: Adds padding (in pixels) around the content of the element. The padding area is drawn using the colors defined by `backgroundColor`.
 
 - **Syntax**:
   - `padding: 10`: All sides set to 10px
@@ -172,6 +184,62 @@ Options for displaying tooltips when hovering over the element.
 - **Type**: `number`
 - **Default**: `1000`
 - **Description**: Maximum height of the tooltip in pixels. This is a hint for the tooltip layout, though actual height is determined by content.
+
+## Cursor Options
+
+Options for controlling the mouse cursor when hovering interactive elements.
+
+### mouseEventCursor
+
+- **Type**: `boolean`
+- **Default**: `true`
+- **Description**: Enables or disables custom mouse cursor behavior for the element.
+
+::: info
+Cursor options are applied only when the element has at least one mouse action callback (such as `onLeftMouseUp`, `onMouseOver`, `onScrollUp`, etc.).
+:::
+
+### mouseEventCursorName
+
+- **Type**: `string`
+- **Default**: `""` (falls back to hand cursor for interactive elements)
+- **Description**: Cursor style name to use for the element.
+
+- **Built-in values**:
+  - `"hand"`
+  - `"text"`
+  - `"help"`
+  - `"busy"`
+  - `"cross"`
+  - `"pen"`
+  - `"no"`
+  - `"size_all"`
+  - `"size_nesw"`
+  - `"size_ns"`
+  - `"size_nwse"`
+  - `"size_we"`
+  - `"uparrow"`
+  - `"wait"`
+
+### cursorsDir
+
+- **Type**: `string`
+- **Default**: `""`
+- **Description**: Optional directory for custom cursor files. When provided, `mouseEventCursorName` can reference a file in this folder (with or without `.cur` / `.ani` extension).
+
+### Example
+
+```javascript
+win.addText({
+  id: "clickable-title",
+  text: "Open",
+  onLeftMouseUp: function () {
+    console.log("clicked");
+  },
+  mouseEventCursor: true,
+  mouseEventCursorName: "hand"
+});
+```
 
 ## Mouse Actions
 

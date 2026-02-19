@@ -81,15 +81,15 @@ If `installer_stub.exe` is not found next to `nwm.exe`, `nwm` falls back to `nwm
 `meta.json` defines your widget identity and installer behavior. `nwm build` reads this file and validates required fields before packaging.
 
 Required fields:
-- name
-- version
-- author
-- description
-- icon
-- setup.installDir
-- setup.startMenuFolder
-- setup.setupName
-- setup.setupIcon
+- `name`
+- `version`
+- `author`
+- `description`
+- `icon`
+- `setup.installDir`
+- `setup.startMenuFolder`
+- `setup.setupName`
+- `setup.setupIcon`
 
 ### name
 
@@ -116,25 +116,68 @@ Required fields:
 - **Type**: `string`
 - **Description**: Path to an `.ico` file within your widget project. Used for the built executable icon.
 
+### setup.createDesktopShortcut
+
+- **Type**: `boolean`
+- **Default**: `true`
+- **Required**: No
+- **Description**: Creates a Desktop shortcut for the installed widget executable.
+
+### setup.createStartupShortcut
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Required**: No
+- **Description**: Creates a shortcut in the user Startup folder.
+
+### setup.runOnStartup
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Required**: No
+- **Description**: Also creates a Startup shortcut (same effective behavior as `createStartupShortcut`).
+
 ### setup.installDir
 
 - **Type**: `string`
-- **Description**: Default installation directory for the widget installer (e.g., `%ProgramFiles%\\YourWidget`).
+- **Default**: `"%ProgramFiles%\\Novadesk"`
+- **Required**: Yes
+- **Description**: Installation directory. Environment variables are expanded by installer stub.
 
 ### setup.startMenuFolder
 
 - **Type**: `string`
-- **Description**: Start Menu folder name created by the installer.
+- **Default**: `"Novadesk"`
+- **Required**: Yes
+- **Description**: Start Menu folder used for the shortcut.
 
 ### setup.setupName
 
 - **Type**: `string`
-- **Description**: Base name used by the installer output.
+- **Default**: `"setup"`
+- **Required**: Yes
+- **Description**: Installer output file name in `dist/`. `.exe` is appended if missing.
 
 ### setup.setupIcon
 
 - **Type**: `string`
-- **Description**: Path to an `.ico` file used by the installer UI.
+- **Default**: `""`
+- **Required**: Yes
+- **Description**: Path to installer icon (`.ico`) relative to widget root.
+
+### setup.enableUninstall
+
+- **Type**: `boolean`
+- **Default**: `true`
+- **Required**: No
+- **Description**: Registers app in Windows uninstall registry and creates `Uninstall.exe`.
+
+### setup.launchAfterInstall
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Required**: No
+- **Description**: Launches installed executable after successful installation.
 
 ## Setup Options In `meta.json`
 
@@ -155,3 +198,15 @@ Installer behavior is driven by the `setup` object in `meta.json`.
   }
 }
 ```
+
+### Complete `setup` Properties
+
+All installer-related properties currently supported by `nwm`/`installer_stub`:
+
+
+
+## Notes
+
+- Unknown fields inside `setup` are ignored by current `nwm` and `installer_stub` code.
+- `createStartupShortcut` and `runOnStartup` currently produce the same installer behavior (both create a Startup shortcut).
+- `setupName` controls installer output name only; app display/install identity still comes from top-level `name`, `author`, `version`, and `description`.

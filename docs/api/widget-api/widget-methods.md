@@ -99,6 +99,28 @@ win.setElementProperties("myText", {
 });
 ```
 
+### setElementPropertiesByGroup(group, props)
+
+Update properties for all UI elements that belong to the same `group`. Available only in UI scripts.
+
+### Parameters
+
+- **`group`**
+  - **Type**: `string`
+  - **Description**: Group name to target.
+
+- **`props`**
+  - **Type**: `Object`
+  - **Description**: Properties to apply to every element in the group.
+
+### Example
+
+```javascript
+win.setElementPropertiesByGroup("stats", {
+  show: false
+});
+```
+
 ### removeElements(ids)
 
 Remove one or more UI elements from the widget. Available only in UI scripts.
@@ -127,6 +149,23 @@ win.removeElements(["img1", "img2", "text3"]);
 
 // Clear all content
 win.removeElements();
+```
+
+### removeElementsByGroup(group)
+
+Remove all UI elements that belong to a specific `group`. Available only in UI scripts.
+
+### Parameters
+
+- **`group`**
+  - **Type**: `string`
+  - **Description**: Group name to remove.
+
+### Example
+
+```javascript
+// Remove all elements in the "stats" group
+win.removeElementsByGroup("stats");
 ```
 
 ### getElementProperty(id, propertyName)
@@ -329,12 +368,24 @@ var title = widget.getTitle();
   - `"move"`: Executes after the widget has moved
   - `"focus"`: Executes when the widget gains focus
   - `"unFocus"`: Executes when the widget loses focus
-  - `"over"`: Executes when the mouse enters the widget window
-  - `"leave"`: Executes when the mouse leaves the widget window
+  - `"mouseOver"`: Executes when the mouse enters the widget window
+  - `"mouseLeave"`: Executes when the mouse leaves the widget window
+  - `"mouseMove"`: Executes when the mouse moves inside the widget
+  - `"mouseDown"`: Executes on mouse button down (left/right/middle/X1/X2)
+  - `"mouseUp"`: Executes on mouse button up (left/right/middle/X1/X2)
 
 - **`callback`**
   - **Type**: `function`
-  - **Description**: Function executed when the specified event occurs.
+  - **Description**: Function executed when the specified event occurs. For mouse events, callback receives one payload object with mouse fields.
+
+### Mouse Event Payload
+
+For `mouseOver`, `mouseLeave`, `mouseMove`, `mouseDown`, and `mouseUp`, callback receives:
+
+- `__offsetX`, `__offsetY`: Position relative to widget client area.
+- `__offsetXPercent`, `__offsetYPercent`: Relative percentage.
+- `__clientX`, `__clientY`: Client coordinates.
+- `__screenX`, `__screenY`: Screen coordinates.
 
 ### Example
 
@@ -349,6 +400,10 @@ widget.on("close", function () {
 
 widget.on("closed", function () {
   console.log("Window is now gone.");
+});
+
+widget.on("mouseMove", function (e) {
+  console.log("Mouse:", e.__clientX, e.__clientY);
 });
 ```
 

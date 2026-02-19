@@ -78,3 +78,117 @@ setTimeout(function() {
 }, 10000);
 ```
 
+## App Volume Control
+
+Control volume and mute state for individual application audio sessions.
+
+### App Selector
+
+Per-app methods use a selector object:
+
+- **`pid`** (`number`): Process ID
+- **`process`** (`string`): Process name (for example `"chrome.exe"`)
+
+Provide either `pid` or `process`.
+
+### system.listAppVolumes()
+
+Lists active app audio sessions.
+
+### Return Value
+
+- **Type**: `Array<Object>`
+- **Description**: Each item may include:
+  - **`pid`** (`number`)
+  - **`process`** (`string`)
+  - **`fileName`** (`string`)
+  - **`filePath`** (`string`)
+  - **`iconPath`** (`string`)
+  - **`displayName`** (`string`)
+  - **`volume`** (`number`, `0-100`)
+  - **`peak`** (`number`, `0-100`)
+  - **`muted`** (`boolean`)
+
+### system.getAppVolume(selector)
+
+Gets app session volume.
+
+### Return Value
+
+- **Type**: `number | null`
+- **Description**: Volume percentage (`0-100`), or `null` if session is not found.
+
+### system.setAppVolume(selector, level)
+
+Sets app session volume.
+
+### Parameters
+
+- **`selector`**
+  - **Type**: `Object`
+  - **Description**: App selector (`pid` or `process`).
+
+- **`level`**
+  - **Type**: `number`
+  - **Description**: Target volume percentage (`0-100`). Values are clamped.
+
+### Return Value
+
+- **Type**: `boolean`
+- **Description**: `true` if the app session volume was changed.
+
+### system.getAppPeak(selector)
+
+Gets current app peak meter level.
+
+### Return Value
+
+- **Type**: `number | null`
+- **Description**: Peak level percentage (`0-100`), or `null` if session is not found.
+
+### system.getAppMute(selector)
+
+Gets app mute state.
+
+### Return Value
+
+- **Type**: `boolean | null`
+- **Description**: `true`/`false` mute state, or `null` if session is not found.
+
+### system.setAppMute(selector, muted)
+
+Sets app mute state.
+
+### Parameters
+
+- **`selector`**
+  - **Type**: `Object`
+  - **Description**: App selector (`pid` or `process`).
+
+- **`muted`**
+  - **Type**: `boolean`
+  - **Description**: Mute target state.
+
+### Return Value
+
+- **Type**: `boolean`
+- **Description**: `true` if mute state was changed.
+
+### 3. Per-App Volume Example
+```javascript
+var sessions = system.listAppVolumes();
+console.log("App Sessions:", JSON.stringify(sessions));
+
+// Target by process name
+var selector = { process: "chrome.exe" };
+
+var current = system.getAppVolume(selector);
+console.log("Chrome Volume:", current);
+
+system.setAppVolume(selector, 30);
+console.log("Chrome Peak:", system.getAppPeak(selector));
+
+system.setAppMute(selector, true);
+console.log("Chrome Muted:", system.getAppMute(selector));
+```
+

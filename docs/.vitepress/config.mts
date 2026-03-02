@@ -165,6 +165,8 @@ export default defineConfig({
                   },
                   { text: "cpu", link: "/api/modules/system/cpu" },
                   { text: "disk", link: "/api/modules/system/disk" },
+                  { text: "env", link: "/api/modules/system/env" },
+                  { text: "execute", link: "/api/modules/system/execute" },
                   {
                     text: "displayMetrics",
                     link: "/api/modules/system/displayMetrics",
@@ -191,47 +193,7 @@ export default defineConfig({
                     text: "wallpaper",
                     link: "/api/modules/system/wallpaper",
                   },
-                ],
-              },
-              {
-                text: "os",
-                collapsed: true,
-                items: [
-                  { text: "index", link: "/api/modules/os" },
-                  { text: "usage", link: "/api/modules/os/usage" },
-                  { text: "io", link: "/api/modules/os/io" },
-                  {
-                    text: "filesystem",
-                    link: "/api/modules/os/filesystem",
-                  },
-                  { text: "process", link: "/api/modules/os/process" },
-                  { text: "timers", link: "/api/modules/os/timers" },
-                  { text: "signals", link: "/api/modules/os/signals" },
-                  { text: "worker", link: "/api/modules/os/worker" },
-                ],
-              },
-              {
-                text: "std",
-                collapsed: true,
-                items: [
-                  { text: "index", link: "/api/modules/std" },
-                  { text: "usage", link: "/api/modules/std/usage" },
-                  { text: "utility", link: "/api/modules/std/utility" },
-                  { text: "io", link: "/api/modules/std/io" },
-                  { text: "core", link: "/api/modules/std/core" },
-                  {
-                    text: "environment",
-                    link: "/api/modules/std/environment",
-                  },
-                  { text: "file", link: "/api/modules/std/file" },
-                  {
-                    text: "file-methods",
-                    link: "/api/modules/std/file-methods",
-                  },
-                  {
-                    text: "constants",
-                    link: "/api/modules/std/constants",
-                  },
+                  { text: "webFetch", link: "/api/modules/system/webfetch" },
                 ],
               },
             ],

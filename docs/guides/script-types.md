@@ -69,7 +69,7 @@ The UI script handles everything happening *inside* that specific window. It def
 ```javascript
 // Example clock_ui.js (UI Script)
 // Use the global 'win' object for UI elements
-win.addText({
+ui.addText({
   id: "time",
   text: "12:00",
   fontSize: 20
@@ -94,7 +94,7 @@ ipc.on("update-color", function (newColor) {
 | **Reference Object** | `new widgetWindow()` (Constructor) | `win` (Global Object) |
 | **Responsibilities** | Window Management, Hotkeys, Logic | UI Elements, Local Interactions |
 | **Window Control** | Direct (e.g., `widget.setProperties`) | Indirect (via IPC to Main) |
-| **UI Control** | Indirect (via IPC to UI) | Direct (e.g., `win.addText`) |
+| **UI Control** | Indirect (via IPC to UI) | Direct (e.g., `ui.addText`) |
 
 ---
 

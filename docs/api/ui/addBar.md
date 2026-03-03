@@ -5,10 +5,10 @@ title: Bar element options and example usage.
 # Bar Element
 The Bar element visualizes a value between `0.0` and `1.0` inside a UI script.
 
-Use `win.addBar()` to create the element and combine it with the shared [General Elements Options](/api/win/ui-elements-api/general-elements-options).
+Use `ui.addBar()` to create the element and combine it with the shared [General Elements Options](/api/ui/ui-elements-api/general-elements-options).
 
 ```js
-win.addBar(options);
+ui.addBar(options);
 ```
 
 #### Table of Contents
@@ -59,7 +59,7 @@ var exampleBarWindow = new widgetWindow({
 ```
 == ui/ui.js
 ```javascript
-win.addBar({
+ui.addBar({
     id: "cpu-Bar",
     x: 50,
     y: 10,

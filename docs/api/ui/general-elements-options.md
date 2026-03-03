@@ -5,10 +5,10 @@ title: Shared UI element options.
 # General Elements Options
 Options that apply to every UI element added via the global `win` object inside a UI script.
 
-Use these settings with methods such as `win.addText()`, `win.addImage()`, `win.addShape()`, `win.addBar()`, and `win.addRoundLine()` to control positioning, visibility, interactivity, and tooltips.
+Use these settings with methods such as `ui.addText()`, `ui.addImage()`, `ui.addShape()`, `ui.addBar()`, and `ui.addRoundLine()` to control positioning, visibility, interactivity, and tooltips.
 
 ```js
-win.addText({
+ui.addText({
     id: "example",
     x: 10,
     y: 10,

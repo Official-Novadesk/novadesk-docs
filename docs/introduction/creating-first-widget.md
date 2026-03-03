@@ -41,7 +41,7 @@ The template decides the initial structure. You can add folders (e.g., `lib`, `s
 Edit `my-first-widget/ui/ui.js` and change the displayed text:
 
 ```javascript
-win.addText({
+ui.addText({
     id: "hello_Text",
     x: 10,
     y: 10,

@@ -10,7 +10,7 @@ Novadesk enforces a **Strict Separation of Concerns** between the **Main script*
 ::: info
 - **Main Script**: Manages widget windows (creation, positioning, lifecycle). It **cannot** directly add UI elements.
 - **UI Script**: Manages visual elements (text, images, interactions). It **cannot** directly change window-level properties.
-- **Communication**: Use the global [ipc](#inter-process-communication-ipc) object to communicate between these contexts.
+- **Communication**: Use the global [ipc](/api/ipc) object to communicate between these contexts.
 :::
 
 #### Table of Contents
@@ -22,7 +22,7 @@ Novadesk enforces a **Strict Separation of Concerns** between the **Main script*
 The following methods are only available inside a UI script via the `win` object.
 :::
 
-### `win.addText(options)`
+### `ui.addText(options)`
 
 Creates a text element inside the UI script.
 
@@ -30,9 +30,9 @@ Creates a text element inside the UI script.
   - **Type**: `Object`
   - **Description**: Text element configuration. Requires a unique `id`.
 
-Refer to [Text Element Options](/api/win/ui-elements-api/text-element) for full configuration details.
+Refer to [addText Options](/api/ui/addText) for full configuration details.
 
-### `win.addImage(options)`
+### `ui.addImage(options)`
 
 Adds an image element.
 
@@ -40,9 +40,9 @@ Adds an image element.
   - **Type**: `Object`
   - **Description**: Image element configuration. Requires a unique `id`.
 
-Refer to [Image Element Options](/api/win/ui-elements-api/image-element).
+Refer to [addImage Options](/api/ui/addImage).
 
-### `win.addBar(options)`
+### `ui.addBar(options)`
 
 Adds a bar element.
 
@@ -50,9 +50,9 @@ Adds a bar element.
   - **Type**: `Object`
   - **Description**: Bar element configuration. Requires a unique `id`.
 
-Refer to [Bar Element Options](/api/win/ui-elements-api/bar-element).
+Refer to [addBar Options](/api/ui/addBar).
 
-### `win.addRoundLine(options)`
+### `ui.addRoundLine(options)`
 
 Adds a roundline element.
 
@@ -60,9 +60,9 @@ Adds a roundline element.
   - **Type**: `Object`
   - **Description**: RoundLine configuration. Requires a unique `id`.
 
-See [RoundLine Element Options](/api/win/ui-elements-api/roundline-element).
+See [addRoundLine Options](/api/ui/addRoundLine).
 
-### `win.addShape(options)`
+### `ui.addShape(options)`
 
 Adds a shape element.
 
@@ -70,7 +70,7 @@ Adds a shape element.
   - **Type**: `Object`
   - **Description**: Shape configuration. Requires a unique `id`.
 
-Refer to [Shape Element Options](/api/win/ui-elements-api/shape-element).
+Refer to [addShape Options](/api/ui/addShape).
 
 ### `win.setElementProperties(id, props)`
 

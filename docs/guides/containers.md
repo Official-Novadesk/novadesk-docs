@@ -27,7 +27,7 @@ Containers let you group elements and clip their rendering and hit-testing to a 
 
 ```javascript
 // Parent shape acts as a container
-win.addShape({
+ui.addShape({
     id: "card",
     type: "rectangle",
     x: 20,
@@ -39,7 +39,7 @@ win.addShape({
 });
 
 // Child elements clipped to the card shape
-win.addText({
+ui.addText({
     id: "title",
     x: 30,
     y: 30,
@@ -50,7 +50,7 @@ win.addText({
     container: "card"
 });
 
-win.addImage({
+ui.addImage({
     id: "icon",
     x: 30,
     y: 70,

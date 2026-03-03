@@ -3,10 +3,10 @@ title: Shape element types, properties, and examples.
 ---
 
 # Shape Element
-Draw shapes (rectangles, ellipses, lines, arcs, paths, curves, combines) using `win.addShape()` inside a UI script.
+Draw shapes (rectangles, ellipses, lines, arcs, paths, curves, combines) using `ui.addShape()` inside a UI script.
 
 ```js
-win.addShape(options);
+ui.addShape(options);
 ```
 
 #### Table of Contents
@@ -14,7 +14,7 @@ win.addShape(options);
 
 ## Shape Options
 
-The shape element inherits all [General Elements Options](/api/win/ui-elements-api/general-elements-options) and adds the following fields.
+The shape element inherits all [General Elements Options](/api/ui/ui-elements-api/general-elements-options) and adds the following fields.
 
 ### `type`
 
@@ -59,7 +59,7 @@ Use `type: "rectangle"`.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "rect1",
     type: "rectangle",
     x: 20,
@@ -98,7 +98,7 @@ Use `type: "ellipse"`.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "ellipse1",
     type: "ellipse",
     x: 200,
@@ -144,7 +144,7 @@ Use `type: "line"`.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "line1",
     type: "line",
     x: 20,
@@ -185,7 +185,7 @@ Use `type: "arc"`.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "arc1",
     type: "arc",
     x: 240,
@@ -231,7 +231,7 @@ Use `type: "curve"`.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "curve1",
     type: "curve",
     x: 20,
@@ -263,7 +263,7 @@ Use `type: "path"`.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "path1",
     type: "path",
     x: 20,
@@ -351,7 +351,7 @@ See the **Common Options** section below for `combine` settings.
 #### Example
 
 ```javascript
-win.addShape({
+ui.addShape({
     id: "base",
     type: "rectangle",
     x: 260,
@@ -362,7 +362,7 @@ win.addShape({
     fillColor: "rgba(80, 80, 80, 1)"
 });
 
-win.addShape({
+ui.addShape({
     id: "cutout",
     type: "ellipse",
     x: 280,
@@ -372,7 +372,7 @@ win.addShape({
     fillColor: "rgba(255, 255, 255, 1)"
 });
 
-win.addShape({
+ui.addShape({
     id: "combined",
     type: "combine",
     base: "base",

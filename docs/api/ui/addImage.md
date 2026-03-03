@@ -5,17 +5,17 @@ title: Image element options and supported formats.
 # Image Element
 The Image element renders bitmap content inside a UI script via the shared element options.
 
-Use `win.addImage()` in your UI script (`win` is the UI script's global object).
+Use `ui.addImage()` in your UI script (`win` is the UI script's global object).
 
 ```js
-win.addImage(options);
+ui.addImage(options);
 ```
 
 #### Table of Contents
 [[toc]]
 
 ## General Element Options
-Refer to [General Elements Options](/api/win/ui-elements-api/general-elements-options) for layout, visibility, and interactivity controls.
+Refer to [General Elements Options](/api/ui/ui-elements-api/general-elements-options) for layout, visibility, and interactivity controls.
 
 ## Image Element Options
 

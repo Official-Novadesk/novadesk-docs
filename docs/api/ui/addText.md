@@ -3,19 +3,19 @@ title: Text UI element options, styling, and examples.
 ---
 
 # Text Element
-The Text element renders styled text via the UI script `win` object using the shared element options detailed in [General Elements Options](/api/win/ui-elements-api/general-elements-options).
+The Text element renders styled text via the UI script `win` object using the shared element options detailed in [General Elements Options](/api/ui/ui-elements-api/general-elements-options).
 
-Use `win.addText()` inside the UI script to create and configure a text element.
+Use `ui.addText()` inside the UI script to create and configure a text element.
 
 ```js
-win.addText(options);
+ui.addText(options);
 ```
 
 #### Table of Contents
 [[toc]]
 
 ## General Element Options
-See [General Elements Options](/api/win/ui-elements-api/general-elements-options) for layout, visibility, and interaction settings shared across all UI elements.
+See [General Elements Options](/api/ui/ui-elements-api/general-elements-options) for layout, visibility, and interaction settings shared across all UI elements.
 
 ## Text Element Options
 
@@ -192,7 +192,7 @@ Text supports HTML-like tags inside the `text` property.
 ### Usage example
 
 ```javascript
-win.addText({
+ui.addText({
     text: "This is <b>Bold</b> and <color=#00ff00>Green</color> text.",
     fontSize: 18
 });
@@ -215,7 +215,7 @@ var sysWidget = new widgetWindow({
 ```
 == ui.js (UI Script)
 ```javascript
-win.addText({
+ui.addText({
     id: "simpleText",
     text: "SimpleText",
     x: 10,
@@ -225,7 +225,7 @@ win.addText({
     fontFace: "consolas",
     fontWeight: "bold"
 });
-win.addText({
+ui.addText({
     id: "SolidColorText",
     text: "Solid Color",
     x: 135,
@@ -237,7 +237,7 @@ win.addText({
     solidColor: "rgb(27, 213, 67)",
     textAlign: "centercenter"
 });
-win.addText({
+ui.addText({
     id: "RoundSolidColor",
     text: "Round",
     x: 300,
@@ -250,7 +250,7 @@ win.addText({
     solidColorRadius: 8,
     textAlign: "centercenter"
 });
-win.addText({
+ui.addText({
     id: "RotateText",
     text: "Rotate 45",
     x: 10,

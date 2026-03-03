@@ -20,8 +20,8 @@ Every listener receives an **event** object as its first argument with the follo
 
 - **`type`** (`string`): The channel name (defaults to `"message"`).
 - **`payload`** (`any`): The data that was sent.
-- **`from`** (`string`): Origin of the message — `"main"` or `"ui"`.
-- **`to`** (`string`): Destination — `"main"` or `"ui"`.
+- **`from`** (`string`): Origin of the message  `"main"` or `"ui"`.
+- **`to`** (`string`): Destination  `"main"` or `"ui"`.
 - **`channel`** (`string`): The channel the message was dispatched on.
 
 ## `ipcMain`
@@ -47,7 +47,7 @@ ipcMain.on("ui-ready", (event, payload) => {
 
 ### `ipcMain.handle(channel, handler)`
 
-Registers a handler that responds to `ipcRenderer.invoke()` calls. Only one handler can be active per channel — registering again replaces the previous handler.
+Registers a handler that responds to `ipcRenderer.invoke()` calls. Only one handler can be active per channel  registering again replaces the previous handler.
 
 #### Parameters
 

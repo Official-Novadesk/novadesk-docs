@@ -67,7 +67,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Introduction", link: "/introduction/getting-started" },
-      { text: "API", link: "/api/win/general-elements-options" },
+      { text: "API", link: "/api/ui/general-elements-options" },
       { text: "Guides", link: "/guides/script-types" },
     ],
 
@@ -89,42 +89,42 @@ export default defineConfig({
         text: "API Reference",
         collapsed: false,
         items: [
-          {
-            text: "Win Object APIs",
-            collapsed: true,
-            items: [
-              {
-                text: "Win Object Methods",
-                link: "/api/win/win-object",
-              },
-              {
-                text: "General Elements Options",
-                link: "/api/win/general-elements-options",
-              },
-              { text: "Bar Element", link: "/api/win/bar-element" },
-              {
-                text: "Shape Element",
-                link: "/api/win/shape-element",
-              },
-              {
-                text: "Image Element",
-                link: "/api/win/image-element",
-              },
-              {
-                text: "RoundLine Element",
-                link: "/api/win/roundline-element",
-              },
-              {
-                text: "Text Element",
-                link: "/api/win/text-element",
-              },
-            ],
-          },
-
           { text: "Logging", link: "/api/logging" },
           { text: "Path", link: "/api/path" },
           { text: "Global Variables", link: "/api/global-variables" },
-
+          { text: "Timers", link: "/api/timers" },
+          { text: "IPC", link: "/api/ipc" },
+          {
+            text: "UI Object APIs",
+            collapsed: true,
+            items: [
+              {
+                text: "UI Object Methods",
+                link: "/api/ui/ui-object",
+              },
+              {
+                text: "General Elements Options",
+                link: "/api/ui/general-elements-options",
+              },
+              { text: "addBar", link: "/api/ui/addBar" },
+              {
+                text: "addShape",
+                link: "/api/ui/addShape",
+              },
+              {
+                text: "addImage",
+                link: "/api/ui/addImage",
+              },
+              {
+                text: "addRoundLine",
+                link: "/api/ui/addRoundLine",
+              },
+              {
+                text: "addText",
+                link: "/api/ui/addText",
+              },
+            ],
+          },
           {
             text: "Modules",
             collapsed: true,
@@ -198,9 +198,6 @@ export default defineConfig({
               },
             ],
           },
-
-          { text: "Timers", link: "/api/timers" },
-          { text: "IPC", link: "/api/ipc" },
         ],
       },
 

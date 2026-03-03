@@ -124,7 +124,7 @@ Omitting the background color results in a fully transparent window.
 Novadesk enforces a strict separation of concerns:
 - **UI Elements** (text, images, etc.) must be created/updated inside the dedicated UI script via the global `win` object.
 - **Window Management** (position, opacity, etc.) must be managed in the main script through the widget object instance.
-- Both scripts communicate using the global [ipc](/api/win/widget-api/win-object#inter-process-communication-ipc) object.
+- Both scripts communicate using the global [ipc](/api/ui/widget-api/win-object#inter-process-communication-ipc) object.
 :::
 
 ## Widget Management Methods
@@ -141,7 +141,7 @@ Updates widget configuration.
   - **Type**: `Object`
   - **Description**: Properties to apply. Cannot change `id`.
 
-Refer to [Widget Options](/api/win/widget-api/widget-window#options-object).
+Refer to [Widget Options](/api/ui/widget-api/widget-window#options-object).
 
 #### Example
 

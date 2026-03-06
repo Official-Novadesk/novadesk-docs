@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.6.0.0-beta] - 2026-03-06
+###### 📅 6th March, 2026
+
+### Added
+
+- Integrated QuickJS for ECMAScript 2020 (ES11) support.
+- Added new modules: novadesk, system, and fs.
+
+### Changed
+
+- UI scripts now require the .ui.js suffix at the end of the script filename.
+- Renamed the win object to the ui object (alias updated accordingly).
+- Replaced the IPC method with a new implementation.
+
+### Removed
+
+- Removed include() and require() methods.
+- Removed all previous system and app objects.
+
+<!-- ================================================================================= -->
+
 ## [0.5.0.0-beta] - 2026-02-19
 ###### 📅 19th February, 2026 
 

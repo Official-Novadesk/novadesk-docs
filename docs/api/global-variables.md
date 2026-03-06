@@ -1,93 +1,119 @@
+---
+title: Global variables available in Novadesk scripts.
+---
+
 # Global Variables
 
-Global variables available in Novadesk scripts.
+Novadesk injects several globals into scripts. Some are available in both Main and UI scripts, while others are context-specific.
 
-Novadesk provides standard global variables that help you work with file paths relative to your script.
+#### Table of Contents
+[[toc]]
 
-## __dirname
+## `__dirname`
 
-The absolute path to the directory containing the current script file.
+- **Type**: `string`
+- **Available in**: Main script, UI script
+
+Absolute directory path of the current script file.
 
 ### Example
+
 ```javascript
-// Load an image from an assets folder next to the script
-var imagePath = path.join(__dirname, 'assets', 'icon.png');
-win.addImage(imagePath, 10, 10);
+console.log(__dirname);
 ```
 
-## __filename
+## `__filename`
 
-The absolute path to the current script file.
+- **Type**: `string`
+- **Available in**: Main script, UI script
 
-## __widgetsDir
-
-The absolute directory path of the currently loaded widget script context.
-
-::: info
-In current runtime behavior, `__widgetsDir` is set to the same value as `__dirname` for the active script context.
-:::
+Absolute path to the current script file.
 
 ### Example
-```javascript
-console.log("Widget Dir:", __widgetsDir);
 
-var iconPath = path.join(__widgetsDir, "assets", "icon.png");
+```javascript
+console.log(__filename);
 ```
 
-## Mouse Event Variables
+## `__widgetDir`
 
-The following variables are provided in mouse callback payloads (widget events and element mouse action callbacks):
+- **Type**: `string`
+- **Available in**: Main script, UI script
 
-## __offsetX
-
-X position relative to the target area.
-
-- For widget mouse events: relative to widget client area.
-- For element callbacks: relative to the element.
-
-## __offsetY
-
-Y position relative to the target area.
-
-- For widget mouse events: relative to widget client area.
-- For element callbacks: relative to the element.
-
-## __offsetXPercent
-
-Horizontal percentage based on target width.
-
-- Type: `number`
-- Range: usually `0-100` (can be outside this range when pointer is outside bounds, such as `mouseLeave`).
-
-## __offsetYPercent
-
-Vertical percentage based on target height.
-
-- Type: `number`
-- Range: usually `0-100` (can be outside this range when pointer is outside bounds, such as `mouseLeave`).
-
-## __clientX
-
-Mouse X position in widget client coordinates.
-
-## __clientY
-
-Mouse Y position in widget client coordinates.
-
-## __screenX
-
-Mouse X position in screen coordinates.
-
-## __screenY
-
-Mouse Y position in screen coordinates.
+Absolute path to the Widgets root directory.
 
 ### Example
+
 ```javascript
-widget.on("mouseMove", function (e) {
-  console.log("client:", e.__clientX, e.__clientY);
-  console.log("screen:", e.__screenX, e.__screenY);
-  console.log("offset:", e.__offsetX, e.__offsetY);
+console.log(__widgetDir);
+```
+
+## Mouse Event Object
+
+Widget callbacks and element mouse handlers receive an event object with:
+
+## `__clientX`, `__clientY`
+
+- **Type**: `number`
+
+Mouse coordinates in widget client space.
+
+## `__screenX`, `__screenY`
+
+- **Type**: `number`
+
+Mouse coordinates in screen space.
+
+## `__offsetX`, `__offsetY`
+
+- **Type**: `number`
+
+Offset relative to the target region.
+
+## `__offsetXPercent`, `__offsetYPercent`
+
+- **Type**: `number`
+- **Range**: Usually `0` to `100`; may be outside this range during `mouseLeave`.
+
+Percentage offsets within the target region.
+
+### Example
+
+:::tabs
+== index.js
+```javascript
+import { widgetWindow } from "novadesk";
+
+const win = new widgetWindow({
+  id: "demo",
+  width: 300,
+  height: 200,
+  script: "ui.js",
+  backgroundColor: "rgb(10,10,10)"
+});
+
+win.on("mouseMove", (e) => {
+  console.log("client:", e.clientX, e.clientY);
+  console.log("screen:", e.screenX, e.screenY);
+  console.log("offset:", e.offsetX, e.offsetY);
 });
 ```
-
+== ui.js
+```javascript
+ui.addShape({
+  id: "box",
+  shapeType: "rectangle",
+  x: 16,
+  y: 16,
+  width: 260,
+  height: 90,
+  fillColor: "rgba(35,35,35,220)",
+  onMouseOver: (e) => {
+    console.log("hover:", e.clientX, e.clientY);
+  },
+  onMouseLeave: () => {
+    console.log("left");
+  }
+});
+```
+:::

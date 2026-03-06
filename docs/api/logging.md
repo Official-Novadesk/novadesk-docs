@@ -1,65 +1,124 @@
+---
+title: Logging and the print helper
+---
 
 # Logging
 
-Logging functions via the standard console object.
+The global logging system writes messages to the Novadesk log and is accessible from both main and UI scripts.
 
-## console.log(...args)
-
-Log an informational message to the console and log file.
-
-### Parameters
-
-- **...args** (any): Values to log.
-
-### Example
-```javascript
-console.log("Application started");
-console.log("User:", "John Doe", "Version:", "1.0.0");
-```
-
-## console.warn(...args)
-
-Log a warning message to the console and log file.
-
-### Parameters
-
-- **...args** (any): Values to log as a warning.
-
-### Example
-```javascript
-console.warn("Deprecated function used");
-console.warn("Low memory warning:", 1024, "MB remaining");
-```
-
-## console.error(...args)
-
-Log an error message to the console and log file.
-
-### Parameters
-
-- **...args** (any): Values to log as an error.
-
-### Example
-```javascript
-console.error("Failed to load configuration file");
-console.error("Error code:", 404, "Message:", "File not found");
-```
-
-## console.debug(...args)
-
-Log a debug message to the console and log file.
-
-::: warning
-Debug messages are only shown when debug logging is enabled. See how to enable debug logging using [Configuration Methods](/api/app-object/settings).
+::: info Note
+Global logging writes messages to the Novadesk log and is available in both the [Main](/guides/script-types.html#main-script-the-brain) and [UI](/guides/script-types.html#ui-script-the-face) scripts.
 :::
 
+#### Table of Contents
+[[toc]]
+
+## `console.log(...args)`
+
+Writes a general log message.
+
 ### Parameters
 
-- **...args** (any): Values to log as debug information.
+- **`...args`** (`any`): Values to log. Objects are serialized automatically.
 
 ### Example
-```javascript
-console.debug("Debug: Entering function calculatePosition");
-console.debug("Debug: Current widget position:", x, y);
-``
 
+```javascript
+console.log("Hello", { key: "value" });
+```
+
+**Output**
+```text
+[TimeStamp] [Novadesk] [LOG] Hello {"key":"value"}
+```
+
+## `console.info(...args)`
+
+Writes an informational message.
+
+### Parameters
+
+- **`...args`** (`any`): Values to log.
+
+### Example
+
+```javascript
+console.info("Widget loaded successfully");
+```
+
+**Output**
+```text
+[TimeStamp] [Novadesk] [INFO] Widget loaded successfully
+```
+
+## `console.warn(...args)`
+
+Writes a warning message.
+
+### Parameters
+
+- **`...args`** (`any`): Values to log.
+
+### Example
+
+```javascript
+console.warn("Low memory");
+```
+
+**Output**
+```text
+[TimeStamp] [Novadesk] [WARN] Low memory
+```
+
+## `console.error(...args)`
+
+Writes an error message.
+
+### Parameters
+
+- **`...args`** (`any`): Values to log.
+
+### Example
+
+```javascript
+console.error("Something went wrong");
+```
+
+**Output**
+```text
+[TimeStamp] [Novadesk] [ERROR] Something went wrong
+```
+
+## `console.debug(...args)`
+
+Writes a debug message.
+
+### Parameters
+
+- **`...args`** (`any`): Values to log.
+
+### Example
+
+```javascript
+console.debug("tick", { frame: 42 });
+```
+
+**Output**
+```text
+[TimeStamp] [Novadesk] [DEBUG] tick {"frame":42}
+```
+
+::: warning Important
+`console.debug` will show log only when debugging is enabled.
+See the [app.enableDebugging()](/api/modules/novadesk/app.html#app-enabledebugging-enable) method.
+:::
+
+## `print(...args)`
+
+Global function alias for `console.log()` and `console.info`.
+
+### Example
+
+```javascript
+print("Hello from Novadesk");
+```

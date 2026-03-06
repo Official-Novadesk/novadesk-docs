@@ -1,6 +1,14 @@
+---
+title: Color Formats
+---
+
 # Color Formats
 
 Learn about the different color formats supported in Novadesk widgets.
+
+#### Table of Contents
+[[toc]]
+
 
 Novadesk supports multiple color formats for styling your widgets. You can use these formats for properties like `color`, `fontcolor`, `backgroundcolor`, `solidcolor`, and `solidcolor2`.
 

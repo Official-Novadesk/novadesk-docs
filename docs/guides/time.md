@@ -1,5 +1,13 @@
-# Time And Date (Duktape)
-Novadesk uses the Duktape JavaScript engine, so time and date behavior follows the ECMAScript 5.1 `Date` built-in. Duktape targets ES5/ES5.1 semantics, and its `Date` implementation relies on the host platform for local time, time zone, and formatting details.
+---
+title: Time And Date (Quick JS)
+---
+
+# Time And Date (Quick JS)
+Novadesk uses the Quick JS JavaScript engine, so time and date behavior follows the ECMAScript 5.1 `Date` built-in. Quick JS targets ES5/ES5.1 semantics, and its `Date` implementation relies on the host platform for local time, time zone, and formatting details.
+
+#### Table of Contents
+[[toc]]
+
 
 All of the methods listed below are available in **both Main and UI scripts**.
 
@@ -75,7 +83,7 @@ All of the methods listed below are available in **both Main and UI scripts**.
 
 ## Notes On Time Zones And Locales
 
-- Duktape's `Date` depends on the host platform for local time, time zone offset, and date formatting. This means outputs from `toString()`, `toLocaleString()`, and related methods can vary by OS and configuration.
+- Quick JS's `Date` depends on the host platform for local time, time zone offset, and date formatting. This means outputs from `toString()`, `toLocaleString()`, and related methods can vary by OS and configuration.
 - Locale-aware formatting (`toLocaleString()` and friends) uses locale-specific formats and typically relies on `Intl.DateTimeFormat` when available in the JS environment.
 
 ## Quick Examples

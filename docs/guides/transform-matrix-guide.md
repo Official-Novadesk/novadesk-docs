@@ -1,6 +1,13 @@
+---
+title: Transform Matrix Guide
+---
 
 # Transform Matrix Guide
 Comprehensive guide on using 3x3 transformation matrices for 2D graphics transformations in Novadesk.
+
+#### Table of Contents
+[[toc]]
+
 
 Transformation matrices are fundamental mathematical tools used to apply geometric transformations to 2D elements in Novadesk. This guide explains how transformation matrices work and provides practical examples for common transformations.
 

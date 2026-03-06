@@ -1,5 +1,12 @@
+---
+title: Getting Started
+---
+
 # Getting Started
-Learn how to install and start creating widgets with Novadesk
+Learn how to install and start creating widgets with Novadesk.
+
+#### Table of Contents
+[[toc]]
 
 ## Installation
 See the [Installation](/introduction/installation) guide for detailed instructions on how to install Novadesk.

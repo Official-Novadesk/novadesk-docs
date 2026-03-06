@@ -1,187 +1,83 @@
-﻿# Widget Build And Installer
+---
+title: Widget Build And Installer
+---
 
-This guide explains how `nwm build` packages a widget and how the installer is created using `installer_stub.exe`.
+# Widget Build And Installer
+How `nwm build` packages your widget and creates a self-contained installer.
 
-## Build Overview
+#### Table of Contents
+[[toc]]
 
-Run from your widget directory:
+## Build Command
+
+Run from your widget project folder:
 
 ```bash
 nwm build
 ```
 
+## What `nwm build` Does
+
 `nwm build` performs these steps:
-1. Validates `meta.json` fields (`name`, `version`, `author`, `description`, `icon`, and required `setup.*` values).
-2. Creates a `dist/` folder.
-3. Copies `Novadesk.exe` into `dist/` and renames it to your widget name.
-4. Copies your widget files into `dist/Widgets/` (everything except `dist/`).
-5. Applies metadata (name, author, description, version) to the executable.
-6. Builds a self-contained installer using `installer_stub.exe`.
+
+1. Validates required `meta.json` fields.
+2. Recreates `dist/` from scratch.
+3. Copies `Novadesk.exe` into `dist/` and renames it to `<name>.exe`.
+4. Copies your widget project into `dist/Widgets/` (excluding `dist/`).
+5. Applies metadata and icon to `<name>.exe`.
+6. Generates an installer executable in `dist/` using `installer_stub.exe`.
 
 ## Output Structure
+
+Typical output:
 
 <LiteTree>
 - dist/
     YourWidgetName.exe
+    setup.exe
     Widgets/
         index.js
         ui/
-            ui.js
+            script.ui.js
         assets/
             icon.ico
+        meta.json
 </LiteTree>
 
-## Installer Output
+`setup.exe` name depends on `setup.setupName` in `meta.json`.
 
-`nwm build` also produces a self-contained installer executable inside `dist/`. The installer file name is based on `setup.setupName` from `meta.json`.
+## Required `meta.json` Fields
 
-Example:
+`nwm build` fails if any of these are missing or empty:
 
-<LiteTree>
-- dist/
-    setup.exe
-</LiteTree>
-
-More examples:
-
-```json
-// meta.json
-setup: { setupName: "MyWidgetSetup" }
-```
-
-### Output
-<LiteTree>
-// output
-- dist/
-    MyWidgetSetup.exe
-</LiteTree>
-
----
-
-```json
-// meta.json
-setup: { setupName: "AcmePlayer" }
-```
-
-### Output
-<LiteTree>
-// output
-- dist/
-    AcmePlayer.exe
-</LiteTree>
-
-## Installer Stub Role
-
-`installer_stub.exe` is a small installer executable built in the Novadesk core project. During `nwm build`, it is used as the base to create a self-contained installer for your widget.
-
-If `installer_stub.exe` is not found next to `nwm.exe`, `nwm` falls back to `nwm.exe` so the build can still complete.
-
-## Meta.json
-
-`meta.json` defines your widget identity and installer behavior. `nwm build` reads this file and validates required fields before packaging.
-
-Required fields:
+Top-level:
 - `name`
 - `version`
 - `author`
 - `description`
 - `icon`
+
+`setup` object:
 - `setup.installDir`
 - `setup.startMenuFolder`
 - `setup.setupName`
 - `setup.setupIcon`
 
-### name
+## `setup` Options
 
-- **Type**: `string`
-- **Description**: Display name for the widget. Used to name the built executable.
+Supported installer options:
 
-### version
+- `setup.createDesktopShortcut` (`boolean`, default `true`)
+- `setup.createStartupShortcut` (`boolean`, default `false`)
+- `setup.runOnStartup` (`boolean`, default `false`)
+- `setup.installDir` (`string`, required)
+- `setup.startMenuFolder` (`string`, required)
+- `setup.setupName` (`string`, required)
+- `setup.setupIcon` (`string`, required)
+- `setup.enableUninstall` (`boolean`, default `true`)
+- `setup.launchAfterInstall` (`boolean`, default `false`)
 
-- **Type**: `string`
-- **Description**: Widget version (e.g., `1.0.0.0`). Written into the executable metadata.
-
-### author
-
-- **Type**: `string`
-- **Description**: Author or publisher name. Written into the executable metadata.
-
-### description
-
-- **Type**: `string`
-- **Description**: Short description of the widget. Written into the executable metadata.
-
-### icon
-
-- **Type**: `string`
-- **Description**: Path to an `.ico` file within your widget project. Used for the built executable icon.
-
-### setup.createDesktopShortcut
-
-- **Type**: `boolean`
-- **Default**: `true`
-- **Required**: No
-- **Description**: Creates a Desktop shortcut for the installed widget executable.
-
-### setup.createStartupShortcut
-
-- **Type**: `boolean`
-- **Default**: `false`
-- **Required**: No
-- **Description**: Creates a shortcut in the user Startup folder.
-
-### setup.runOnStartup
-
-- **Type**: `boolean`
-- **Default**: `false`
-- **Required**: No
-- **Description**: Also creates a Startup shortcut (same effective behavior as `createStartupShortcut`).
-
-### setup.installDir
-
-- **Type**: `string`
-- **Default**: `"%ProgramFiles%\\Novadesk"`
-- **Required**: Yes
-- **Description**: Installation directory. Environment variables are expanded by installer stub.
-
-### setup.startMenuFolder
-
-- **Type**: `string`
-- **Default**: `"Novadesk"`
-- **Required**: Yes
-- **Description**: Start Menu folder used for the shortcut.
-
-### setup.setupName
-
-- **Type**: `string`
-- **Default**: `"setup"`
-- **Required**: Yes
-- **Description**: Installer output file name in `dist/`. `.exe` is appended if missing.
-
-### setup.setupIcon
-
-- **Type**: `string`
-- **Default**: `""`
-- **Required**: Yes
-- **Description**: Path to installer icon (`.ico`) relative to widget root.
-
-### setup.enableUninstall
-
-- **Type**: `boolean`
-- **Default**: `true`
-- **Required**: No
-- **Description**: Registers app in Windows uninstall registry and creates `Uninstall.exe`.
-
-### setup.launchAfterInstall
-
-- **Type**: `boolean`
-- **Default**: `false`
-- **Required**: No
-- **Description**: Launches installed executable after successful installation.
-
-## Setup Options In `meta.json`
-
-Installer behavior is driven by the `setup` object in `meta.json`.
+Example:
 
 ```json
 {
@@ -189,9 +85,9 @@ Installer behavior is driven by the `setup` object in `meta.json`.
     "createDesktopShortcut": true,
     "createStartupShortcut": false,
     "runOnStartup": false,
-    "installDir": "%ProgramFiles%\\YourWidget",
-    "startMenuFolder": "YourWidget",
-    "setupName": "setup",
+    "installDir": "%ProgramFiles%\\MyWidget",
+    "startMenuFolder": "MyWidget",
+    "setupName": "MyWidgetSetup",
     "setupIcon": "assets/icon.ico",
     "enableUninstall": true,
     "launchAfterInstall": false
@@ -199,14 +95,40 @@ Installer behavior is driven by the `setup` object in `meta.json`.
 }
 ```
 
-### Complete `setup` Properties
+## Installer Name Rules
 
-All installer-related properties currently supported by `nwm`/`installer_stub`:
+- Installer output name comes from `setup.setupName`.
+- If `.exe` is missing, `nwm` appends it automatically.
 
+Examples:
 
+- `setupName: "setup"` -> `dist/setup.exe`
+- `setupName: "MyWidgetSetup"` -> `dist/MyWidgetSetup.exe`
+- `setupName: "MyWidgetSetup.exe"` -> `dist/MyWidgetSetup.exe`
+
+## Installer Stub Behavior
+
+`nwm` uses `installer_stub.exe` as the base executable for the installer.
+
+Lookup order:
+1. Next to `nwm.exe`
+2. Parent directory fallback
+3. Fallback to `nwm.exe` (with warning) if stub is not found
+
+## Install-Time Behavior
+
+When the generated installer runs:
+
+- Installs files to `setup.installDir` (environment variables are expanded).
+- Creates Start Menu shortcut in `setup.startMenuFolder`.
+- Optionally creates Desktop shortcut.
+- Optionally creates Startup shortcut (`createStartupShortcut` or `runOnStartup`).
+- Optionally creates `Uninstall.exe` and uninstall registry entry.
 
 ## Notes
 
-- Unknown fields inside `setup` are ignored by current `nwm` and `installer_stub` code.
-- `createStartupShortcut` and `runOnStartup` currently produce the same installer behavior (both create a Startup shortcut).
-- `setupName` controls installer output name only; app display/install identity still comes from top-level `name`, `author`, `version`, and `description`.
+- `icon` is used for the built app executable (`YourWidgetName.exe`).
+- `setup.setupIcon` is used for the installer executable.
+- Unknown extra keys in `setup` are ignored.
+- `createStartupShortcut` and `runOnStartup` currently result in the same behavior (Startup shortcut creation).
+- `launchAfterInstall` is carried in installer metadata but is not currently acted on by the installer runtime.

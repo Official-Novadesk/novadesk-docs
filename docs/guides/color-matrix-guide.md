@@ -1,6 +1,13 @@
+---
+title: Color Matrix Guide
+---
 
 # Color Matrix Guide
 Comprehensive guide on using 5x5 Color Matrices for advanced image manipulation in Novadesk.
+
+#### Table of Contents
+[[toc]]
+
 
 
 ::: tip

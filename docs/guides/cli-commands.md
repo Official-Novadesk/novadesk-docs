@@ -1,6 +1,13 @@
+---
+title: CLI Commands
+---
 
 # CLI Commands
 Learn how to use the Novadesk CLI commands to manage your widgets
+
+#### Table of Contents
+[[toc]]
+
 
 
 Novadesk supports several command-line arguments that allow you to control the application remotely or customize its behavior. These commands are particularly useful for automation, scripting, or integration with other tools.

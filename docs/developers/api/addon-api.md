@@ -1,6 +1,12 @@
+---
+title: Addon API (Native)
+---
 
 # Addon API (Native)
 Technical guide for building native C++ addons for Novadesk.
+
+#### Table of Contents
+[[toc]]
 
 This guide covers the technical details of the **Novadesk Addon SDK**, used to build native x64 DLLs that integrate with the Novadesk JavaScript engine.
 
@@ -12,7 +18,7 @@ Novadesk addons are **engine-agnostic**. Instead of linking against a specific J
 
 ### `NOVADESK_ADDON_INIT`
 
-The primary entry point for any addon. It is called by Novadesk when `system.loadAddon()` is executed.
+The primary entry point for any addon. It is called by Novadesk when `addon.load()` is executed.
 
 ```cpp
 #include <NovadeskAPI/novadesk_addon.h>
@@ -43,7 +49,7 @@ The `novadesk::Addon` helper class provides a convenient wrapper around the low-
 
 ### **Registering Data**
 
-Native addons export functionality by adding properties to the object returned by `system.loadAddon()`. Use the following methods on the `novadesk::Addon` instance.
+Native addons export functionality by adding properties to the object returned by `addon.load()`. Use the following methods on the `novadesk::Addon` instance.
 
 #### `RegisterString(name, value)`
 Registers a static string property.

@@ -1,5 +1,13 @@
+---
+title: Script Types
+---
+
 # Script Types
 Understanding the difference between Main scripts and UI scripts in Novadesk
+
+#### Table of Contents
+[[toc]]
+
 
 
 Novadesk uses two distinct types of JavaScript execution environments to build widgets: **Main Scripts** and **UI Scripts**. Each has a specific role and access level.
@@ -13,13 +21,16 @@ The Main script acts as the coordinator. It manages high-level logic, sets up ho
 
 ### Characteristics
 - Runs in the global application context.
-- Uses `new widgetWindow()` to create widget instances.
+- Uses `const widgetWindow = require("widget-window")` and `new widgetWindow()` to create widget instances.
 - Manages window lifecycle (positioning, opacity, closing).
 - **Cannot** directly add or modify UI elements (text, images).
-- Has full access to global APIs like `novadesk`, `system`, and `ipc` (including system monitors like `system.cpu()` and timers like `setInterval`).
+- Has access to main-script modules via `require(...)` (for example `app`, `audio`, `cpu-monitor`, `hotkeys`) plus `ipc`.
 
 ```javascript
 // Example index.js (Main Script)
+const widgetWindow = require("widget-window");
+const cpuMonitor = require("cpu-monitor");
+
 var myWidget = new widgetWindow({
   id: "clockWidget",
   width: 300,
@@ -28,7 +39,7 @@ var myWidget = new widgetWindow({
 });
 
 // Use system monitors and timers
-var cpu = new system.cpu();
+var cpu = new cpuMonitor.cpu();
 setInterval(function () {
   console.log("CPU usage: " + cpu.usage());
 }, 1000);
@@ -51,14 +62,14 @@ The UI script handles everything happening *inside* that specific window. It def
 - Provides a global object named `win` that represents the current window instance.
 - **Cannot** directly change window-level properties (like X/Y position).
 - Has access to global APIs like `novadesk` and `ipc`.
-- **Cannot** use system monitors (e.g., `system.cpu()` is undefined). 
+- **Cannot** use main-script-only require modules (e.g., `cpu-monitor`, `audio`, `registry`). 
 - **Cannot** use global timers (e.g., `setInterval()` is undefined).
 - **Cannot** create new windows (e.g., `new widgetWindow()` is undefined).
 
 ```javascript
 // Example clock_ui.js (UI Script)
 // Use the global 'win' object for UI elements
-win.addText({
+ui.addText({
   id: "time",
   text: "12:00",
   fontSize: 20
@@ -83,7 +94,7 @@ ipc.on("update-color", function (newColor) {
 | **Reference Object** | `new widgetWindow()` (Constructor) | `win` (Global Object) |
 | **Responsibilities** | Window Management, Hotkeys, Logic | UI Elements, Local Interactions |
 | **Window Control** | Direct (e.g., `widget.setProperties`) | Indirect (via IPC to Main) |
-| **UI Control** | Indirect (via IPC to UI) | Direct (e.g., `win.addText`) |
+| **UI Control** | Indirect (via IPC to UI) | Direct (e.g., `ui.addText`) |
 
 ---
 

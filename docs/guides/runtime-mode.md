@@ -1,6 +1,14 @@
+---
+title: Runtime Mode
+---
+
 # Runtime Mode
 
 Novadesk can run in two modes: **Portable** and **Standard**. The mode controls where settings, logs, and widget data are stored.
+
+#### Table of Contents
+[[toc]]
+
 
 ## Portable Mode
 

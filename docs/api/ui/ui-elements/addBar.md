@@ -49,15 +49,17 @@ ui.addBar(options);
 :::tabs
 == index.js
 ```javascript
+import { widgetWindow } from "novadesk";
+
 var exampleBarWindow = new widgetWindow({
     id: "exampleBar",
     width: 300,
     height: 40,
     backgroundColor: "rgba(255, 255, 255, 1)",
-    script: "ui/ui.js"
+    script: "ui/script.ui.js"
 });
 ```
-== ui/ui.js
+== ui/script.ui.js
 ```javascript
 ui.addBar({
     id: "cpu-Bar",

@@ -110,7 +110,7 @@ export default defineConfig({
                 items: [
                   {
                     text: "General Options",
-                    link: "/api/ui/general-elements-options",
+                    link: "/api/ui/ui-elements/general-elements-options",
                   },
                   { text: "addBar", link: "/api/ui/ui-elements/addBar" },
                   {

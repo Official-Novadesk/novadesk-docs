@@ -14,7 +14,7 @@ features:
     <div class="custom-card__title">Introduction</div>
     <div class="custom-card__text">Start here for an overview and key concepts.</div>
   </a>
-  <a class="custom-card" href="/api/ui/widget-api/widget-window">
+  <a class="custom-card" href="/api/logging">
     <div class="custom-card__title">Manual</div>
     <div class="custom-card__text">Step-by-step guides and how-to instructions.</div>
   </a>

@@ -72,7 +72,7 @@ Adds a shape element.
 
 Refer to [addShape Options](/api/ui/ui-elements/addShape).
 
-### `win.setElementProperties(id, props)`
+### `ui.setElementProperties(id, props)`
 
 Updates a single element.
 
@@ -82,10 +82,10 @@ Updates a single element.
 #### Example
 
 ```javascript
-win.setElementProperties("myText", { x: 20, y: 20 });
+ui.setElementProperties("myText", { x: 20, y: 20 });
 ```
 
-### `win.setElementPropertiesByGroup(group, props)`
+### `ui.setElementPropertiesByGroup(group, props)`
 
 Updates every element sharing a `group`.
 
@@ -95,10 +95,10 @@ Updates every element sharing a `group`.
 #### Example
 
 ```javascript
-win.setElementPropertiesByGroup("stats", { show: false });
+ui.setElementPropertiesByGroup("stats", { show: false });
 ```
 
-### `win.removeElements(ids)`
+### `ui.removeElements(ids)`
 
 Removes one or more elements.
 
@@ -112,11 +112,11 @@ Calling `removeElements()` with no arguments removes *all* elements from the wid
 #### Example
 
 ```javascript
-win.removeElements(["img1", "text3"]);
-win.removeElements(); // Clears everything
+ui.removeElements(["img1", "text3"]);
+ui.removeElements(); // Clears everything
 ```
 
-### `win.removeElementsByGroup(group)`
+### `ui.removeElementsByGroup(group)`
 
 Removes all elements in a group.
 
@@ -125,10 +125,10 @@ Removes all elements in a group.
 #### Example
 
 ```javascript
-win.removeElementsByGroup("stats");
+ui.removeElementsByGroup("stats");
 ```
 
-### `win.getElementProperty(id, propertyName)`
+### `ui.getElementProperty(id, propertyName)`
 
 Reads a property value.
 
@@ -143,14 +143,14 @@ Reads a property value.
 #### Example
 
 ```javascript
-var textValue = win.getElementProperty("myText", "text");
+var textValue = ui.getElementProperty("myText", "text");
 ```
 
-### `win.beginUpdate()`
+### `ui.beginUpdate()`
 
-Begins a batch UI update. Redraws remain deferred until `win.endUpdate()` is called.
+Begins a batch UI update. Redraws remain deferred until `ui.endUpdate()` is called.
 
-### `win.endUpdate()`
+### `ui.endUpdate()`
 
 Ends the batch and forces a redraw.
 

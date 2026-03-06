@@ -203,6 +203,8 @@ ui.addText({
 :::tabs
 == index.js (Main Script)
 ```javascript
+import { widgetWindow } from "novadesk";
+
 var sysWidget = new widgetWindow({
     id: "sysWidget",
     width: 450,
@@ -210,10 +212,10 @@ var sysWidget = new widgetWindow({
     backgroundColor: "rgba(30, 30, 40, 0.9)",
     zPos: "ontop",
     draggable: true,
-    script: "ui.js"
+    script: "script.ui.js"
 });
 ```
-== ui.js (UI Script)
+== script.ui.js (UI Script)
 ```javascript
 ui.addText({
     id: "simpleText",

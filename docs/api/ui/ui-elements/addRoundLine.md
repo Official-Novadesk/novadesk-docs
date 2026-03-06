@@ -110,15 +110,17 @@ ui.addRoundLine(options);
 :::tabs
 == index.js
 ```javascript
+import { widgetWindow } from "novadesk";
+
 var exampleRoundLineWindow = new widgetWindow({
     id: "exampleRoundLine",
     width: 300,
     height: 200,
     backgroundColor: "rgba(20, 20, 20, 1)",
-    script: "ui/ui.js"
+    script: "ui/script.ui.js"
 });
 ```
-== ui/ui.js
+== ui/script.ui.js
 ```javascript
 ui.addRoundLine({
     id: "cpu-ring",

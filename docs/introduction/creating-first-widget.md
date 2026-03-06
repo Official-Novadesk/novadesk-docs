@@ -3,100 +3,135 @@ title: Creating Your First Widget
 ---
 
 # Creating Your First Widget
-A step-by-step guide to creating, running, and building your first Novadesk widget using the `nwm` tool.
+Create, run, and package your first Novadesk widget using `nwm`.
 
 #### Table of Contents
 [[toc]]
 
-This guide walks you through creating a simple widget using the **Novadesk Widget Maker (nwm)**.
+This guide is based on the current `nwm init` template in the Novadesk project.
 
 ## Prerequisites
 
-Before you begin, ensure Novadesk is installed and `nwm.exe` is available in your PATH or Novadesk directory.
+- Novadesk is installed.
+- `nwm.exe` is available in your PATH (or run it from the Novadesk install directory).
 
-## 1. Initialize Your Widget
+## 1. Create a New Widget Project
 
-Run `nwm init` to scaffold a new widget project:
+Run:
 
 ```bash
 nwm init my-first-widget
 ```
 
-The command creates:
+This creates a starter project:
 
 <LiteTree>
 - my-first-widget/
-    meta.json      // Widget metadata (name, version, author, etc.)
-    index.js       // Main entry point (window creation)
-    ui/            // Example folder (you can rename or add more)
-        ui.js
+    meta.json
+    index.js
+    ui/
+        script.ui.js
 </LiteTree>
 
-::: info
-The template decides the initial structure. You can add folders (e.g., `lib`, `styles`) and `nwm build` will include them.
-:::
+## 2. Understand the Starter Files
 
-## 2. Customize Your Widget
+### `index.js` (Main script)
+Creates the widget window and points to the UI script.
 
-Edit `my-first-widget/ui/ui.js` and change the displayed text:
+```javascript
+import widgetWindow from "novadesk";
+
+var myWindow = new widgetWindow({
+    id: "myWindow",
+    width: 200,
+    height: 200,
+    script: "ui/script.ui.js",
+    backgroundColor: "#ffffffff",
+});
+```
+
+### `ui/script.ui.js` (UI script)
+Draws content inside the window.
 
 ```javascript
 ui.addText({
     id: "hello_Text",
-    x: 10,
-    y: 10,
+    x: 100,
+    y: 100,
     width: 200,
-    height: 30,
-    text: "Hello from my first widget!",
-    fontsize: 16,
-    fontcolor: "#000000",
-    textalign: "centercenter"
+    height: 200,
+    text: "Hello World",
+    fontSize: 16,
+    fontColor: "#000000",
+    fontWeight: "bold",
+    fontFamily: "Arial",
+    textAlign: "centercenter",
 });
 ```
 
-## 3. Run and Preview
+### `meta.json`
+Defines widget identity and installer/build settings.
 
-From your widget directory:
+## 3. Customize Your First Widget
+
+Edit `ui/script.ui.js` and change text/style, for example:
+
+```javascript
+ui.addText({
+    id: "hello_Text",
+    x: 20,
+    y: 20,
+    width: 160,
+    height: 60,
+    text: "Hello from Novadesk!",
+    fontSize: 18,
+    fontColor: "rgb(30,30,30)",
+    textAlign: "centercenter",
+});
+```
+
+## 4. Run the Widget
+
+From the widget folder:
 
 ```bash
 cd my-first-widget
 nwm run
 ```
 
-This launches Novadesk and loads your widget script. The terminal stays open to show logs or errors.
+This launches Novadesk and runs the widget from the current directory.
 
 ::: tip
-Right-click the Novadesk tray icon and select **Refresh** to reload your script after edits.
+After editing files, use tray menu `Refresh` to reload scripts quickly.
 :::
 
-## 4. Build for Distribution
+## 5. Build for Distribution
 
-Run `nwm build` to package a standalone executable:
+Package your widget:
 
 ```bash
 nwm build
 ```
 
-It performs:
-1. **Validation**: Ensures `meta.json` has required fields (`name`, `version`, `author`, `description`, `icon`).
-2. **Scaffolding**: Creates a `dist` folder.
-3. **Packaging**: Copies `Novadesk.exe` plus your scripts.
-4. **Metadata**: Synchronizes the widget’s metadata into the executable.
+`nwm build` validates required `meta.json` fields before packaging.
 
-The final widget lives inside `dist`.
+Required top-level fields:
+- `name`
+- `version`
+- `author`
+- `description`
+- `icon`
 
-<!-- {% filetree %}
-- dist/
-  - MyWidgetName.exe   # Your renamed executable
-  - Widgets/
-    - index.js
-    - ui/
-      - ui.js
-{% /filetree %} -->
+Required setup fields:
+- `setup.installDir`
+- `setup.startMenuFolder`
+- `setup.setupName`
+- `setup.setupIcon`
 
-## 5. Sharing Your Widget
+Output is generated in `dist/`.
 
-To share your widget, simply zip the contents of the `dist` folder and send it to others. When they run the `.exe`, it will automatically launch your widget with its custom name and identity!
+## Next Steps
 
-Learn more about the full build and installer flow here: [Widget Build and Installer](/guides/widget-build-and-installer).
-
+- Learn script roles in [Script Types](/guides/script-types).
+- Explore UI APIs from [UI Object Methods](/api/ui/ui-object).
+- See packaging details in [Widget Build And Installer](/guides/widget-build-and-installer).

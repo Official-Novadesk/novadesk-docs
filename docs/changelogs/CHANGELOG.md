@@ -49,7 +49,6 @@
 - Added support for built-in and custom `.cur` and `.ani` cursors.
 
 ### System APIs
-- Added `system.nowPlaying` API.
 - Added `setWallpaper` API to change desktop wallpaper.
 - Added brightness control API for Windows.
 - Added application volume control and mute APIs.

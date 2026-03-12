@@ -90,7 +90,6 @@ Windows/system integration APIs.
 - [memory](/api/modules/system/memory.html): Read RAM usage metrics.
 - [mouse](/api/modules/system/mouse.html): Read cursor coordinates.
 - [network](/api/modules/system/network.html): Read network throughput and totals.
-- [nowPlaying](/api/modules/system/nowPlaying.html): Read/control active media sessions.
 - [power](/api/modules/system/power.html): Read battery and power state.
 - [registry](/api/modules/system/registry.html): Read and write Windows registry values.
 - [wallpaper](/api/modules/system/wallpaper.html): Get/set desktop wallpaper.

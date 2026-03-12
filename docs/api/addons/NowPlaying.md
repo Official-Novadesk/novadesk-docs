@@ -1,14 +1,17 @@
 ---
-title: Read and control media sessions with the nowPlaying module.
+title: Read and control media sessions with the NowPlaying addon.
 ---
 
-# nowPlaying Module
-Read active media metadata and control playback in Novadesk.
+# NowPlaying Addon
+Read active media metadata and control playback via the NowPlaying addon.
 
-The `nowPlaying` module is exported from the `system` module.
+Load the addon from a built DLL and use the exported `nowPlaying` object.
 
 ```javascript
-import { nowPlaying } from "system";
+import { addon } from "novadesk";
+
+const np = addon.load("D:/Novadesk-Project/NowPlaying/dist/x64/Debug/NowPlaying.dll");
+const nowPlaying = np.nowPlaying;
 ```
 
 #### Table of Contents
@@ -193,7 +196,10 @@ Sets repeat mode.
 ## Example
 
 ```javascript
-import { nowPlaying } from "system";
+import { addon } from "novadesk";
+
+const np = addon.load("D:/Novadesk-Project/NowPlaying/dist/x64/Debug/NowPlaying.dll");
+const nowPlaying = np.nowPlaying;
 
 console.log("backend:", nowPlaying.backend());
 
@@ -203,6 +209,6 @@ console.log("player:", stats.player, "title:", stats.title, "progress:", stats.p
 
 nowPlaying.playPause();
 nowPlaying.setShuffle(true);
-nowPlaying.setRepeat(2);        // repeat all
+nowPlaying.setRepeat(2);         // repeat all
 nowPlaying.setPosition(50, true); // seek to 50%
 ```

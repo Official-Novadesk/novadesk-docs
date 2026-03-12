@@ -104,8 +104,8 @@ export default defineConfig({
                 collapsed: true,
                 items: []
               },
-              { 
-                text: "UI Elements", 
+              {
+                text: "UI Elements",
                 collapsed: true,
                 items: [
                   {
@@ -210,6 +210,11 @@ export default defineConfig({
               },
             ],
           },
+          {
+            text: "addons",
+            collapsed: true,
+            items: [{ text: "NowPlaying", link: "/addons/nowplaying" }],
+          }
         ],
       },
 

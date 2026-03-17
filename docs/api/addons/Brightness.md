@@ -1,14 +1,16 @@
 ---
-title: Read brightness capability status with the brightness module.
+title: Read brightness capability status with the brightness addon.
 ---
 
-# brightness Module
-Access display brightness capability status in Novadesk.
+# Brightness Addon
+Access display brightness capability status in Novadesk via the Brightness addon.
 
-The `brightness` module is exported from the `system` module.
+The `brightness` API is provided by the Brightness addon (not the `system` module).
 
 ```javascript
-import { brightness } from "system";
+import { addon } from "novadesk";
+const brightnessAddon = addon.load("path/to/Brightness.dll");
+const { brightness } = brightnessAddon;
 ```
 
 #### Table of Contents
@@ -26,6 +28,7 @@ Returns brightness information.
   - **`current`** (`number`): Current raw brightness value. Current implementation returns `0`.
   - **`min`** (`number`): Minimum raw brightness value. Current implementation returns `0`.
   - **`max`** (`number`): Maximum raw brightness value. Current implementation returns `100`.
+  - **`percent`** (`number`): Current brightness as a percentage.
 
 ## `brightness.setValue(options)`
 
@@ -35,17 +38,21 @@ Attempts to set brightness.
 
 - **`options`**
   - **Type**: `object`
-  - **Description**: Reserved for future brightness options.
+- **Description**: Options object supporting:
+  - **`percent`** (`number`): Target brightness percentage.
+  - **`display`** (`number`, optional): Display index.
 
 ### Return Value
 
 - **Type**: `boolean`
-- **Description**: Current implementation always returns `false`.
+- **Description**: Returns `true` on success.
 
 ## Example
 
 ```javascript
-import { brightness } from "system";
+import { addon } from "novadesk";
+const brightnessAddon = addon.load("path/to/Brightness.dll");
+const { brightness } = brightnessAddon;
 
 const info = brightness.getValue();
 console.log("Brightness supported:", info.supported);

@@ -1,14 +1,16 @@
 ---
-title: Control per-application audio sessions with the appVolume module.
+title: Control per-application audio sessions with the AppVolume addon.
 ---
 
-# appVolume Module
-Manage per-application audio session volume and mute state in Novadesk.
+# AppVolume Addon
+Manage per-application audio session volume and mute state in Novadesk via the AppVolume addon.
 
-The `appVolume` module is exported from the `system` module.
+The `appVolume` API is provided by the AppVolume addon (not the `system` module).
 
 ```javascript
-import { appVolume } from "system";
+import { addon } from "novadesk";
+const appVolumeAddon = addon.load("path/to/AppVolume.dll");
+const { appVolume } = appVolumeAddon;
 ```
 
 #### Table of Contents
@@ -26,10 +28,10 @@ Returns active output audio sessions.
   - **`processName`** (`string`): Process file name.
   - **`fileName`** (`string`): Executable file name.
   - **`filePath`** (`string`): Full executable path when available.
-  - **`iconPath`** (`string`): Extracted icon path when available, otherwise empty string.
+  - **`iconPath`** (`string`): Extracted `.ico` path when available (cached in the system temp directory), otherwise empty string.
   - **`displayName`** (`string`): Session display name.
   - **`volume`** (`number`): Session volume in `0.0-1.0`.
-  - **`peak`** (`number`): Peak level in `0.0-1.0` (currently `0`).
+  - **`peak`** (`number`): Peak level in `0.0-1.0` (when available).
   - **`muted`** (`boolean`): Session mute state.
 
 If session enumeration fails, an empty array is returned.
@@ -148,7 +150,9 @@ Sets mute state for all active sessions matching a process name.
 ## Example
 
 ```javascript
-import { appVolume } from "system";
+import { addon } from "novadesk";
+const appVolumeAddon = addon.load("path/to/AppVolume.dll");
+const { appVolume } = appVolumeAddon;
 
 const sessions = appVolume.listSessions();
 console.log("sessions:", sessions.length);

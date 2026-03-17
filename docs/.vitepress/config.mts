@@ -159,19 +159,6 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   {
-                    text: "appVolume",
-                    link: "/api/modules/system/appVolume",
-                  },
-                  { text: "audio", link: "/api/modules/system/audio" },
-                  {
-                    text: "audioLevel",
-                    link: "/api/modules/system/audioLevel",
-                  },
-                  {
-                    text: "brightness",
-                    link: "/api/modules/system/brightness",
-                  },
-                  {
                     text: "clipboard",
                     link: "/api/modules/system/clipboard",
                   },
@@ -187,10 +174,8 @@ export default defineConfig({
                     text: "fileIcon",
                     link: "/api/modules/system/fileIcon",
                   },
-                  { text: "hotkey", link: "/api/modules/system/hotkey" },
                   { text: "json", link: "/api/modules/system/json" },
                   { text: "memory", link: "/api/modules/system/memory" },
-                  { text: "mouse", link: "/api/modules/system/mouse" },
                   { text: "network", link: "/api/modules/system/network" },
                   {
                     text: "nowPlaying",
@@ -213,7 +198,14 @@ export default defineConfig({
           {
             text: "addons",
             collapsed: true,
-            items: [{ text: "NowPlaying", link: "/addons/nowplaying" }],
+            items: [
+              { text: "AppVolume", link: "/api/addons/appvolume" },
+              { text: "AudioLevel", link: "/api/addons/audiolevel" },
+              { text: "Brightness", link: "/api/addons/brightness" },
+              { text: "Hotkey", link: "/api/addons/hotkey" },
+              { text: "NowPlaying", link: "/api/addons/nowplaying" },
+
+            ],
           }
         ],
       },

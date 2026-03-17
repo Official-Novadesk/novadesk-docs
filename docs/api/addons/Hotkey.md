@@ -1,17 +1,21 @@
 ---
-title: Register global keyboard hotkeys with the hotkey module.
+title: Register global keyboard hotkeys with the Hotkey addon.
 ---
 
-# hotkey Module
-Register and remove keyboard hotkeys in Novadesk.
+# Hotkey Addon
 
-The `hotkey` module is exported from the `system` module.
+Register and remove keyboard hotkeys in Novadesk via the Hotkey addon.
+
+The `hotkey` API is provided by the Hotkey addon (not the `system` module).
 
 ```javascript
-import { hotkey } from "system";
+import { addon } from "novadesk";
+const hotkeyAddon = addon.load("path/to/Hotkey.dll");
+const { hotkey } = hotkeyAddon;
 ```
 
 #### Table of Contents
+
 [[toc]]
 
 ## `hotkey.register(hotkeyString, handler)`
@@ -21,6 +25,7 @@ Registers a hotkey and returns its registration ID.
 ### Parameters
 
 - **`hotkeyString`**
+
   - **Type**: `string`
   - **Description**: Hotkey expression like `"CTRL+SHIFT+M"` or `"ALT+F4"`.
 
@@ -61,29 +66,48 @@ Unregisters a previously registered hotkey.
 
 ## Examples
 
-```javascript
-import { hotkey } from "system";
+### First
 
-const id = hotkey.register("CTRL+SHIFT+M", function () {
-    console.log("Hotkey pressed (key down)");
+```javascript
+import { addon } from "novadesk";
+
+const hotkeyAddon = await addon.load("path/to/Hotkey.dll");
+
+const id = hotkeyAddon.register("CTRL+SHIFT+M", () => {
+  console.log("Hotkey pressed (key down)");
 });
 
-console.log("hotkey id:", id);
+console.log(`Hotkey registered with ID: ${id}`);
 ```
 
+### Second
+
 ```javascript
-import { hotkey } from "system";
+import { addon } from "novadesk";
+
+const hotkey = await addon.load("path/to/Hotkey.dll");
 
 const id = hotkey.register("ALT+F4", {
-    onKeyDown: function () {
-        console.log("ALT+F4 down");
-    },
-    onKeyUp: function () {
-        console.log("ALT+F4 up");
-    }
+  onKeyDown: () => console.log("ALT+F4 down"),
+  onKeyUp: () => console.log("ALT+F4 up"),
 });
 
-// Later
 const removed = hotkey.unregister(id);
-console.log("unregister:", removed);
+console.log(`Unregister success: ${removed}`);
 ```
+
+   <!-- Filled Style (Default) -->
+
+   <CustomButton href="/guide/getting-started" text="Get Started" />
+
+   
+
+   <!-- Outline Style -->
+
+   <CustomButton href="/guide/api" theme="outline">API Reference</CustomButton>
+
+   
+
+   <!-- Custom Content -->
+
+   <CustomButton href="https://github.com" theme="filled">View on GitHub</CustomButton>

@@ -75,9 +75,6 @@ Runtime and app-control APIs.
 Windows/system integration APIs.
 
 - [audio](/api/modules/system/audio.html): Master volume and WAV playback.
-- [audioLevel](/api/modules/system/audioLevel.html): Read live output/input levels.
-- [appVolume](/api/modules/system/appVolume.html): Control per-app audio sessions.
-- [brightness](/api/modules/system/brightness.html): Read brightness capability status.
 - [clipboard](/api/modules/system/clipboard.html): Read and write clipboard text.
 - [cpu](/api/modules/system/cpu.html): Read CPU usage metrics.
 - [disk](/api/modules/system/disk.html): Read disk usage information.
@@ -85,10 +82,8 @@ Windows/system integration APIs.
 - [env](/api/modules/system/env.html): Read environment variables.
 - [execute](/api/modules/system/execute.html): Launch files, apps, and URLs.
 - [fileIcon](/api/modules/system/fileIcon.html): Extract file icons to `.ico`.
-- [hotkey](/api/modules/system/hotkey.html): Register global keyboard hotkeys.
 - [json](/api/modules/system/json.html): Parse/stringify plus JSON file helpers.
 - [memory](/api/modules/system/memory.html): Read RAM usage metrics.
-- [mouse](/api/modules/system/mouse.html): Read cursor coordinates.
 - [network](/api/modules/system/network.html): Read network throughput and totals.
 - [power](/api/modules/system/power.html): Read battery and power state.
 - [registry](/api/modules/system/registry.html): Read and write Windows registry values.

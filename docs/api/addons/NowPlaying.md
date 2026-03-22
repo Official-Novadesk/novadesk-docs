@@ -1,205 +1,132 @@
----
+﻿---
 title: Read and control media sessions with the NowPlaying addon.
 ---
 
 # NowPlaying Addon
-Read active media metadata and control playback via the NowPlaying addon.
 
-Load the addon from a built DLL and use the exported `nowPlaying` object.
-
-```javascript
-import { addon } from "novadesk";
-
-const np = addon.load("D:/Novadesk-Project/NowPlaying/dist/x64/Debug/NowPlaying.dll");
-const nowPlaying = np.nowPlaying;
-```
+The NowPlaying addon reads active media metadata and lets you control playback (play/pause/next/previous).
 
 #### Table of Contents
 [[toc]]
 
-## `nowPlaying.stats()`
+## Quick Start
+
+Load the addon DLL and call the functions directly.
+
+```javascript
+import { addon } from "novadesk";
+
+const nowPlaying = addon.load("D:/Novadesk-Project/NowPlaying/dist/x64/Debug/NowPlaying.dll");
+
+const stats = nowPlaying.stats();
+console.log(stats.title, stats.artist, stats.position, "/", stats.duration);
+
+nowPlaying.playPause();
+```
+
+## `stats()`
 
 Returns current media session details.
 
 ### Return Value
 
 - **Type**: `object`
-- **Description**: Contains:
-  - **`available`** (`boolean`)
-  - **`player`** (`string`)
-  - **`artist`** (`string`)
-  - **`album`** (`string`)
-  - **`title`** (`string`)
-  - **`thumbnail`** (`string`): Cached thumbnail image path (empty string if unavailable).
-  - **`duration`** (`number`): Track duration in seconds.
-  - **`position`** (`number`): Current playback position in seconds.
-  - **`progress`** (`number`): Playback progress (`0-100`).
-  - **`state`** (`number`): `0` stopped/unknown, `1` playing, `2` paused.
-  - **`status`** (`number`): `0` closed, `1` opened.
-  - **`shuffle`** (`boolean`)
-  - **`repeat`** (`boolean`): `true` when repeat mode is not `none`.
+- **Description**: Always returns an object with:
+  - `available` (`boolean`)
+  - `player` (`string`)
+  - `artist` (`string`)
+  - `album` (`string`)
+  - `title` (`string`)
+  - `thumbnail` (`string`): Cached thumbnail path (empty string if unavailable)
+  - `duration` (`number`): Track duration in seconds
+  - `position` (`number`): Current playback position in seconds
+  - `progress` (`number`): Playback progress (`0-100`)
+  - `state` (`number`): `0` stopped/unknown, `1` playing, `2` paused
+  - `status` (`number`): `0` closed, `1` opened
+  - `shuffle` (`boolean`)
+  - `repeat` (`boolean`)
 
 ::: info
-`stats()` always returns an object. When no active media session exists, fields are default/empty and `available` is `false`.
+If nothing is playing, `available` is `false` and the rest of the fields are empty/default values.
 :::
 
-## `nowPlaying.backend()`
+## `backend()`
 
 Returns active now-playing backend name.
 
 ### Return Value
 
 - **Type**: `string`
-- **Description**:
-  - `"winrt"` when the WinRT now-playing backend is enabled.
-  - `"disabled"` when backend support is not built/enabled.
+- **Description**: Returns `"winrt"` when enabled or `"disabled"` otherwise.
 
-## `nowPlaying.play()`
+## Playback Controls
 
-Requests playback start on the active media session.
+These functions return `true` if the action was queued (backend enabled), otherwise `false`.
 
-### Return Value
+- `play()`
+- `pause()`
+- `playPause()`
+- `stop()`
+- `next()`
+- `previous()`
 
-- **Type**: `boolean`
-- **Description**:
-  - Returns `true` when the now-playing backend is enabled and the action is queued.
-  - Returns `false` when backend is disabled.
-
-## `nowPlaying.pause()`
-
-Requests pause on the active media session.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**:
-  - Returns `true` when the now-playing backend is enabled and the action is queued.
-  - Returns `false` when backend is disabled.
-
-## `nowPlaying.playPause()`
-
-Requests play/pause toggle on the active media session.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**:
-  - Returns `true` when the now-playing backend is enabled and the action is queued.
-  - Returns `false` when backend is disabled.
-
-## `nowPlaying.stop()`
-
-Requests playback stop on the active media session.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**:
-  - Returns `true` when the now-playing backend is enabled and the action is queued.
-  - Returns `false` when backend is disabled.
-
-## `nowPlaying.next()`
-
-Requests skip to the next item in the active media session.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**:
-  - Returns `true` when the now-playing backend is enabled and the action is queued.
-  - Returns `false` when backend is disabled.
-
-## `nowPlaying.previous()`
-
-Requests skip to the previous item in the active media session.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**:
-  - Returns `true` when the now-playing backend is enabled and the action is queued.
-  - Returns `false` when backend is disabled.
-
-## `nowPlaying.setPosition(value[, isPercent])`
+## `setPosition(value[, isPercent])`
 
 Sets playback position.
 
 ### Parameters
 
-- **`value`**
-  - **Type**: `number`
-  - **Description**: Position in seconds by default, or percent when `isPercent` is `true`.
-
-- **`isPercent`**
-  - **Type**: `boolean`
-  - **Required**: No
-  - **Default**: `false`
-  - **Description**: `true` to interpret `value` as `0-100` percent of track duration.
+- `value` (`number`): Position in seconds, or percent if `isPercent` is `true`.
+- `isPercent` (`boolean`, optional, default `false`): Interpret `value` as `0-100` percent.
 
 ### Return Value
 
 - **Type**: `boolean`
-- **Description**:
-  - Returns `true` when backend is enabled and action is queued.
-  - Returns `false` when backend is disabled.
 
 ::: info
-When `isPercent` is `true`, the effective seek time is computed from current track duration. Resulting position is clamped to valid bounds.
+When `isPercent` is `true`, the seek time is computed from current track duration.
 :::
 
-## `nowPlaying.setShuffle(enabled)`
+## `setShuffle(enabled)`
 
-Sets shuffle mode.
+Enable or disable shuffle.
 
-### Parameters
+- `enabled` (`boolean`)
+- **Returns**: `boolean`
 
-- **`enabled`**
-  - **Type**: `boolean`
+## `toggleShuffle()`
 
-### Return Value
+Toggles shuffle state.
 
-- **Type**: `boolean`
-- **Description**: `true` when backend is enabled; otherwise `false`.
+- **Returns**: `boolean`
 
-## `nowPlaying.toggleShuffle()`
-
-Toggles shuffle mode.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: `true` when backend is enabled; otherwise `false`.
-
-## `nowPlaying.setRepeat(mode)`
+## `setRepeat(mode)`
 
 Sets repeat mode.
 
-### Parameters
-
-- **`mode`**
-  - **Type**: `number`
-  - **Description**: Repeat mode code:
-    - `0`: none
-    - `1`: track (repeat one)
-    - `2`: list (repeat all)
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: `true` when backend is enabled; otherwise `false`.
+- `mode` (`number`)
+  - `0` none
+  - `1` track (repeat one)
+  - `2` list (repeat all)
+- **Returns**: `boolean`
 
 ## Error Behavior
 
-- `nowPlaying.setPosition(value[, isPercent])` throws a type error when `value` is not numeric.
-- `nowPlaying.setRepeat(mode)` throws a type error when `mode` is not numeric.
+- `setPosition(value[, isPercent])` throws a type error when `value` is not numeric.
+- `setRepeat(mode)` throws a type error when `mode` is not numeric.
+
+## Beginner Tips
+
+- Call `stats()` on a short interval (500–1000ms) to refresh the UI.
+- Use `available` to hide controls when nothing is playing.
+- Use `progress` if you want a quick slider without calculating time.
 
 ## Example
 
 ```javascript
 import { addon } from "novadesk";
 
-const np = addon.load("D:/Novadesk-Project/NowPlaying/dist/x64/Debug/NowPlaying.dll");
-const nowPlaying = np.nowPlaying;
+const nowPlaying = addon.load("D:/Novadesk-Project/NowPlaying/dist/x64/Debug/NowPlaying.dll");
 
 console.log("backend:", nowPlaying.backend());
 
@@ -209,6 +136,12 @@ console.log("player:", stats.player, "title:", stats.title, "progress:", stats.p
 
 nowPlaying.playPause();
 nowPlaying.setShuffle(true);
-nowPlaying.setRepeat(2);         // repeat all
-nowPlaying.setPosition(50, true); // seek to 50%
+nowPlaying.setRepeat(2);
+nowPlaying.setPosition(50, true);
 ```
+## Download addon ⬇️
+
+Download the latest version of the add-on and discover what’s possible with our brilliant widget example.
+
+<CustomButton href="https://github.com/Official-Novadesk/NowPlaying/releases/download/v1.0.0.0/NowPlaying_v1.0.0.0.zip" text="Download" />
+<CustomButton href="https://github.com/Official-Novadesk/NowPlaying" theme="outline">View on Github</CustomButton>

@@ -196,11 +196,11 @@ export default defineConfig({
             text: "addons",
             collapsed: true,
             items: [
-              { text: "AppVolume", link: "/api/addons/Appvolume" },
-              { text: "AudioLevel", link: "/api/addons/Audiolevel" },
+              { text: "AppVolume", link: "/api/addons/AppVolume" },
+              { text: "AudioLevel", link: "/api/addons/AudioLevel" },
               { text: "Brightness", link: "/api/addons/Brightness" },
               { text: "Hotkey", link: "/api/addons/Hotkey" },
-              { text: "NowPlaying", link: "/api/addons/Nowplaying" },
+              { text: "NowPlaying", link: "/api/addons/NowPlaying" },
 
             ],
           }

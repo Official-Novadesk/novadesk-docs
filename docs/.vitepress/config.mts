@@ -67,7 +67,7 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Introduction", link: "/introduction/getting-started" },
-      { text: "API", link: "/api/ui/general-elements-options" },
+      { text: "API", link: "/api/logging" },
       { text: "Guides", link: "/guides/script-types" },
     ],
 
@@ -104,8 +104,8 @@ export default defineConfig({
                 collapsed: true,
                 items: []
               },
-              { 
-                text: "UI Elements", 
+              {
+                text: "UI Elements",
                 collapsed: true,
                 items: [
                   {
@@ -148,6 +148,7 @@ export default defineConfig({
                 items: [
                   { text: "addon", link: "/api/modules/novadesk/addon" },
                   { text: "app", link: "/api/modules/novadesk/app" },
+                  { text: "tray", link: "/api/modules/novadesk/tray" },
                   {
                     text: "widgetWindow",
                     link: "/api/modules/novadesk/widgetWindow",
@@ -158,19 +159,6 @@ export default defineConfig({
                 text: "system",
                 collapsed: true,
                 items: [
-                  {
-                    text: "appVolume",
-                    link: "/api/modules/system/appVolume",
-                  },
-                  { text: "audio", link: "/api/modules/system/audio" },
-                  {
-                    text: "audioLevel",
-                    link: "/api/modules/system/audioLevel",
-                  },
-                  {
-                    text: "brightness",
-                    link: "/api/modules/system/brightness",
-                  },
                   {
                     text: "clipboard",
                     link: "/api/modules/system/clipboard",
@@ -187,15 +175,9 @@ export default defineConfig({
                     text: "fileIcon",
                     link: "/api/modules/system/fileIcon",
                   },
-                  { text: "hotkey", link: "/api/modules/system/hotkey" },
                   { text: "json", link: "/api/modules/system/json" },
                   { text: "memory", link: "/api/modules/system/memory" },
-                  { text: "mouse", link: "/api/modules/system/mouse" },
                   { text: "network", link: "/api/modules/system/network" },
-                  {
-                    text: "nowPlaying",
-                    link: "/api/modules/system/nowPlaying",
-                  },
                   { text: "power", link: "/api/modules/system/power" },
                   {
                     text: "registry",
@@ -210,6 +192,18 @@ export default defineConfig({
               },
             ],
           },
+          {
+            text: "addons",
+            collapsed: true,
+            items: [
+              { text: "AppVolume", link: "/api/addons/appvolume" },
+              { text: "AudioLevel", link: "/api/addons/audiolevel" },
+              { text: "Brightness", link: "/api/addons/brightness" },
+              { text: "Hotkey", link: "/api/addons/hotkey" },
+              { text: "NowPlaying", link: "/api/addons/nowplaying" },
+
+            ],
+          }
         ],
       },
 

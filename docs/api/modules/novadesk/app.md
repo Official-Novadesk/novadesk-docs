@@ -4,7 +4,7 @@ title: Control the Novadesk application via the app object
 
 # app
 
-The `app` object provides methods to control the Novadesk application: reloading scripts, exiting, managing the system tray, and querying version info.
+The `app` object provides methods to control the Novadesk application: reloading scripts, exiting, logging control, and querying version info.
 
 `app` is exported from the `novadesk` module.
 
@@ -50,70 +50,6 @@ app.exit();
 // Check whether this is the first run
 const isFirstRun = app.isFirstRun();
 console.log("Is First Run: " + isFirstRun);
-```
-
-## Tray
-
-### `app.setTrayMenu(items)`
-
-Sets the context menu for the system tray icon. Replaces any previously set menu.
-
-#### Parameters
-
-- **`items`** (`Array<object>`): Menu item definitions. Each object can include:
-  - **`text`** (`string`): Label shown in the menu.
-  - **`action`** (`function`): Callback invoked when the item is clicked.
-  - **`type`** (`string`): Set to `"separator"` to insert a divider.
-  - **`checked`** (`boolean`): Whether the item appears checked.
-  - **`items`** (`Array<object>`): Nested sub-menu items.
-
-#### Example
-
-```javascript
-app.setTrayMenu([
-  { text: "Reload", action: () => app.reload() },
-  { type: "separator" },
-  {
-    text: "Tools",
-    items: [
-      { text: "Debug Mode", checked: false, action: () => console.log("toggle") }
-    ]
-  },
-  { type: "separator" },
-  { text: "Exit", action: () => app.exit() }
-]);
-```
-
-### `app.clearTrayMenu()`
-
-Removes all custom tray menu items.
-
-### `app.showDefaultTrayItems(show)`
-
-Controls visibility of the built-in default tray entries (e.g. "Exit").
-
-#### Parameters
-
-- **`show`** (`boolean`): `true` to show default items, `false` to hide them.
-
-#### Example
-
-```javascript
-app.showDefaultTrayItems(true);
-```
-
-### `app.hideTrayIcon(hide)`
-
-Shows or hides the Novadesk system tray icon. The setting is persisted.
-
-#### Parameters
-
-- **`hide`** (`boolean`): `true` to hide the icon, `false` to show it.
-
-#### Example
-
-```javascript
-app.hideTrayIcon(false);
 ```
 
 ## Settings
@@ -164,22 +100,6 @@ Completely disables or enables all logging output (both console and file).
 ```javascript
 // Silence all output for production
 app.disableLogging(true);
-```
-
-### `app.hideTrayIcon(bool)`
-
-Dynamically shows or hides the Novadesk icon in the system tray.
-
-#### Parameters
-
-- **`bool`**
-  - **Type**: `boolean`
-  - **Description**: `true` to hide the icon, `false` to show it.
-
-#### Example
-```javascript
-// Run in "stealth" mode
-app.hideTrayIcon(true);
 ```
 
 ### `app.useHardwareAcceleration(bool)`

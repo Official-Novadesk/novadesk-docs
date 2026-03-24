@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.7.0.0-beta] - 2026-03-24
+###### 📅 24th March, 2026
+
+### Added
+
+* Added support for `meta.json.main` in `nwm run`, allowing widgets to define a custom entry script path instead of always using `index.js`.
+
+### Changed
+
+* Updated engine IPC: main-to-UI messages now use Electron-style
+  `ipcRenderer.on(channel, (event, payload) => ...)` instead of the old payload-first callback order.
+* Renamed `clipString` alias to `textClip`.
+
+### Fixed
+
+* Fixed TextElement hit testing to use the actual rendered text ink alpha instead of the layout box, preventing false hover detection above/below glyphs.
+* Fixed unstable button hover handling by preserving the currently hovered element, preventing repeated `onMouseOver` / `onMouseLeave` triggers.
+* Fixed an issue where setting a property on a text element would clear the text.
+
+### Removed
+
+* Removed `appVolume`, `audioLevel`, `brightness`, `hotkey`, and `nowPlaying` system objects (can now be replaced by external official addons).
+* Removed deprecated `app.tray*` methods, replaced with the new `tray` object from Novadesk.
+
+<!-- ================================================================================= -->
+
 ## [0.6.0.0-beta] - 2026-03-06
 ###### 📅 6th March, 2026
 
@@ -49,7 +75,6 @@
 - Added support for built-in and custom `.cur` and `.ani` cursors.
 
 ### System APIs
-- Added `system.nowPlaying` API.
 - Added `setWallpaper` API to change desktop wallpaper.
 - Added brightness control API for Windows.
 - Added application volume control and mute APIs.

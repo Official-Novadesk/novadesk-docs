@@ -7,6 +7,7 @@ import { LiteTree } from '@lite-tree/vue'
 import BackToTopButton from '@miletorix/vitepress-back-to-top-button' 
 import '@miletorix/vitepress-back-to-top-button/style.css'
 import MyLayout from './MyLayout.vue'
+import CustomButton from './components/CustomButton.vue'
 
 export default {
   extends: DefaultTheme,
@@ -14,6 +15,7 @@ export default {
   enhanceApp({ app, router, siteData }) {
     enhanceAppWithTabs(app)
     app.component('LiteTree', LiteTree)
+    app.component('CustomButton', CustomButton)
     BackToTopButton(app, {
       progressColor: '#3f4152', 
     })

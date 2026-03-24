@@ -183,6 +183,31 @@ addon.RegisterFunction("test", [host](novadesk_context ctx) -> int {
 }, 1);
 ```
 
+### `GetProperty(objIndex, name)`
+Reads a property from a JavaScript object at `objIndex` and pushes the value onto the stack.
+Returns `true` if the property exists (not `undefined`).
+
+```cpp
+// JS: addon.describe({ title: "Hello", count: 2 })
+addon.RegisterFunction("describe", [host](novadesk_context ctx) -> int {
+    novadesk::Addon helper(ctx, host);
+    if (!helper.IsObject(0)) {
+        helper.ThrowError("describe() expects an object");
+        return 0;
+    }
+
+    if (helper.GetProperty(0, "title")) {
+        const char* title = helper.GetString(-1);
+        helper.Pop();
+        host->PushString(ctx, title);
+        return 1;
+    }
+
+    helper.ThrowError("Missing title");
+    return 0;
+}, 1);
+```
+
 ## **Type Safety & Validation**
 
 Always validate arguments before using them to prevent addon crashes or engine errors.
@@ -309,6 +334,16 @@ To create an object manually:
 host->RegisterObjectStart(ctx, "myObject");
 host->RegisterString(ctx, "innerProp", "value");
 host->RegisterObjectEnd(ctx, "myObject");
+```
+
+### **Object Property Read (Raw)**
+To read a property from an object argument and leave it on the stack:
+```cpp
+// obj is at index 0
+if (host->GetProperty(ctx, 0, "name")) {
+    const char* name = host->GetString(ctx, -1);
+    host->Pop(ctx);
+}
 ```
 
 ### **Array Registration (Raw)**

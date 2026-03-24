@@ -13,7 +13,7 @@ Use modules to access system features and Novadesk runtime features from your sc
 Import modules with ES module syntax:
 
 ```javascript
-import { app, widgetWindow } from "novadesk";
+import { app, tray, widgetWindow } from "novadesk";
 import { cpu, memory, webFetch } from "system";
 ```
 
@@ -66,7 +66,8 @@ File-system APIs for reading/writing files and managing directories.
 ### `novadesk` module
 Runtime and app-control APIs.
 
-- [app](/api/modules/novadesk/app.html): App lifecycle, tray, logging, version and paths.
+- [app](/api/modules/novadesk/app.html): App lifecycle, logging, version and paths.
+- [tray](/api/modules/novadesk/tray.html): System tray constructor, menu control, and events.
 - [widgetWindow](/api/modules/novadesk/widgetWindow.html): Create and manage widget windows.
 - [addon](/api/modules/novadesk/addon.html): Load and manage native C++ DLL addons.
 
@@ -74,9 +75,6 @@ Runtime and app-control APIs.
 Windows/system integration APIs.
 
 - [audio](/api/modules/system/audio.html): Master volume and WAV playback.
-- [audioLevel](/api/modules/system/audioLevel.html): Read live output/input levels.
-- [appVolume](/api/modules/system/appVolume.html): Control per-app audio sessions.
-- [brightness](/api/modules/system/brightness.html): Read brightness capability status.
 - [clipboard](/api/modules/system/clipboard.html): Read and write clipboard text.
 - [cpu](/api/modules/system/cpu.html): Read CPU usage metrics.
 - [disk](/api/modules/system/disk.html): Read disk usage information.
@@ -84,12 +82,9 @@ Windows/system integration APIs.
 - [env](/api/modules/system/env.html): Read environment variables.
 - [execute](/api/modules/system/execute.html): Launch files, apps, and URLs.
 - [fileIcon](/api/modules/system/fileIcon.html): Extract file icons to `.ico`.
-- [hotkey](/api/modules/system/hotkey.html): Register global keyboard hotkeys.
 - [json](/api/modules/system/json.html): Parse/stringify plus JSON file helpers.
 - [memory](/api/modules/system/memory.html): Read RAM usage metrics.
-- [mouse](/api/modules/system/mouse.html): Read cursor coordinates.
 - [network](/api/modules/system/network.html): Read network throughput and totals.
-- [nowPlaying](/api/modules/system/nowPlaying.html): Read/control active media sessions.
 - [power](/api/modules/system/power.html): Read battery and power state.
 - [registry](/api/modules/system/registry.html): Read and write Windows registry values.
 - [wallpaper](/api/modules/system/wallpaper.html): Get/set desktop wallpaper.

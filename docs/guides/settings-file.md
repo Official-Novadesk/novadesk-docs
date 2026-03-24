@@ -30,7 +30,6 @@ Global keys live at the root of the JSON object. Current built-in keys:
 - `enableDebugging` (`boolean`, default `false`): sets log level to Debug when `true`, Info when `false`.
 - `disableLogging` (`boolean`, default `false`): when `true`, disables all logging outputs.
 - `saveLogToFile` (`boolean`, default `false`): when `true`, writes `logs.log` alongside the settings file.
-- `hideTrayIcon` (`boolean`, default `false`): hides the system tray icon when `true`.
 - `useHardwareAcceleration` (`boolean`, default `true`): toggles Direct2D hardware acceleration. Requires restart to fully apply.
 
 ### Example
@@ -40,7 +39,6 @@ Global keys live at the root of the JSON object. Current built-in keys:
   enableDebugging: false,
   disableLogging: false,
   saveLogToFile: true,
-  hideTrayIcon: false,
   useHardwareAcceleration: true,
   widgets: {}
 }
@@ -79,7 +77,6 @@ widgets: {
 
 - Settings are loaded on startup. If parsing fails, Novadesk resets to defaults and rewrites the file when changes occur.
 - Logging settings are applied immediately (console and optional file logging).
-- Tray visibility updates immediately when `hideTrayIcon` changes.
 - Hardware acceleration changes are stored but require an application restart.
 
 ## Editing Safely
@@ -95,5 +92,4 @@ widgets: {
 - `app.enableDebugging(bool)` ? toggles debug log level.
 - `app.disableLogging(bool)` ? silences or resumes logging.
 - `app.saveLogToFile(bool)` ? enables file logging.
-- `app.hideTrayIcon(bool)` ? toggles tray icon visibility.
 - `app.useHardwareAcceleration(bool)` ? stores hardware acceleration preference.

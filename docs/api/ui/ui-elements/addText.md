@@ -141,7 +141,7 @@ fontShadow: [
 - **Default**: `"lefttop"`
 - **Description**: Horizontal and vertical alignment.
 
-### `clipString`
+### `textClip`
 
 - **Type**: `string`
 - **Default**: `"none"`

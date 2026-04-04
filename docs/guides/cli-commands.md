@@ -3,57 +3,116 @@ title: CLI Commands
 ---
 
 # CLI Commands
-Learn how to use the Novadesk CLI commands to manage your widgets
+Reference for CLI commands implemented in Novadesk source code.
 
 #### Table of Contents
 [[toc]]
 
+## `Novadesk.exe`
 
+Novadesk supports command-line arguments to control a running instance and to load scripts.
 
-Novadesk supports several command-line arguments that allow you to control the application remotely or customize its behavior. These commands are particularly useful for automation, scripting, or integration with other tools.
+### Exit Command
 
-## Available Commands
+Gracefully shuts down Novadesk.
 
-### `Exit Command`
-
-Gracefully shuts down the Novadesk application.
-
-**Syntax:**
 ```bash
 Novadesk.exe /exit
 Novadesk.exe -exit
 Novadesk.exe --exit
 ```
 
-**Description:**
-- Cleanly terminates the Novadesk application
-- Removes the system tray icon and releases all resources
-- If Novadesk is already running, the command will be sent to the existing instance
----
-### `Custom Script Path`
+### List Loaded Scripts
 
-Launch Novadesk with a custom JavaScript file instead of the default script.
+Print loaded script paths from the running instance to stdout.
 
-**Syntax:**
 ```bash
-Novadesk.exe "path/to/custom/script.js"
-Novadesk.exe path/to/custom/script.js
+Novadesk.exe --list-scripts
 ```
 
-**Description:**
-- Allows you to specify a custom JavaScript file to load on startup
-- Path can be absolute or relative to the Novadesk executable
-- Quotes are optional but recommended for paths containing spaces
-- Only works when starting a new instance of Novadesk
+Write loaded script paths to a file.
+
+```bash
+Novadesk.exe --list-scripts-file "C:\temp\novadesk-scripts.txt"
+```
+
+### Script Control
+
+Refresh one loaded script:
+
+```bash
+Novadesk.exe --refresh "C:\path\widget\index.js"
+```
+
+Reload all scripts:
+
+```bash
+Novadesk.exe --refresh-all
+```
+
+Unload one script:
+
+```bash
+Novadesk.exe --unload "C:\path\widget\index.js"
+```
+
+Load script(s) into the running instance:
+
+```bash
+Novadesk.exe --load "C:\path\widgetA\index.js" --load "C:\path\widgetB\index.js"
+Novadesk.exe "C:\path\widgetA\index.js" "C:\path\widgetB\index.js"
+```
+
+### Runtime Settings
+
+Hardware acceleration:
+
+```bash
+Novadesk.exe --enable-hardware-acceleration
+Novadesk.exe --disable-hardware-acceleration
+```
+
+Debugging:
+
+```bash
+Novadesk.exe --enable-debugging
+Novadesk.exe --disable-debugging
+```
+
+Logging:
+
+```bash
+Novadesk.exe --enable-logging
+Novadesk.exe --disable-logging
+```
+
+Save logs to file:
+
+```bash
+Novadesk.exe --enable-save-log-to-file
+Novadesk.exe --disable-save-log-to-file
+```
+
+### New Instance Mode
+
+Force launching a new Novadesk process instead of forwarding to an existing one:
+
+```bash
+Novadesk.exe --new-instance
+Novadesk.exe --new-instance "C:\path\widget\index.js"
+```
 
 ::: info
 Novadesk enforces single-instance execution using a global mutex. When you run a command:
 
-- **If Novadesk is not running:** A new instance starts and processes the command
-- **If Novadesk is already running:** The command is sent to the existing instance via Windows messages
+- If Novadesk is not running: a new instance starts. CLI settings (`--enable-*` / `--disable-*`) are applied at startup.
+- If Novadesk is already running: supported commands are forwarded to the existing instance via Windows messaging.
+- Non-flag arguments are treated as script paths.
 :::
 
----
+### Internal Argument (Not for normal use)
+
+`--request-single-instance-lock` is used internally by Novadesk and manager processes.
 
 # Novadesk Widget Maker (nwm)
 
@@ -65,52 +124,30 @@ The `nwm` tool is the recommended way to initialize, run, and build Novadesk wid
 
 Scaffolds a new widget project from a template.
 
-**Syntax:**
 ```bash
 nwm init <widget-name>
 ```
-
-**Description:**
-- Creates a new directory with the specified name.
-- Copies the default `widget` template into the directory.
-- Automatically updates the `name` property in `meta.json`.
 
 ### `run`
 
 Launches the current widget in Novadesk.
 
-**Syntax:**
 ```bash
 nwm run
 ```
-
-**Description:**
-- Must be run from inside a widget directory.
-- Launches `Novadesk.exe` pointing to the local `index.js`.
-- **Waits for the process to exit**, allowing you to see logs and errors in the terminal.
 
 ### `build`
 
 Builds a distributable package for your widget.
 
-**Syntax:**
 ```bash
 nwm build
 ```
-
-**Description:**
-- Validates `meta.json` for required properties (`name`, `version`, `author`, `description`, `icon`).
-- Creates a `dist` folder with the following structure:
-  - `WidgetName.exe` (Renamed Novadesk executable)
-  - `Widgets/` (Contains **recursively copied** scripts and folders)
-- Dynamically sets the executable's internal `ProductName`, `CompanyName`, and `FileDescription`.
-- Supports **arbitrary directory structures**; any folder in your project (except `dist`) will be copied into the output `Widgets/` directory.
 
 ### `-v` / `--version`
 
 Shows the current version of the `nwm` tool.
 
-**Syntax:**
 ```bash
 nwm -v
 nwm --version
@@ -120,9 +157,21 @@ nwm --version
 
 Displays the help menu with usage instructions and available commands.
 
-**Syntax:**
 ```bash
 nwm -h
 nwm --help
 ```
 
+### Internal Installer Command
+
+`nwm --install` exists for self-extracting installers generated by `nwm build`. It is not a normal development command.
+
+## `ndpkg_installer.exe`
+
+`ndpkg_installer.exe` can accept a `.ndpkg` file path directly:
+
+```bash
+ndpkg_installer.exe "C:\path\widget.ndpkg"
+```
+
+If no `.ndpkg` path is provided, the installer opens a file picker.

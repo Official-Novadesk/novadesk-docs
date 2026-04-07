@@ -48,6 +48,19 @@ Absolute path to the Widgets root directory.
 console.log(__widgetDir);
 ```
 
+## `__addonsPath`
+
+- **Type**: `string`
+- **Available in**: Main script, UI script
+
+Absolute path to the Addons directory.
+
+### Example
+
+```javascript
+console.log(__addonsPath);
+```
+
 ## Mouse Event Object
 
 Widget callbacks and element mouse handlers receive an event object with:
@@ -93,9 +106,9 @@ const win = new widgetWindow({
 });
 
 win.on("mouseMove", (e) => {
-  console.log("client:", e.clientX, e.clientY);
-  console.log("screen:", e.screenX, e.screenY);
-  console.log("offset:", e.offsetX, e.offsetY);
+  console.log("client:", e.__clientX, e.__clientY);
+  console.log("screen:", e.__screenX, e.__screenY);
+  console.log("offset:", e.__offsetX, e.__offsetY);
 });
 ```
 == ui.js
@@ -109,11 +122,15 @@ ui.addShape({
   height: 90,
   fillColor: "rgba(35,35,35,220)",
   onMouseOver: (e) => {
-    console.log("hover:", e.clientX, e.clientY);
+    console.log("hover:", e.__clientX, e.__clientY);
   },
   onMouseLeave: () => {
     console.log("left");
   }
 });
 ```
+:::
+
+::: info
+Mouse event fields are exposed as underscored properties (for example `__clientX`, `__offsetYPercent`).
 :::

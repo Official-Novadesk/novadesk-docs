@@ -41,6 +41,37 @@ Exits the Novadesk application.
 app.exit();
 ```
 
+### `app.requestSingleInstanceLock()`
+
+Requests ownership of the single-instance lock.
+
+#### Return Value
+
+- **Type**: `boolean`
+- **Description**: `true` if the lock was acquired, otherwise `false`.
+
+#### Example
+
+```javascript
+const hasLock = app.requestSingleInstanceLock();
+console.log("Single instance lock:", hasLock);
+```
+
+### `app.releaseSingleInstanceLock()`
+
+Releases the single-instance lock.
+
+#### Return Value
+
+- **Type**: `boolean`
+- **Description**: Returns `true` after release is requested.
+
+#### Example
+
+```javascript
+app.releaseSingleInstanceLock();
+```
+
 ### `app.isFirstRun()`
 
 **Description**: Returns `true` on the first launch when the settings file is missing or empty. Returns `false` on normal subsequent launches.

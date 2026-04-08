@@ -93,9 +93,3 @@ if (data) {
   console.log("RMS L/R", left, right);
 }
 ```
-## Download addon ⬇️
-
-Download the latest version of the add-on and discover what’s possible with our brilliant widget example.
-
-<CustomButton href="https://github.com/Official-Novadesk/AudioLevel/releases/download/v1.0.0.0/AudioLevel_v1.0.0.0.zip" text="Download" />
-<CustomButton href="https://github.com/Official-Novadesk/AudioLevel" theme="outline">View on Github</CustomButton>

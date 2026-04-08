@@ -200,6 +200,7 @@ export default defineConfig({
               { text: "AudioLevel", link: "/api/addons/AudioLevel" },
               { text: "Brightness", link: "/api/addons/Brightness" },
               { text: "Hotkey", link: "/api/addons/Hotkey" },
+              { text: "InputBox", link: "/api/addons/InputBox" },
               { text: "NowPlaying", link: "/api/addons/NowPlaying" },
 
             ],

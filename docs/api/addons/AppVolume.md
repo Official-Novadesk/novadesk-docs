@@ -151,10 +151,3 @@ if (sessions.length > 0) {
     console.log("aggregated:", stats);
 }
 ```
-
-## Download addon ⬇️
-
-Download the latest version of the add-on and discover what’s possible with our brilliant widget example.
-
-<CustomButton href="https://github.com/Official-Novadesk/AppVolume/releases/download/v1.0.0.0/AppVolume_v1.0.0.0.zip" text="Download" />
-<CustomButton href="https://github.com/Official-Novadesk/AppVolume" theme="outline">View on Github</CustomButton>

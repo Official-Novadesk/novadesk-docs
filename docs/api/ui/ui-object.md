@@ -82,6 +82,16 @@ Adds a line graph element.
 
 Refer to [addLine Options](/api/ui/ui-elements/addLine).
 
+### `ui.addAreaGraph(options)`
+
+Adds an area graph element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Area Graph element configuration. Requires a unique `id`.
+
+Refer to [addAreaGraph Options](/api/ui/ui-elements/addAreaGraph).
+
 ### `ui.addHistogram(options)`
 
 Adds a histogram element.

@@ -119,6 +119,10 @@ export default defineConfig({
                   { text: "addBar", link: "/api/ui/ui-elements/addBar" },
                   { text: "addLine", link: "/api/ui/ui-elements/addLine" },
                   {
+                    text: "addAreaGraph",
+                    link: "/api/ui/ui-elements/addAreaGraph",
+                  },
+                  {
                     text: "addHistogram",
                     link: "/api/ui/ui-elements/addHistogram",
                   },

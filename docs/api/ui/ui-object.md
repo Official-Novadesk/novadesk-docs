@@ -42,6 +42,26 @@ Adds an image element.
 
 Refer to [addImage Options](/api/ui/ui-elements/addImage).
 
+### `ui.addButton(options)`
+
+Adds a button element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Button element configuration. Requires a unique `id`.
+
+Refer to [addButton Options](/api/ui/ui-elements/addButton).
+
+### `ui.addBitmap(options)`
+
+Adds a bitmap element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Bitmap element configuration. Requires a unique `id`.
+
+Refer to [addBitmap Options](/api/ui/ui-elements/addBitmap).
+
 ### `ui.addBar(options)`
 
 Adds a bar element.
@@ -51,6 +71,46 @@ Adds a bar element.
   - **Description**: Bar element configuration. Requires a unique `id`.
 
 Refer to [addBar Options](/api/ui/ui-elements/addBar).
+
+### `ui.addLine(options)`
+
+Adds a line graph element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Line element configuration. Requires a unique `id`.
+
+Refer to [addLine Options](/api/ui/ui-elements/addLine).
+
+### `ui.addAreaGraph(options)`
+
+Adds an area graph element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Area Graph element configuration. Requires a unique `id`.
+
+Refer to [addAreaGraph Options](/api/ui/ui-elements/addAreaGraph).
+
+### `ui.addHistogram(options)`
+
+Adds a histogram element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Histogram element configuration. Requires a unique `id`.
+
+Refer to [addHistogram Options](/api/ui/ui-elements/addHistogram).
+
+### `ui.addRotator(options)`
+
+Adds a rotator element.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Rotator element configuration. Requires a unique `id`.
+
+Refer to [addRotator Options](/api/ui/ui-elements/addRotator).
 
 ### `ui.addRoundLine(options)`
 

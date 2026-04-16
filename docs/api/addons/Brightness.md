@@ -82,9 +82,3 @@ console.log("Range:", info.min, "-", info.max, "Current:", info.current);
 const ok = brightness.setValue({ percent: 60, display: 0 });
 console.log("Set brightness:", ok);
 ```
-## Download addon ⬇️
-
-Download the latest version of the add-on and discover what’s possible with our brilliant widget example.
-
-<CustomButton href="https://github.com/Official-Novadesk/Brightness/releases/download/v1.0.0.0/Brightness_v1.0.0.0.zip" text="Download" />
-<CustomButton href="https://github.com/Official-Novadesk/Brightness" theme="outline">View on Github</CustomButton>

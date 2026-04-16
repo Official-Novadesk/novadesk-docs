@@ -139,9 +139,3 @@ nowPlaying.setShuffle(true);
 nowPlaying.setRepeat(2);
 nowPlaying.setPosition(50, true);
 ```
-## Download addon ⬇️
-
-Download the latest version of the add-on and discover what’s possible with our brilliant widget example.
-
-<CustomButton href="https://github.com/Official-Novadesk/NowPlaying/releases/download/v1.0.0.0/NowPlaying_v1.0.0.0.zip" text="Download" />
-<CustomButton href="https://github.com/Official-Novadesk/NowPlaying" theme="outline">View on Github</CustomButton>

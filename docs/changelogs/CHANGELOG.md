@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.9.0.0-beta] - 2026-04-16
+###### 📅 16th April, 2026
+
+### Added
+
+* New **InputBox** add-on
+* Support for **named CSS colors**
+* New Image properties:
+
+  * `imageFlip`
+  * `imageCrop`
+  * `useExifOrientation`
+* New Image element property:
+
+  * `scaleMargins`
+* New elements:
+
+  * **Line**
+  * **Button**
+  * **Bitmap**
+  * **Histogram**
+  * **Rotator**
+
+### Improved
+
+* Enhanced `getAddonsPath` function
+
+<!-- ================================================================================= -->
+
 ## [0.8.0.0-beta] - 2026-04-07
 ###### 📅 7th April, 2026
 

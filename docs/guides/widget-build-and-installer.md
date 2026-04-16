@@ -3,7 +3,7 @@ title: Widget Build And Installer
 ---
 
 # Widget Build And Installer
-How `nwm build` packages your widget and creates a self-contained installer.
+How `nwm build` currently packages your widget into installer and `.ndpkg` artifacts.
 
 #### Table of Contents
 [[toc]]
@@ -16,16 +16,22 @@ Run from your widget project folder:
 nwm build
 ```
 
-## What `nwm build` Does
+## What `nwm build` Does (Latest)
 
 `nwm build` performs these steps:
 
 1. Validates required `meta.json` fields.
 2. Recreates `dist/` from scratch.
-3. Copies `Novadesk.exe` into `dist/` and renames it to `<name>.exe`.
-4. Copies your widget project into `dist/Widgets/` (excluding `dist/`).
-5. Applies metadata and icon to `<name>.exe`.
-6. Generates an installer executable in `dist/` using `installer_stub.exe`.
+3. Creates temporary staging folders for installer and `.ndpkg` packaging.
+4. Copies `Novadesk.exe` into staging and renames it to `<WidgetName>.exe`.
+5. Copies requested addons into staging:
+   - Installer staging gets all requested addons from `meta.json`.
+   - `.ndpkg` staging excludes default built-in addons and keeps only non-default requested addons.
+6. Copies widget files (excluding `dist/`) into staging.
+7. Applies version/company/description/icon metadata to `<WidgetName>.exe`.
+8. Builds a self-extracting setup executable using `installer_stub.exe`.
+9. Creates a distributable ZIP package.
+10. Creates a `.ndpkg` package with metadata and an NDPKG footer.
 
 ## Output Structure
 
@@ -33,18 +39,15 @@ Typical output:
 
 <LiteTree>
 - dist/
-    YourWidgetName.exe
+    YourWidgetName_v1.0.0.0.zip
     setup.exe
-    Widgets/
-        index.js
-        ui/
-            script.ui.js
-        assets/
-            icon.ico
-        meta.json
+    YourWidgetName_v1.0.0.0.ndpkg
 </LiteTree>
 
-`setup.exe` name depends on `setup.setupName` in `meta.json`.
+Notes:
+- ZIP name is generated as `<SanitizedWidgetName>_v<SanitizedVersion>.zip`.
+- `.ndpkg` name is generated as `<SanitizedWidgetName>_v<SanitizedVersion>.ndpkg`.
+- Setup EXE name depends on `setup.setupName` in `meta.json`.
 
 ## Required `meta.json` Fields
 
@@ -95,6 +98,83 @@ Example:
 }
 ```
 
+## Addons (Detailed)
+
+Addons are controlled by the optional `addons` array in your widget `meta.json`.
+
+Example:
+
+```json
+{
+  "addons": ["InputBox", "NowPlaying", "CustomAddon.dll"]
+}
+```
+
+### Addon Name Rules in `meta.json`
+
+- Each `addons` entry must be a string.
+- You can provide either:
+  - DLL file name (for example `NowPlaying.dll`)
+  - or stem name without extension (for example `NowPlaying`)
+- Matching is case-insensitive.
+- Duplicate references to the same DLL are deduplicated during packaging.
+- If any requested addon cannot be found, `nwm build` fails.
+
+### Where `nwm build` Reads Addons From
+
+`nwm build` resolves addon source path from the Novadesk installation mode:
+
+- Portable install: `<NovadeskExeDirectory>/Addons`
+- Standard install: `%USERPROFILE%\\Documents\\Novadesk\\Addons`
+
+If no `addons` are requested, addon copying is skipped.
+
+### Setup EXE / ZIP Addon Inclusion
+
+For setup/ZIP packaging, all requested addons are copied into staging `Addons/` and bundled into installer payload files.
+
+That means the setup installer installs requested addons together with the widget package files.
+
+### `.ndpkg` Addon Inclusion
+
+For `.ndpkg` packaging, `nwm build` filters out default built-in addons and includes only non-default requested addons.
+
+Default addon names treated as built-in include:
+- `AppVolume` / `AppVolume.dll`
+- `AudioLevel` / `AudioLevel.dll`
+- `Brightness` / `Brightness.dll`
+- `Hotkey` / `Hotkey.dll`
+- `NowPlaying` / `NowPlaying.dll`
+
+The included addon file names are written to `ndpkg.json`:
+
+```json
+{
+  "addons": ["CustomAddon.dll"]
+}
+```
+
+If no non-default addons remain after filtering, `.ndpkg` can still be valid with no addon files.
+
+### Addons in `ndpkg_installer.exe`
+
+When opening a package, `ndpkg_installer.exe`:
+
+- Reads addon candidates from extracted `Addons/` files.
+- Uses `ndpkg.json.addons` as a preferred order/filter signal.
+- Shows addon rows with status:
+  - `Add` (not currently installed)
+  - `Replace` (installed and package version is same/older/unknown comparison result)
+  - `Newer Version Found` (installed addon version is newer than package addon)
+- Allows checkbox selection per addon before install.
+- Copies only checked addons into target `Addons` directory using overwrite behavior.
+
+### Addon Install Targets
+
+Addon destination follows resolved install mode:
+- Portable Novadesk: `<NovadeskFolder>/Addons`
+- Standard Novadesk: `%USERPROFILE%\\Documents\\Novadesk\\Addons`
+
 ## Installer Name Rules
 
 - Installer output name comes from `setup.setupName`.
@@ -124,6 +204,55 @@ When the generated installer runs:
 - Optionally creates Desktop shortcut.
 - Optionally creates Startup shortcut (`createStartupShortcut` or `runOnStartup`).
 - Optionally creates `Uninstall.exe` and uninstall registry entry.
+
+## `.ndpkg` Package Format
+
+`nwm build` now also creates a widget package with `.ndpkg` extension.
+
+Internally, `.ndpkg` is:
+1. A ZIP payload containing widget package files.
+2. A 16-byte footer appended at the end:
+   - magic: `NDPKG1`
+   - format version: `1`
+
+The installer validates this footer before extraction.
+
+### `.ndpkg` Contents
+
+Typical package structure:
+
+<LiteTree>
+- YourWidgetName_v1.0.0.0.ndpkg
+    (ZIP payload)
+    ndpkg.json
+    preview.png (optional, extension depends on source)
+    Widgets/
+        YourWidgetName/
+            index.js
+            meta.json
+            ui/
+            assets/
+    Addons/ (optional)
+        SomeAddon.dll
+</LiteTree>
+
+`ndpkg.json` is generated by `nwm build` and includes:
+- `name` (string)
+- `version` (string)
+- `author` (string)
+- `addons` (array of addon DLL names included in the package)
+
+### `.ndpkg` Installer Behavior
+
+`ndpkg_installer.exe`:
+- Accepts `.ndpkg` path argument or opens a file picker.
+- Validates the NDPKG footer and extracts payload.
+- Requires `ndpkg.json` and `Widgets/` to exist in the package.
+- Installs to:
+  - Portable Novadesk: `<NovadeskFolder>/Widgets` and `<NovadeskFolder>/Addons`
+  - Standard Novadesk: `%USERPROFILE%\\Documents\\Novadesk\\Widgets` and `...\\Addons`
+- Shows included addons and allows checkbox-based addon install selection.
+- Marks addon rows as Add/Replace/Newer Version Found based on installed DLL version info.
 
 ## Notes
 

@@ -14,8 +14,10 @@ ui.addImage(options);
 #### Table of Contents
 [[toc]]
 
-## General Element Options
-Refer to [General Elements Options](/api/ui/ui-elements/general-elements-options) for layout, visibility, and interactivity controls.
+## Shared Options
+Refer to:
+- [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) for layout and interaction.
+- [General Image Options](/api/ui/ui-elements/general-options/general-image-options) for shared image processing fields.
 
 ## Image Element Options
 
@@ -37,17 +39,15 @@ Refer to [General Elements Options](/api/ui/ui-elements/general-elements-options
 - `"preserve"`
 - `"crop"`
 
-### `imageAlpha`
+### `scaleMargins`
 
-- **Type**: `number`
-- **Default**: `255`
-- **Description**: Opacity in the range `0-255`.
+- **Type**: `number[]`
+- **Default**: `[]`
+- **Description**: 9-slice style margins for scalable image regions.
 
-### `grayscale`
+#### Syntax
 
-- **Type**: `boolean`
-- **Default**: `false`
-- **Description**: Applies a grayscale filter; works with `imageTint` and `colorMatrix`.
+- `[left, top, right, bottom]`
 
 ### `tile`
 
@@ -55,33 +55,21 @@ Refer to [General Elements Options](/api/ui/ui-elements/general-elements-options
 - **Default**: `false`
 - **Description**: Tiles the image to fill the element area.
 
-### `imageTint`
-
-- **Type**: `string`
-- **Default**: `""`
-- **Description**: Color or gradient applied to the image.
-
-### `colorMatrix`
-
-- **Type**: `array` (20 or 25 numbers)
-- **Default**: `[]`
-- **Description**: Color transformation matrix for brightness, contrast, and color shifts.
-
-#### Details
-
-- 5x4 Direct2D or 5x5 Rainmeter formats are accepted.
-- When 25 numbers are provided, Rainmeter handles the translation column automatically.
-
-#### Example
+## Example
 
 ```javascript
-colorMatrix: [
-   0.33, 0.33, 0.33, 0, 0,
-   0.59, 0.59, 0.59, 0, 0,
-   0.11, 0.11, 0.11, 0, 0,
-   0,    0,    0,    1, 0,
-   0,    0,    0,    0, 1
-]
+ui.addImage({
+    id: "logo",
+    x: 20,
+    y: 20,
+    width: 180,
+    height: 180,
+    path: "./assets/logo.png",
+    preserveAspectRatio: "preserve",
+    imageAlpha: 230,
+    imageTint: "rgba(255,255,255,0.95)",
+    imageFlip: "none"
+});
 ```
 
 ## Supported Image Formats
@@ -92,3 +80,4 @@ colorMatrix: [
 - GIF
 - TIFF
 - ICO
+

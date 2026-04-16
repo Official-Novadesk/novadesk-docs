@@ -3,7 +3,7 @@ title: Text UI element options, styling, and examples.
 ---
 
 # Text Element
-The Text element renders styled text via the UI script `win` object using the shared element options detailed in [General Elements Options](/api/ui/ui-elements/general-elements-options).
+The Text element renders styled text via the UI script `win` object using the shared element options detailed in [General Elements Options](/api/ui/ui-elements/general-options/general-elements-options).
 
 Use `ui.addText()` inside the UI script to create and configure a text element.
 
@@ -15,7 +15,7 @@ ui.addText(options);
 [[toc]]
 
 ## General Element Options
-See [General Elements Options](/api/ui/ui-elements/general-elements-options) for layout, visibility, and interaction settings shared across all UI elements.
+See [General Elements Options](/api/ui/ui-elements/general-options/general-elements-options) for layout, visibility, and interaction settings shared across all UI elements.
 
 ## Text Element Options
 
@@ -268,3 +268,4 @@ ui.addText({
 ## Preview
 
 ![Widget Preview](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/textPreview.png?raw=true)
+

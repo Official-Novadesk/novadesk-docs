@@ -4,13 +4,13 @@ title: Color Formats
 
 # Color Formats
 
-Learn about the different color formats supported in Novadesk widgets.
+This guide covers the color and gradient formats currently supported by Novadesk.
 
 #### Table of Contents
 [[toc]]
 
 
-Novadesk supports multiple color formats for styling your widgets. You can use these formats for properties like `color`, `fontcolor`, `backgroundcolor`, `solidcolor`, and `solidcolor2`.
+You can use these formats in color-capable fields such as `fontColor`, `backgroundColor`, `strokeColor`, `fillColor`, `barColor`, `lineColor`, and similar options.
 
 ## Supported Color Formats
 
@@ -24,6 +24,8 @@ Use the `rgb()` function to specify colors with red, green, and blue values (0-2
 ```javascript
 rgb(red, green, blue)
 ```
+
+Each component uses `0-255`.
 
 **Examples:**
 ```javascript
@@ -44,12 +46,16 @@ color: "rgb(200, 100, 50)"     // Orange-brown
 
 ### RGBA Format
 
-Use the `rgba()` function to specify colors with transparency. The alpha value ranges from 0.0 (fully transparent) to 1.0 (fully opaque).
+Use `rgba()` to add transparency.
 
 **Syntax:**
 ```javascript
 rgba(red, green, blue, alpha)
 ```
+
+Alpha supports both styles:
+- `0.0-1.0` (CSS-like)
+- `0-255` (Novadesk-friendly numeric alpha)
 
 **Examples:**
 ```javascript
@@ -65,6 +71,23 @@ solidcolor2: "rgba(0, 100, 255, 200)"        // Blue with alpha 200/255
 // Fully opaque (equivalent to RGB)
 color: "rgba(255, 255, 255, 1.0)"            // White
 color: "rgba(0, 0, 0, 1)"                    // Black
+```
+
+### Named Colors
+
+Novadesk supports a broad list of CSS named colors (case-insensitive), for example:
+
+```javascript
+color: "red"
+color: "dodgerblue"
+color: "rebeccapurple"
+color: "whitesmoke"
+```
+
+Special keyword:
+
+```javascript
+color: "transparent" // fully transparent
 ```
 
 ### Hexadecimal Format
@@ -107,38 +130,50 @@ backgroundcolor: "#00ff00ff"  // Green fully opaque
 
 ## Gradients
 
-Novadesk supports linear and radial gradients.
+Novadesk supports `linearGradient(...)` and `radialGradient(...)`.
 
 ### Linear Gradient
 
-Specifies a linear transition between multiple colors.
+Defines a linear transition across 2+ colors.
 
 **Syntax:**
 ```javascript
 linearGradient(angle, color1, color2, ...)
 ```
 
-- **`angle`**: A raw number representing the angle in degrees (e.g., `90` for vertical top-to-bottom).
+`angle` is optional. If omitted, default angle is `0`.
 
 **Example:**
 ```javascript
-fontColor: "linearGradient(0, #ff8c00, #ff0080)"    // Horizontal gradient
-fontColor: "linearGradient(90, #f00, #0f0, #00f)"  // Vertical 3-color gradient
+fontColor: "linearGradient(0, #ff8c00, #ff0080)"
+fontColor: "linearGradient(90, #f00, #0f0, #00f)"
+fontColor: "linearGradient(rgba(255,0,0,1), rgba(0,0,255,1))" // angle omitted
 ```
 
 ### Radial Gradient
 
-Specifies a radial transition from a center point.
+Defines a radial transition across 2+ colors.
 
 **Syntax:**
 ```javascript
 radialGradient(shape, color1, color2, ...)
 ```
 
-- **`shape`**: Either `"circle"` or `"ellipse"`.
+`shape` is optional:
+- `"circle"` (default)
+- `"ellipse"`
 
 **Example:**
 ```javascript
 fontColor: "radialGradient(circle, #ffff00, #ff0000)"
+fontColor: "radialGradient(ellipse, red, rgba(0,0,0,0))"
+fontColor: "radialGradient(#00f, #000)" // shape omitted
 ```
+
+## Notes
+
+- Parsing is case-insensitive and tolerates extra spaces.
+- Gradients require at least 2 valid color stops.
+- Explicit stop positions (percentages) are not supported in gradient strings.
+- `hsl()` / `hsla()` are not currently supported by the built-in parser.
 

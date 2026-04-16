@@ -109,10 +109,23 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                   {
-                    text: "General Options",
-                    link: "/api/ui/ui-elements/general-elements-options",
+                    text: "General Element Options",
+                    link: "/api/ui/ui-elements/general-options/general-elements-options",
+                  },
+                  {
+                    text: "General Image Options",
+                    link: "/api/ui/ui-elements/general-options/general-image-options",
                   },
                   { text: "addBar", link: "/api/ui/ui-elements/addBar" },
+                  { text: "addLine", link: "/api/ui/ui-elements/addLine" },
+                  {
+                    text: "addAreaGraph",
+                    link: "/api/ui/ui-elements/addAreaGraph",
+                  },
+                  {
+                    text: "addHistogram",
+                    link: "/api/ui/ui-elements/addHistogram",
+                  },
                   {
                     text: "addShape",
                     link: "/api/ui/ui-elements/addShape",
@@ -120,6 +133,18 @@ export default defineConfig({
                   {
                     text: "addImage",
                     link: "/api/ui/ui-elements/addImage",
+                  },
+                  {
+                    text: "addButton",
+                    link: "/api/ui/ui-elements/addButton",
+                  },
+                  {
+                    text: "addBitmap",
+                    link: "/api/ui/ui-elements/addBitmap",
+                  },
+                  {
+                    text: "addRotator",
+                    link: "/api/ui/ui-elements/addRotator",
                   },
                   {
                     text: "addRoundLine",
@@ -199,7 +224,9 @@ export default defineConfig({
               { text: "AppVolume", link: "/api/addons/AppVolume" },
               { text: "AudioLevel", link: "/api/addons/AudioLevel" },
               { text: "Brightness", link: "/api/addons/Brightness" },
+              { text: "BlurBehind", link: "/api/addons/BlurBehind" },
               { text: "Hotkey", link: "/api/addons/Hotkey" },
+              { text: "InputBox", link: "/api/addons/InputBox" },
               { text: "NowPlaying", link: "/api/addons/NowPlaying" },
 
             ],
@@ -245,3 +272,4 @@ export default defineConfig({
     socialLinks: [{ icon: "github", link: "https://novadesk.pages.dev/" }],
   },
 });
+

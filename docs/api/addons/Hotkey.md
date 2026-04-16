@@ -104,10 +104,3 @@ const id = hotkey.register("ALT+F4", {
 const removed = hotkey.unregister(id);
 console.log(`Unregister success: ${removed}`);
 ```
-
-## Download addon ⬇️
-
-Download the latest version of the add-on and discover what’s possible with our brilliant widget example.
-
-<CustomButton href="https://github.com/Official-Novadesk/Hotkey/releases/download/v1.0.0.0/Hotkey_v1.0.0.0.zip" text="Download" />
-<CustomButton href="https://github.com/Official-Novadesk/Hotkey" theme="outline">View on Github</CustomButton>

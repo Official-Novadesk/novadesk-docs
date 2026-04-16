@@ -14,7 +14,7 @@ ui.addShape(options);
 
 ## Shape Options
 
-The shape element inherits all [General Elements Options](/api/ui/ui-elements/general-elements-options) and adds the following fields.
+The shape element inherits all [General Elements Options](/api/ui/ui-elements/general-options/general-elements-options) and adds the following fields.
 
 ### `type`
 
@@ -386,3 +386,4 @@ ui.addShape({
 ::: info
 Use `fillColor` with closed shapes. Line-based shapes (line/arc) rely on stroke settings.
 :::
+

@@ -3,7 +3,7 @@ title: Text UI element options, styling, and examples.
 ---
 
 # Text Element
-The Text element renders styled text via the UI script `win` object using the shared element options detailed in [General Elements Options](/api/ui/ui-elements/general-options/general-elements-options).
+The Text element renders styled text via the UI script `win` object using the shared element options detailed in [General Elements Options](/api/ui/ui-elements/general-options/general-elements-options) and [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip).
 
 Use `ui.addText()` inside the UI script to create and configure a text element.
 
@@ -14,8 +14,10 @@ ui.addText(options);
 #### Table of Contents
 [[toc]]
 
-## General Element Options
-See [General Elements Options](/api/ui/ui-elements/general-options/general-elements-options) for layout, visibility, and interaction settings shared across all UI elements.
+## Shared Options
+- [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) for layout, visibility, and interaction.
+- [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip) for tooltip appearance and behavior.
+- [General Mouse Options](/api/ui/ui-elements/general-options/general-mouse-options) for mouse interaction and cursor settings.
 
 ## Text Element Options
 

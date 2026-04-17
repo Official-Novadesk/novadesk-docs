@@ -115,6 +115,14 @@ export default defineConfig({
                     text: "General Image Options",
                     link: "/api/ui/ui-elements/general-options/general-image-options",
                   },
+                  {
+                    text: "General Tooltip Options",
+                    link: "/api/ui/ui-elements/general-options/tooltip",
+                  },
+                  {
+                    text: "General Mouse Options",
+                    link: "/api/ui/ui-elements/general-options/general-mouse-options",
+                  },
                 ],
               },
               {

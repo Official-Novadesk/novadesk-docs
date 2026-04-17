@@ -99,14 +99,7 @@ export default defineConfig({
             collapsed: true,
             items: [
               {
-                text: "UI Object Methods",
-                link: "/api/ui/ui-object",
-                collapsed: true,
-                items: []
-              },
-              {
-                text: "UI Elements",
-                collapsed: true,
+                text: "General Options",
                 items: [
                   {
                     text: "General Element Options",
@@ -116,6 +109,18 @@ export default defineConfig({
                     text: "General Image Options",
                     link: "/api/ui/ui-elements/general-options/general-image-options",
                   },
+                ],
+              },
+              {
+                text: "UI Object Methods",
+                link: "/api/ui/ui-object",
+                collapsed: true,
+                items: []
+              },
+              {
+                text: "UI Elements",
+                collapsed: true,
+                items: [
                   { text: "addBar", link: "/api/ui/ui-elements/addBar" },
                   { text: "addLine", link: "/api/ui/ui-elements/addLine" },
                   {
@@ -153,9 +158,9 @@ export default defineConfig({
                   {
                     text: "addText",
                     link: "/api/ui/ui-elements/addText",
-                  },]
+                  },
+                ]
               },
-
             ],
           },
           {

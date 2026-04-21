@@ -4,7 +4,7 @@ title: Create and manage widget windows with widgetWindow
 
 # widgetWindow
 
-The `widgetWindow` constructor creates a new desktop widget window. Each window can host its own UI script and supports drag, snap, transparency, context menus, and event listeners.
+The `widgetWindow` constructor creates a new desktop widget window. Each window can host its own UI script and supports drag, snap, transparency, toolbar visibility, context menus, and event listeners.
 
 `widgetWindow` is exported from the `novadesk` module.
 
@@ -35,6 +35,9 @@ Creates and displays a new widget window.
 - **`clickThrough`** (`boolean`, default: `false`): Mouse events pass through the window.
 - **`keepOnScreen`** (`boolean`, default: `false`): Prevent the window from being dragged off-screen.
 - **`snapEdges`** (`boolean`, default: `true`): Snap to screen edges and other widgets when dragging.
+- **`showInToolbar`** (`boolean`, default: `false`): Show this widget in the Windows toolbar/taskbar.
+- **`toolbarIcon`** (`string`, default: `""`): Path to toolbar icon.
+- **`toolbarTitle`** (`string`, default: `""`): Custom toolbar/taskbar title.
 - **`show`** (`boolean`, default: `true`): Show the window immediately after creation.
 - **`zPos`** (`string`, default: `"normal"`): Z-order position.
   - **`ontopmost`**: Remains visible even when showing the desktop (`Win + D`). Stays above all other windows.
@@ -55,7 +58,9 @@ const win = new widgetWindow({
   script: "ui.js",
   backgroundColor: "rgb(10,10,10)",
   draggable: true,
-  snapEdges: true
+  snapEdges: true,
+  showInToolbar: true,
+  toolbarTitle: "My Widget"
 });
 ```
 
@@ -77,7 +82,7 @@ Returns an object with the current window state.
 
 #### Return Value
 
-An object containing: `id`, `x`, `y`, `width`, `height`, `draggable`, `clickThrough`, `keepOnScreen`, `snapEdges`, `show`, `windowOpacity`, `backgroundColor`, `zPos`, `script`.
+An object containing: `id`, `x`, `y`, `width`, `height`, `draggable`, `clickThrough`, `keepOnScreen`, `snapEdges`, `showInToolbar`, `toolbarIcon`, `toolbarTitle`, `show`, `windowOpacity`, `backgroundColor`, `zPos`, `script`.
 
 #### Example
 
@@ -102,6 +107,14 @@ Gives keyboard focus to the widget window.
 ### `win.unFocus()`
 
 Removes keyboard focus from the widget window.
+
+### `win.minimize()`
+
+Minimizes the widget window and triggers the `minimize` event.
+
+### `win.unMinimize()`
+
+Restores a minimized widget window and triggers the `unMinimize` event.
 
 ### `win.getHandle()`
 
@@ -188,6 +201,8 @@ mouseDown    | Any mouse button pressed.
 mouseUp      | Any mouse button released.
 mouseLeave   | Mouse left the widget area.
 unFocus      | Widget lost keyboard focus.
+minimize     | Widget minimized.
+unMinimize   | Widget restored from minimized state.
 move         | Widget position changed.
 refresh      | Widget UI was refreshed.
 close        | Widget is about to close.

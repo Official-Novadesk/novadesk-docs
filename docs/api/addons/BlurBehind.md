@@ -17,7 +17,7 @@ import { addon, widgetWindow } from "novadesk";
 const blurBehind = addon.load("./Addons/BlurBehind.dll");
 const hwnd = widgetWindow.getHandle();
 
-const ok = blurBehind.apply(hwnd, "blurbehind", "round");
+const ok = blurBehind.apply(hwnd, "blur", "round");
 console.log("Blur applied:", ok);
 ```
 

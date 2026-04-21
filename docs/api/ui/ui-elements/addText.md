@@ -156,6 +156,11 @@ fontShadow: [
 - `"ellipsis"`
 - `"wrap"`
 
+## Runtime Notes
+
+- Text hit testing uses the rendered glyph ink region instead of the full text layout box.
+- This prevents false hover/click detection in empty areas above or below glyphs.
+
 ## Alignment Options
 
 ### Left aligned

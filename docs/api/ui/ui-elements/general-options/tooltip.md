@@ -54,3 +54,14 @@ Use these settings with methods such as `ui.addText()`, `ui.addImage()`, `ui.add
 - **Type**: `number`
 - **Default**: `1000`
 - **Description**: Maximum tooltip height hint.
+
+### `tooltipDisabled`
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Disables tooltip display for the element even if tooltip text/title is set.
+
+## Behavior Notes
+
+- Tooltip targeting is tracked manually while the mouse moves, improving stability for delayed hover transitions.
+- Non-interactive overlays (for example decorative text above a button) no longer steal tooltip focus from underlying interactive elements.

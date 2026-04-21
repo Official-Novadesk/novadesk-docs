@@ -61,6 +61,21 @@ Absolute path to the Addons directory.
 console.log(__addonsPath);
 ```
 
+## `__mainScriptDirPath`
+
+- **Type**: `string`
+- **Available in**: Main script, UI script
+
+Absolute directory path of the entry/main script file.
+
+This is useful in UI scripts when you need to resolve assets relative to the main script location.
+
+### Example
+
+```javascript
+console.log(__mainScriptDirPath);
+```
+
 ## Mouse Event Object
 
 Widget callbacks and element mouse handlers receive an event object with:

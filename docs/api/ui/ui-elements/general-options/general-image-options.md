@@ -5,7 +5,7 @@ title: Shared image options for UI image-based elements.
 # General Image Options
 Options shared by image-based UI elements such as `ui.addImage()`, `ui.addButton()`, `ui.addBitmap()`, and `ui.addRotator()`.
 
-Use these together with [General Element Options](/api/ui/ui-elements/general-options/general-elements-options), [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip), and [Mouse Events Callback](/api/ui/ui-elements/general-options/mouse-events).
+Use these together with [General Element Options](/api/ui/ui-elements/general-options/general-elements-options), [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip), and [Mouse Events Callback](/api/ui/ui-elements/general-options/general-mouse-options).
 
 #### Table of Contents
 [[toc]]

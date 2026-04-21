@@ -5,7 +5,7 @@ title: Area Graph element options and example usage.
 # Area Graph Element
 The Area Graph element draws a filled line graph from numeric data points.
 
-Create one with `ui.addAreaGraph()` and the shared [General Element Options](/api/ui/ui-elements/general-options/general-elements-options), [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip), and [Mouse Events Callback](/api/ui/ui-elements/general-options/mouse-events).
+Create one with `ui.addAreaGraph()` and the shared [General Element Options](/api/ui/ui-elements/general-options/general-elements-options), [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip), and [Mouse Events Callback](/api/ui/ui-elements/general-options/general-mouse-options).
 
 ```js
 ui.addAreaGraph(options);

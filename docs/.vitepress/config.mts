@@ -105,8 +105,7 @@ export default defineConfig({
                 items: []
               },
               {
-                text: "UI Elements",
-                collapsed: true,
+                text: "General Options",
                 items: [
                   {
                     text: "General Element Options",
@@ -116,12 +115,27 @@ export default defineConfig({
                     text: "General Image Options",
                     link: "/api/ui/ui-elements/general-options/general-image-options",
                   },
-                  { text: "addBar", link: "/api/ui/ui-elements/addBar" },
-                  { text: "addLine", link: "/api/ui/ui-elements/addLine" },
+                  {
+                    text: "General Tooltip Options",
+                    link: "/api/ui/ui-elements/general-options/tooltip",
+                  },
+                  {
+                    text: "General Mouse Options",
+                    link: "/api/ui/ui-elements/general-options/general-mouse-options",
+                  },
+                ],
+              },
+              {
+                text: "UI Elements",
+                collapsed: true,
+                items: [
                   {
                     text: "addAreaGraph",
                     link: "/api/ui/ui-elements/addAreaGraph",
                   },
+                  { text: "addBar", link: "/api/ui/ui-elements/addBar" },
+                  { text: "addLine", link: "/api/ui/ui-elements/addLine" },
+
                   {
                     text: "addHistogram",
                     link: "/api/ui/ui-elements/addHistogram",
@@ -153,9 +167,9 @@ export default defineConfig({
                   {
                     text: "addText",
                     link: "/api/ui/ui-elements/addText",
-                  },]
+                  },
+                ]
               },
-
             ],
           },
           {

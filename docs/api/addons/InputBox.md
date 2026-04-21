@@ -17,7 +17,7 @@ import { addon, widgetWindow } from "novadesk";
 const inputBox = addon.load("D:/Novadesk-Project/InputBox/dist/x64/Debug/InputBox.dll");
 
 const id = inputBox.show({
-  widgetHwnd: widgetWindow.getHwnd(),
+  widgetHwnd: widgetWindow.getHandle(),
   x: 16,
   y: 16,
   width: 320,

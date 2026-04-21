@@ -15,9 +15,9 @@ The BlurBehind addon applies Windows blur/acrylic effects and optional corner st
 import { addon, widgetWindow } from "novadesk";
 
 const blurBehind = addon.load("./Addons/BlurBehind.dll");
-const hwnd = widgetWindow.getHwnd();
+const hwnd = widgetWindow.getHandle();
 
-const ok = blurBehind.apply(hwnd, "blurbehind", "round");
+const ok = blurBehind.apply(hwnd, "blur", "round");
 console.log("Blur applied:", ok);
 ```
 
@@ -101,7 +101,7 @@ Sets only the corner preference without changing blur/acrylic state.
 import { addon, widgetWindow } from "novadesk";
 
 const blurBehind = addon.load("./Addons/BlurBehind.dll");
-const hwnd = widgetWindow.getHwnd();
+const hwnd = widgetWindow.getHandle();
 
 blurBehind.apply(hwnd, "acrylic", "roundsmall");
 ```
@@ -112,7 +112,7 @@ blurBehind.apply(hwnd, "acrylic", "roundsmall");
 import { addon, widgetWindow } from "novadesk";
 
 const blurBehind = addon.load("./Addons/BlurBehind.dll");
-const hwnd = widgetWindow.getHwnd();
+const hwnd = widgetWindow.getHandle();
 
 blurBehind.disable(hwnd);
 ```

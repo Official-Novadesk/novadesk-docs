@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.9.1.0-beta] - 2026-04-21
+###### 📅 21st April, 2026
+
+### Added
+
+* Added **Manage** submenu and widget settings entries.
+* Added tray events:
+  * `double-click`
+  * `scroll-up`
+  * `scroll-down`
+* Added widget toolbar options:
+  * `showInToolbar`
+  * `toolbarIcon`
+  * `toolbarTitle`
+* Added `widgetWindow` methods:
+  * `win.minimize()`
+  * `win.unMinimize()`
+* Added widget `.on(...)` events:
+  * `minimize`
+  * `unMinimize`
+* Added global variable: `__mainScriptDirPath`.
+
+### Changed
+
+* Simplified `TextElement` hit testing.
+* Refactored tooltip handling to manual tracking for more stable hover/tooltip behavior.
+
+<!-- ================================================================================= -->
+
 ## [0.9.0.0-beta] - 2026-04-16
 ###### 📅 16th April, 2026
 

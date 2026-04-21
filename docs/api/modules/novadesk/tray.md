@@ -66,10 +66,18 @@ Sets the context menu items for the tray icon.
 - `text` (`string`): Label text.
 - `action` (`function`): Called when the item is clicked.
 - `type` (`string`, optional): Use `"separator"` to insert a divider.
+- `checked` (`boolean`, optional): Check state.
+- `items` (`Array<object>`, optional): Nested submenu items.
 
 ```javascript
 tray.setContextMenu([
   { text: "Open", action: () => console.log("open") },
+  {
+    text: "Manage",
+    items: [
+      { text: "Widget Settings", action: () => console.log("settings") }
+    ]
+  },
   { type: "separator" },
   { text: "Exit", action: () => console.log("exit") }
 ]);
@@ -82,10 +90,21 @@ Use `tray.on(event, handler)` to listen for tray events.
 Supported events:
 - `click`
 - `right-click`
+- `double-click`
+- `scroll-up`
+- `scroll-down`
 
 ```javascript
 tray.on("click", (event) => {
   console.log("Tray clicked", event);
+});
+
+tray.on("double-click", () => {
+  console.log("Tray double-clicked");
+});
+
+tray.on("scroll-up", () => {
+  console.log("Scrolled up on tray icon");
 });
 ```
 

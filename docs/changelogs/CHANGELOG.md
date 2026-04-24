@@ -1,5 +1,42 @@
 # Changelog
 
+## [0.9.2.0-beta] - 2026-04-24
+###### 📅 24th April, 2026
+
+### Added
+
+* Added `excludeItems` support for widget packaging (`nwm build`).
+* Added additional widget events:
+  * `click`
+  * `right-click`
+  * `double-click`
+  * `scroll-up`
+  * `scroll-down`
+* Added Ctrl-based runtime overrides for widgets.
+* Added `system.recycleBin` API:
+  * `openBin()`
+  * `emptyBin()`
+  * `emptyBinSilent()`
+  * `getStats()`
+* Added async Promise-based `webFetch(...)`.
+* Added `pixelHitTest` property for UI elements.
+
+### Fixed
+
+* Fixed hit testing behavior for:
+  * Rotator element
+  * Histogram element
+  * Area Graph element
+* Fixed UI font property handling.
+
+### Removed
+
+* Removed InputBox addon options:
+  * `message`
+  * `placeholder`
+
+<!-- ================================================================================= -->
+
 ## [0.9.1.0-beta] - 2026-04-21
 ###### 📅 21st April, 2026
 
@@ -314,3 +351,4 @@
 
 ### Added
 - Initial beta release...
+

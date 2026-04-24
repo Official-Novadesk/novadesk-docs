@@ -66,6 +66,28 @@ Top-level:
 - `setup.setupName`
 - `setup.setupIcon`
 
+## `excludeItems` (Packaging Exclude List)
+
+Use optional `excludeItems` in `meta.json` to skip files/folders from both installer and `.ndpkg` widget payload copies.
+
+```json
+{
+  "excludeItems": [
+    "node_modules",
+    ".git",
+    "dist",
+    "scripts/dev-only.js",
+    "assets/raw"
+  ]
+}
+```
+
+Rules:
+- `excludeItems` must be an array of strings.
+- Entries are relative paths/pattern-like path prefixes from widget root.
+- `dist` is excluded by default during packaging.
+- Invalid `excludeItems` types cause `nwm build` validation failure.
+
 ## `setup` Options
 
 Supported installer options:

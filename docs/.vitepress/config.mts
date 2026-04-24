@@ -219,6 +219,10 @@ export default defineConfig({
                   { text: "network", link: "/api/modules/system/network" },
                   { text: "power", link: "/api/modules/system/power" },
                   {
+                    text: "recycleBin",
+                    link: "/api/modules/system/recycleBin",
+                  },
+                  {
                     text: "registry",
                     link: "/api/modules/system/registry",
                   },

@@ -32,22 +32,24 @@ Relative local paths are resolved from the widget entry script directory.
 
 ### Return Value
 
-- **Type**: `string | null`
-- **Description**: Fetched text on success, otherwise `null`.
+- **Type**: `Promise<string>`
+- **Description**: Resolves with fetched text on success.
 
 ### Errors
 
 - Throws a `TypeError` when `urlOrPath` is missing or invalid/empty.
+- Promise rejects when fetch/read fails.
 
 ### Example: Fetch Web JSON
 
 ```javascript
 import { webFetch } from "system";
 
-const text = webFetch("https://api.github.com");
-if (text !== null) {
+async function load() {
+  const text = await webFetch("https://api.github.com");
   console.log("length:", text.length);
 }
+load();
 ```
 
 ### Example: Read Local File (Relative)
@@ -55,10 +57,11 @@ if (text !== null) {
 ```javascript
 import { webFetch } from "system";
 
-const text = webFetch("./data/config.json");
-if (text !== null) {
+async function loadLocal() {
+  const text = await webFetch("./data/config.json");
   console.log(text);
 }
+loadLocal();
 ```
 
 ### Example: Read Local File (file://)
@@ -66,6 +69,7 @@ if (text !== null) {
 ```javascript
 import { webFetch } from "system";
 
-const text = webFetch("file:///C:/Temp/sample.txt");
-console.log(text);
+webFetch("file:///C:/Temp/sample.txt")
+  .then((text) => console.log(text))
+  .catch((err) => console.error("webFetch failed:", err));
 ```

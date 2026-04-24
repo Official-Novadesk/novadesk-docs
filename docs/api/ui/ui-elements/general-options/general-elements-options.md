@@ -88,6 +88,17 @@ ui.addText({
 - **Default**: `true`
 - **Description**: Enables antialiasing for smoother rendering.
 
+### `pixelHitTest`
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Selects hit-testing mode.
+
+#### Behavior
+
+- `false`: uses bounds/geometry hit testing (faster, broader).
+- `true`: uses pixel/shape-aware hit testing where supported by the element.
+
 ### `show`
 
 - **Type**: `boolean`
@@ -149,4 +160,3 @@ padding: [5, 10, 5, 10]
 ```js
 transformMatrix: [1, 0.5, 0, 1, 0, 0]
 ```
-

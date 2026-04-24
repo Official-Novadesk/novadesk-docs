@@ -85,6 +85,7 @@ Rotator supports:
 - `ui.addRotator()` requires an options object.
 - If `id` already exists, the previous element is replaced.
 - Rotation is rendered in degrees internally, but input angles are in radians.
+- Rotator supports improved shape-aware hit testing. Enable `pixelHitTest: true` to use pixel-aware checks instead of only bounds.
 
 ## Example
 

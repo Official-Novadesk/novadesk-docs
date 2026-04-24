@@ -95,6 +95,7 @@ When `autoRange` is `false`, Histogram uses a fixed `0..100` range.
 - Data is sampled from newest values first.
 - In vertical mode, one sample is drawn per pixel column.
 - In horizontal mode, one sample is drawn per pixel row.
+- Histogram supports improved shape-aware hit testing. Enable `pixelHitTest: true` to use pixel-aware checks instead of only bounds.
 
 ## Example
 

@@ -101,6 +101,10 @@ Values less than or equal to `0` disable that axis grid direction.
 - **Default**: `false`
 - **Description**: Flips graph vertically.
 
+## Runtime Notes
+
+- Area Graph supports improved shape-aware hit testing. Enable `pixelHitTest: true` to use pixel-aware checks instead of only bounds.
+
 ## Example
 
 ```javascript

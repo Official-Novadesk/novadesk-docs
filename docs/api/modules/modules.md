@@ -14,7 +14,7 @@ Import modules with ES module syntax:
 
 ```javascript
 import { app, tray, widgetWindow } from "novadesk";
-import { cpu, memory, webFetch } from "system";
+import { cpu, memory, recycleBin, webFetch } from "system";
 ```
 
 Use this page as a map. Open each module page for full API details and examples.
@@ -86,9 +86,10 @@ Windows/system integration APIs.
 - [memory](/api/modules/system/memory.html): Read RAM usage metrics.
 - [network](/api/modules/system/network.html): Read network throughput and totals.
 - [power](/api/modules/system/power.html): Read battery and power state.
+- [recycleBin](/api/modules/system/recycleBin.html): Open, empty, and inspect Recycle Bin.
 - [registry](/api/modules/system/registry.html): Read and write Windows registry values.
 - [wallpaper](/api/modules/system/wallpaper.html): Get/set desktop wallpaper.
-- [webFetch](/api/modules/system/webfetch.html): Read text from web URLs and files.
+- [webFetch](/api/modules/system/webfetch.html): Fetch text from web URLs and files (Promise-based).
 
 ## Notes and Best Practices
 

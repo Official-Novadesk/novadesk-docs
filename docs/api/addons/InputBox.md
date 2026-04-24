@@ -21,8 +21,7 @@ const id = inputBox.show({
   x: 16,
   y: 16,
   width: 320,
-  message: "Enter your name",
-  placeholder: "Type here...",
+  defaultValue: "Type here...",
   onEnter: () => {
     console.log("Submitted:", inputBox.lastText());
   }
@@ -104,9 +103,7 @@ If the argument is neither string nor object, the addon throws:
 
 ### Text and Styling
 
-- `message` (`string`, optional)
 - `defaultValue` (`string`, optional)
-- `placeholder` (`string`, optional)
 - `fontFace` (`string`, default `"Segoe UI"`)
 - `fontSize` (`number`, default `14`, clamped `8..72`)
 - `bold` (`boolean`, default `false`)
@@ -118,7 +115,6 @@ If the argument is neither string nor object, the addon throws:
 - `fontColor` or `textColor` (`string`)  
 - `backgroundColor` or `bgColor` (`string`)
 - `borderColor` (`string`)
-- `messageColor` (`string`)
 
 Color strings are parsed via Novadesk color parser (`rgb(...)`, `rgba(...)`, hex formats, etc.).
 
@@ -161,7 +157,7 @@ import { addon } from "novadesk";
 const inputBox = addon.load("D:/Novadesk-Project/InputBox/dist/x64/Debug/InputBox.dll");
 
 inputBox.show({
-  message: "Enter volume (0-100)",
+  defaultValue: "50",
   inputType: "Integer",
   minValue: 0,
   maxValue: 100,
@@ -177,10 +173,8 @@ import { addon } from "novadesk";
 const inputBox = addon.load("D:/Novadesk-Project/InputBox/dist/x64/Debug/InputBox.dll");
 
 inputBox.show({
-  message: "Hex only",
+  defaultValue: "FFAA00",
   inputType: "Custom",
-  allowedChars: "0123456789ABCDEFabcdef",
-  placeholder: "e.g. FFAA00"
+  allowedChars: "0123456789ABCDEFabcdef"
 });
 ```
-

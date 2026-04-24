@@ -199,6 +199,11 @@ mouseOver    | Mouse entered the widget area.
 mouseMove    | Mouse moved over the widget.
 mouseDown    | Any mouse button pressed.
 mouseUp      | Any mouse button released.
+click        | Left click released on widget.
+right-click  | Right click released on widget.
+double-click | Left button double click on widget.
+scroll-up    | Mouse wheel scrolled up on widget.
+scroll-down  | Mouse wheel scrolled down on widget.
 mouseLeave   | Mouse left the widget area.
 unFocus      | Widget lost keyboard focus.
 minimize     | Widget minimized.
@@ -208,6 +213,14 @@ refresh      | Widget UI was refreshed.
 close        | Widget is about to close.
 closed       | Widget has been destroyed.
 hide         | Widget was hidden.
+
+## Runtime Overrides (Ctrl key)
+
+When the Ctrl key is held, widget runtime interaction temporarily overrides some options:
+
+- Dragging can be initiated even when `draggable` is `false`.
+- Click-through widgets become interactable while Ctrl is held.
+- Snap behavior can be bypassed while dragging (useful for precise placement).
 
 #### Example
 

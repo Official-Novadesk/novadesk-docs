@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.9.3.0-beta] - 2026-05-01
+###### 📅 1st May, 2026
+
+### Added
+
+* Added `InputBox` addon to the default plugin list in NWM (no longer requires separate packaging).
+* Added new JS bindings for widget window control and properties:
+  * `win.show()` / `win.hide()`
+  * `win.setBounds()` / `win.getBounds()`
+  * `win.setSize()` / `win.getSize()`
+  * `win.setOpacity()` / `win.setBackgroundColor()` / `win.getBackgroundColor()`
+  * `win.isFocused()` / `win.isVisible()` / `win.isDestroyed()`
+  * `win.destroy()` (destroys without firing close event)
+* Added new UI element methods:
+  * `ui.setElementProperty(id, key, value)` - update a single property
+  * `ui.isElementExist(id)` - check if an element exists
+* Added disk I/O metrics with PDH to the `disk` module:
+  * `disk.readSpeed()` - returns read speed in bytes/sec
+  * `disk.writeSpeed()` - returns write speed in bytes/sec
+* Added drag events for UI elements:
+  * `onDragStart` - fired when drag begins
+  * `onDrag` - fired continuously during drag
+  * `onDragEnd` - fired when drag ends
+
+### Fixed
+
+* Fixed `RoundLine` element to use effective dimensions for positioning and drawing calculations.
+
+<!-- ================================================================================= -->
+
 ## [0.9.2.0-beta] - 2026-04-24
 ###### 📅 24th April, 2026
 

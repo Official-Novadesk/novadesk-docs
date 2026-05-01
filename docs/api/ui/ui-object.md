@@ -132,9 +132,37 @@ Adds a shape element.
 
 Refer to [addShape Options](/api/ui/ui-elements/addShape).
 
+### `ui.setElementProperty(id, key, value)`
+
+Updates a single property on an element.
+
+- **`id`** (`string`): Element identifier.
+- **`key`** (`string`): Property name to update.
+- **`value`** (`any`): New value for the property.
+
+#### Example
+
+```javascript
+ui.setElementProperty("myText", "value", 0.5);
+ui.setElementProperty("myImage", "textColor", "#ff0000");
+```
+
+### `ui.setElementProperty(id, options)`
+
+Legacy form that updates multiple properties via an options object.
+
+- **`id`** (`string`): Element identifier.
+- **`options`** (`Object`): Properties to change.
+
+#### Example
+
+```javascript
+ui.setElementProperty("myText", { value: 0.5, textColor: "#ff0000" });
+```
+
 ### `ui.setElementProperties(id, props)`
 
-Updates a single element.
+Updates multiple properties on a single element.
 
 - **`id`** (`string`): Element identifier.
 - **`props`** (`Object`): Properties to change.
@@ -143,6 +171,25 @@ Updates a single element.
 
 ```javascript
 ui.setElementProperties("myText", { x: 20, y: 20 });
+```
+
+### `ui.isElementExist(id)`
+
+Checks if an element with the given ID exists.
+
+- **`id`** (`string`): Element identifier to check.
+
+#### Return Value
+
+- **Type**: `boolean`
+- **Description**: Returns `true` if the element exists, `false` otherwise.
+
+#### Example
+
+```javascript
+if (ui.isElementExist("myElement")) {
+  ui.setElementProperty("myElement", "value", 0.5);
+}
 ```
 
 ### `ui.setElementPropertiesByGroup(group, props)`

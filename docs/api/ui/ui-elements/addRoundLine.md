@@ -105,6 +105,23 @@ ui.addRoundLine(options);
 - **Default**: `"rgb(50, 50, 50)"`
 - **Description**: Background arc color or gradient.
 
+## Effective Dimensions
+
+The RoundLine element uses effective dimensions (from `width`/`height` or auto-calculated values) for positioning and drawing calculations.
+
+### Auto-Sizing
+
+When `radius` is `0` or not specified, the element automatically calculates its size:
+
+- **Auto width/height**: `radius * 2 + padding` (where padding accounts for thickness)
+- The center point is calculated as `(x + effectiveWidth / 2, y + effectiveHeight / 2)`
+- Hit testing and rendering both use effective dimensions for accurate positioning
+
+### Positioning
+
+- The center of the arc is positioned at `(x + width/2, y + height/2)` using effective dimensions
+- This ensures accurate hit testing and rendering regardless of whether explicit or auto dimensions are used
+
 ## Example
 
 :::tabs

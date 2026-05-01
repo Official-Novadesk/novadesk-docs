@@ -140,3 +140,79 @@ onScrollUp: function () { console.log("Scrolled up"); }
 ```js
 onScrollLeft: function () { console.log("Scrolled left"); }
 ```
+
+## Drag Events
+
+Drag events enable slider-like interactions on any element. They fire when the user clicks and drags within the element's bounds.
+
+### `onDragStart`
+
+- **Type**: `function`
+- **Description**: Fired when a drag interaction begins (mouse button down on element).
+
+#### Example
+
+```js
+onDragStart: function (e) {
+  console.log("Drag started at", e.offsetX, e.offsetY);
+}
+```
+
+### `onDrag`
+
+- **Type**: `function`
+- **Description**: Fired continuously while dragging (mouse move with button held).
+
+#### Example
+
+```js
+onDrag: function (e) {
+  console.log("Dragging:", e.offsetXPercent, "% horizontal");
+}
+```
+
+### `onDragEnd`
+
+- **Type**: `function`
+- **Description**: Fired when the drag interaction ends (mouse button released).
+
+#### Example
+
+```js
+onDragEnd: function (e) {
+  console.log("Drag ended");
+}
+```
+
+### Drag Event Data
+
+All drag callbacks receive an event object with the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `offsetX` | `number` | Mouse X position relative to the element |
+| `offsetY` | `number` | Mouse Y position relative to the element |
+| `offsetXPercent` | `number` | X position as a percentage of element width (0.0–1.0) |
+| `offsetYPercent` | `number` | Y position as a percentage of element height (0.0–1.0) |
+
+### Full Drag Example
+
+```js
+ui.addImage({
+  id: "slider",
+  x: 10,
+  y: 10,
+  width: 200,
+  height: 20,
+  path: "slider.png",
+  onDragStart: function (e) {
+    console.log("Drag started at", e.offsetX, e.offsetY);
+  },
+  onDrag: function (e) {
+    console.log("Position:", (e.offsetXPercent * 100).toFixed(1) + "%");
+  },
+  onDragEnd: function () {
+    console.log("Drag ended");
+  }
+});
+```

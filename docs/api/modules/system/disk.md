@@ -82,6 +82,42 @@ Returns disk usage percentage for the target volume.
 If `path` is omitted, the API uses the current working drive/root.
 :::
 
+## `disk.readSpeed()`
+
+Returns the current disk read speed in bytes per second.
+
+### Return Value
+
+- **Type**: `number`
+- **Description**: Current read speed in bytes/sec using PDH (Performance Data Helper) counters from `PhysicalDisk(_Total)`. Returns `0` if unavailable.
+
+### Example
+
+```javascript
+import { disk } from "system";
+
+const readBytesPerSec = disk.readSpeed();
+console.log("Read speed:", readBytesPerSec, "bytes/sec");
+```
+
+## `disk.writeSpeed()`
+
+Returns the current disk write speed in bytes per second.
+
+### Return Value
+
+- **Type**: `number`
+- **Description**: Current write speed in bytes/sec using PDH (Performance Data Helper) counters from `PhysicalDisk(_Total)`. Returns `0` if unavailable.
+
+### Example
+
+```javascript
+import { disk } from "system";
+
+const writeBytesPerSec = disk.writeSpeed();
+console.log("Write speed:", writeBytesPerSec, "bytes/sec");
+```
+
 ## Example
 
 ```javascript
@@ -98,4 +134,10 @@ console.log("Total:", total);
 console.log("Available:", available);
 console.log("Used:", used);
 console.log("Usage %:", percent);
+
+// Disk I/O metrics (no path required)
+const readSpeed = disk.readSpeed();
+const writeSpeed = disk.writeSpeed();
+console.log("Read speed:", readSpeed, "bytes/sec");
+console.log("Write speed:", writeSpeed, "bytes/sec");
 ```

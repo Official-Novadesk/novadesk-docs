@@ -175,3 +175,13 @@ ndpkg_installer.exe "C:\path\widget.ndpkg"
 ```
 
 If no `.ndpkg` path is provided, the installer opens a file picker.
+
+## `manage_novadesk.exe`
+
+### `--request-close`
+
+Requests an already running Manage window instance to close.
+
+```bash
+manage_novadesk.exe --request-close
+```

@@ -8,6 +8,16 @@ Novadesk uses the Quick JS JavaScript engine, so time and date behavior follows 
 #### Table of Contents
 [[toc]]
 
+## `system.time` Module API
+
+In addition to JavaScript `Date`, Novadesk also provides a `time` helper object in the `system` module:
+
+```javascript
+import { time } from "system";
+```
+
+See full API details on [system time module](/api/modules/system/time).
+
 
 All of the methods listed below are available in **both Main and UI scripts**.
 

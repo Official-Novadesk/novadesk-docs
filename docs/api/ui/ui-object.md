@@ -223,6 +223,23 @@ ui.removeElements(["img1", "text3"]);
 ui.removeElements(); // Clears everything
 ```
 
+### `ui.removeElementById(id)`
+
+Removes a single element by its ID.
+
+- **`id`** (`string`): Element ID to remove.
+
+#### Return Value
+
+- **Type**: `boolean`
+- **Description**: `true` if the element was removed, otherwise `false`.
+
+#### Example
+
+```javascript
+ui.removeElementById("cpu-text");
+```
+
 ### `ui.removeElementsByGroup(group)`
 
 Removes all elements in a group.

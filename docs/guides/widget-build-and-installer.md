@@ -275,6 +275,7 @@ Typical package structure:
   - Standard Novadesk: `%USERPROFILE%\\Documents\\Novadesk\\Widgets` and `...\\Addons`
 - Shows included addons and allows checkbox-based addon install selection.
 - Marks addon rows as Add/Replace/Newer Version Found based on installed DLL version info.
+- Uses an elevated fallback (`manage_novadesk.exe --request-close`) when admin-level close of Manage/Novadesk is required.
 
 ## Notes
 

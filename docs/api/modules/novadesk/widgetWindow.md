@@ -234,6 +234,10 @@ win.setOpacity(0.75); // 75% opaque
 
 Clears all UI elements and re-executes the widget’s UI script.
 
+::: info
+Before reloading `.ui.js`, stale `ipcRenderer` listeners from the previous UI instance are cleared to prevent duplicate callbacks.
+:::
+
 ### `win.setFocus()`
 
 Gives keyboard focus to the widget window.

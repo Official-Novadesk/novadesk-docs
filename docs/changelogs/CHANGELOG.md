@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.9.4.0-beta] - 2026-05-08
+###### 📅 8th May, 2026
+
+### Added
+
+* Added `system.time` API module.
+* Added `ui.removeElementById(id)` binding.
+* Added new CLI command for Manage window close request:
+  * `manage_novadesk.exe --request-close`
+
+### Fixed
+
+* Fixed widget refresh lifecycle so stale `ipcRenderer` UI listeners are cleared before reloading `.ui.js`.
+* Improved `.ndpkg` installer admin-close behavior by adding elevated fallback.
+
+<!-- ================================================================================= -->
 ## [0.9.3.0-beta] - 2026-05-01
 ###### 📅 1st May, 2026
 
@@ -381,4 +397,6 @@
 
 ### Added
 - Initial beta release...
+
+
 

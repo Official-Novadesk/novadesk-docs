@@ -226,6 +226,7 @@ export default defineConfig({
                     text: "registry",
                     link: "/api/modules/system/registry",
                   },
+                  { text: "time", link: "/api/modules/system/time" },
                   {
                     text: "wallpaper",
                     link: "/api/modules/system/wallpaper",

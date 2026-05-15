@@ -5,11 +5,13 @@
 
 ### Improved
 
+* Optimized widget engine script loading (`AddScript`) to be non-destructive. Adding new scripts no longer triggers a global runtime reset, ensuring existing active widgets remain stable.
 * Optimized `disk` module performance by initializing PDH disk IO counters asynchronously.
 * Miscellaneous tweaks and stabilization for the widget Context Menu API.
 
 ### Fixed
 
+* Fixed UI flickering during `Widget::Refresh()` by implementing nested batch updates (`BeginUpdate` / `EndUpdate`). UI redraws are now deferred until all nested element modifications are complete.
 * Fixed `TextElement` font face resetting during partial updates.
 * Fixed `fontShadow` property not applying correctly to UI elements.
 * Protected critical UI properties (containers, alignment, tooltips) from being overwritten during partial state updates.

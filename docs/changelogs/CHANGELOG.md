@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.9.6.0-beta] - 2026-05-21
+###### 21st May, 2026
+
+### Added
+
+* Added `system.cpu.getUpTime(...)` to the `system` module CPU API.
+
+### Improved
+
+* Improved `isTrackedElement` with recursive search to support safer validation for nested child elements.
+* Updated InputBox addon to support small width and height values.
+
+### Fixed
+
+* Fixed a critical engine crash in `HandleMouseMessage` caused by dangling element pointers when elements were deleted during JS event callbacks.
+* Fixed Manage Novadesk window lifecycle so it exits automatically when Novadesk closes.
+* Fixed QuickJS UI IPC listener ownership by binding `ipcRenderer.on` callbacks to the active `__filename` script path, ensuring stale widget listeners are cleared on refresh and preventing duplicate update flicker.
+
+<!-- ================================================================================= -->
 ## [0.9.5.0-beta] - 2026-05-15
 ###### 📅 15th May, 2026
 
@@ -414,6 +433,7 @@
 
 ### Added
 - Initial beta release...
+
 
 
 

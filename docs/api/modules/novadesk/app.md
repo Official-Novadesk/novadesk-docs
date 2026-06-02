@@ -251,3 +251,69 @@ console.log("Settings Path: " + settingsPath);
 const logPath = app.getLogPath();
 console.log("Log Path: " + logPath);
 ```
+
+## Storage
+
+### `app.storage.get(key, defaultValue?)`
+
+Reads a value from app storage.
+
+#### Parameters
+
+- `key` (`string`): Storage key.
+- `defaultValue` (`any`, optional): Returned when key is missing.
+
+#### Return Value
+
+- Stored value if found, otherwise `defaultValue` (if provided), otherwise `undefined`.
+
+#### Example
+
+```javascript
+const theme = app.storage.get("ui.theme", "dark");
+console.log(theme);
+```
+
+### `app.storage.set(key, value)`
+
+Writes a value to app storage.
+
+#### Parameters
+
+- `key` (`string`): Storage key.
+- `value` (`any`): JSON-serializable value.
+
+#### Return Value
+
+- **Type**: `boolean` (`true` on success)
+
+#### Example
+
+```javascript
+app.storage.set("session.count", 3);
+app.storage.set("profile", { name: "Nasir", pro: true });
+```
+
+### `app.storage.remove(key)`
+
+Deletes a key from app storage.
+
+#### Parameters
+
+- `key` (`string`): Storage key.
+
+#### Return Value
+
+- **Type**: `boolean` (`true` if key existed and was removed)
+
+#### Example
+
+```javascript
+app.storage.remove("session.count");
+```
+
+### Storage File
+
+Values are persisted in:
+
+- `app.getAppDataPath() + "storage.json"`

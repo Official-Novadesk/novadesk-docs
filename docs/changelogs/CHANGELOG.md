@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.9.7.0-beta] - 2026-06-02
+###### 📅 2nd June, 2026
+
+### Added
+
+* Added new `app.storage` persistent JSON storage API:
+  * `app.storage.get(key[, defaultValue])` - retrieves stored values or returns default fallback
+  * `app.storage.set(key, value)` - stores key-value pairs persistently in `storage.json`
+  * `app.storage.remove(key)` - deletes key-value pairs from persistent storage
+* Added `LayoutBox` container element (`ui.addLayoutBox` and `ui.layoutBox`) supporting layout direction (`row`/`column`), alignment, padding, gaps, and nested composition of children.
+* Enhanced `LayoutBox` border system with support for CSS-like `borderStyle` properties, allowing `"solid"`, `"none"`, `"inset"`, `"outset"`, `"groove"`, `"ridge"`, and `"dotted"` borders, customized globally or per-side.
+* Introduced `ui.animate(options)` API for animating UI element properties:
+  * Keyframe timeline animations via `keyframes` property (supports array syntax and percentage-key object syntax).
+  * Tween animations supporting starting states via `from` property.
+  * Loop control using `iterationCount` (can be a number or `"infinite"`).
+  * Typography property animation (`fontSize`, `fontWeight`, `letterSpacing`, `fontColor`) on Text elements inside keyframe timelines.
+
+<!-- ================================================================================= -->
 ## [0.9.6.0-beta] - 2026-05-21
 ###### 21st May, 2026
 

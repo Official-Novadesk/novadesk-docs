@@ -105,6 +105,10 @@ export default defineConfig({
                 items: []
               },
               {
+                text: "animate",
+                link: "/api/ui/animate",
+              },
+              {
                 text: "General Options",
                 items: [
                   {
@@ -163,6 +167,10 @@ export default defineConfig({
                   {
                     text: "addRoundLine",
                     link: "/api/ui/ui-elements/addRoundLine",
+                  },
+                  {
+                    text: "addLayoutBox",
+                    link: "/api/ui/ui-elements/addLayoutBox",
                   },
                   {
                     text: "addText",

@@ -132,6 +132,36 @@ Adds a shape element.
 
 Refer to [addShape Options](/api/ui/ui-elements/addShape).
 
+### `ui.addLayoutBox(options)`
+
+Adds a layout container element that can hold child elements via `children`.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: LayoutBox configuration. Requires a unique `id`.
+
+Refer to [addLayoutBox Options](/api/ui/ui-elements/addLayoutBox).
+
+### `ui.layoutBox(options)`
+
+Creates a **LayoutBox builder object** for use inside `children`.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Same shape as `ui.addLayoutBox(options)`, but does not render immediately.
+
+Use this inside `children: [...]` of another `ui.addLayoutBox(...)`.
+
+### `ui.animate(options)`
+
+Animates supported element properties over time.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: Animation configuration (`id`, `to`, `from`, `iterationCount`, `keyframes`, optional `duration`, optional `easing`).
+
+Refer to [animate Options](/api/ui/animate).
+
 ### `ui.setElementProperty(id, key, value)`
 
 Updates a single property on an element.

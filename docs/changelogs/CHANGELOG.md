@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.9.8.0-beta] - 2026-06-17
+###### 📅 17th June, 2026
+
+### Added
+
+* Added support for `"double"` border style to `LayoutBox` border system.
+* Added `flexDirection` property (`"row"`, `"rowreverse"`, `"column"`, `"columnreverse"`) to `LayoutBox` to configure modern flexbox flow layouts.
+* Added `display` property (`"flex"`, `"none"`, `"list-item"`) to `LayoutBox` to manage layout and visibility.
+* Added support for hyphenated CSS-like formats (e.g. `"left-top"`, `"center-center"`) and `"middle"` aliases for `textAlign` property on Text elements.
+
+### Removed
+
+* Removed `minWidth` and `minHeight` properties from `LayoutBox` elements.
+
+<!-- ================================================================================= -->
 ## [0.9.7.0-beta] - 2026-06-02
 ###### 📅 2nd June, 2026
 

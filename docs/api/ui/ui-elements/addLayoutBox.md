@@ -25,15 +25,15 @@ Creates a `LayoutBox` container element and optionally adds nested child element
 - `y: number`
 - `width: number`
 - `height: number`
-- `direction: "row" | "column"` (default: `"column"`)
+- `display: "flex" | "none" | "list-item"` (default: `"flex"`)
+- `flexDirection: "row" | "rowreverse" | "column" | "columnreverse"` (default: `"row"`)
+- `direction: "ltr" | "rtl"` (default: `"ltr"`)
 - `gap: number`
 - `padding: number`
 - `paddingX: number`
 - `paddingY: number`
 - `alignItems: "start" | "center" | "end" | "stretch"`
 - `justifyContent: "start" | "center" | "end"`
-- `minWidth: number`
-- `minHeight: number`
 
 ### Visual Properties
 
@@ -43,7 +43,7 @@ Creates a `LayoutBox` container element and optionally adds nested child element
 - `borderRadius: number`
 - `borderStyle: string | string[]` (default: `"solid"`)
   - A single style string (applies to all sides) or an array of up to 4 styles specifying `[top, right, bottom, left]` (e.g., `["solid", "none", "solid", "none"]`).
-  - Supported styles: `"solid"`, `"none"` (or `"hidden"`), `"inset"`, `"outset"`, `"groove"`, `"ridge"`, `"dotted"`.
+  - Supported styles: `"solid"`, `"none"` (or `"hidden"`), `"inset"`, `"outset"`, `"groove"`, `"ridge"`, `"dotted"`, `"double"`.
 - `opacity: number` (`0..1` or `0..255`)
 - `boxShadow: BoxShadowObject | BoxShadowObject[]`
 
@@ -74,7 +74,7 @@ Note:
 ui.addLayoutBox({
   id: "card",
   x: 20, y: 20, width: 280, height: 160,
-  direction: "column",
+  flexDirection: "column",
   gap: 8,
   padding: 10,
   alignItems: "start",
@@ -94,7 +94,7 @@ ui.addLayoutBox({
       id: "row",
       width: 240,
       height: 28,
-      direction: "row",
+      flexDirection: "row",
       gap: 6,
       justifyContent: "end",
       alignItems: "center",
@@ -121,14 +121,14 @@ ui.addLayoutBox({
 ui.addLayoutBox({
   id: "root",
   x: 20, y: 20, width: 300, height: 160,
-  direction: "column",
+  flexDirection: "column",
   gap: 8,
   children: [
     ui.layoutBox({
       id: "rowA",
       width: 260,
       height: 28,
-      direction: "row",
+      flexDirection: "row",
       gap: 6,
       children: [
         ui.text({ id: "t1", x: 0, y: 0, text: "CPU" }),

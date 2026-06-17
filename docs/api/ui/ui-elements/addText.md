@@ -163,23 +163,25 @@ fontShadow: [
 
 ## Alignment Options
 
+Both standard (non-hyphenated) and hyphenated CSS-like formats are supported.
+
 ### Left aligned
 
-- `"lefttop"` or `"left"`
-- `"leftcenter"`
-- `"leftbottom"`
+- `"lefttop"`, `"left"`, or `"left-top"`
+- `"leftcenter"` or `"left-center"`
+- `"leftbottom"` or `"left-bottom"`
 
 ### Center aligned
 
-- `"centertop"` or `"center"`
-- `"centercenter"`
-- `"centerbottom"`
+- `"centertop"`, `"center"`, or `"center-top"`
+- `"centercenter"`, `"middlecenter"`, `"middle"`, `"center-center"`, or `"middle-center"`
+- `"centerbottom"` or `"center-bottom"`
 
 ### Right aligned
 
-- `"righttop"` or `"right"`
-- `"rightcenter"`
-- `"rightbottom"`
+- `"righttop"`, `"right"`, or `"right-top"`
+- `"rightcenter"` or `"right-center"`
+- `"rightbottom"` or `"right-bottom"`
 
 ## Inline Styling
 

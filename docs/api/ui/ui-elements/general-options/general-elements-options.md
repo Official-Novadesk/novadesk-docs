@@ -5,7 +5,7 @@ title: Shared UI element options.
 # General Elements Options
 Options that apply to every UI element added via the global `win` object inside a UI script.
 
-Use these settings with methods such as `ui.addText()`, `ui.addImage()`, `ui.addButton()`, `ui.addBitmap()`, `ui.addRotator()`, `ui.addShape()`, `ui.addBar()`, `ui.addLine()`, `ui.addAreaGraph()`, `ui.addHistogram()`, and `ui.addRoundLine()` to control positioning, visibility, interactivity, and tooltips.
+Use these settings with methods such as `ui.addText()`, `ui.addInputBox()`, `ui.addImage()`, `ui.addButton()`, `ui.addBitmap()`, `ui.addRotator()`, `ui.addShape()`, `ui.addBar()`, `ui.addLine()`, `ui.addAreaGraph()`, `ui.addHistogram()`, and `ui.addRoundLine()` to control positioning, visibility, interactivity, and tooltips.
 
 For shared image-processing fields (`imageAlpha`, `imageTint`, `imageFlip`, `colorMatrix`, etc.), see [General Image Options](/api/ui/ui-elements/general-options/general-image-options). For tooltip settings, see [General Tooltip Options](/api/ui/ui-elements/general-options/tooltip). For mouse callback and cursor settings, see [General Mouse Options](/api/ui/ui-elements/general-options/general-mouse-options).
 

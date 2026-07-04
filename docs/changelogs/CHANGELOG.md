@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.9.9.0-beta] - 2026-07-04
+###### 📅 04th July, 2026
+
+### Added
+
+* Added text selection support for Text elements with `textSelection`, `selectionBackgroundColor`, and `selectionTextColor`.
+* Added the Direct2D-rendered `InputBox` UI element via `ui.addInputBox`.
+* Added `hidden` and `dashed` support to `LayoutBox` `borderStyle`.
+
+<!-- ================================================================================= -->
 ## [0.9.8.0-beta] - 2026-06-17
 ###### 📅 17th June, 2026
 

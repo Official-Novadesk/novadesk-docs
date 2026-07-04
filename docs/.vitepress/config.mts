@@ -173,6 +173,10 @@ export default defineConfig({
                     link: "/api/ui/ui-elements/addLayoutBox",
                   },
                   {
+                    text: "addInputBox",
+                    link: "/api/ui/ui-elements/addInputBox",
+                  },
+                  {
                     text: "addText",
                     link: "/api/ui/ui-elements/addText",
                   },

@@ -43,7 +43,8 @@ Creates a `LayoutBox` container element and optionally adds nested child element
 - `borderRadius: number`
 - `borderStyle: string | string[]` (default: `"solid"`)
   - A single style string (applies to all sides) or an array of up to 4 styles specifying `[top, right, bottom, left]` (e.g., `["solid", "none", "solid", "none"]`).
-  - Supported styles: `"solid"`, `"none"` (or `"hidden"`), `"inset"`, `"outset"`, `"groove"`, `"ridge"`, `"dotted"`, `"double"`.
+  - Supported styles: `"solid"`, `"none"`, `"hidden"`, `"inset"`, `"outset"`, `"groove"`, `"ridge"`, `"dotted"`, `"dashed"`, `"double"`.
+  - `"none"` and `"hidden"` both suppress painting for that side.
 - `opacity: number` (`0..1` or `0..255`)
 - `boxShadow: BoxShadowObject | BoxShadowObject[]`
 
@@ -83,7 +84,7 @@ ui.addLayoutBox({
   borderWidth: 1,
   borderColor: "rgba(255,255,255,0.12)",
   borderRadius: 10,
-  borderStyle: "solid",
+  borderStyle: ["solid", "dashed", "solid", "hidden"],
   boxShadow: [
     { x: 0, y: 1, blur: 2, spread: 0, color: "rgba(0,0,0,0.10)", inset: false },
     { x: 0, y: 10, blur: 24, spread: -6, color: "rgba(0,0,0,0.25)", inset: false }

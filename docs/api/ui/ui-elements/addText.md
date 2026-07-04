@@ -156,10 +156,30 @@ fontShadow: [
 - `"ellipsis"`
 - `"wrap"`
 
+### `textSelection`
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Allows users to select and copy text from this element with the mouse. When enabled, selectable text uses the I-beam cursor, supports drag selection, double-click word selection, and copies the current selection with `Ctrl+C`.
+
+### `selectionBackgroundColor`
+
+- **Type**: `string`
+- **Default**: `"#3390FF"` with partial opacity
+- **Description**: Selection highlight color. Supports the same color formats as other text colors.
+
+### `selectionTextColor`
+
+- **Type**: `string`
+- **Default**: unchanged text color
+- **Description**: Optional color used for selected text.
+
 ## Runtime Notes
 
 - Text hit testing uses the rendered glyph ink region instead of the full text layout box.
 - This prevents false hover/click detection in empty areas above or below glyphs.
+- Text selection is opt-in with `textSelection: true`; non-selectable text keeps normal hit testing and mouse behavior.
+- Dragging selected text does not start widget dragging.
 
 ## Alignment Options
 
@@ -270,6 +290,19 @@ ui.addText({
     fontColor: "rgb(255, 255, 255)",
     rotate: 45,
     fontStyle: "italic"
+});
+ui.addText({
+    id: "SelectableText",
+    text: "Drag over this text, then press Ctrl+C.",
+    x: 10,
+    y: 140,
+    width: 360,
+    height: 30,
+    fontSize: 14,
+    fontColor: "#ffffff",
+    textSelection: true,
+    selectionBackgroundColor: "rgba(51, 144, 255, 0.45)",
+    selectionTextColor: "#ffffff"
 });
 ```
 :::

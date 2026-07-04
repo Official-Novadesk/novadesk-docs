@@ -32,6 +32,16 @@ Creates a text element inside the UI script.
 
 Refer to [addText Options](/api/ui/ui-elements/addText) for full configuration details.
 
+### `ui.addInputBox(options)`
+
+Creates a text input element inside the UI script.
+
+- **`options`**
+  - **Type**: `Object`
+  - **Description**: InputBox element configuration. Requires a unique `id`.
+
+Refer to [addInputBox Options](/api/ui/ui-elements/addInputBox) for full configuration details.
+
 ### `ui.addImage(options)`
 
 Adds an image element.

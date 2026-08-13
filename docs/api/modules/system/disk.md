@@ -3,141 +3,190 @@ title: Read disk usage metrics with the disk module.
 ---
 
 # disk Module
-Read disk space and usage metrics in Novadesk.
 
-The `disk` module is exported from the `system` module.
+Read disk space, usage percentages, and I/O speeds.
 
 ```javascript
 import { disk } from "system";
 ```
+
+::: info Availability
+Available in the [Main script](/guides/script-types.html#main-script-the-brain) only.
+:::
+
+::: info Path Argument Details
+For all disk space functions (`totalBytes`, `availableBytes`, `usedBytes`, `usagePercent`), the `path` parameter can be:
+- A drive root like `"C:\\"` or `"D:\\"` 
+- Any file or folder path on the target volume
+- If omitted or empty, defaults to the current working drive
+
+The function determines which volume contains the specified path and returns statistics for that entire volume.
+:::
 
 #### Table of Contents
 [[toc]]
 
-## `disk.totalBytes([path])`
+## Methods
 
-Returns total disk capacity in bytes.
+<MethodBox
+  name="disk.totalBytes([path])"
+  badge="disk"
+  badgeType="core"
+  returns="number"
+  :parameters="[
+    { name: 'path', type: 'string', optional: true, description: 'File or drive path to query (e.g. C:\\). Defaults to the current working drive.' }
+  ]"
+>
+<template #returns>Total capacity of the volume in bytes. Returns <code>0</code> if unavailable.</template>
 
-### Parameters
+Returns the total storage capacity of the volume containing the given path.
 
-- **`path`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: File or drive path to query (for example, `"C:\\"`).
+<template #example>
 
-### Return Value
+```javascript
+import { disk } from "system";
 
-- **Type**: `number`
-- **Description**: Total bytes for the target volume. Returns `0` if unavailable.
+const total = disk.totalBytes("C:\\");
+console.log("Total:", total, "bytes");
+```
 
-## `disk.availableBytes([path])`
+</template>
+</MethodBox>
 
-Returns available bytes for the current user on the target volume.
+<MethodBox
+  name="disk.availableBytes([path])"
+  badge="disk"
+  badgeType="core"
+  returns="number"
+  :parameters="[
+    { name: 'path', type: 'string', optional: true, description: 'File or drive path to query. Defaults to the current working drive.' }
+  ]"
+>
+<template #returns>Available bytes for the current user on the target volume. Returns <code>0</code> if unavailable.</template>
 
-### Parameters
+Returns the bytes available to the current user on the target volume.
 
-- **`path`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: File or drive path to query.
+<template #example>
 
-### Return Value
+```javascript
+import { disk } from "system";
 
-- **Type**: `number`
-- **Description**: Available bytes for the target volume. Returns `0` if unavailable.
+const free = disk.availableBytes("C:\\");
+console.log("Free:", free, "bytes");
+```
 
-## `disk.usedBytes([path])`
+</template>
+</MethodBox>
 
-Returns used bytes for the target volume.
+<MethodBox
+  name="disk.usedBytes([path])"
+  badge="disk"
+  badgeType="core"
+  returns="number"
+  :parameters="[
+    { name: 'path', type: 'string', optional: true, description: 'File or drive path to query. Defaults to the current working drive.' }
+  ]"
+>
+<template #returns>Used bytes on the target volume. Returns <code>0</code> if unavailable.</template>
 
-### Parameters
+Returns the used storage bytes on the target volume.
 
-- **`path`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: File or drive path to query.
+<template #example>
 
-### Return Value
+```javascript
+import { disk } from "system";
 
-- **Type**: `number`
-- **Description**: Used bytes for the target volume. Returns `0` if unavailable.
+const used = disk.usedBytes("C:\\");
+console.log("Used:", used, "bytes");
+```
 
-## `disk.usagePercent([path])`
+</template>
+</MethodBox>
 
-Returns disk usage percentage for the target volume.
+<MethodBox
+  name="disk.usagePercent([path])"
+  badge="disk"
+  badgeType="core"
+  returns="number"
+  :parameters="[
+    { name: 'path', type: 'string', optional: true, description: 'File or drive path to query. Defaults to the current working drive.' }
+  ]"
+>
+<template #returns>Usage percentage in the range <code>0–100</code>. Returns <code>0</code> if unavailable.</template>
 
-### Parameters
+Returns the disk usage percentage for the target volume.
 
-- **`path`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: File or drive path to query.
+<template #example>
 
-### Return Value
+```javascript
+import { disk } from "system";
 
-- **Type**: `number`
-- **Description**: Usage percent (`0-100`) for the target volume. Returns `0` if unavailable.
+const pct = disk.usagePercent("C:\\");
+console.log("Usage:", pct + "%");
+```
 
-::: info
-If `path` is omitted, the API uses the current working drive/root.
+</template>
+</MethodBox>
+
+<MethodBox
+  name="disk.readSpeed()"
+  badge="disk"
+  badgeType="core"
+  returns="number"
+>
+<template #returns>Current disk read throughput in bytes per second. Returns <code>0</code> if unavailable.</template>
+
+Returns the current disk read speed sampled from Windows Performance Data Helper (PDH) `PhysicalDisk(_Total)` counters. The value is cached and updated every 400ms to reduce performance overhead.
+
+::: tip Performance Notes
+Both `readSpeed()` and `writeSpeed()` use the same cached measurement that updates every 400ms. Multiple calls within this window return the same cached value.
 :::
 
-## `disk.readSpeed()`
-
-Returns the current disk read speed in bytes per second.
-
-### Return Value
-
-- **Type**: `number`
-- **Description**: Current read speed in bytes/sec using PDH (Performance Data Helper) counters from `PhysicalDisk(_Total)`. Returns `0` if unavailable.
-
-### Example
+<template #example>
 
 ```javascript
 import { disk } from "system";
 
-const readBytesPerSec = disk.readSpeed();
-console.log("Read speed:", readBytesPerSec, "bytes/sec");
+const readBps = disk.readSpeed();
+console.log("Read:", readBps, "bytes/sec");
 ```
 
-## `disk.writeSpeed()`
+</template>
+</MethodBox>
 
-Returns the current disk write speed in bytes per second.
+<MethodBox
+  name="disk.writeSpeed()"
+  badge="disk"
+  badgeType="core"
+  returns="number"
+>
+<template #returns>Current disk write throughput in bytes per second. Returns <code>0</code> if unavailable.</template>
 
-### Return Value
+Returns the current disk write speed sampled from Windows Performance Data Helper (PDH) `PhysicalDisk(_Total)` counters. The value is cached and updated every 400ms to reduce performance overhead.
 
-- **Type**: `number`
-- **Description**: Current write speed in bytes/sec using PDH (Performance Data Helper) counters from `PhysicalDisk(_Total)`. Returns `0` if unavailable.
-
-### Example
+<template #example>
 
 ```javascript
 import { disk } from "system";
 
-const writeBytesPerSec = disk.writeSpeed();
-console.log("Write speed:", writeBytesPerSec, "bytes/sec");
+const writeBps = disk.writeSpeed();
+console.log("Write:", writeBps, "bytes/sec");
 ```
 
-## Example
+</template>
+</MethodBox>
+
+## Full Example
 
 ```javascript
 import { disk } from "system";
 
-const path = "C:\\";
+const drive = "C:\\";
 
-const total = disk.totalBytes(path);
-const available = disk.availableBytes(path);
-const used = disk.usedBytes(path);
-const percent = disk.usagePercent(path);
-
-console.log("Total:", total);
-console.log("Available:", available);
-console.log("Used:", used);
-console.log("Usage %:", percent);
-
-// Disk I/O metrics (no path required)
-const readSpeed = disk.readSpeed();
-const writeSpeed = disk.writeSpeed();
-console.log("Read speed:", readSpeed, "bytes/sec");
-console.log("Write speed:", writeSpeed, "bytes/sec");
+console.log("Total:",     disk.totalBytes(drive));
+console.log("Available:", disk.availableBytes(drive));
+console.log("Used:",      disk.usedBytes(drive));
+console.log("Usage %:",   disk.usagePercent(drive));
+console.log("Read B/s:",  disk.readSpeed());
+console.log("Write B/s:", disk.writeSpeed());
 ```

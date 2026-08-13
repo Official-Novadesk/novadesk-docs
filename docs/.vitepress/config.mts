@@ -119,14 +119,6 @@ export default defineConfig({
                     text: "General Image Options",
                     link: "/api/ui/ui-elements/general-options/general-image-options",
                   },
-                  {
-                    text: "General Tooltip Options",
-                    link: "/api/ui/ui-elements/general-options/tooltip",
-                  },
-                  {
-                    text: "General Mouse Options",
-                    link: "/api/ui/ui-elements/general-options/general-mouse-options",
-                  },
                 ],
               },
               {
@@ -199,6 +191,8 @@ export default defineConfig({
                 items: [
                   { text: "addon", link: "/api/modules/novadesk/addon" },
                   { text: "app", link: "/api/modules/novadesk/app" },
+                  { text: "dialog", link: "/api/modules/novadesk/dialog" },
+                  { text: "toast", link: "/api/modules/novadesk/toast" },
                   { text: "tray", link: "/api/modules/novadesk/tray" },
                   {
                     text: "widgetWindow",
@@ -210,6 +204,10 @@ export default defineConfig({
                 text: "system",
                 collapsed: true,
                 items: [
+                  {
+                    text: "audio",
+                    link: "/api/modules/system/audio",
+                  },
                   {
                     text: "clipboard",
                     link: "/api/modules/system/clipboard",

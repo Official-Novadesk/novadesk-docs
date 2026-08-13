@@ -4,60 +4,60 @@ title: Read environment variables with getEnv from the system module.
 
 # Environment Variables
 
-Read process environment variables using `getEnv` from the `system` module.
+Read process environment variables.
 
 ```javascript
 import { getEnv } from "system";
 ```
+
+::: info Availability
+Available in the [Main script](/guides/script-types.html#main-script-the-brain) only.
+:::
 
 #### Table of Contents
 [[toc]]
 
-## `getEnv([name, defaultValue])`
+## Methods
 
-Returns either:
-- all environment variables as an object (when `name` is omitted), or
-- a single environment variable value as a string (when `name` is provided).
+<MethodBox
+  name="getEnv([name [, defaultValue]])"
+  badge="system"
+  badgeType="core"
+  returns="object | string"
+  :parameters="[
+    { name: 'name', type: 'string', optional: true, description: 'Environment variable key (e.g. PATH, USERNAME). If omitted, all variables are returned.' },
+    { name: 'defaultValue', type: 'string', optional: true, description: 'Fallback value returned when the variable is missing or empty. Only used when name is provided.' }
+  ]"
+>
+<template #returns>An <code>object</code> map of all env vars when called with no arguments, or a <code>string</code> value for a specific variable.</template>
 
-### Parameters
+Returns environment variable data depending on how it is called:
 
-- **`name`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: Environment variable key (for example, `"PATH"`).
-- **`defaultValue`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: Fallback value used only when `name` is provided and the variable is missing or empty.
+- `getEnv()` — returns an object containing all environment variables as key/value pairs
+- `getEnv(name)` — returns the value of the named variable, or an empty string if missing or empty
+- `getEnv(name, defaultValue)` — returns the variable value, or `defaultValue` if the variable is missing or empty
 
-### Return Value
+::: info Windows Environment Variables
+On Windows, environment variable names are case-insensitive but typically stored in uppercase (`PATH`, `USERNAME`, `APPDATA`). Empty values are treated the same as missing when a `defaultValue` is provided.
+:::
 
-- **Type**: `object | string`
-- **Description**:
-  - `getEnv()` returns an object map of all env vars.
-  - `getEnv(name)` returns a string (empty string when missing).
-  - `getEnv(name, defaultValue)` returns `defaultValue` when the variable is missing/empty.
-
-### Example: Read One Variable
+<template #example>
 
 ```javascript
 import { getEnv } from "system";
 
+// Single variable with fallback
 const user = getEnv("USERNAME", "unknown");
-console.log("user:", user);
+console.log("User:", user);
+
+// Single variable, no fallback
+const appdata = getEnv("APPDATA");
+console.log("AppData:", appdata);
+
+// All variables
+const all = getEnv();
+console.log("PATH:", all.PATH);
 ```
 
-### Example: Read All Variables
-
-```javascript
-import { getEnv } from "system";
-
-const vars = getEnv();
-console.log("PATH:", vars.PATH);
-console.log("HOME:", vars.HOME);
-```
-
-### Notes
-
-- Environment variable names are platform-dependent (Windows commonly uses uppercase keys like `PATH`, `USERNAME`, `APPDATA`).
-- `getEnv(name, defaultValue)` treats empty values the same as missing values.
+</template>
+</MethodBox>

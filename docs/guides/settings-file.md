@@ -27,10 +27,21 @@ On first launch, Novadesk creates `settings.json` with minimal defaults. If the 
 
 Global keys live at the root of the JSON object. Current built-in keys:
 
-- `enableDebugging` (`boolean`, default `false`): sets log level to Debug when `true`, Info when `false`.
-- `disableLogging` (`boolean`, default `false`): when `true`, disables all logging outputs.
-- `saveLogToFile` (`boolean`, default `false`): when `true`, writes `logs.log` alongside the settings file.
-- `useHardwareAcceleration` (`boolean`, default `true`): toggles Direct2D hardware acceleration. Requires restart to fully apply.
+<PropertyBox name="enableDebugging" type="boolean" defaultValue="false">
+  Sets log level to Debug when <code>true</code>, Info when <code>false</code>.
+</PropertyBox>
+
+<PropertyBox name="disableLogging" type="boolean" defaultValue="false">
+  When <code>true</code>, disables all logging outputs.
+</PropertyBox>
+
+<PropertyBox name="saveLogToFile" type="boolean" defaultValue="false">
+  When <code>true</code>, writes <code>logs.log</code> alongside the settings file.
+</PropertyBox>
+
+<PropertyBox name="useHardwareAcceleration" type="boolean" defaultValue="true">
+  Toggles Direct2D hardware acceleration. Requires restart to fully apply.
+</PropertyBox>
 
 ### Example
 
@@ -48,13 +59,33 @@ Global keys live at the root of the JSON object. Current built-in keys:
 
 Widgets are stored under the `widgets` object keyed by widget ID. Each entry saves placement and behavior:
 
-- `x`, `y` (`number`): screen position in pixels.
-- `windowopacity` (`number`): opacity from 0?255.
-- `zpos` (`string`): one of `normal`, `ondesktop`, `ontop`, `onbottom`, `ontopmost`.
-- `draggable` (`boolean`)
-- `clickthrough` (`boolean`)
-- `keeponscreen` (`boolean`)
-- `snapedges` (`boolean`)
+<PropertyBox name="x, y" type="number">
+  Screen position in pixels.
+</PropertyBox>
+
+<PropertyBox name="windowopacity" type="number">
+  Opacity from 0-255.
+</PropertyBox>
+
+<PropertyBox name="zpos" type="string">
+  One of <code>normal</code>, <code>ondesktop</code>, <code>ontop</code>, <code>onbottom</code>, <code>ontopmost</code>.
+</PropertyBox>
+
+<PropertyBox name="draggable" type="boolean">
+  Determines if the widget is draggable.
+</PropertyBox>
+
+<PropertyBox name="clickthrough" type="boolean">
+  Determines if mouse clicks pass through the widget.
+</PropertyBox>
+
+<PropertyBox name="keeponscreen" type="boolean">
+  Determines if the widget should be kept within screen boundaries.
+</PropertyBox>
+
+<PropertyBox name="snapedges" type="boolean">
+  Determines if the widget snaps to screen edges.
+</PropertyBox>
 
 Example widget block:
 

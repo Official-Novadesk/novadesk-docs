@@ -4,55 +4,42 @@ title: Read system audio levels with the AudioLevel addon.
 
 # AudioLevel Addon
 
-The AudioLevel addon reads live system audio levels (RMS, peak) and FFT spectrum bands. It is ideal for audio meters, visualizers, and reactive widgets.
+Read live system audio levels — RMS, peak, and FFT spectrum bands. Ideal for audio meters, visualizers, and reactive widgets.
+
+```javascript
+import { addon } from "novadesk";
+const audio = addon.load("path/to/AudioLevel.dll");
+```
 
 #### Table of Contents
 [[toc]]
 
-## Quick Start
+---
 
-Load the addon DLL and call `stats()` with an options object.
+<MethodBox
+  name="audio.stats(options)"
+  badge="AudioLevel"
+  badgeType="core"
+  returns="object | null"
+  :parameters="[
+    { name: 'options', type: 'object', description: 'Configuration object. All fields are optional — defaults are used for any omitted option.' }
+  ]"
+>
+<template #returns>An object with <code>rms</code>, <code>peak</code>, and <code>bands</code> arrays, or <code>null</code> if stats cannot be collected.</template>
 
-```javascript
-import { addon } from "novadesk";
+Returns current audio level data for the selected audio endpoint. Call this on an interval (e.g. every 50–100ms) to drive a live meter or visualizer.
 
-const audio = addon.load("D:/Novadesk-Project/AudioLevel/dist/x64/Debug/AudioLevel.dll");
-
-const data = audio.stats({
-  port: "output",
-  fftSize: 1024,
-  fftOverlap: 512,
-  bands: 20,
-  rmsGain: 1.0,
-  fftAttack: 50,
-  fftDecay: 200,
-  sensitivity: 60
-});
-
-if (data) {
-  console.log("RMS:", data.rms);
-  console.log("Peak:", data.peak);
-  console.log("Bands:", data.bands);
-}
-```
-
-## `stats(options)`
-
-Returns current audio level data for the selected endpoint/device.
-
-### Options
-
-All fields are optional. If you omit them, defaults are used.
+**Options:**
 
 | Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `port` | `string` | `"output"` | Use `"output"` for speakers or `"input"` for microphone. |
-| `deviceId` | `string` | `""` | Device ID. Use empty string for default device. |
-| `fftSize` | `number` | `1024` | FFT window size. Must be even. Larger = smoother, slower. |
-| `fftOverlap` | `number` | `512` | Overlap in samples between FFT windows. |
-| `bands` | `number` | `10` | Number of spectrum bands to return. |
-| `freqMin` | `number` | `20.0` | Minimum frequency (Hz). |
-| `freqMax` | `number` | `20000.0` | Maximum frequency (Hz). |
+|---|---|---|---|
+| `port` | `string` | `"output"` | `"output"` for speakers, `"input"` for microphone. |
+| `deviceId` | `string` | `""` | Device ID. Empty string uses the default device. |
+| `fftSize` | `number` | `1024` | FFT window size (must be even). Larger = smoother spectrum, slower response. |
+| `fftOverlap` | `number` | `512` | Overlap between FFT windows in samples. |
+| `bands` | `number` | `10` | Number of frequency bands to return. |
+| `freqMin` | `number` | `20.0` | Minimum frequency in Hz. |
+| `freqMax` | `number` | `20000.0` | Maximum frequency in Hz. |
 | `sensitivity` | `number` | `35.0` | Higher values reduce band output (less sensitive). |
 | `rmsAttack` | `number` | `300` | RMS attack smoothing in ms. |
 | `rmsDecay` | `number` | `300` | RMS decay smoothing in ms. |
@@ -61,35 +48,42 @@ All fields are optional. If you omit them, defaults are used.
 | `fftAttack` | `number` | `300` | FFT attack smoothing in ms. |
 | `fftDecay` | `number` | `300` | FFT decay smoothing in ms. |
 | `rmsGain` | `number` | `1.0` | Gain multiplier for RMS values. |
-| `peakGain` | `number` | `1.0` | Gain multiplier for Peak values. |
+| `peakGain` | `number` | `1.0` | Gain multiplier for peak values. |
 
-### Return Value
+**Return value properties:**
 
-- **Type**: `object | null`
-- **Description**:
-  - Returns `null` if stats cannot be collected.
-  - Returns an object with:
-    - `rms`: `number[]` for left/right channel RMS values.
-    - `peak`: `number[]` for left/right channel peak values.
-    - `bands`: `number[]` of spectrum band levels (length equals `bands`).
+| Property | Type | Description |
+|---|---|---|
+| `rms` | `number[]` | Per-channel RMS values (index 0 = left, 1 = right). |
+| `peak` | `number[]` | Per-channel peak values (index 0 = left, 1 = right). |
+| `bands` | `number[]` | Spectrum band levels, length equals the `bands` option. |
 
-## Beginner Tips
-
-- Start with defaults and only adjust `bands` and `fftSize` as needed.
-- Use `port: "input"` if you want microphone audio instead of system output.
-- If values look too small, try increasing `rmsGain` or `peakGain`.
-
-## Example (Minimal)
+<template #example>
 
 ```javascript
 import { addon } from "novadesk";
+const audio = addon.load("path/to/AudioLevel.dll");
 
-const audio = addon.load("D:/Novadesk-Project/AudioLevel/dist/x64/Debug/AudioLevel.dll");
-const data = audio.stats({});
+// Full options
+const data = audio.stats({
+  port: "output",
+  fftSize: 1024,
+  bands: 20,
+  rmsGain: 1.5
+});
 
 if (data) {
-  const left = data.rms[0];
-  const right = data.rms[1];
-  console.log("RMS L/R", left, right);
+  console.log("RMS L/R:", data.rms[0], data.rms[1]);
+  console.log("Peak L/R:", data.peak[0], data.peak[1]);
+  console.log("Bands:", data.bands);
+}
+
+// Minimal — all defaults
+const simple = audio.stats({});
+if (simple) {
+  console.log("RMS left:", simple.rms[0]);
 }
 ```
+
+</template>
+</MethodBox>

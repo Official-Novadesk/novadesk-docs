@@ -4,177 +4,311 @@ title: Show styled text input overlays with the InputBox addon.
 
 # InputBox Addon
 
-The InputBox addon shows a lightweight input overlay window and returns user interaction through callbacks.
+Show a styled text input overlay window anchored to a widget. Supports validation, multiline, password mode, and rich styling.
+
+```javascript
+import { addon } from "novadesk";
+const inputBox = addon.load("path/to/InputBox.dll");
+```
 
 #### Table of Contents
 [[toc]]
 
-## Quick Start
+---
+
+<MethodBox
+  name="inputBox.show(optionsOrDefaultValue)"
+  badge="InputBox"
+  badgeType="core"
+  returns="number"
+  :parameters="[
+    { name: 'optionsOrDefaultValue', type: 'string | object', description: 'Pass a string to set the initial text only, or a full options object for complete control.' }
+  ]"
+>
+<template #returns>A numeric InputBox instance ID. Returns <code>0</code> if creation fails.</template>
+
+Opens an input overlay window. Throws a `TypeError` if the argument is neither a string nor an object.
+
+**Position & size options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `x` | `number` | `100` | X position. If `widgetHwnd` is set, treated as offset from that window. |
+| `y` | `number` | `100` | Y position. If `widgetHwnd` is set, treated as offset from that window. |
+| `width` / `w` | `number` | `300` | Width in pixels (clamped `120–1200`). |
+| `height` / `h` | `number` | `40` | Height in pixels (clamped `28–800`). |
+| `widgetHwnd` / `hwnd` | `number` | — | Widget window handle. When provided, `x`/`y` are relative to that window. |
+
+**Behavior options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `topMost` | `boolean` | `true` | Keep the input box above other windows. |
+| `unfocusDismiss` | `boolean` | `true` | Close when focus is lost. |
+| `multiline` | `boolean` | `false` | Allow multi-line input. Use `Ctrl+Enter` to submit in multiline mode. |
+| `password` | `boolean` | `false` | Mask characters. Disables multiline if both are true. |
+| `allowScroll` | `boolean` | `false` | Enable vertical scrollbar in multiline mode. |
+| `maxLength` | `number` | `0` | Max characters allowed (clamped `0–32766`). `0` = unlimited. |
+
+**Input validation options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `inputType` | `string` | `"Any"` | Allowed input type: `Any`, `Integer`/`Int`, `Float`/`Number`, `Letters`, `Alphanumeric`, `Hex`/`Hexadecimal`, `Email`, `Custom`. |
+| `allowedChars` | `string` | — | Allowed character set when `inputType` is `Custom`. |
+| `minValue` | `number` | — | Minimum numeric value (enables range validation). |
+| `maxValue` | `number` | — | Maximum numeric value (enables range validation). |
+
+**Styling options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `defaultValue` | `string` | — | Initial text content. |
+| `fontFace` | `string` | `"Segoe UI"` | Font family. |
+| `fontSize` | `number` | `14` | Font size in pt (clamped `8–72`). |
+| `bold` | `boolean` | `false` | Bold text. |
+| `italic` | `boolean` | `false` | Italic text. |
+| `align` | `string` | `"LEFT"` | Text alignment: `LEFT`, `CENTER`, `RIGHT`. |
+| `borderVisible` | `boolean` | `true` | Show border. |
+| `borderThickness` | `number` | `1` | Border width (clamped `0–12`). |
+| `fontColor` / `textColor` | `string` | — | Text color (CSS-style: `rgb(...)`, `rgba(...)`, hex). |
+| `backgroundColor` / `bgColor` | `string` | — | Background color. |
+| `borderColor` | `string` | — | Border color. |
+
+**Callback options:**
+
+| Callback | Trigger |
+|---|---|
+| `onEnter` | Enter submits valid input. In multiline mode, requires `Ctrl+Enter`. |
+| `onEsc` | Escape key is pressed. |
+| `onDismiss` | Box is dismissed (blur or close). |
+| `onInvalid` | An invalid character is typed or an invalid value is submitted. |
+| `onChange` | Text content changes. |
+
+All callbacks receive no arguments. Use `lastText()`, `lastReason()`, and `lastId()` to inspect the event data.
+
+<template #example>
 
 ```javascript
 import { addon, widgetWindow } from "novadesk";
+const inputBox = addon.load("path/to/InputBox.dll");
 
-const inputBox = addon.load("D:/Novadesk-Project/InputBox/dist/x64/Debug/InputBox.dll");
+const win = new widgetWindow({ id: "demo", width: 400, height: 300, script: "ui.js" });
 
 const id = inputBox.show({
-  widgetHwnd: widgetWindow.getHandle(),
+  widgetHwnd: win.getHandle(),
   x: 16,
-  y: 16,
+  y: 200,
   width: 320,
   defaultValue: "Type here...",
-  onEnter: () => {
-    console.log("Submitted:", inputBox.lastText());
-  }
+  inputType: "Any",
+  onEnter: () => console.log("Submitted:", inputBox.lastText()),
+  onEsc:   () => console.log("Cancelled"),
 });
 
-console.log("InputBox id:", id);
+console.log("InputBox ID:", id);
 ```
 
-## Exported Functions
+</template>
+</MethodBox>
 
-- `show(optionsOrDefaultValue)`  
-  Opens an input box and returns numeric id.
-- `open(optionsOrDefaultValue)`  
-  Alias of `show(...)`.
-- `close(id)`  
-  Closes a specific input box id. Returns `true` when closed, otherwise `false`.
-- `closeAll()`  
-  Closes all open InputBox windows. Returns `true`.
-- `lastText()`  
-  Returns the latest event text as string.
-- `lastReason()`  
-  Returns latest event reason code as number.
-- `lastId()`  
-  Returns the input box id that produced the latest event.
+---
 
-## `show(optionsOrDefaultValue)`
+<MethodBox
+  name="inputBox.open(optionsOrDefaultValue)"
+  badge="InputBox"
+  badgeType="core"
+  returns="number"
+  :parameters="[
+    { name: 'optionsOrDefaultValue', type: 'string | object', description: 'Same as show().' }
+  ]"
+>
+<template #returns>Numeric InputBox instance ID. Returns <code>0</code> if creation fails.</template>
 
-### Parameter Forms
+Alias of `inputBox.show()`. Identical behavior.
 
-- `string`: sets initial text (`defaultValue`).
-- `object`: full options object.
+<template #example>
 
-If the argument is neither string nor object, the addon throws:
-`InputBox.show(options) expects object|string`.
+```javascript
+const id = inputBox.open({ defaultValue: "hello" });
+```
 
-### Return Value
+</template>
+</MethodBox>
 
-- **Type**: `number`
-- **Description**: InputBox instance id. Returns `0` if create fails.
+---
 
-## Options
+<MethodBox
+  name="inputBox.close(id)"
+  badge="InputBox"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'id', type: 'number', description: 'InputBox instance ID returned by show() or open().' }
+  ]"
+>
+<template #returns><code>true</code> if the input box was found and closed, <code>false</code> otherwise.</template>
 
-### Position and Size
+Closes a specific InputBox instance by ID.
 
-- `x` (`number`, default `100`)
-- `y` (`number`, default `100`)
-- `width` or `w` (`number`, default `300`, clamped `120..1200`)
-- `height` or `h` (`number`, default `40`, clamped `28..800`)
-- `widgetHwnd` or `hwnd` (`number`, optional)  
-  If provided, `x/y` are treated as offsets from that window.
+<template #example>
 
-### Behavior
+```javascript
+const id = inputBox.show({ defaultValue: "hello" });
+inputBox.close(id);
+```
 
-- `topMost` (`boolean`, default `true`)
-- `unfocusDismiss` (`boolean`, default `true`)  
-  Close on losing focus.
-- `multiline` (`boolean`, default `false`)
-- `password` (`boolean`, default `false`)  
-  If `password` and `multiline` are both true, multiline is disabled.
-- `allowScroll` (`boolean`, default `false`)  
-  Enables vertical scroll when multiline.
-- `maxLength` (`number`, default `0`, clamped `0..32766`)
+</template>
+</MethodBox>
 
-### Input Validation
+---
 
-- `inputType` (`string`, default `"Any"`)  
-  Supported values:
-  - `Any`
-  - `Integer` / `Int`
-  - `Float` / `Number`
-  - `Letters`
-  - `Alphanumeric`
-  - `Hex` / `Hexadecimal`
-  - `Email`
-  - `Custom`
-- `allowedChars` (`string`, used when `inputType: "Custom"`)
-- `minValue` (`number`, optional; enables numeric range checks)
-- `maxValue` (`number`, optional; enables numeric range checks)
+<MethodBox
+  name="inputBox.closeAll()"
+  badge="InputBox"
+  badgeType="core"
+  returns="boolean"
+>
+<template #returns>Always <code>true</code>.</template>
 
-### Text and Styling
+Closes all open InputBox windows.
 
-- `defaultValue` (`string`, optional)
-- `fontFace` (`string`, default `"Segoe UI"`)
-- `fontSize` (`number`, default `14`, clamped `8..72`)
-- `bold` (`boolean`, default `false`)
-- `italic` (`boolean`, default `false`)
-- `align` (`string`, default `"LEFT"`)  
-  Supported: `LEFT`, `CENTER`, `RIGHT`
-- `borderVisible` (`boolean`, default `true`)
-- `borderThickness` (`number`, default `1`, clamped `0..12`)
-- `fontColor` or `textColor` (`string`)  
-- `backgroundColor` or `bgColor` (`string`)
-- `borderColor` (`string`)
+<template #example>
 
-Color strings are parsed via Novadesk color parser (`rgb(...)`, `rgba(...)`, hex formats, etc.).
+```javascript
+inputBox.closeAll();
+```
 
-## Callbacks
+</template>
+</MethodBox>
 
-All callbacks are optional and receive no function arguments. Use `lastText()`, `lastReason()`, and `lastId()` to inspect latest event data.
+---
 
-- `onEnter`  
-  Fired when Enter submits valid input.
-- `onEsc`  
-  Fired when Esc is pressed.
-- `onDismiss`  
-  Fired when box is dismissed (blur/close path).
-- `onInvalid`  
-  Fired when invalid character or invalid final value is submitted.
-- `onChange`  
-  Fired on edit updates.
+<MethodBox
+  name="inputBox.lastText()"
+  badge="InputBox"
+  badgeType="core"
+  returns="string"
+>
+<template #returns>The text from the most recent InputBox event.</template>
 
-## Event Reason Codes
+Returns the text content from the last callback event. Call this inside any callback to read what the user typed.
 
-- `0`: None
-- `1`: Enter
-- `2`: Esc
-- `3`: Dismiss
-- `4`: Invalid
-- `5`: Change
+<template #example>
 
-## Keyboard Behavior
+```javascript
+inputBox.show({
+  onEnter: () => {
+    console.log("User typed:", inputBox.lastText());
+  }
+});
+```
 
-- `Esc` closes with reason `Esc`.
-- `Enter` submits with reason `Enter`.
-- In multiline mode, `Enter` submits only when `Ctrl+Enter` is pressed.
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="inputBox.lastReason()"
+  badge="InputBox"
+  badgeType="core"
+  returns="number"
+>
+<template #returns>Numeric reason code for the most recent event.</template>
+
+Returns the reason code from the last callback event.
+
+**Reason codes:**
+
+| Code | Meaning |
+|---|---|
+| `0` | None |
+| `1` | Enter (submitted) |
+| `2` | Esc (cancelled) |
+| `3` | Dismiss (focus lost) |
+| `4` | Invalid input |
+| `5` | Change (text edited) |
+
+<template #example>
+
+```javascript
+inputBox.show({
+  onDismiss: () => {
+    const reason = inputBox.lastReason();
+    console.log("Closed with reason:", reason);
+  }
+});
+```
+
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="inputBox.lastId()"
+  badge="InputBox"
+  badgeType="core"
+  returns="number"
+>
+<template #returns>The InputBox instance ID that triggered the most recent event.</template>
+
+Returns the ID of the InputBox that fired the last callback. Useful when multiple InputBox instances are open simultaneously.
+
+<template #example>
+
+```javascript
+inputBox.show({
+  onChange: () => {
+    console.log("Changed in box:", inputBox.lastId());
+  }
+});
+```
+
+</template>
+</MethodBox>
+
+---
 
 ## Examples
 
-### Integer Input with Range
+### Integer input with range
 
 ```javascript
 import { addon } from "novadesk";
-const inputBox = addon.load("D:/Novadesk-Project/InputBox/dist/x64/Debug/InputBox.dll");
+const inputBox = addon.load("path/to/InputBox.dll");
 
 inputBox.show({
   defaultValue: "50",
   inputType: "Integer",
   minValue: 0,
   maxValue: 100,
-  onEnter: () => console.log("Value:", inputBox.lastText()),
-  onInvalid: () => console.log("Invalid:", inputBox.lastText())
+  onEnter:   () => console.log("Value:", inputBox.lastText()),
+  onInvalid: () => console.log("Out of range:", inputBox.lastText()),
 });
 ```
 
-### Custom Character Set
+### Custom character set (hex color input)
 
 ```javascript
-import { addon } from "novadesk";
-const inputBox = addon.load("D:/Novadesk-Project/InputBox/dist/x64/Debug/InputBox.dll");
-
 inputBox.show({
   defaultValue: "FFAA00",
   inputType: "Custom",
-  allowedChars: "0123456789ABCDEFabcdef"
+  allowedChars: "0123456789ABCDEFabcdef",
+  maxLength: 6,
+  onEnter: () => console.log("Color:", "#" + inputBox.lastText()),
+});
+```
+
+### Multiline note
+
+```javascript
+inputBox.show({
+  multiline: true,
+  allowScroll: true,
+  width: 400,
+  height: 200,
+  onEnter: () => console.log("Note saved:", inputBox.lastText()),
 });
 ```

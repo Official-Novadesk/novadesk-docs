@@ -3,61 +3,85 @@ title: Extract file icons to ICO files with the fileIcon module.
 ---
 
 # fileIcon Module
-Extract a file's icon and save it as an `.ico` file in Novadesk.
 
-The `fileIcon` module is exported from the `system` module.
+Extract a file's associated icon and save it as an `.ico` file.
 
 ```javascript
 import { fileIcon } from "system";
 ```
 
+::: info Availability
+Available in the [Main script](/guides/script-types.html#main-script-the-brain) only.
+:::
+
 #### Table of Contents
 [[toc]]
 
-## `fileIcon.extractIcon(filePath, outIcoPath, [size])`
+## Methods
 
-Extracts an icon from a file and writes it to an `.ico` file.
+<MethodBox
+  name="fileIcon.extractIcon(filePath, outIcoPath [, size])"
+  badge="fileIcon"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'filePath', type: 'string', description: 'Source file path (.exe, .dll, or any file with an associated icon).' },
+    { name: 'outIcoPath', type: 'string', description: 'Output path for the extracted .ico file.' },
+    { name: 'size', type: 'number', optional: true, description: 'Preferred icon size in pixels. Defaults to 48.' }
+  ]"
+>
+<template #returns><code>true</code> if the icon was extracted and written successfully, <code>false</code> otherwise.</template>
 
-### Parameters
+Extracts the shell icon associated with a file and writes it to an `.ico` file on disk. Uses Windows Shell APIs to retrieve the icon, supporting both embedded icons (like those in .exe/.dll files) and file type associations.
 
-- **`filePath`**
-  - **Type**: `string`
-  - **Description**: Source file path (for example, an `.exe`, `.dll`, or other file with an associated icon).
+::: tip Icon Sources
+- Executable files (.exe, .dll) may contain embedded icons
+- Other files use the icon associated with their file type registration in Windows
+- The function attempts to get the best quality icon available at the requested size
+:::
 
-- **`outIcoPath`**
-  - **Type**: `string`
-  - **Description**: Output `.ico` file path.
+::: warning File Paths
+Both `filePath` and `outIcoPath` should be absolute paths or relative to the current working directory. The output directory must exist before calling this function.
+:::
 
-- **`size`**
-  - **Type**: `number`
-  - **Required**: No
-  - **Default**: `48`
-  - **Description**: Preferred icon size in pixels.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: `true` if icon extraction succeeded; otherwise `false`.
-
-## `fileIcon.extractFileIcon(filePath, outIcoPath, [size])`
-
-Alias of `fileIcon.extractIcon(filePath, outIcoPath, [size])`.
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: Same as `extractIcon()`.
-
-## Example
+<template #example>
 
 ```javascript
 import { fileIcon } from "system";
 
 const ok = fileIcon.extractIcon(
-    "C:\\Windows\\System32\\notepad.exe",
-    "C:\\Temp\\notepad.ico",
-    48
+  "C:\\Windows\\System32\\notepad.exe",
+  __dirname + "\\notepad.ico",
+  48
 );
-
-console.log("Icon extracted:", ok);
+console.log("Extracted:", ok);
 ```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="fileIcon.extractFileIcon(filePath, outIcoPath [, size])"
+  badge="fileIcon"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'filePath', type: 'string', description: 'Source file path.' },
+    { name: 'outIcoPath', type: 'string', description: 'Output path for the extracted .ico file.' },
+    { name: 'size', type: 'number', optional: true, description: 'Preferred icon size in pixels. Defaults to 48.' }
+  ]"
+>
+<template #returns><code>true</code> if the icon was extracted and written successfully, <code>false</code> otherwise.</template>
+
+Alias of `fileIcon.extractIcon()`. Identical behavior.
+
+<template #example>
+
+```javascript
+import { fileIcon } from "system";
+
+fileIcon.extractFileIcon("C:\\Windows\\System32\\calc.exe", __dirname + "\\calc.ico");
+```
+
+</template>
+</MethodBox>

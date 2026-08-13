@@ -3,58 +3,97 @@ title: Read monitor and virtual desktop metrics with the displayMetrics module.
 ---
 
 # displayMetrics Module
-Get virtual desktop bounds and connected monitor information in Novadesk.
 
-The `displayMetrics` module is exported from the `system` module.
+Get virtual desktop bounds and connected monitor information.
 
 ```javascript
 import { displayMetrics } from "system";
 ```
+
+::: info Availability
+Available in the [Main script](/guides/script-types.html#main-script-the-brain) only.
+:::
 
 #### Table of Contents
 [[toc]]
 
-## `displayMetrics.getMetrics()`
+---
 
-Returns display and monitor metrics.
+<MethodBox
+  name="displayMetrics.getMetrics()"
+  badge="displayMetrics"
+  badgeType="core"
+  returns="object"
+>
+<template #returns>An object with virtual desktop bounds, primary monitor data, and a <code>monitors</code> array.</template>
 
-### Return Value
+Returns the full display configuration — virtual desktop bounds and an entry for each connected monitor.
 
-- **Type**: `object`
-- **Description**: Contains:
-  - **`virtualLeft`** (`number`): Virtual desktop left coordinate.
-  - **`virtualTop`** (`number`): Virtual desktop top coordinate.
-  - **`virtualWidth`** (`number`): Virtual desktop width.
-  - **`virtualHeight`** (`number`): Virtual desktop height.
-  - **`primaryIndex`** (`number`): Index of the primary monitor in `monitors`.
-  - **`count`** (`number`): Number of monitors.
-  - **`monitors`** (`object[]`): Monitor entries:
-    - **`active`** (`boolean`): Whether the monitor is active.
-    - **`deviceName`** (`string`): System device name.
-    - **`monitorName`** (`string`): Human-readable monitor name.
-    - **`screen`** (`object`): Monitor bounds with `left`, `top`, `right`, `bottom`.
+The returned object has these properties:
 
-## `displayMetrics.get()`
+| Property | Type | Description |
+|---|---|---|
+| `virtualScreen` | `object` | Virtual desktop bounds with `x`, `y`, `width`, `height` properties. |
+| `primary` | `object` | Primary monitor data with `workArea` and `screenArea` objects. |
+| `monitors` | `object[]` | Array of monitor entries (see below). |
 
-Alias of `displayMetrics.getMetrics()`.
+Each entry in `monitors`:
 
-### Return Value
+| Property | Type | Description |
+|---|---|---|
+| `id` | `number` | Monitor identifier. |
+| `workArea` | `object` | Work area bounds (excludes taskbar) with `x`, `y`, `width`, `height` properties. |
+| `screenArea` | `object` | Full screen bounds with `x`, `y`, `width`, `height` properties. |
 
-- **Type**: `object`
-- **Description**: Same as `getMetrics()`.
+Each area object (`workArea`, `screenArea`) contains:
 
-## Example
+| Property | Type | Description |
+|---|---|---|
+| `x` | `number` | Left coordinate of the area. |
+| `y` | `number` | Top coordinate of the area. |
+| `width` | `number` | Width of the area in pixels. |
+| `height` | `number` | Height of the area in pixels. |
+
+<template #example>
 
 ```javascript
 import { displayMetrics } from "system";
 
-const metrics = displayMetrics.getMetrics();
+const m = displayMetrics.getMetrics();
 
-console.log("Virtual bounds:", metrics.virtualLeft, metrics.virtualTop, metrics.virtualWidth, metrics.virtualHeight);
-console.log("Primary monitor index:", metrics.primaryIndex);
-console.log("Monitor count:", metrics.count);
+console.log("Virtual desktop:", m.virtualScreen.width, "x", m.virtualScreen.height);
+console.log("Primary work area:", m.primary.workArea);
 
-for (const monitor of metrics.monitors) {
-    console.log("Monitor:", monitor.monitorName, monitor.deviceName, monitor.screen);
+for (const monitor of m.monitors) {
+  console.log("Monitor", monitor.id, "screen:", monitor.screenArea);
+  console.log("Monitor", monitor.id, "work area:", monitor.workArea);
 }
 ```
+
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="displayMetrics.get()"
+  badge="displayMetrics"
+  badgeType="core"
+  returns="object"
+>
+<template #returns>Same as <code>displayMetrics.getMetrics()</code>.</template>
+
+Alias of `displayMetrics.getMetrics()`.
+
+<template #example>
+
+```javascript
+import { displayMetrics } from "system";
+
+const m = displayMetrics.get();
+console.log("Virtual screen:", m.virtualScreen);
+console.log("Monitors:", m.monitors.length);
+```
+
+</template>
+</MethodBox>

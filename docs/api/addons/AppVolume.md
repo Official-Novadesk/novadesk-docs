@@ -3,151 +3,235 @@ title: Control per-application audio sessions with the AppVolume addon.
 ---
 
 # AppVolume Addon
-AppVolume lets you read and control audio sessions for individual apps on Windows. It is great for widgets, stream tools, and quick controls where you want to show or change an app volume without touching the master volume.
 
-This API comes from the AppVolume addon, not the `system` module.
+Read and control Windows audio sessions per application — ideal for per-app volume sliders and mute toggles.
 
 ```javascript
 import { addon } from "novadesk";
 const appVolume = addon.load("path/to/AppVolume.dll");
 ```
+
+::: info
+This API comes from the AppVolume addon, not the built-in `system` module.
+:::
 
 #### Table of Contents
 [[toc]]
 
-## Quick Start
+---
+
+<MethodBox
+  name="appVolume.listSessions()"
+  badge="AppVolume"
+  badgeType="core"
+  returns="object[]"
+>
+<template #returns>Array of audio session objects. Returns an empty array if enumeration fails.</template>
+
+Returns all active Windows output audio sessions. Each session maps to an application currently playing (or having recently played) audio.
+
+Each session object has:
+
+| Property | Type | Description |
+|---|---|---|
+| `pid` | `number` | Process ID. |
+| `processName` | `string` | Executable file name (e.g. `chrome.exe`). |
+| `fileName` | `string` | Executable file name. |
+| `filePath` | `string` | Full executable path when available. |
+| `iconPath` | `string` | Extracted `.ico` path cached in temp, or empty string. |
+| `displayName` | `string` | Session display name. |
+| `volume` | `number` | Session volume `0.0–1.0`. |
+| `peak` | `number` | Peak level `0.0–1.0`. |
+| `muted` | `boolean` | Whether the session is muted. |
+
+<template #example>
+
 ```javascript
-import { addon } from "novadesk";
-const appVolume = addon.load("path/to/AppVolume.dll");
-
 const sessions = appVolume.listSessions();
-console.log("sessions:", sessions.length);
+console.log("Active sessions:", sessions.length);
 
-if (sessions.length > 0) {
-  const s = sessions[0];
-  console.log("first:", s.processName, s.volume, s.muted);
-
-  appVolume.setVolumeByPid(s.pid, 0.5);
-  appVolume.setMuteByPid(s.pid, true);
+for (const s of sessions) {
+  console.log(s.processName, "vol:", s.volume, "muted:", s.muted);
 }
 ```
 
-## What Is a Session
-Each playing (or recently used) audio source in Windows creates an audio session. A session typically maps to a process, but some apps may create multiple sessions. The API returns each session and lets you change volume or mute for all matching sessions by PID or process name.
+</template>
+</MethodBox>
 
-## `listSessions()`
-Returns output audio sessions.
+---
 
-### Return Value
-- **Type**: `object[]`
-- **Description**: Array of session objects with:
-  - **`pid`** (`number`): Process ID.
-  - **`processName`** (`string`): Process file name (for example `chrome.exe`).
-  - **`fileName`** (`string`): Executable file name.
-  - **`filePath`** (`string`): Full executable path when available.
-  - **`iconPath`** (`string`): Extracted `.ico` path when available (cached in the system temp directory), otherwise empty string.
-  - **`displayName`** (`string`): Session display name.
-  - **`volume`** (`number`): Session volume in `0.0-1.0`.
-  - **`peak`** (`number`): Peak level in `0.0-1.0` (when available).
-  - **`muted`** (`boolean`): Session mute state.
+<MethodBox
+  name="appVolume.getByPid(pid)"
+  badge="AppVolume"
+  badgeType="core"
+  returns="object | null"
+  :parameters="[
+    { name: 'pid', type: 'number', description: 'Target process ID. Must be greater than 0.' }
+  ]"
+>
+<template #returns>Aggregated volume info for matching sessions, or <code>null</code> if no session matches the PID.</template>
 
-If session enumeration fails, an empty array is returned.
+Gets aggregated volume details for all sessions belonging to a process ID. Returns the average volume, peak maximum, and whether any session is muted.
 
-## `getByPid(pid)`
-Gets aggregated volume details for all sessions matching a PID.
+The returned object has: `volume` (average, `0.0–1.0`), `muted` (`true` if any session is muted), `peak` (maximum peak).
 
-### Parameters
-- **`pid`** (`number`): Target process ID. Must be greater than `0`.
+<template #example>
 
-### Return Value
-- **Type**: `object | null`
-- **Description**:
-  - Returns `null` when no session matches the PID.
-  - Otherwise returns:
-    - **`volume`** (`number`): Average volume of matching sessions (`0.0-1.0`).
-    - **`muted`** (`boolean`): `true` if any matching session is muted.
-    - **`peak`** (`number`): Maximum peak across matching sessions.
+```javascript
+const s = appVolume.listSessions()[0];
+const info = appVolume.getByPid(s.pid);
+if (info) {
+  console.log("Volume:", info.volume, "Muted:", info.muted);
+}
+```
 
-## `getByProcessName(name)`
-Gets aggregated volume details for all sessions matching a process name.
+</template>
+</MethodBox>
 
-### Parameters
-- **`name`** (`string`): Process name match (case-insensitive), usually executable file name like `"chrome.exe"`.
+---
 
-### Return Value
-- **Type**: `object | null`
-- **Description**: Same shape and behavior as `getByPid()`.
+<MethodBox
+  name="appVolume.getByProcessName(name)"
+  badge="AppVolume"
+  badgeType="core"
+  returns="object | null"
+  :parameters="[
+    { name: 'name', type: 'string', description: 'Process name to match (case-insensitive), e.g. chrome.exe.' }
+  ]"
+>
+<template #returns>Aggregated volume info for matching sessions, or <code>null</code> if no session matches the name.</template>
 
-## `setVolumeByPid(pid, volume01)`
-Sets volume for all sessions matching a PID.
+Same as `getByPid()` but matches by process name. Case-insensitive.
 
-### Parameters
-- **`pid`** (`number`): Target process ID. Must be greater than `0`.
-- **`volume01`** (`number`): Target volume in `0.0-1.0`. Values outside this range are clamped.
+<template #example>
 
-### Return Value
-- **Type**: `boolean`
-- **Description**: `true` if at least one matching session was updated; otherwise `false`.
+```javascript
+const info = appVolume.getByProcessName("Spotify.exe");
+if (info) console.log("Spotify volume:", info.volume);
+```
 
-## `setVolumeByProcessName(name, volume01)`
-Sets volume for all sessions matching a process name.
+</template>
+</MethodBox>
 
-### Parameters
-- **`name`** (`string`): Process name match (case-insensitive).
-- **`volume01`** (`number`): Target volume in `0.0-1.0`. Values outside this range are clamped.
+---
 
-### Return Value
-- **Type**: `boolean`
-- **Description**: `true` if at least one matching session was updated; otherwise `false`.
+<MethodBox
+  name="appVolume.setVolumeByPid(pid, volume01)"
+  badge="AppVolume"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'pid', type: 'number', description: 'Target process ID. Must be greater than 0.' },
+    { name: 'volume01', type: 'number', description: 'Target volume 0.0–1.0. Values outside this range are clamped.' }
+  ]"
+>
+<template #returns><code>true</code> if at least one matching session was updated, <code>false</code> otherwise.</template>
 
-## `setMuteByPid(pid, mute)`
-Sets mute state for all sessions matching a PID.
+Sets the volume for all audio sessions belonging to a process ID.
 
-### Parameters
-- **`pid`** (`number`): Target process ID. Must be greater than `0`.
-- **`mute`** (`boolean`): `true` to mute, `false` to unmute.
+<template #example>
 
-### Return Value
-- **Type**: `boolean`
-- **Description**: `true` if at least one matching session was updated; otherwise `false`.
+```javascript
+const s = appVolume.listSessions()[0];
+appVolume.setVolumeByPid(s.pid, 0.5); // 50%
+```
 
-## `setMuteByProcessName(name, mute)`
-Sets mute state for all sessions matching a process name.
+</template>
+</MethodBox>
 
-### Parameters
-- **`name`** (`string`): Process name match (case-insensitive).
-- **`mute`** (`boolean`): `true` to mute, `false` to unmute.
+---
 
-### Return Value
-- **Type**: `boolean`
-- **Description**: `true` if at least one matching session was updated; otherwise `false`.
+<MethodBox
+  name="appVolume.setVolumeByProcessName(name, volume01)"
+  badge="AppVolume"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'name', type: 'string', description: 'Process name to match (case-insensitive).' },
+    { name: 'volume01', type: 'number', description: 'Target volume 0.0–1.0. Values outside this range are clamped.' }
+  ]"
+>
+<template #returns><code>true</code> if at least one matching session was updated, <code>false</code> otherwise.</template>
 
-## Beginner Tips
-- Start by calling `listSessions()` and log the results. It helps you confirm process names and PIDs.
-- Some apps only create a session when audio is actually playing.
-- Use `setVolumeByPid` when you know the PID is stable, and `setVolumeByProcessName` for quick matching.
-- If you want to show icons, use `iconPath` and provide a fallback image for missing icons.
+Sets the volume for all audio sessions matching a process name.
 
-## Example Usage
+<template #example>
+
+```javascript
+appVolume.setVolumeByProcessName("chrome.exe", 0.3); // 30%
+```
+
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="appVolume.setMuteByPid(pid, mute)"
+  badge="AppVolume"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'pid', type: 'number', description: 'Target process ID. Must be greater than 0.' },
+    { name: 'mute', type: 'boolean', description: 'true to mute, false to unmute.' }
+  ]"
+>
+<template #returns><code>true</code> if at least one matching session was updated, <code>false</code> otherwise.</template>
+
+Mutes or unmutes all audio sessions belonging to a process ID.
+
+<template #example>
+
+```javascript
+const s = appVolume.listSessions()[0];
+appVolume.setMuteByPid(s.pid, true);
+```
+
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="appVolume.setMuteByProcessName(name, mute)"
+  badge="AppVolume"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'name', type: 'string', description: 'Process name to match (case-insensitive).' },
+    { name: 'mute', type: 'boolean', description: 'true to mute, false to unmute.' }
+  ]"
+>
+<template #returns><code>true</code> if at least one matching session was updated, <code>false</code> otherwise.</template>
+
+Mutes or unmutes all audio sessions matching a process name.
+
+<template #example>
+
+```javascript
+appVolume.setMuteByProcessName("Spotify.exe", true);
+```
+
+</template>
+</MethodBox>
+
+---
+
+## Full Example
+
 ```javascript
 import { addon } from "novadesk";
 const appVolume = addon.load("path/to/AppVolume.dll");
 
 const sessions = appVolume.listSessions();
-console.log("sessions:", sessions.length);
-
 if (sessions.length > 0) {
-    const first = sessions[0];
-    console.log("first session:", first.processName, first.volume, first.muted);
+  const first = sessions[0];
+  console.log("App:", first.processName, "Vol:", first.volume, "Muted:", first.muted);
 
-    // Set session group by process name to 50% volume.
-    appVolume.setVolumeByProcessName(first.processName, 0.5);
+  appVolume.setVolumeByProcessName(first.processName, 0.5);
+  appVolume.setMuteByPid(first.pid, false);
 
-    // Mute and unmute by PID.
-    appVolume.setMuteByPid(first.pid, true);
-    appVolume.setMuteByPid(first.pid, false);
-
-    const stats = appVolume.getByPid(first.pid);
-    console.log("aggregated:", stats);
+  const agg = appVolume.getByPid(first.pid);
+  console.log("Aggregated:", agg);
 }
 ```

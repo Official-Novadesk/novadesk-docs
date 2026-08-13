@@ -4,116 +4,118 @@ title: Apply blur/acrylic and rounded corners with the BlurBehind addon.
 
 # BlurBehind Addon
 
-The BlurBehind addon applies Windows blur/acrylic effects and optional corner style to a target window handle (`HWND`).
+Apply Windows blur/acrylic background effects and rounded corner styles to a widget window handle.
+
+```javascript
+import { addon } from "novadesk";
+const blurBehind = addon.load("path/to/BlurBehind.dll");
+```
 
 #### Table of Contents
 [[toc]]
 
-## Quick Start
+---
+
+<MethodBox
+  name="blurBehind.apply(hwnd [, type, corner])"
+  badge="BlurBehind"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'hwnd', type: 'number | string', description: 'Target window handle. Supports numeric HWND, decimal string, or hex string (0x... format).' },
+    { name: 'type', type: 'string', optional: true, description: 'Effect type: blurbehind (default), acrylic, none, or disabled.' },
+    { name: 'corner', type: 'string', optional: true, description: 'Corner style: default (default), round, roundsmall, or none.' }
+  ]"
+>
+<template #returns><code>true</code> if the effect was applied successfully, <code>false</code> otherwise.</template>
+
+Applies a blur or acrylic background effect to the target window and optionally sets its corner style. Throws if the window handle is invalid.
+
+**Effect types:**
+
+| Value | Description |
+|---|---|
+| `blurbehind` | Standard blur-behind effect (default). |
+| `acrylic` | Acrylic/frosted glass effect. |
+| `none` / `disabled` | Removes any active effect. |
+
+**Corner styles:**
+
+| Value | Description |
+|---|---|
+| `default` | System default rounded corners. |
+| `round` | Rounded corners. |
+| `roundsmall` | Small rounded corners. |
+| `none` | Sharp corners (no rounding). |
+
+::: info
+Corner styles depend on Windows version and compositor support. They require Windows 11 or later.
+:::
+
+<template #example>
 
 ```javascript
 import { addon, widgetWindow } from "novadesk";
+const blurBehind = addon.load("path/to/BlurBehind.dll");
 
-const blurBehind = addon.load("./Addons/BlurBehind.dll");
-const hwnd = widgetWindow.getHandle();
+const win = new widgetWindow({ id: "demo", width: 400, height: 300, script: "ui.js" });
+const hwnd = win.getHandle();
 
-const ok = blurBehind.apply(hwnd, "blur", "round");
-console.log("Blur applied:", ok);
-```
-
-## `apply(hwnd, type?, corner?)`
-
-Applies blur/acrylic effect to a window and optionally sets corner preference.
-
-### Parameters
-
-- `hwnd` (`number | string`)
-  - Target window handle.
-  - Supports numeric handle, decimal string, or hex string (`0x...` or zero-padded hex).
-- `type` (`string`, optional, default `"blurbehind"`)
-  - Supported values:
-    - `"blurbehind"`
-    - `"acrylic"`
-    - `"none"` or `"disabled"` (removes effect)
-- `corner` (`string`, optional, default `"default"`)
-  - Supported values:
-    - `"default"`
-    - `"round"`
-    - `"roundsmall"`
-    - `"none"` (disable rounded corners)
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: `true` if the effect call succeeded; otherwise `false`.
-
-### Errors
-
-- Throws an error if `hwnd` is invalid.
-- Throws an error when passing an object as the first argument (object config is not supported by current host API).
-
-## `disable(hwnd)`
-
-Removes blur/acrylic effect from a window.
-
-### Parameters
-
-- `hwnd` (`number | string`)
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: `true` if disable succeeded; otherwise `false`.
-
-### Errors
-
-- Throws an error if `hwnd` is invalid.
-
-## `setCorner(hwnd, corner)`
-
-Sets only the corner preference without changing blur/acrylic state.
-
-### Parameters
-
-- `hwnd` (`number | string`)
-- `corner` (`string`)
-  - `"default"`, `"round"`, `"roundsmall"`, `"none"`
-
-### Return Value
-
-- **Type**: `boolean`
-- **Description**: `true` on success; otherwise `false`.
-
-### Errors
-
-- Throws an error if `hwnd` is invalid.
-
-## Notes
-
-- Corner styles depend on Windows version/compositor support.
-- If the window handle is not valid or no longer exists, calls fail.
-
-## Examples
-
-### Acrylic + Small Rounded Corners
-
-```javascript
-import { addon, widgetWindow } from "novadesk";
-
-const blurBehind = addon.load("./Addons/BlurBehind.dll");
-const hwnd = widgetWindow.getHandle();
-
+// Acrylic + small rounded corners
 blurBehind.apply(hwnd, "acrylic", "roundsmall");
+
+// Standard blur, default corners
+blurBehind.apply(hwnd, "blurbehind");
 ```
 
-### Disable Effect
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="blurBehind.disable(hwnd)"
+  badge="BlurBehind"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'hwnd', type: 'number | string', description: 'Target window handle.' }
+  ]"
+>
+<template #returns><code>true</code> if the effect was removed, <code>false</code> otherwise.</template>
+
+Removes any active blur or acrylic effect from the window. Equivalent to calling `apply(hwnd, "none")`.
+
+<template #example>
 
 ```javascript
-import { addon, widgetWindow } from "novadesk";
-
-const blurBehind = addon.load("./Addons/BlurBehind.dll");
-const hwnd = widgetWindow.getHandle();
-
 blurBehind.disable(hwnd);
 ```
 
+</template>
+</MethodBox>
+
+---
+
+<MethodBox
+  name="blurBehind.setCorner(hwnd, corner)"
+  badge="BlurBehind"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'hwnd', type: 'number | string', description: 'Target window handle.' },
+    { name: 'corner', type: 'string', description: 'Corner style: default, round, roundsmall, or none.' }
+  ]"
+>
+<template #returns><code>true</code> on success, <code>false</code> otherwise.</template>
+
+Sets only the corner style of a window without changing the blur/acrylic state.
+
+<template #example>
+
+```javascript
+blurBehind.setCorner(hwnd, "round");
+```
+
+</template>
+</MethodBox>

@@ -4,145 +4,142 @@ title: Parse, stringify, read, and write JSON with the json module.
 
 # json Module
 
-Work with JSON values and JSON files from the `system` module.
+Work with JSON values and JSON files.
 
 ```javascript
 import { json } from "system";
 ```
+
+::: info Availability
+Available in the [Main script](/guides/script-types.html#main-script-the-brain) only.
+:::
 
 #### Table of Contents
 [[toc]]
 
-## `json.parse(text)`
+## Methods
 
-Parses JSON text into a JS value.
+<MethodBox
+  name="json.parse(text)"
+  badge="json"
+  badgeType="core"
+  returns="any"
+  :parameters="[
+    { name: 'text', type: 'string', description: 'JSON source text to parse.' }
+  ]"
+>
+<template #returns>The parsed JavaScript value — object, array, string, number, boolean, or null.</template>
 
-### Parameters
+Parses a JSON string into a JavaScript value. Throws if the text is not valid JSON.
 
-- **`text`**
-  - **Type**: `string`
-  - **Description**: JSON source text.
-
-### Return Value
-
-- **Type**: `any`
-- **Description**: Parsed object/array/value.
-
-### Errors
-
-- Throws if text is invalid JSON.
-
-### Example
+<template #example>
 
 ```javascript
 import { json } from "system";
 
-const obj = json.parse('{ "name": "Novadesk", "v": 1 }');
-console.log(obj.name, obj.v);
+const obj = json.parse('{"name":"Novadesk","version":1}');
+console.log(obj.name);    // "Novadesk"
+console.log(obj.version); // 1
 ```
 
-## `json.stringify(value[, space])`
+</template>
+</MethodBox>
 
-Converts a JS value to JSON text.
+<MethodBox
+  name="json.stringify(value [, space])"
+  badge="json"
+  badgeType="core"
+  returns="string"
+  :parameters="[
+    { name: 'value', type: 'any', description: 'The JavaScript value to serialize.' },
+    { name: 'space', type: 'number | string', optional: true, description: 'Indentation for pretty-printing. Pass a number of spaces or a string.' }
+  ]"
+>
+<template #returns>The JSON-encoded string representation of the value.</template>
 
-### Parameters
+Converts a JavaScript value to a JSON string.
 
-- **`value`**
-  - **Type**: `any`
-- **`space`**
-  - **Type**: `number | string`
-  - **Required**: No
-  - **Description**: Pretty-print indentation.
-
-### Return Value
-
-- **Type**: `string`
-
-### Example
+<template #example>
 
 ```javascript
 import { json } from "system";
 
 const s = json.stringify({ name: "Novadesk", ok: true }, 2);
 console.log(s);
+// {
+//   "name": "Novadesk",
+//   "ok": true
+// }
 ```
 
-## `json.read(path)`
+</template>
+</MethodBox>
 
-Reads a JSON file and parses it.
+<MethodBox
+  name="json.read(path)"
+  badge="json"
+  badgeType="core"
+  returns="object | array | null"
+  :parameters="[
+    { name: 'path', type: 'string', description: 'Absolute path or path relative to the entry script directory.' }
+  ]"
+>
+<template #returns">The parsed JSON value on success, an empty object <code>{}</code> for empty/whitespace-only files, or <code>null</code> if the file cannot be read or does not exist.</template>
 
-### Parameters
+Reads a JSON file from disk and parses it. If the file exists but contains only whitespace, returns an empty object `{}`. Throws if the file exists but contains invalid JSON.
 
-- **`path`**
-  - **Type**: `string`
-  - **Description**: Absolute path or path relative to entry script directory.
+::: info Path Resolution
+Paths are resolved relative to the current script directory. If no current script directory is available, falls back to the entry script directory, and finally to the widgets directory.
+:::
 
-### Return Value
-
-- **Type**: `object | array | null`
-- **Description**:
-  - Returns parsed JSON value on success.
-  - Returns `{}` when file is empty/whitespace.
-  - Returns `null` if file cannot be read.
-
-### Errors
-
-- Throws if file exists but contains invalid JSON.
-
-### Example
+<template #example>
 
 ```javascript
 import { json } from "system";
 
-const data = json.read("./data/settings.json");
+const data = json.read(__dirname + "\\settings.json");
 if (data !== null) {
-    console.log("theme:", data.theme);
+  console.log("theme:", data.theme);
 }
 ```
 
-## `json.write(path, value[, merge])`
+</template>
+</MethodBox>
 
-Writes JSON to file.
+<MethodBox
+  name="json.write(path, value [, merge])"
+  badge="json"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'path', type: 'string', description: 'Absolute path or path relative to the entry script directory.' },
+    { name: 'value', type: 'any', description: 'The value to serialize and write.' },
+    { name: 'merge', type: 'boolean', optional: true, description: 'false (default) overwrites the file. true applies JSON merge-patch against the existing file.' }
+  ]"
+>
+<template #returns><code>true</code> on success, <code>false</code> on failure.</template>
 
-### Parameters
+Writes a value as pretty-printed JSON to a file (indented with 4 spaces). When `merge` is `true`, the existing file is read first and a JSON merge-patch is applied — useful for updating specific fields without overwriting others.
 
-- **`path`**
-  - **Type**: `string`
-  - **Description**: Absolute path or path relative to entry script directory.
-- **`value`**
-  - **Type**: `any`
-  - **Description**: Value to serialize as JSON.
-- **`merge`**
-  - **Type**: `boolean`
-  - **Required**: No
-  - **Default**: `false`
-  - **Description**:
-    - `false`: overwrite file with pretty JSON.
-    - `true`: apply JSON merge-patch behavior against existing file.
+::: info Path Resolution
+Paths are resolved relative to the current script directory. If no current script directory is available, falls back to the entry script directory, and finally to the widgets directory.
+:::
 
-### Return Value
+::: tip JSON Merge Patch
+When using `merge: true`, the function performs [JSON Merge Patch (RFC 7396)](https://tools.ietf.org/html/rfc7396) to combine the existing file content with the new value. This allows selective updates of object properties.
+:::
 
-- **Type**: `boolean`
-- **Description**: `true` on success; otherwise `false`.
-
-### Example (overwrite)
-
-```javascript
-import { json } from "system";
-
-const ok = json.write("./data/settings.json", {
-    theme: "dark",
-    refreshMs: 500
-});
-console.log("write:", ok);
-```
-
-### Example (merge patch)
+<template #example>
 
 ```javascript
 import { json } from "system";
 
-// Patch only one field in existing JSON file
-const ok = json.write("./data/settings.json", { refreshMs: 1000 }, true);
-console.log("merge write:", ok);
+// Overwrite
+json.write(__dirname + "\\settings.json", { theme: "dark", refreshMs: 500 });
+
+// Merge — only updates refreshMs, leaves other fields intact
+json.write(__dirname + "\\settings.json", { refreshMs: 1000 }, true);
 ```
+
+</template>
+</MethodBox>

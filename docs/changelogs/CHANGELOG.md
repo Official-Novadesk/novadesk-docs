@@ -1,5 +1,54 @@
 # Changelog
 
+## [0.9.10.0-beta] - 2026-08-13
+###### 📅 13th August, 2026
+
+### Added
+
+* Added `dialog.show(options)` API for displaying native Windows modal dialogs from JavaScript scripts.
+  * Supports `title`, `message`, `type`, and `buttons` options.
+  * `type` accepts `"info"` / `"information"`, `"warning"` / `"warn"`, `"error"`, and `"question"`.
+  * `buttons` accepts `"ok"`, `"ok-cancel"`, `"yes-no"`, `"yes-no-cancel"`, `"retry-cancel"`, and `"abort-retry-ignore"`. Hyphenated and non-hyphenated forms are both supported (e.g. `"ok-cancel"` and `"okcancel"`).
+  * Returns the clicked button as a lowercase string: `"ok"`, `"cancel"`, `"yes"`, `"no"`, `"retry"`, `"abort"`, or `"ignore"`.
+  * Defaults to `type: "info"` and `buttons: "ok"` when not specified. Empty strings also fall back to defaults.
+  * Both `type` and `buttons` are case-insensitive.
+* Added `toast` API for sending Windows toast notifications from JavaScript scripts.
+  * `toast.show(options)` — displays a notification and returns a numeric toast ID, or `null` on failure.
+  * `toast.hide(id)` — programmatically dismisses a notification by ID.
+  * `toast.clear()` — dismisses all active notifications from the current widget session.
+  * `toast.initialize([options])` — explicitly initializes the notification system with custom app identity (`appName`, `companyName`, `productName`, `aumi`). Called automatically by `toast.show()` if not already initialized.
+  * `toast.isCompatible()` — checks whether Windows toast notifications are supported on the current system.
+  * `toast.isInitialized()` — returns whether the notification system is ready.
+  * `toast.getLastError()` — returns the error message from the last failed `toast.show()` call.
+  * `toast.show()` supports: `title`, `message` / `body`, `thirdLine`, `attribution`, `image` / `imagePath`, `heroImage` / `heroImagePath`, `inlineHeroImage`, `crop`, `actions`, `input`, `duration`, `scenario`, `audio`, `audioPath`, `silent`, `loop`, and `expiration`.
+  * Callback support: `onActivated` / `onActivate` / `onClick`, `onAction`, `onInput`, `onDismissed` / `onDismiss`, `onFailed` / `onFail`.
+  * `duration` accepts `"short"`, `"long"`, and `"system"`.
+  * `scenario` accepts `"default"`, `"alarm"`, `"incomingCall"` / `"incoming-call"`, and `"reminder"`.
+  * `audio` accepts `"default"`, `"im"`, `"mail"`, `"reminder"`, `"sms"`, `"alarm"`, and `"call"`.
+  * `crop` accepts `"square"` (default) and `"circle"`.
+  * Relative paths for `image`, `heroImage`, and `audioPath` resolve from the current script directory.
+* Added online font support for Text and InputBox elements.
+  * Font URLs can be passed to `fontPath` to download and use remote fonts.
+  * Fonts are loaded asynchronously so the UI does not block while a font downloads.
+  * Downloaded fonts are cached in memory to avoid repeated network requests.
+  * Added WOFF2 / Brotli decompression support for downloaded fonts.
+* Added URL support for widget UI scripts — UI scripts can now be loaded from remote locations in addition to local file paths.
+* Added URL support for image element sources — `image`, `Bitmap`, `Button`, and `Rotator` elements can now load images directly from HTTP/HTTPS URLs.
+  * A built-in fallback image is displayed while a remote image is loading or if it fails.
+  * Custom fallback paths can be set via `SetFallbackPath()`.
+
+### Improved
+
+* Improved `AreaGraphElement` dimension calculations. Rendering dimensions now consistently use the element's calculated width and height, with padding properly taken into account for the drawable area.
+* Improved asynchronous font downloading — the widget window handle is now guaranteed to be available before any async font operation begins.
+* Improved in-memory font loading and caching through `FontManager`. Fonts no longer rely on persistent temporary files, improving font lifetime and reuse.
+* Reduced unnecessary log output from `ButtonElement` by disabling the informational render log generated after each successful render pass.
+
+### Fixed
+
+* Fixed `TIMER_ANIMATION` and `kTimerId` to use timer ID `6`, keeping timer identifiers consistent between animation and widget code.
+
+<!-- ================================================================================= -->
 ## [0.9.9.0-beta] - 2026-07-04
 ###### 📅 04th July, 2026
 

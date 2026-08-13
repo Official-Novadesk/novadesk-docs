@@ -4,70 +4,70 @@ title: Launch files, apps, and URLs with execute from the system module.
 
 # Execute
 
-Launch an app, open a file, or open a URL using `execute` from the `system` module.
+Launch an app, open a file, folder, or URL through the OS shell.
 
 ```javascript
 import { execute } from "system";
 ```
+
+::: info Availability
+Available in the [Main script](/guides/script-types.html#main-script-the-brain) only.
+:::
 
 #### Table of Contents
 [[toc]]
 
-## `execute(target[, parameters, workingDir, show])`
+## Methods
 
-Executes a target through the OS shell.
+<MethodBox
+  name="execute(target [, parameters, workingDir, show])"
+  badge="system"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'target', type: 'string', description: 'Executable path, document path, folder path, or URL to open.' },
+    { name: 'parameters', type: 'string', optional: true, description: 'Command-line arguments passed to the launched executable.' },
+    { name: 'workingDir', type: 'string', optional: true, description: 'Working directory for the launched process.' },
+    { name: 'show', type: 'number', optional: true, description: 'Window show mode (Win32 SW_* constant). Defaults to 1 (SW_SHOWNORMAL).' }
+  ]"
+>
+<template #returns><code>true</code> if the OS shell accepted the request, <code>false</code> otherwise.</template>
 
-### Parameters
+Executes a target through the Windows shell — equivalent to double-clicking a file or typing a URL in the Run dialog. Uses `ShellExecute` internally to launch files, applications, or URLs.
 
-- **`target`**
-  - **Type**: `string`
-  - **Required**: Yes
-  - **Description**: Executable path, document/file path, folder path, or URL.
-- **`parameters`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: Command-line arguments passed when launching an executable.
-- **`workingDir`**
-  - **Type**: `string`
-  - **Required**: No
-  - **Description**: Working directory for the launched process.
-- **`show`**
-  - **Type**: `number`
-  - **Required**: No
-  - **Default**: `1` (`SW_SHOWNORMAL`)
-  - **Description**: Window show mode passed to the shell.
+**Common `show` values:**
 
-### Return Value
+| Value | Constant | Behavior |
+|---|---|---|
+| `0` | `SW_HIDE` | Launch hidden (no window) |
+| `1` | `SW_SHOWNORMAL` | Normal window (default) |
+| `2` | `SW_SHOWMINIMIZED` | Start minimized |
+| `3` | `SW_SHOWMAXIMIZED` | Start maximized |
 
-- **Type**: `boolean`
-- **Description**: `true` if launch succeeded; otherwise `false`.
+::: warning Parameters
+All parameters except `target` are optional. When not provided:
+- `parameters` defaults to empty string
+- `workingDir` defaults to empty string (uses system default)  
+- `show` defaults to `1` (`SW_SHOWNORMAL`)
+:::
 
-### Errors
-
-- Throws a `TypeError` when `target` is missing.
-
-### Example: Launch Notepad
-
-```javascript
-import { execute } from "system";
-
-const ok = execute("notepad.exe", "README.txt");
-console.log("launched:", ok);
-```
-
-### Example: Open URL
+<template #example>
 
 ```javascript
 import { execute } from "system";
 
+// Open a file with its default app
+execute("C:\\docs\\readme.txt");
+
+// Launch an exe with arguments
+execute("notepad.exe", "C:\\docs\\readme.txt");
+
+// Open a URL in the default browser
 execute("https://novadesk.pages.dev/");
+
+// Run a command hidden
+execute("cmd.exe", "/c echo hello > C:\\temp\\out.txt", "C:\\temp", 0);
 ```
 
-### Example: Launch Hidden (Show Flag)
-
-```javascript
-import { execute } from "system";
-
-// 0 = SW_HIDE
-execute("cmd.exe", "/c echo hello > out.txt", "C:\\temp", 0);
-```
+</template>
+</MethodBox>

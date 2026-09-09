@@ -1,5 +1,6 @@
 ---
 title: Launch files, apps, and URLs with execute from the system module.
+description: Launch files, applications, and URLs through the Windows shell.
 ---
 
 # Execute

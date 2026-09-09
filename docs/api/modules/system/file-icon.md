@@ -1,5 +1,6 @@
 ---
 title: Extract file icons to ICO files with the fileIcon module.
+description: Extract file icons and save them as ICO files.
 ---
 
 # fileIcon Module

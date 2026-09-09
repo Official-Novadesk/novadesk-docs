@@ -1,5 +1,6 @@
 ---
 title: clipboard
+description: Read and write clipboard text content.
 ---
 
 # clipboard

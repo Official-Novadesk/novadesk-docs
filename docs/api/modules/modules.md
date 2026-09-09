@@ -1,5 +1,6 @@
 ---
 title: Modules Overview
+description: "Overview of all Novadesk modules: novadesk, system, and fs."
 ---
 
 # Modules
@@ -59,38 +60,41 @@ console.log("Used RAM:", formatBytes(used));
 ## Module Families
 
 ### `fs` module
-File-system APIs for reading/writing files and managing directories.
+File-system APIs for reading/writing files, managing directories, and working with zip archives.
 
-- [fs](/api/modules/fs.html): Read, write, copy, rename, list, and inspect files/directories.
+- [fs](/api/modules/fs.html): Read, write, copy, rename, list, inspect files/directories, and zip/unzip operations.
 
 ### `novadesk` module
 Runtime and app-control APIs.
 
-- [app](/api/modules/novadesk/app.html): App lifecycle, logging, version and paths.
-- [tray](/api/modules/novadesk/tray.html): System tray constructor, menu control, and events.
-- [widgetWindow](/api/modules/novadesk/widgetWindow.html): Create and manage widget windows.
-- [addon](/api/modules/novadesk/addon.html): Load and manage native C++ DLL addons.
+- [app](/api/modules/novadesk/app): App lifecycle, logging, version and paths.
+- [tray](/api/modules/novadesk/tray): System tray constructor, menu control, and events.
+- [widgetWindow](/api/modules/novadesk/widgetWindow): Create and manage widget windows.
+- [addon](/api/modules/novadesk/addon): Load and manage native C++ DLL addons.
+- [toast](/api/modules/novadesk/toast): Show Windows toast notifications.
+- [dialog](/api/modules/novadesk/dialog): Show message boxes and file dialogs.
 
 ### `system` module
 Windows/system integration APIs.
 
 - [audio](/api/modules/system/audio.html): Master volume and WAV playback.
 - [clipboard](/api/modules/system/clipboard.html): Read and write clipboard text.
+- [colors](/api/modules/system/colors.html): Read system colors, dark mode, and accent color.
 - [cpu](/api/modules/system/cpu.html): Read CPU usage metrics.
 - [disk](/api/modules/system/disk.html): Read disk usage information.
-- [displayMetrics](/api/modules/system/displayMetrics.html): Read monitor and desktop bounds.
+- [displayMetrics](/api/modules/system/display-metrics.html): Read monitor and desktop bounds.
 - [env](/api/modules/system/env.html): Read environment variables.
 - [execute](/api/modules/system/execute.html): Launch files, apps, and URLs.
-- [fileIcon](/api/modules/system/fileIcon.html): Extract file icons to `.ico`.
+- [fileIcon](/api/modules/system/file-icon.html): Extract file icons to `.ico`.
 - [json](/api/modules/system/json.html): Parse/stringify plus JSON file helpers.
 - [memory](/api/modules/system/memory.html): Read RAM usage metrics.
 - [network](/api/modules/system/network.html): Read network throughput and totals.
 - [power](/api/modules/system/power.html): Read battery and power state.
-- [recycleBin](/api/modules/system/recycleBin.html): Open, empty, and inspect Recycle Bin.
+- [recycleBin](/api/modules/system/recycle-bin.html): Open, empty, and inspect Recycle Bin.
 - [registry](/api/modules/system/registry.html): Read and write Windows registry values.
 - [time](/api/modules/system/time.html): Format time and work with timestamps.
 - [wallpaper](/api/modules/system/wallpaper.html): Get/set desktop wallpaper.
-- [webFetch](/api/modules/system/webfetch.html): Fetch text from web URLs and files (Promise-based).
+- [webFetch](/api/modules/system/webFetch.html): Fetch text from web URLs and files (Promise-based).
 
 ## Notes and Best Practices
 

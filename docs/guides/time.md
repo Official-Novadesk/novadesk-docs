@@ -1,9 +1,10 @@
 ---
 title: Time And Date (Quick JS)
+description: Time and date handling in QuickJS and the system.time module.
 ---
 
 # Time And Date (Quick JS)
-Novadesk uses the Quick JS JavaScript engine, so time and date behavior follows the ECMAScript 5.1 `Date` built-in. Quick JS targets ES5/ES5.1 semantics, and its `Date` implementation relies on the host platform for local time, time zone, and formatting details.
+Novadesk uses the QuickJS JavaScript engine. See the [system.time module](/api/modules/system/time) for formatted time utilities, so time and date behavior follows the ECMAScript 5.1 `Date` built-in. Quick JS targets ES5/ES5.1 semantics, and its `Date` implementation relies on the host platform for local time, time zone, and formatting details.
 
 #### Table of Contents
 [[toc]]

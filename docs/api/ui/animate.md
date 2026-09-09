@@ -1,5 +1,6 @@
 ---
 title: ui.animate()
+description: Animate UI element properties with keyframes and tweens.
 ---
 
 # ui.animate()

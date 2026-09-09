@@ -95,91 +95,46 @@ export default defineConfig({
           { text: "Timers", link: "/api/timers" },
           { text: "IPC", link: "/api/ipc" },
           {
-            text: "UI Object APIs",
-            collapsed: true,
+            text: "UI APIs",
+            collapsed: false,
             items: [
               {
-                text: "UI Object Methods",
+                text: "UI Object",
                 link: "/api/ui/ui-object",
-                collapsed: true,
-                items: []
               },
               {
-                text: "animate",
+                text: "Animate",
                 link: "/api/ui/animate",
               },
               {
                 text: "General Options",
-                items: [
-                  {
-                    text: "General Element Options",
-                    link: "/api/ui/ui-elements/general-options/general-elements-options",
-                  },
-                  {
-                    text: "General Image Options",
-                    link: "/api/ui/ui-elements/general-options/general-image-options",
-                  },
-                ],
+                link: "/api/ui/ui-elements/general-options",
               },
               {
                 text: "UI Elements",
-                collapsed: true,
+                collapsed: false,
                 items: [
-                  {
-                    text: "addAreaGraph",
-                    link: "/api/ui/ui-elements/addAreaGraph",
-                  },
-                  { text: "addBar", link: "/api/ui/ui-elements/addBar" },
-                  { text: "addLine", link: "/api/ui/ui-elements/addLine" },
-
-                  {
-                    text: "addHistogram",
-                    link: "/api/ui/ui-elements/addHistogram",
-                  },
-                  {
-                    text: "addShape",
-                    link: "/api/ui/ui-elements/addShape",
-                  },
-                  {
-                    text: "addImage",
-                    link: "/api/ui/ui-elements/addImage",
-                  },
-                  {
-                    text: "addButton",
-                    link: "/api/ui/ui-elements/addButton",
-                  },
-                  {
-                    text: "addBitmap",
-                    link: "/api/ui/ui-elements/addBitmap",
-                  },
-                  {
-                    text: "addRotator",
-                    link: "/api/ui/ui-elements/addRotator",
-                  },
-                  {
-                    text: "addRoundLine",
-                    link: "/api/ui/ui-elements/addRoundLine",
-                  },
-                  {
-                    text: "addLayoutBox",
-                    link: "/api/ui/ui-elements/addLayoutBox",
-                  },
-                  {
-                    text: "addInputBox",
-                    link: "/api/ui/ui-elements/addInputBox",
-                  },
-                  {
-                    text: "addText",
-                    link: "/api/ui/ui-elements/addText",
-                  },
+                  { text: "addAreaGraph", link: "/api/ui/ui-elements/add-area-graph" },
+                  { text: "addBar", link: "/api/ui/ui-elements/add-bar" },
+                  { text: "addBitmap", link: "/api/ui/ui-elements/add-bitmap" },
+                  { text: "addButton", link: "/api/ui/ui-elements/add-button" },
+                  { text: "addColorPicker", link: "/api/ui/ui-elements/add-color-picker" },
+                  { text: "addHistogram", link: "/api/ui/ui-elements/add-histogram" },
+                  { text: "addImage", link: "/api/ui/ui-elements/add-image" },
+                  { text: "addInputBox", link: "/api/ui/ui-elements/add-input-box" },
+                  { text: "addLayoutBox", link: "/api/ui/ui-elements/add-layout-box" },
+                  { text: "addLine", link: "/api/ui/ui-elements/add-line" },
+                  { text: "addRotator", link: "/api/ui/ui-elements/add-rotator" },
+                  { text: "addRoundLine", link: "/api/ui/ui-elements/add-round-line" },
+                  { text: "addShape", link: "/api/ui/ui-elements/add-shape" },
+                  { text: "addText", link: "/api/ui/ui-elements/add-text" },
                 ]
               },
             ],
           },
           {
             text: "Modules",
-            collapsed: true,
-            link: "/api/modules/modules",
+            collapsed: false,
             items: [
               {
                 text: "fs",
@@ -187,77 +142,68 @@ export default defineConfig({
               },
               {
                 text: "novadesk",
-                collapsed: true,
+                collapsed: false,
                 items: [
                   { text: "addon", link: "/api/modules/novadesk/addon" },
                   { text: "app", link: "/api/modules/novadesk/app" },
                   { text: "dialog", link: "/api/modules/novadesk/dialog" },
                   { text: "toast", link: "/api/modules/novadesk/toast" },
                   { text: "tray", link: "/api/modules/novadesk/tray" },
-                  {
-                    text: "widgetWindow",
-                    link: "/api/modules/novadesk/widgetWindow",
-                  },
+                  { text: "widgetWindow", link: "/api/modules/novadesk/widgetWindow" },
                 ],
               },
               {
                 text: "system",
                 collapsed: true,
                 items: [
-                  {
-                    text: "audio",
-                    link: "/api/modules/system/audio",
-                  },
-                  {
-                    text: "clipboard",
-                    link: "/api/modules/system/clipboard",
-                  },
+                  { text: "audio", link: "/api/modules/system/audio" },
+                  { text: "clipboard", link: "/api/modules/system/clipboard" },
+                  { text: "colors", link: "/api/modules/system/colors" },
                   { text: "cpu", link: "/api/modules/system/cpu" },
                   { text: "disk", link: "/api/modules/system/disk" },
+                  { text: "displayMetrics", link: "/api/modules/system/display-metrics" },
                   { text: "env", link: "/api/modules/system/env" },
                   { text: "execute", link: "/api/modules/system/execute" },
-                  {
-                    text: "displayMetrics",
-                    link: "/api/modules/system/displayMetrics",
-                  },
-                  {
-                    text: "fileIcon",
-                    link: "/api/modules/system/fileIcon",
-                  },
+                  { text: "fileIcon", link: "/api/modules/system/file-icon" },
                   { text: "json", link: "/api/modules/system/json" },
                   { text: "memory", link: "/api/modules/system/memory" },
                   { text: "network", link: "/api/modules/system/network" },
                   { text: "power", link: "/api/modules/system/power" },
-                  {
-                    text: "recycleBin",
-                    link: "/api/modules/system/recycleBin",
-                  },
-                  {
-                    text: "registry",
-                    link: "/api/modules/system/registry",
-                  },
+                  { text: "recycleBin", link: "/api/modules/system/recycle-bin" },
+                  { text: "registry", link: "/api/modules/system/registry" },
                   { text: "time", link: "/api/modules/system/time" },
-                  {
-                    text: "wallpaper",
-                    link: "/api/modules/system/wallpaper",
-                  },
-                  { text: "webFetch", link: "/api/modules/system/webfetch" },
+                  { text: "wallpaper", link: "/api/modules/system/wallpaper" },
+                  { text: "webFetch", link: "/api/modules/system/webFetch" },
                 ],
               },
             ],
           },
           {
-            text: "addons",
+            text: "Addons",
             collapsed: true,
             items: [
-              { text: "AppVolume", link: "/api/addons/AppVolume" },
-              { text: "AudioLevel", link: "/api/addons/AudioLevel" },
-              { text: "Brightness", link: "/api/addons/Brightness" },
-              { text: "BlurBehind", link: "/api/addons/BlurBehind" },
-              { text: "Hotkey", link: "/api/addons/Hotkey" },
-              { text: "InputBox", link: "/api/addons/InputBox" },
-              { text: "NowPlaying", link: "/api/addons/NowPlaying" },
-
+              {
+                text: "Audio",
+                items: [
+                  { text: "AppVolume", link: "/api/addons/AppVolume" },
+                  { text: "AudioLevel", link: "/api/addons/AudioLevel" },
+                  { text: "NowPlaying", link: "/api/addons/NowPlaying" },
+                ],
+              },
+              {
+                text: "Visual",
+                items: [
+                  { text: "Brightness", link: "/api/addons/Brightness" },
+                  { text: "BlurBehind", link: "/api/addons/BlurBehind" },
+                ],
+              },
+              {
+                text: "Input",
+                items: [
+                  { text: "Hotkey", link: "/api/addons/Hotkey" },
+                  { text: "InputBox", link: "/api/addons/InputBox" },
+                ],
+              },
             ],
           }
         ],
@@ -268,28 +214,36 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: "Script Types", link: "/guides/script-types" },
-          { text: "Time And Date", link: "/guides/time" },
+          { text: "Time and Date", link: "/guides/time" },
           { text: "CLI Commands", link: "/guides/cli-commands" },
           { text: "Runtime Mode", link: "/guides/runtime-mode" },
           { text: "Settings File", link: "/guides/settings-file" },
-          {
-            text: "Widget Build And Installer",
-            link: "/guides/widget-build-and-installer",
-          },
+          { text: "Widget Build & Installer", link: "/guides/widget-build-and-installer" },
           { text: "Containers", link: "/guides/containers" },
           { text: "Colors", link: "/guides/colors" },
           { text: "Color Matrix Guide", link: "/guides/color-matrix-guide" },
-          {
-            text: "Transform Matrix Guide",
-            link: "/guides/transform-matrix-guide",
-          },
+          { text: "Transform Matrix Guide", link: "/guides/transform-matrix-guide" },
         ],
       },
 
       {
-        text: "Developer Resources",
+        text: "Property Guides",
+        collapsed: false,
+        items: [
+          { text: "Font Color", link: "/guides/font-color" },
+          { text: "Font Face", link: "/guides/font-face" },
+          { text: "Font Size", link: "/guides/font-size" },
+          { text: "Font Weight", link: "/guides/font-weight" },
+          { text: "Letter Spacing", link: "/guides/letter-spacing" },
+          { text: "Text Align", link: "/guides/text-align" },
+          { text: "Text Clip", link: "/guides/text-clip" },
+        ],
+      },
+
+      {
+        text: "Addon Development",
         collapsed: true,
-        items: [{ text: "Addon API", link: "/developers/api/addon-api" }],
+        items: [{ text: "Building Native Addons", link: "/developers/api/addon-api" }],
       },
 
       {

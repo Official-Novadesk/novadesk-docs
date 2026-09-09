@@ -1,5 +1,6 @@
 ---
 title: Settings File
+description: Novadesk settings file format and options. Managed by the [app module](/api/modules/novadesk/app).
 ---
 
 # Settings File
@@ -47,11 +48,11 @@ Global keys live at the root of the JSON object. Current built-in keys:
 
 ```json
 {
-  enableDebugging: false,
-  disableLogging: false,
-  saveLogToFile: true,
-  useHardwareAcceleration: true,
-  widgets: {}
+  "enableDebugging": false,
+  "disableLogging": false,
+  "saveLogToFile": true,
+  "useHardwareAcceleration": true,
+  "widgets": {}
 }
 ```
 
@@ -90,16 +91,18 @@ Widgets are stored under the `widgets` object keyed by widget ID. Each entry sav
 Example widget block:
 
 ```json
-widgets: {
-  clock: {
-    x: 120,
-    y: 80,
-    windowopacity: 255,
-    zpos: ontop,
-    draggable: true,
-    clickthrough: false,
-    keeponscreen: true,
-    snapedges: true
+{
+  "widgets": {
+    "clock": {
+      "x": 120,
+      "y": 80,
+      "windowopacity": 255,
+      "zpos": "ontop",
+      "draggable": true,
+      "clickthrough": false,
+      "keeponscreen": true,
+      "snapedges": true
+    }
   }
 }
 ```

@@ -1,5 +1,6 @@
 ---
 title: Access Windows Recycle Bin APIs from the system module.
+description: Open, empty, and inspect the Windows Recycle Bin.
 ---
 
 # recycleBin Module

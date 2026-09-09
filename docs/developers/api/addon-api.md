@@ -1,9 +1,10 @@
 ---
 title: Addon API (Native)
+description: Technical guide for building native C++ addons. Load them with the [addon module](/api/modules/novadesk/addon) for Novadesk.
 ---
 
 # Addon API (Native)
-Technical guide for building native C++ addons for Novadesk.
+Technical guide for building native C++ addons. Load them with the [addon module](/api/modules/novadesk/addon) for Novadesk.
 
 #### Table of Contents
 [[toc]]

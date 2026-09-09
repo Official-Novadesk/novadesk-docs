@@ -1,5 +1,6 @@
 ﻿---
 title: addAreaGraph
+description: Add a filled area graph element for visualizing data over time.
 ---
 
 # ui.addAreaGraph()
@@ -11,7 +12,7 @@ ui.addAreaGraph(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, tooltip, mouse events, etc.).
 :::
 
 #### Table of Contents

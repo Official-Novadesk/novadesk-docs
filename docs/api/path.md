@@ -1,5 +1,6 @@
 ﻿---
 title: Path
+description: Path utilities for resolving widget and system directories.
 ---
 
 # Path

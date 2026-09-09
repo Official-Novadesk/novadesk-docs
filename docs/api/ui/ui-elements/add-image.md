@@ -1,5 +1,6 @@
 ﻿---
 title: addImage
+description: Add an image element with support for local files and URLs.
 ---
 
 # ui.addImage()
@@ -11,7 +12,7 @@ ui.addImage(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) and [General Image Options](/api/ui/ui-elements/general-options/general-image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `imageCrop`, `colorMatrix`, `fallbackPath`).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) and [General Image Options](/api/ui/ui-elements/general-options#image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `imageCrop`, `colorMatrix`, `fallbackPath`).
 :::
 
 #### Table of Contents

@@ -1,10 +1,11 @@
 ﻿---
 title: fs
+description: File system APIs for reading, writing, copying, managing files, and working with zip archives.
 ---
 
 # fs Module
 
-File system operations for reading and writing files, creating directories, copying, renaming, and inspecting metadata. All methods are **synchronous** — they block until the operation completes and return the result directly.
+File system operations for reading and writing files, creating directories, copying, renaming, inspecting metadata, and working with zip archives. All methods are **synchronous** — they block until the operation completes and return the result directly.
 
 ```javascript
 import * as fs from "fs";
@@ -326,6 +327,147 @@ for (const name of entries) {
   if (s && s.isDirectory) {
     console.log("dir:", name);
   }
+}
+```
+
+</template>
+</MethodBox>
+
+## Zip Operations
+
+<MethodBox
+  name="fs.zip(sourcePath, destPath [, filter])"
+  badge="fs"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'sourcePath', type: 'string', description: 'Path to the file or directory to compress.' },
+    { name: 'destPath', type: 'string', description: 'Path for the output .zip file.' },
+    { name: 'filter', type: 'function', optional: true, description: 'Optional filter function called for each entry. Return true to include, false to exclude.' }
+  ]"
+>
+<template #returns><code>true</code> if the zip operation succeeded, <code>false</code> otherwise.</template>
+
+Creates a zip archive from a file or directory. When compressing a directory, all files and subdirectories are included recursively. An optional filter function can be provided to selectively include or exclude files.
+
+::: tip Alias
+`fs.createZip()` is an alias for `fs.zip()`.
+:::
+
+<template #example>
+
+```javascript
+import * as fs from "fs";
+
+// Zip a directory
+const ok = fs.zip(
+  path.join(__dirname, "data"),
+  path.join(__dirname, "data.zip")
+);
+console.log("Zipped:", ok);
+
+// Zip with a filter (only .json files)
+fs.zip(
+  path.join(__dirname, "data"),
+  path.join(__dirname, "json-only.zip"),
+  (filename) => filename.endsWith(".json")
+);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="fs.unzip(sourcePath, destPath)"
+  badge="fs"
+  badgeType="core"
+  returns="boolean"
+  :parameters="[
+    { name: 'sourcePath', type: 'string', description: 'Path to the .zip file to extract.' },
+    { name: 'destPath', type: 'string', description: 'Destination directory for extracted files.' }
+  ]"
+>
+<template #returns><code>true</code> if the extraction succeeded, <code>false</code> otherwise.</template>
+
+Extracts a zip archive to the specified directory. Creates the destination directory if it does not exist.
+
+::: tip Alias
+`fs.extractZip()` is an alias for `fs.unzip()`.
+:::
+
+<template #example>
+
+```javascript
+import * as fs from "fs";
+
+const ok = fs.unzip(
+  path.join(__dirname, "data.zip"),
+  path.join(__dirname, "extracted")
+);
+console.log("Extracted:", ok);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="fs.listZip(zipPath)"
+  badge="fs"
+  badgeType="core"
+  returns="string[] | null"
+  :parameters="[
+    { name: 'zipPath', type: 'string', description: 'Path to the .zip file to list.' }
+  ]"
+>
+<template #returns>Array of file paths inside the zip, or <code>null</code> if the zip could not be opened.</template>
+
+Lists all files and directories inside a zip archive. Returns the full paths of all entries relative to the zip root.
+
+::: tip Alias
+`fs.readZipEntries()` is an alias for `fs.listZip()`.
+:::
+
+<template #example>
+
+```javascript
+import * as fs from "fs";
+
+const entries = fs.listZip(path.join(__dirname, "data.zip"));
+if (entries) {
+  console.log("Files in zip:", entries.length);
+  entries.forEach(entry => console.log(" ", entry));
+}
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="fs.readZipFile(zipPath, entryPath)"
+  badge="fs"
+  badgeType="core"
+  returns="string | null"
+  :parameters="[
+    { name: 'zipPath', type: 'string', description: 'Path to the .zip file.' },
+    { name: 'entryPath', type: 'string', description: 'Path of the file inside the zip to read.' }
+  ]"
+>
+<template #returns>The file contents as a string, or <code>null</code> if the entry could not be read.</template>
+
+Reads a single file from inside a zip archive without extracting the entire archive. Useful for reading config files or data from zipped packages.
+
+<template #example>
+
+```javascript
+import * as fs from "fs";
+
+const content = fs.readZipFile(
+  path.join(__dirname, "package.zip"),
+  "config.json"
+);
+if (content) {
+  const config = JSON.parse(content);
+  console.log(config);
 }
 ```
 

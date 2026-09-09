@@ -1,5 +1,6 @@
 ---
 title: Parse, stringify, read, and write JSON with the json module.
+description: Parse, stringify, read, and write JSON files with merge support.
 ---
 
 # json Module

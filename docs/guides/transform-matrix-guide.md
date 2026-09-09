@@ -1,5 +1,6 @@
 ---
 title: Transform Matrix Guide
+description: Affine transformation matrix for element rotation and shearing. Applied via [transformMatrix](/api/ui/ui-elements/general-options) in element options.
 ---
 
 # Transform Matrix Guide

@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+description: Learn how to install and start creating widgets with Novadesk.
 ---
 
 # Getting Started

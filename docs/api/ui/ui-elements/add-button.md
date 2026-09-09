@@ -1,5 +1,6 @@
 ﻿---
 title: addButton
+description: Add an image-based button element with click callbacks.
 ---
 
 # ui.addButton()
@@ -11,7 +12,7 @@ ui.addButton(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) and [General Image Options](/api/ui/ui-elements/general-options/general-image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `imageCrop`, `colorMatrix`, `fallbackPath`).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) and [General Image Options](/api/ui/ui-elements/general-options#image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `imageCrop`, `colorMatrix`, `fallbackPath`).
 :::
 
 #### Table of Contents
@@ -93,7 +94,7 @@ ui.addButton({
 });
 ```
 
-All other mouse events (`onRightMouseUp`, `onMouseOver`, `onMouseLeave`, etc.) are also available from the [General Element Options](/api/ui/ui-elements/general-options/general-elements-options).
+All other mouse events (`onRightMouseUp`, `onMouseOver`, `onMouseLeave`, etc.) are also available from the [General Element Options](/api/ui/ui-elements/general-options).
 
 </PropertyBox>
 

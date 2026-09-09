@@ -1,10 +1,11 @@
 ---
 title: addon
+description: Load and manage native C++ DLL addons.
 ---
 
 # addon
 
-Loads and manages native C++ addon DLLs at runtime, extending Novadesk with platform-specific or performance-critical native code.
+Loads and manages native C++ addon DLLs at runtime, extending Novadesk with platform-specific or performance-critical native code. See the [Addon API guide](/developers/api/addon-api) for building your own addons.
 
 ```javascript
 import { addon } from 'novadesk';

@@ -1,5 +1,6 @@
 ﻿---
 title: addBitmap
+description: Add a frame-based sprite sheet element for meters and digit displays.
 ---
 
 # ui.addBitmap()
@@ -11,7 +12,7 @@ ui.addBitmap(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) and [General Image Options](/api/ui/ui-elements/general-options/general-image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `colorMatrix`, `fallbackPath`).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) and [General Image Options](/api/ui/ui-elements/general-options#image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `colorMatrix`, `fallbackPath`).
 
 `imageCrop` is accepted but **ignored** by the bitmap element.
 :::

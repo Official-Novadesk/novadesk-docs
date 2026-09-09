@@ -1,5 +1,6 @@
 ﻿---
 title: addShape
+description: "Add a 2D vector shape: rectangle, ellipse, line, arc, curve, or path."
 ---
 
 # ui.addShape()
@@ -11,7 +12,7 @@ ui.addShape(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, tooltip, mouse events, rotation, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, tooltip, mouse events, rotation, etc.).
 :::
 
 #### Table of Contents

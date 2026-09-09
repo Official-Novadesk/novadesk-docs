@@ -1,5 +1,6 @@
 ﻿---
 title: addText
+description: Add a text element with font styling, gradients, and inline tags.
 ---
 
 # ui.addText()
@@ -11,7 +12,7 @@ ui.addText(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, padding, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, padding, tooltip, mouse events, etc.).
 :::
 
 #### Table of Contents

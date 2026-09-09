@@ -1,5 +1,6 @@
 ---
 title: Time formatting and timestamp utilities from the system module.
+description: Format time, work with timestamps, and time zone utilities.
 ---
 
 # time Module

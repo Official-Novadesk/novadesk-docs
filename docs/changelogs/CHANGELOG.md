@@ -1,5 +1,52 @@
+---
+title: Changelog
+description: Release history and changelog for all Novadesk versions.
+---
+
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+* Added `ipcMain.removeListener(channel, listener)` — removes a specific previously-registered `ipcMain.on()` listener. `ipcMain.off()` is an alias.
+* Added `ipcMain.removeAllListeners([channel])` — removes all `ipcMain.on()` listeners, optionally scoped to a channel.
+* Added `ipcMain.removeHandler(channel)` — unregisters the handler set by `ipcMain.handle()` for a specific channel.
+* Added `ipcRenderer.removeListener(channel, listener)` — removes a specific previously-registered `ipcRenderer.on()` listener. `ipcRenderer.off()` is an alias.
+* Added `ipcRenderer.removeAllListeners([channel])` — removes all `ipcRenderer.on()` listeners, optionally scoped to a channel.
+* Added `widgetWindow.minimize()` — minimizes the widget window. Fires the `minimize` event.
+* Added `widgetWindow.unMinimize()` — restores a minimized widget window. Fires the `unMinimize` event.
+* Added `widgetWindow.isMinimized()` — returns `true` if the window is currently minimized.
+* Added `widgetWindow.maximize()` — maximizes the widget window to fill the work area.
+* Added `widgetWindow.restore()` — restores a maximized window to its previous size and position.
+* Added `widgetWindow.toggleMaximize()` — toggles between maximized and normal state.
+* Added `widgetWindow.isMaximized()` — returns `true` if the window is currently maximized.
+* Added `widgetWindow.setMinWidth(width)`, `widgetWindow.getMinWidth()` — set/get minimum resize width.
+* Added `widgetWindow.setMinHeight(height)`, `widgetWindow.getMinHeight()` — set/get minimum resize height.
+* Added `widgetWindow.setMinSize(width, height)`, `widgetWindow.getMinSize()` — set/get both minimum dimensions at once.
+* Added `widgetWindow.isResizing()` — returns `true` while the user is dragging a window edge.
+* Added `widgetWindow.getHandle()` — returns the native Win32 `HWND` as a number.
+* Added `widgetWindow.getInternalPointer()` — returns the raw internal Widget pointer as a number.
+* Added `widgetWindow.getTitle()` — returns the current window title string.
+* Added `widgetWindow.stopAnimation()` — stops all running window animations at the current frame.
+* Added `widgetWindow.isDestroyed()` — returns `true` if the window has been destroyed; safe to call after `close()`.
+* Added `resizeStart` / `resize-start` event — fires when the user begins dragging a window edge.
+* Added `resizeEnd` / `resize-end` event — fires when the user releases the window edge after resizing.
+* Added `dialog.showOpenDialog(options)` — native Windows file open dialog; supports filters and multi-select.
+* Added `dialog.showSaveDialog(options)` — native Windows file save dialog; supports filters and `defaultExtension`.
+* Added `dialog.openDirectory(options)` — native Windows folder picker dialog.
+* Added `dialog.showFileExplorerDialog(options)` / `dialog.showFileExplorer(options)` — unified file explorer dialog supporting `"open"`, `"save"`, `"directory"`, and `"folder"` modes.
+* Added `dialog.openFile(options)` — shorthand for `showOpenDialog`.
+* Added `dialog.saveFile(options)` — shorthand for `showSaveDialog`.
+* Added `app.argv` — array of filtered command-line arguments (internal Novadesk flags removed). Contains executable path, entry script, and user arguments.
+* Added `app.rawArgv` — array of all raw command-line arguments including internal flags.
+* Added `system.colors` module for reading Windows system and accent colors:
+  * `colors.get()` — returns a full object of all system theme colors.
+  * `colors.isDarkMode()` — returns `true` when Windows is using a dark color scheme.
+  * `colors.getAccent()` — returns the current Windows accent color object.
+  * `colors.getColor(name)` — returns a specific named system color.
+
+<!-- ================================================================================= -->
 ## [0.9.10.0-beta] - 2026-08-13
 ###### 📅 13th August, 2026
 

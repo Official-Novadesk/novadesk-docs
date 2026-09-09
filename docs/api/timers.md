@@ -1,5 +1,6 @@
 ﻿---
 title: Timers
+description: "Timer functions: setTimeout, setInterval, clearTimeout, and clearInterval."
 ---
 
 # Timers

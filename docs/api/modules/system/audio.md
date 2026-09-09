@@ -1,5 +1,6 @@
 ---
 title: audio
+description: Master volume control and WAV audio playback.
 ---
 
 # audio

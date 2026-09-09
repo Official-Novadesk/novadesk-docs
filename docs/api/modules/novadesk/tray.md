@@ -1,10 +1,11 @@
 ﻿---
 title: tray
+description: System tray constructor, menu control, and events.
 ---
 
 # tray
 
-Create and control a Windows system tray icon. Supports a tooltip, a right-click context menu with nested sub-menus, and event handlers for click, scroll, and double-click interactions.
+Create and control a Windows system tray icon. Pair with [widgetWindow](/api/modules/novadesk/widgetWindow) for tray-controlled widget visibility. Supports a tooltip, a right-click context menu with nested sub-menus, and event handlers for click, scroll, and double-click interactions.
 
 ```javascript
 import { tray } from "novadesk";

@@ -1,5 +1,6 @@
 ---
 title: Global Variables
+description: Built-in global variables available in Novadesk scripts.
 ---
 
 # Global Variables
@@ -245,3 +246,9 @@ ui.addShape({
   }
 });
 ```
+
+## Related Pages
+
+- [Script Types](/guides/script-types) — which globals are available in each script context
+- [IPC](/api/ipc) — message passing between Main and UI scripts
+- [UI Object](/api/ui/ui-object) — creating and managing widget elements

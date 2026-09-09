@@ -1,5 +1,6 @@
 ---
 title: Widget Build And Installer
+description: Build, package, and distribute widgets. Start with [Creating Your First Widget](/introduction/creating-first-widget) for a step-by-step walkthrough with nwm.
 ---
 
 # Widget Build And Installer

@@ -1,5 +1,6 @@
 ---
 title: Logging
+description: Console logging, print shorthand, and log level configuration.
 ---
 
 # Logging

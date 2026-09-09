@@ -1,5 +1,6 @@
 ﻿---
 title: addBar
+description: Add a progress bar element with configurable value and styling.
 ---
 
 # ui.addBar()
@@ -11,7 +12,7 @@ ui.addBar(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, tooltip, mouse events, etc.).
 :::
 
 #### Table of Contents

@@ -1,5 +1,6 @@
 ﻿---
 title: addHistogram
+description: Add a bar-by-bar histogram supporting dual-channel data.
 ---
 
 # ui.addHistogram()
@@ -11,7 +12,7 @@ ui.addHistogram(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, tooltip, mouse events, etc.).
 :::
 
 #### Table of Contents

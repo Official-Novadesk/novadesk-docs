@@ -1,5 +1,6 @@
 ﻿---
 title: addRoundLine
+description: Add a rounded arc element for circular progress indicators.
 ---
 
 # ui.addRoundLine()
@@ -11,7 +12,7 @@ ui.addRoundLine(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, tooltip, mouse events, etc.).
 :::
 
 #### Table of Contents

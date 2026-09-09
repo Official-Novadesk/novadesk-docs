@@ -1,10 +1,11 @@
 ---
 title: Containers Guide
+description: Layout containers for organizing and clipping child elements.
 ---
 
 # Containers Guide
 
-Containers let you group elements and clip their rendering and hit-testing to a parent element’s shape. Any element can become a container simply by having children assigned to it.
+Containers let you group elements and clip their rendering. See [addLayoutBox](/api/ui/ui-elements/add-layout-box) for the flex layout container API and hit-testing to a parent element’s shape. Any element can become a container simply by having children assigned to it.
 
 #### Table of Contents
 [[toc]]

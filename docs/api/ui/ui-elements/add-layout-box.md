@@ -1,5 +1,6 @@
 ﻿---
 title: addLayoutBox
+description: Add a flex layout container for positioning child elements.
 ---
 
 # ui.addLayoutBox()
@@ -11,7 +12,7 @@ ui.addLayoutBox(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (visibility, tooltip, mouse events, rotation, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (visibility, tooltip, mouse events, rotation, etc.).
 
 `id` is required. Every layout box must have a unique `id` so children can reference it via `container`.
 :::

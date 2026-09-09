@@ -1,5 +1,6 @@
 ---
 title: Read system memory metrics with the memory module.
+description: Read RAM usage, total, and available memory metrics.
 ---
 
 # memory Module

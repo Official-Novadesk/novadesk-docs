@@ -1,5 +1,6 @@
 ﻿---
 title: addInputBox
+description: Add an interactive text input field element.
 ---
 
 # ui.addInputBox()
@@ -11,7 +12,7 @@ ui.addInputBox(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, padding, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, padding, tooltip, mouse events, etc.).
 
 The cursor is always set to the I-beam regardless of `mouseEventCursorName`.
 :::

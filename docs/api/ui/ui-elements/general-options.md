@@ -1,12 +1,13 @@
 ---
-title: General Element Options
+title: General Options
+description: "Shared options for all UI elements: layout, visibility, tooltips, and mouse events."
 ---
 
-# General Element Options
+# General Options
 
 Options shared by every UI element. These properties apply to all `ui.add*()` calls — `addText`, `addImage`, `addButton`, `addBitmap`, `addBar`, `addLine`, `addAreaGraph`, `addHistogram`, `addRotator`, `addRoundLine`, `addShape`, `addInputBox`, and `addLayoutBox`.
 
-For shared image-processing fields (`imageAlpha`, `imageTint`, `imageFlip`, `colorMatrix`, etc.) see [General Image Options](/api/ui/ui-elements/general-options/general-image-options).
+For shared image-processing fields (`imageAlpha`, `imageTint`, `imageFlip`, `colorMatrix`, etc.) see [General Image Options](/api/ui/ui-elements/general-options#image-options) below.
 
 ```javascript
 ui.addText({
@@ -482,7 +483,93 @@ Fired on horizontal scroll right over the element.
 
 </CallbackBox>
 
-## Drag Events
+## Drag & Drop
+
+Drag and drop properties control whether an element can be dragged or act as a drop target. Drag callbacks fire when the user holds a mouse button on the element and moves the mouse.
+
+<PropertyBox name="dragArea" type="boolean" defaultValue="false">
+
+`true` makes this element draggable. The user can click and drag the element to move it. The element does not snap or reposition automatically — use the `onDrag` callback to update the element position or send drag data via IPC.
+
+```javascript
+ui.addShape({
+  id: "handle",
+  dragArea: true,
+  onDrag: (e) => {
+    ui.setElementProperties("handle", {
+      x: e.__screenX - e.__offsetX,
+      y: e.__screenY - e.__offsetY
+    });
+  }
+});
+```
+
+</PropertyBox>
+
+<PropertyBox name="dropTarget" type="boolean" defaultValue="false">
+
+`true` registers this element as a drop target. When another element is dragged over it, the drop-related callbacks fire. Use this for file drop zones, reordering lists, or any drag-and-drop interaction.
+
+```javascript
+ui.addShape({
+  id: "drop-zone",
+  dropTarget: true,
+  backgroundColor: "rgba(0,180,255,0.1)",
+  onDragEnter: () => {
+    ui.setElementProperties("drop-zone", { backgroundColor: "rgba(0,180,255,0.3)" });
+  },
+  onDragLeave: () => {
+    ui.setElementProperties("drop-zone", { backgroundColor: "rgba(0,180,255,0.1)" });
+  },
+  onDrop: (e) => {
+    console.log("Dropped at:", e.__offsetX, e.__offsetY);
+  }
+});
+```
+
+</PropertyBox>
+
+<CallbackBox
+  name="onDrop"
+  signature="onDrop(event): void"
+  :optional="true"
+>
+
+Fired when the user releases a drag over this drop target element.
+
+</CallbackBox>
+
+<CallbackBox
+  name="onDragEnter"
+  signature="onDragEnter(event): void"
+  :optional="true"
+>
+
+Fired when a dragged element enters the bounds of this drop target.
+
+</CallbackBox>
+
+<CallbackBox
+  name="onDragOver"
+  signature="onDragOver(event): void"
+  :optional="true"
+>
+
+Fired continuously while a dragged element is over this drop target.
+
+</CallbackBox>
+
+<CallbackBox
+  name="onDragLeave"
+  signature="onDragLeave(event): void"
+  :optional="true"
+>
+
+Fired when a dragged element leaves the bounds of this drop target.
+
+</CallbackBox>
+
+### Drag Events (on element being dragged)
 
 Drag callbacks fire when the user holds a mouse button on the element and moves the mouse. They are useful for sliders, handles, and custom drag interactions.
 
@@ -535,6 +622,195 @@ onDragEnd: (e) => {
 ```
 
 </CallbackBox>
+
+## Scroll & Overflow
+
+When child elements extend beyond the bounds of a container (or `addLayoutBox`), scroll and overflow properties control whether scrollbars appear and how content is clipped.
+
+<PropertyBox name="overflow" type="string" defaultValue='"visible"'>
+
+Shorthand that sets both `overflowX` and `overflowY` at once. Case-insensitive.
+
+| Value | Behavior |
+|---|---|
+| `"visible"` | Content overflows the element bounds and is not clipped (default) |
+| `"hidden"` | Content is clipped at the element bounds, no scrollbar |
+| `"scroll"` | Content is clipped and scrollbars appear when needed |
+| `"auto"` | Scrollbars appear only when content overflows |
+
+</PropertyBox>
+
+<PropertyBox name="overflowX" type="string" defaultValue='"visible"'>
+
+Horizontal overflow mode. Same values as `overflow`. Overrides `overflow` for the horizontal axis.
+
+</PropertyBox>
+
+<PropertyBox name="overflowY" type="string" defaultValue='"visible"'>
+
+Vertical overflow mode. Same values as `overflow`. Overrides `overflow` for the vertical axis.
+
+</PropertyBox>
+
+<PropertyBox name="scrollX" type="number" defaultValue="0">
+
+Initial horizontal scroll offset in pixels.
+
+</PropertyBox>
+
+<PropertyBox name="scrollY" type="number" defaultValue="0">
+
+Initial vertical scroll offset in pixels.
+
+</PropertyBox>
+
+<PropertyBox name="scrollStep" type="number" defaultValue="24">
+
+Number of pixels scrolled per mouse wheel notch.
+
+</PropertyBox>
+
+<PropertyBox name="showScrollbar" type="boolean" defaultValue="true">
+
+Shorthand that sets both `showScrollbarX` and `showScrollbarY` at once.
+
+</PropertyBox>
+
+<PropertyBox name="showScrollbarX" type="boolean" defaultValue="true">
+
+Show the horizontal scrollbar when horizontal content overflows.
+
+</PropertyBox>
+
+<PropertyBox name="showScrollbarY" type="boolean" defaultValue="true">
+
+Show the vertical scrollbar when vertical content overflows.
+
+</PropertyBox>
+
+### Scrollbar Styling
+
+<PropertyBox name="scrollbarWidth" type="number" defaultValue="6">
+
+Scrollbar thickness in pixels.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarHoverWidth" type="number" defaultValue="-1">
+
+Scrollbar thickness when hovered. `-1` keeps the normal width.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarRadius" type="number" defaultValue="3">
+
+Corner radius of the scrollbar thumb.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarTrackRadius" type="number" defaultValue="-1">
+
+Corner radius of the scrollbar track. `-1` uses the default.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarInset" type="number" defaultValue="2">
+
+Spacing between the scrollbar and the element edge in pixels.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarMinThumbLength" type="number" defaultValue="20">
+
+Minimum thumb length in pixels.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarColor" type="string" defaultValue='"rgba(255,255,255,100)"'>
+
+Scrollbar thumb color. Supports `rgb()`, `rgba()`, and hex.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarHoverColor" type="string" defaultValue='"rgba(255,255,255,180)"'>
+
+Scrollbar thumb color when hovered.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarActiveColor" type="string" defaultValue='"rgba(255,255,255,240)"'>
+
+Scrollbar thumb color when actively dragged.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarTrackColor" type="string" defaultValue='"rgba(0,0,0,0)"'>
+
+Scrollbar track background color.
+
+</PropertyBox>
+
+<PropertyBox name="showScrollbarButtons" type="boolean" defaultValue="false">
+
+Show arrow buttons at the ends of the scrollbar.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarButtonSize" type="number" defaultValue="14">
+
+Size of the scrollbar arrow buttons in pixels.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarButtonRadius" type="number" defaultValue="2">
+
+Corner radius of the scrollbar arrow buttons.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarArrowColor" type="string" defaultValue='"rgba(255,255,255,150)"'>
+
+Color of the scrollbar arrow icons.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarArrowHoverColor" type="string" defaultValue='"rgba(255,255,255,220)"'>
+
+Color of the scrollbar arrow icons when hovered.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarArrowActiveColor" type="string" defaultValue='"rgba(255,255,255,255)"'>
+
+Color of the scrollbar arrow icons when pressed.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarButtonBgColor" type="string" defaultValue='"rgba(0,0,0,0)"'>
+
+Background color of the scrollbar arrow buttons.
+
+</PropertyBox>
+
+<PropertyBox name="scrollbarButtonHoverBgColor" type="string" defaultValue='"rgba(255,255,255,30)"'>
+
+Background color of the scrollbar arrow buttons when hovered.
+
+</PropertyBox>
+
+```javascript
+// Scrollable container with custom scrollbar
+ui.addLayoutBox({
+  id: "scroll-area",
+  x: 16, y: 16,
+  width: 300, height: 200,
+  overflow: "scroll",
+  scrollbarWidth: 8,
+  scrollbarColor: "rgba(255,255,255,80)",
+  scrollbarHoverColor: "rgba(255,255,255,160)",
+  scrollbarRadius: 4
+});
+```
 
 ## Practical Examples
 
@@ -607,5 +883,295 @@ ui.endUpdate();
 // Toggle all stats at once
 ipcRenderer.on("toggle-stats", (event, payload) => {
   ui.setElementPropertiesByGroup("stats", { show: payload.visible });
+});
+```
+
+---
+
+## Image Options
+
+Options shared by all image-based elements: `ui.addImage()`, `ui.addButton()`, `ui.addBitmap()`, and `ui.addRotator()`.
+
+Use these alongside the [Element Options](#element-options) above which covers position, visibility, tooltip, mouse events, and more.
+
+#### Table of Contents
+[[toc]]
+
+### Opacity and Visibility
+
+<PropertyBox name="imageAlpha" type="number" defaultValue="255">
+
+Image opacity in the range `0–255`. `255` is fully opaque, `0` is fully transparent. Values are clamped to this range.
+
+```javascript
+ui.addImage({
+  id: "logo",
+  path: "./assets/logo.png",
+  x: 16, y: 16,
+  width: 64, height: 64,
+  imageAlpha: 180
+});
+```
+
+</PropertyBox>
+
+### Fallback
+
+<PropertyBox name="fallbackPath" type="string" defaultValue='""'>
+
+Path to an alternative image file shown when the primary image cannot be loaded. Supports local file paths and HTTP/HTTPS URLs. Relative paths are resolved against the widget's script directory.
+
+```javascript
+ui.addImage({
+  id: "avatar",
+  path: "./assets/user.png",
+  fallbackPath: "./assets/default-avatar.png",
+  x: 16, y: 16,
+  width: 48, height: 48
+});
+```
+
+</PropertyBox>
+
+### Color Adjustments
+
+<PropertyBox name="grayscale" type="boolean" defaultValue="false">
+
+`true` renders the image without color — all pixels are converted to shades of gray. Useful for representing disabled or inactive states.
+
+```javascript
+ui.addImage({
+  id: "icon",
+  path: "./assets/icon.png",
+  grayscale: true
+});
+```
+
+</PropertyBox>
+
+<PropertyBox name="imageTint" type="string" defaultValue='""'>
+
+A color overlaid on the image. Accepts `rgb()`, `rgba()`, hex, `linearGradient()`, and `radialGradient()`. Only applied when the string is non-empty and parses as a valid color.
+
+```javascript
+ui.addImage({
+  id: "icon",
+  path: "./assets/icon.png",
+  imageTint: "rgba(0,180,255,0.5)"   // blue tint at 50% opacity
+});
+```
+
+</PropertyBox>
+
+<PropertyBox name="colorMatrix" type="number[]" defaultValue="[]">
+
+A Direct2D 5x4 color transformation matrix applied to the image. Enables advanced effects: hue rotation, saturation, brightness, contrast, channel swaps, and inversion.
+
+Provide exactly **20 numbers** in row-major order. Fewer than 20 values are silently ignored and no matrix is applied.
+
+The matrix layout is:
+```
+[ R→R, G→R, B→R, A→R, bias_R,
+  R→G, G→G, B→G, A→G, bias_G,
+  R→B, G→B, B→B, A→B, bias_B,
+  R→A, G→A, B→A, A→A, bias_A ]
+```
+
+The identity matrix (no change):
+```javascript
+colorMatrix: [
+  1, 0, 0, 0, 0,
+  0, 1, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0
+]
+```
+
+Invert all colors:
+```javascript
+ui.addImage({
+  id: "inverted",
+  path: "./photo.png",
+  colorMatrix: [
+    -1,  0,  0, 0, 1,
+     0, -1,  0, 0, 1,
+     0,  0, -1, 0, 1,
+     0,  0,  0, 1, 0
+  ]
+});
+```
+
+Desaturate (grayscale via matrix):
+```javascript
+colorMatrix: [
+  0.33, 0.33, 0.33, 0, 0,
+  0.33, 0.33, 0.33, 0, 0,
+  0.33, 0.33, 0.33, 0, 0,
+  0,    0,    0,    1, 0
+]
+```
+
+::: tip
+The `grayscale` property is a simpler alternative to a desaturate matrix when you only need black-and-white rendering.
+:::
+
+</PropertyBox>
+
+### Flip
+
+<PropertyBox name="imageFlip" type="string" defaultValue='"none"'>
+
+Mirrors the image before rendering. Matching is case-insensitive.
+
+| Value | Effect |
+|---|---|
+| `"none"` | No flip (default) |
+| `"horizontal"` | Mirror left to right |
+| `"vertical"` | Mirror top to bottom |
+| `"both"` | Mirror both horizontally and vertically |
+
+```javascript
+ui.addImage({
+  id: "arrow-right",
+  path: "./assets/arrow-left.png",
+  imageFlip: "horizontal"   // reuse the left arrow as a right arrow
+});
+```
+
+</PropertyBox>
+
+### Crop
+
+<PropertyBox name="imageCrop" type="number[]" defaultValue="[]">
+
+Crops the source image to a rectangular region before rendering. Coordinates are in source image pixels.
+
+**Accepted forms:**
+- `[x, y, width, height]` — crop from the given origin (default: top-left)
+- `[x, y, width, height, origin]` — crop with an explicit reference corner
+
+The optional fifth element sets the reference corner for the `x`/`y` coordinates:
+
+| Value | Reference corner |
+|---|---|
+| `0` | Top-left (default) |
+| `1` | Top-right |
+| `2` | Bottom-right |
+| `3` | Bottom-left |
+| `4` | Center |
+
+Values outside the `0–4` range are clamped. An empty or missing array disables cropping.
+
+::: warning Not supported on addBitmap or addRotator
+`imageCrop` is accepted but **ignored** by `ui.addBitmap()` and `ui.addRotator()`. It only applies to `ui.addImage()` and `ui.addButton()`.
+:::
+
+```javascript
+// Show only the top-left 64x64 region
+ui.addImage({
+  id: "sprite",
+  path: "./assets/spritesheet.png",
+  imageCrop: [0, 0, 64, 64]
+});
+
+// Crop 32x32 from the center of the source image
+ui.addImage({
+  id: "center-crop",
+  path: "./assets/photo.png",
+  imageCrop: [0, 0, 32, 32, 4]   // origin = center
+});
+```
+
+</PropertyBox>
+
+### Orientation
+
+<PropertyBox name="useExifOrientation" type="boolean" defaultValue="false">
+
+`true` applies the rotation/flip specified in the EXIF metadata embedded in the image file. Useful for photos taken on mobile devices that store their orientation in EXIF data rather than in the pixel arrangement.
+
+```javascript
+ui.addImage({
+  id: "photo",
+  path: "./assets/photo.jpg",
+  useExifOrientation: true
+});
+```
+
+</PropertyBox>
+
+### Practical Examples
+
+**Grayscale inactive icon that highlights on hover**
+
+```javascript
+ui.addImage({
+  id: "settings-icon",
+  path: "./assets/settings.png",
+  x: 16, y: 16,
+  width: 24, height: 24,
+  grayscale: true,
+  onMouseOver: () => {
+    ui.setElementProperties("settings-icon", { grayscale: false });
+  },
+  onMouseLeave: () => {
+    ui.setElementProperties("settings-icon", { grayscale: true });
+  }
+});
+```
+
+**Tinted status indicator updated from IPC**
+
+```javascript
+ui.addImage({
+  id: "status-dot",
+  path: "./assets/circle.png",
+  x: 8, y: 8,
+  width: 12, height: 12,
+  imageTint: "rgba(100,100,100,1)"
+});
+
+ipcRenderer.on("status-update", (event, payload) => {
+  const tint = payload.online
+    ? "rgba(0,200,100,1)"
+    : "rgba(200,60,60,1)";
+  ui.setElementProperties("status-dot", { imageTint: tint });
+});
+```
+
+**Sprite sheet crop for different states**
+
+```javascript
+// Single sprite sheet with frames at x=0, 64, 128
+function setButtonState(state) {
+  const frameX = state === "normal" ? 0 : state === "hover" ? 64 : 128;
+  ui.setElementProperties("btn-img", {
+    imageCrop: [frameX, 0, 64, 32]
+  });
+}
+
+ui.addImage({
+  id: "btn-img",
+  path: "./assets/button-states.png",
+  x: 16, y: 60,
+  width: 64, height: 32,
+  imageCrop: [0, 0, 64, 32],
+  onMouseOver: () => setButtonState("hover"),
+  onMouseLeave: () => setButtonState("normal"),
+  onLeftMouseDown: () => setButtonState("pressed"),
+  onLeftMouseUp: () => setButtonState("hover")
+});
+```
+
+**Fallback for user-provided images**
+
+```javascript
+ui.addImage({
+  id: "wallpaper",
+  path: path.join(__mainScriptDirPath, "config", "wallpaper.jpg"),
+  fallbackPath: "./assets/default-wallpaper.jpg",
+  x: 0, y: 0,
+  width: 400, height: 300,
+  preserveAspectRatio: "crop"
 });
 ```

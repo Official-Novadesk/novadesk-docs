@@ -1,5 +1,6 @@
 ---
 title: Read network throughput and totals with the network module.
+description: Read network throughput and total data transferred.
 ---
 
 # network Module

@@ -1,10 +1,11 @@
 ---
 title: dialog
+description: Show native Windows modal message boxes and file picker dialogs from JavaScript.
 ---
 
 # dialog
 
-Show a native Windows modal message box and read which button the user clicked. The call is **synchronous** — it blocks the script until the user dismisses the dialog.
+Show native Windows modal dialogs. Includes message boxes and file picker dialogs. All calls are **synchronous** — they block the script until the user responds.
 
 ```javascript
 import { dialog } from "novadesk";
@@ -97,6 +98,224 @@ if (answer === "yes") {
 } else {
   console.log("User cancelled");
 }
+```
+
+</template>
+</MethodBox>
+
+## File Dialogs
+
+File picker dialogs let users select files or directories using native Windows Explorer dialogs. All file dialog calls are **synchronous** and block until the user confirms or cancels.
+
+<MethodBox
+  name="dialog.showOpenDialog(options)"
+  badge="dialog"
+  badgeType="core"
+  returns="string | string[] | null"
+  :parameters="[
+    { name: 'options', type: 'object', optional: true, description: 'Dialog configuration. See options table below.' }
+  ]"
+>
+<template #returns>A single path string, an array of paths (when <code>multiSelect</code> is true), or <code>null</code> if the user cancelled.</template>
+
+Opens a native Windows file open dialog. Returns the selected path(s), or `null` if the user cancels.
+
+**Options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `""` | Dialog title bar text. |
+| `defaultPath` | `string` | `""` | Initial directory or file path. |
+| `filters` | `object[]` | `[]` | Array of `{ name, extensions }` filter objects. `extensions` is an array of strings without dots (e.g. `["jpg", "png"]`). |
+| `multiSelect` | `boolean` | `false` | Allow selecting multiple files. Returns an array when `true`. |
+
+<template #example>
+
+```javascript
+// Single file selection
+const file = dialog.showOpenDialog({
+  title: "Open Image",
+  filters: [
+    { name: "Images", extensions: ["jpg", "jpeg", "png", "gif"] },
+    { name: "All Files", extensions: ["*"] }
+  ]
+});
+
+if (file) {
+  console.log("Selected:", file);
+}
+
+// Multi-file selection
+const files = dialog.showOpenDialog({ multiSelect: true });
+if (files) {
+  files.forEach(f => console.log(f));
+}
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="dialog.showSaveDialog(options)"
+  badge="dialog"
+  badgeType="core"
+  returns="string | null"
+  :parameters="[
+    { name: 'options', type: 'object', optional: true, description: 'Dialog configuration. See options table below.' }
+  ]"
+>
+<template #returns>The chosen save path as a string, or <code>null</code> if the user cancelled.</template>
+
+Opens a native Windows file save dialog. The user can type a filename or pick an existing file to overwrite. Returns the chosen path, or `null` if cancelled.
+
+**Options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `""` | Dialog title bar text. |
+| `defaultPath` | `string` | `""` | Initial directory or suggested filename. |
+| `defaultExtension` | `string` | `""` | Extension appended automatically when the user doesn't type one (without leading dot, e.g. `"json"`). |
+| `filters` | `object[]` | `[]` | Array of `{ name, extensions }` filter objects. |
+
+<template #example>
+
+```javascript
+const savePath = dialog.showSaveDialog({
+  title: "Save Config",
+  defaultPath: "config",
+  defaultExtension: "json",
+  filters: [
+    { name: "JSON Files", extensions: ["json"] }
+  ]
+});
+
+if (savePath) {
+  fs.writeFile(savePath, JSON.stringify(config, null, 2));
+}
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="dialog.openDirectory(options)"
+  badge="dialog"
+  badgeType="core"
+  returns="string | null"
+  :parameters="[
+    { name: 'options', type: 'object', optional: true, description: 'Dialog configuration. See options table below.' }
+  ]"
+>
+<template #returns>The selected directory path as a string, or <code>null</code> if the user cancelled.</template>
+
+Opens a native folder picker dialog. Returns the selected directory path, or `null` if cancelled.
+
+**Options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `""` | Dialog title bar text. |
+| `defaultPath` | `string` | `""` | Initial directory to show. |
+
+<template #example>
+
+```javascript
+const dir = dialog.openDirectory({ title: "Select Output Folder" });
+if (dir) {
+  console.log("Output folder:", dir);
+}
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="dialog.showFileExplorerDialog(options)"
+  badge="dialog"
+  badgeType="core"
+  returns="string | string[] | null"
+  :parameters="[
+    { name: 'options', type: 'object', optional: true, description: 'Dialog configuration. See options table below.' }
+  ]"
+>
+<template #returns>A path string, array of paths (multi-select open), or <code>null</code> if cancelled.</template>
+
+A unified file explorer dialog that supports open, save, and directory picking modes. `dialog.showFileExplorer()` is an alias for this method.
+
+**Options:**
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `type` | `string` | `"open"` | Dialog mode: `"open"`, `"save"`, `"directory"`, or `"folder"`. |
+| `title` | `string` | `""` | Dialog title bar text. |
+| `defaultPath` | `string` | `""` | Initial path. |
+| `defaultExtension` | `string` | `""` | Auto-appended extension for save mode. |
+| `filters` | `object[]` | `[]` | Array of `{ name, extensions }` filter objects. |
+| `multiSelect` | `boolean` | `false` | Allow selecting multiple files (open mode only). |
+
+<template #example>
+
+```javascript
+// Open mode (default)
+const file = dialog.showFileExplorerDialog({ type: "open" });
+
+// Save mode
+const out = dialog.showFileExplorerDialog({
+  type: "save",
+  defaultExtension: "txt",
+  filters: [{ name: "Text Files", extensions: ["txt"] }]
+});
+
+// Directory picker
+const folder = dialog.showFileExplorerDialog({ type: "directory" });
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="dialog.openFile(options)"
+  badge="dialog"
+  badgeType="core"
+  returns="string | string[] | null"
+  :parameters="[
+    { name: 'options', type: 'object', optional: true, description: 'Dialog configuration. Accepts title, defaultPath, filters, and multiSelect.' }
+  ]"
+>
+<template #returns>The selected file path, an array of paths when <code>multiSelect</code> is true, or <code>null</code> if cancelled.</template>
+
+Shorthand for opening a file. Equivalent to `dialog.showOpenDialog()`.
+
+<template #example>
+
+```javascript
+const path = dialog.openFile({
+  filters: [{ name: "Scripts", extensions: ["js"] }]
+});
+if (path) console.log("File:", path);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="dialog.saveFile(options)"
+  badge="dialog"
+  badgeType="core"
+  returns="string | null"
+  :parameters="[
+    { name: 'options', type: 'object', optional: true, description: 'Dialog configuration. Accepts title, defaultPath, defaultExtension, and filters.' }
+  ]"
+>
+<template #returns>The chosen save path, or <code>null</code> if cancelled.</template>
+
+Shorthand for saving a file. Equivalent to `dialog.showSaveDialog()`.
+
+<template #example>
+
+```javascript
+const out = dialog.saveFile({ defaultExtension: "log" });
+if (out) fs.writeFile(out, logContent);
 ```
 
 </template>

@@ -1,10 +1,11 @@
 ---
 title: cpu
+description: Read CPU usage, core count, and uptime metrics.
 ---
 
 # cpu
 
-Read current CPU usage and system uptime.
+Read current CPU usage and system uptime. For related metrics, see [memory](/api/modules/system/memory) and [disk](/api/modules/system/disk).
 
 ```javascript
 import { cpu } from "system";

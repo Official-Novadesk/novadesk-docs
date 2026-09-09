@@ -1,10 +1,11 @@
 ---
 title: app
+description: App lifecycle, logging, version, and path management.
 ---
 
 # app
 
-Control the Novadesk runtime, manage settings and logging preferences, query paths, and persist widget state across sessions.
+Control the Novadesk runtime, manage [settings](/guides/settings-file) and [logging](/api/logging) preferences, query paths, and persist widget state across sessions.
 
 ```javascript
 import { app } from 'novadesk';
@@ -365,7 +366,53 @@ console.log("Engine:", app.getNovadeskVersion()); // e.g. "0.9.9.0"
 </template>
 </MethodBox>
 
+## Command-Line Arguments
+
+`app.argv` and `app.rawArgv` are static array properties set at startup. They are not functions — read them directly as arrays.
+
+<MethodBox
+  name="app.argv"
+  badge="app"
+  badgeType="core"
+>
+
+An array of **filtered** command-line arguments. Internal Novadesk flags (e.g. `--single-instance`, `--portable`) are stripped. The array contains: the executable path, the entry script path, and any user-supplied arguments.
+
+This is the recommended array to read when your widget accepts custom arguments.
+
+<template #example>
+
+```javascript
+// Launch: novadesk.exe index.js --theme dark --port 3000
+console.log(app.argv);
+// ["C:/path/to/novadesk.exe", "index.js", "--theme", "dark", "--port", "3000"]
+
+const args = app.argv.slice(2); // user args only
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="app.rawArgv"
+  badge="app"
+  badgeType="core"
+>
+
+An array of **all** raw command-line arguments exactly as passed to the process, including internal Novadesk flags. Use `app.argv` for user-facing argument parsing.
+
+<template #example>
+
+```javascript
+console.log(app.rawArgv);
+// ["C:/path/to/novadesk.exe", "index.js", "--single-instance", "--theme", "dark"]
+```
+
+</template>
+</MethodBox>
+
 ## Storage
+
 
 `app.storage` is a simple persistent key/value store. Values are JSON-serialized and saved to `storage.json` in the AppData directory. Keys are strings; values can be any JSON-serializable type.
 

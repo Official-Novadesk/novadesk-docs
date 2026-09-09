@@ -1,5 +1,6 @@
 ---
 title: Read power and battery status with the power module.
+description: Read battery level, charging state, and power status.
 ---
 
 # power Module

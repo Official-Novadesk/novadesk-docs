@@ -1,5 +1,6 @@
 ﻿---
 title: addRotator
+description: Add an image-based rotator element for gauge needles and dials.
 ---
 
 # ui.addRotator()
@@ -11,7 +12,7 @@ ui.addRotator(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) and [General Image Options](/api/ui/ui-elements/general-options/general-image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `colorMatrix`, `fallbackPath`).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) and [General Image Options](/api/ui/ui-elements/general-options#image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `colorMatrix`, `fallbackPath`).
 
 `imageCrop` is accepted but silently ignored by the rotator element.
 :::

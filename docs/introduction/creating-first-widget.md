@@ -1,5 +1,6 @@
 ---
 title: Creating Your First Widget
+description: Create, run, and package your first Novadesk widget using nwm.
 ---
 
 # Creating Your First Widget

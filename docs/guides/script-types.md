@@ -1,9 +1,10 @@
 ---
 title: Script Types
+description: Understand Main scripts vs UI scripts and their capabilities.
 ---
 
 # Script Types
-Understanding the difference between Main scripts and UI scripts in Novadesk
+Understanding the difference between Main scripts and UI scripts in Novadesk. See [IPC](/api/ipc) for inter-script communication and [Modules](/api/modules/modules) for available APIs
 
 #### Table of Contents
 [[toc]]

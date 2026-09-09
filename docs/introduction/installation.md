@@ -1,5 +1,6 @@
 ---
 title: Installation
+description: Step-by-step guide to installing Novadesk on Windows.
 ---
 
 # Installation
@@ -65,3 +66,9 @@ When the file copy finishes, you can keep **Run Novadesk** checked to launch imm
 
 ![Finish Setup](https://github.com/Official-Novadesk/novadesk-assets/blob/master/docs/installation/6.png?raw=true)
 
+
+## Related Pages
+
+- [Getting Started](/introduction/getting-started) — overview and key concepts
+- [Creating Your First Widget](/introduction/creating-first-widget) — build your first widget after installing
+- [CLI Commands](/guides/cli-commands) — command-line reference for nwm

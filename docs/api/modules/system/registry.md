@@ -1,5 +1,6 @@
 ---
 title: Read and write Windows Registry values with the registry module.
+description: Read and write Windows Registry values.
 ---
 
 # registry Module

@@ -1,5 +1,6 @@
 ﻿---
 title: addLine
+description: Add a scrolling line graph supporting multiple data series.
 ---
 
 # ui.addLine()
@@ -11,7 +12,7 @@ ui.addLine(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options/general-elements-options) (position, size, visibility, tooltip, mouse events, etc.).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) (position, size, visibility, tooltip, mouse events, etc.).
 :::
 
 #### Table of Contents

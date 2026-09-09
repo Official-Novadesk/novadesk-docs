@@ -1,10 +1,11 @@
 ---
 title: Color Formats
+description: "Color formats: RGB, RGBA, hex, named colors, and gradients."
 ---
 
 # Color Formats
 
-This guide covers the color and gradient formats currently supported by Novadesk.
+This guide covers the color and gradient formats. See [General Options](/api/ui/ui-elements/general-options) for applying colors to elements currently supported by Novadesk.
 
 #### Table of Contents
 [[toc]]

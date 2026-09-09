@@ -1,5 +1,6 @@
-﻿---
+---
 title: IPC
+description: Inter-process communication between Main and UI scripts.
 ---
 
 # IPC
@@ -50,9 +51,7 @@ Available in the **Main script** only. Used to receive messages from UI scripts 
 
 Registers a persistent listener for messages sent from a UI script via `ipcRenderer.send()`. If multiple listeners are registered on the same channel, all of them are called in registration order.
 
-::: warning No removeListener
-There is no `ipcMain.off()` or `removeListener()`. Listeners are cleaned up automatically when the script that registered them is unloaded or refreshed.
-:::
+To remove a specific listener, pass the same function reference to `ipcMain.removeListener()`. Listeners are also cleaned up automatically when the script that registered them is unloaded or refreshed.
 
 <template #example>
 
@@ -61,6 +60,84 @@ ipcMain.on("ui-ready", (event, payload) => {
   console.log("UI is ready:", JSON.stringify(payload));
   // event.from === "ui", event.to === "main"
 });
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="ipcMain.removeListener(channel, listener)"
+  badge="ipcMain"
+  badgeType="core"
+  :parameters="[
+    { name: 'channel', type: 'string', description: 'Channel name the listener was registered on.' },
+    { name: 'listener', type: 'function', description: 'The exact same function reference that was passed to ipcMain.on().' }
+  ]"
+>
+
+Removes a previously registered listener from the given channel. You must pass the **same function reference** that was used when calling `ipcMain.on()`. If the listener is not found, the call is a silent no-op.
+
+`ipcMain.off()` is an alias for this method.
+
+<template #example>
+
+```javascript
+function onUiReady(event, payload) {
+  console.log("UI ready:", payload);
+  // Remove this listener after first call
+  ipcMain.removeListener("ui-ready", onUiReady);
+}
+
+ipcMain.on("ui-ready", onUiReady);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="ipcMain.removeAllListeners([channel])"
+  badge="ipcMain"
+  badgeType="core"
+  :parameters="[
+    { name: 'channel', type: 'string', optional: true, description: 'If provided, removes all listeners on this channel only. If omitted, removes all listeners on all channels.' }
+  ]"
+>
+
+Removes all listeners registered via `ipcMain.on()`. If a `channel` argument is provided, only listeners on that specific channel are removed. If called with no arguments, all ipcMain listeners across all channels are cleared.
+
+<template #example>
+
+```javascript
+// Remove all listeners on a specific channel
+ipcMain.removeAllListeners("ui-ready");
+
+// Remove all ipcMain listeners (use with caution)
+ipcMain.removeAllListeners();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="ipcMain.removeHandler(channel)"
+  badge="ipcMain"
+  badgeType="core"
+  :parameters="[
+    { name: 'channel', type: 'string', description: 'Channel name whose handler should be unregistered.' }
+  ]"
+>
+
+Removes the handler previously registered with `ipcMain.handle()` for the given channel. After calling this, any `ipcRenderer.invoke()` call on that channel will throw a `ReferenceError`. If no handler was registered for the channel, the call is a silent no-op.
+
+<template #example>
+
+```javascript
+ipcMain.handle("get-config", (event, payload) => {
+  return { theme: "dark" };
+});
+
+// Later, when the handler is no longer needed:
+ipcMain.removeHandler("get-config");
 ```
 
 </template>
@@ -154,6 +231,59 @@ ipcRenderer.on("main-pong", (event, payload) => {
 </MethodBox>
 
 <MethodBox
+  name="ipcRenderer.removeListener(channel, listener)"
+  badge="ipcRenderer"
+  badgeType="ui"
+  :parameters="[
+    { name: 'channel', type: 'string', description: 'Channel name the listener was registered on.' },
+    { name: 'listener', type: 'function', description: 'The exact same function reference that was passed to ipcRenderer.on().' }
+  ]"
+>
+
+Removes a previously registered listener from the given channel. You must pass the **same function reference** that was used when calling `ipcRenderer.on()`. If the listener is not found, the call is a silent no-op.
+
+`ipcRenderer.off()` is an alias for this method.
+
+<template #example>
+
+```javascript
+function onMainReady(event, payload) {
+  ui.setElementProperties("status", { text: "Connected" });
+  // Remove this listener after first call
+  ipcRenderer.removeListener("main-ready", onMainReady);
+}
+
+ipcRenderer.on("main-ready", onMainReady);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="ipcRenderer.removeAllListeners([channel])"
+  badge="ipcRenderer"
+  badgeType="ui"
+  :parameters="[
+    { name: 'channel', type: 'string', optional: true, description: 'If provided, removes all listeners on this channel only. If omitted, removes all listeners on all channels.' }
+  ]"
+>
+
+Removes all listeners registered via `ipcRenderer.on()`. If a `channel` argument is provided, only listeners on that specific channel are removed. If called with no arguments, all ipcRenderer listeners across all channels are cleared.
+
+<template #example>
+
+```javascript
+// Remove all listeners on a specific channel
+ipcRenderer.removeAllListeners("main-ready");
+
+// Remove all ipcRenderer listeners
+ipcRenderer.removeAllListeners();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
   name="ipcRenderer.send(channel, payload)"
   badge="ipcRenderer"
   badgeType="ui"
@@ -218,7 +348,6 @@ These features do not exist in the current implementation:
 
 | Missing feature | Note |
 |---|---|
-| `ipcMain.off()` / `removeListener()` | No public API to unregister a specific listener. Listeners are cleaned up on script unload/refresh. |
 | `ipcMain.once()` / `ipcRenderer.once()` | No single-fire listener variant. Implement it manually with a flag if needed. |
 | `ipcMain.emit()` | Channels are always directional (main to ui, or ui to main). There is no way to broadcast within the same layer. |
 | Async `invoke` | `ipcRenderer.invoke()` is synchronous. If the handler returns a Promise, the caller receives the Promise object, not the resolved value. |
@@ -294,3 +423,9 @@ ipcRenderer.send("ui-ready", { ts: Date.now() });
 ipcRenderer.send("ui-ping", { msg: "hello from UI" });
 ```
 :::
+
+## Related Pages
+
+- [Script Types](/guides/script-types) — how Main and UI scripts communicate
+- [widgetWindow](/api/modules/novadesk/widgetWindow) — creating widget windows
+- [UI Object](/api/ui/ui-object) — UI elements that receive IPC messages

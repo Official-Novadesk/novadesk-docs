@@ -1,10 +1,11 @@
 ---
 title: toast
+description: Show Windows toast notifications with action buttons and callbacks.
 ---
 
 # toast
 
-Show Windows toast notifications from your Novadesk widget. Supports titles, messages, images, action buttons, reply input, custom sounds, and callbacks for every interaction.
+Show Windows toast notifications from your Novadesk widget. For blocking modal dialogs, see the [dialog](/api/modules/novadesk/dialog) API. Supports titles, messages, images, action buttons, reply input, custom sounds, and callbacks for every interaction.
 
 ```javascript
 import { toast } from "novadesk";
@@ -48,6 +49,7 @@ Explicitly initializes the Windows notification system. You only need to call th
 | `companyName` | `string` | Company name used to build the App User Model ID. Defaults to `"OfficialNovadesk"`. |
 | `productName` | `string` | Product name used to build the App User Model ID. |
 | `aumi` | `string` | Full App User Model ID override. If set, `companyName` and `productName` are ignored for AUMI purposes. |
+| `shortcutPolicy` | `string` | Shortcut policy for the notification. `"ignore"` ignores shortcuts, `"require"` requires existing shortcuts without creating new ones, `"create"` (default) creates shortcuts if missing. |
 
 <template #example>
 

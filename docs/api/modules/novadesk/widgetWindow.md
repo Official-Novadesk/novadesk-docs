@@ -1,10 +1,11 @@
 ---
 title: widgetWindow
+description: Create and manage desktop widget windows with drag, snap, and transparency.
 ---
 
 # widgetWindow
 
-Create desktop widget windows. Each window hosts a UI script and supports drag, snap, transparency, context menus, and events.
+Create and manage desktop widget windows. Each window hosts a UI script and supports drag, snap, transparency, background images, [animations](/api/ui/animate), context menus, and events. UI scripts communicate via [IPC](/api/ipc).
 
 ```javascript
 import { widgetWindow } from "novadesk";
@@ -45,6 +46,9 @@ If `id` is provided and a widget with the same `id` already exists, the existing
 | `backgroundColor` | `string` | `"rgba(0,0,0,0)"` | Window background color or gradient. Supports `rgb()`, `rgba()`, `linearGradient()`, `radialGradient()`. |
 | `opacity` | `number \| string` | `1` | Master window opacity. Accepts `0.0–1.0`, `0–100`, `0–255`, or a percentage string like `"75%"`. Scales the **entire window** including all drawn elements. |
 | `draggable` | `boolean` | `true` | Allow the user to drag the window. |
+| `resizable` | `boolean` | `false` | Allow the user to resize the window by dragging its edges. |
+| `minWidth` | `number` | `0` | Minimum window width in pixels when resizing. |
+| `minHeight` | `number` | `0` | Minimum window height in pixels when resizing. |
 | `clickThrough` | `boolean` | `false` | Mouse events pass through the window to whatever is behind it. |
 | `keepOnScreen` | `boolean` | `false` | Prevent dragging the window off-screen. |
 | `snapEdges` | `boolean` | `true` | Snap to screen edges and other widgets while dragging. |
@@ -52,6 +56,10 @@ If `id` is provided and a widget with the same `id` already exists, the existing
 | `showInToolbar` | `boolean` | `false` | Show in the Windows taskbar. |
 | `toolbarIcon` | `string` | `""` | Path to the taskbar icon. |
 | `toolbarTitle` | `string` | `""` | Title shown in the Windows taskbar. |
+| `backgroundImage` | `string` | `""` | Path to a background image. Supports local files and HTTP/HTTPS URLs. |
+| `backgroundImageFallback` | `string` | `""` | Fallback image shown while the main image loads (or if it fails). |
+| `backgroundImageSize` | `string \| object` | `"cover"` | How the image fits. String: `"cover"`, `"contain"`, `"stretch"`. Object: `{ width, height }` for explicit sizing. |
+| `backgroundImagePosition` | `string \| object` | `"center"` | Image position. String: `"top-left"`, `"top"`, `"top-right"`, `"left"`, `"center"`, `"right"`, `"bottom-left"`, `"bottom"`, `"bottom-right"`. Object: `{ x, y }` for pixel offset. |
 | `zPos` | `string` | `"normal"` | Z-order position. See values below. |
 
 **`zPos` values** (case-insensitive):
@@ -83,6 +91,8 @@ const win = new widgetWindow({
   height: 300,
   script: "script.ui.js",
   backgroundColor: "rgb(10,10,10)",
+  draggable: true,
+  resizable: true,
   snapEdges: true,
   showInToolbar: true,
   toolbarTitle: "My Widget"
@@ -226,6 +236,200 @@ if (!win.isDestroyed()) {
 </MethodBox>
 
 <MethodBox
+  name="win.setResizable(enable)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'enable', type: 'boolean', description: 'true to allow the user to resize by dragging edges. false to disable.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Enables or disables window resizing by the user dragging the window edges. When enabled, a thin resize border appears around the window.
+
+::: warning Not persisted
+The `resizable` state is not saved to disk. The window will revert to `resizable: false` on the next launch unless you set it again in the constructor or via `setResizable()`.
+:::
+
+<template #example>
+
+```javascript
+win.setResizable(true);   // user can now drag edges to resize
+win.setResizable(false);  // lock the size
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.isResizable()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="boolean"
+>
+<template #returns><code>true</code> if the window is currently resizable.</template>
+
+Returns whether the user can resize the window by dragging its edges.
+
+<template #example>
+
+```javascript
+console.log("Resizable:", win.isResizable());
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.isResizing()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="boolean"
+>
+<template #returns><code>true</code> if the window is currently being resized by the user.</template>
+
+Returns whether the window is in the process of being resized (user is dragging an edge).
+
+<template #example>
+
+```javascript
+win.on("resize", () => {
+  if (win.isResizing()) {
+    console.log("User is resizing...");
+  }
+});
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.setMinWidth(width)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'width', type: 'number', description: 'Minimum width in pixels.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Sets the minimum width the window can be resized to.
+
+<template #example>
+
+```javascript
+win.setMinWidth(200);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.getMinWidth()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="number"
+>
+<template #returns>The minimum width in pixels.</template>
+
+Returns the current minimum width.
+
+<template #example>
+
+```javascript
+console.log("Min width:", win.getMinWidth());
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.setMinHeight(height)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'height', type: 'number', description: 'Minimum height in pixels.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Sets the minimum height the window can be resized to.
+
+<template #example>
+
+```javascript
+win.setMinHeight(150);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.getMinHeight()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="number"
+>
+<template #returns>The minimum height in pixels.</template>
+
+Returns the current minimum height.
+
+<template #example>
+
+```javascript
+console.log("Min height:", win.getMinHeight());
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.setMinSize(width, height)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'width', type: 'number', description: 'Minimum width in pixels.' },
+    { name: 'height', type: 'number', description: 'Minimum height in pixels.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Sets both minimum width and height in one call.
+
+<template #example>
+
+```javascript
+win.setMinSize(200, 150);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.getMinSize()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="object"
+>
+<template #returns>An object with <code>width</code> and <code>height</code>.</template>
+
+Returns the current minimum size.
+
+<template #example>
+
+```javascript
+const min = win.getMinSize();
+console.log("Min size:", min.width, "x", min.height);
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
   name="win.minimize()"
   badge="widgetWindow"
   badgeType="core"
@@ -254,6 +458,99 @@ Restores a minimized widget window. Fires the `unMinimize` event.
 
 ```javascript
 win.unMinimize();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.isMinimized()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="boolean"
+>
+<template #returns><code>true</code> if the window is currently minimized.</template>
+
+Returns whether the window is minimized.
+
+<template #example>
+
+```javascript
+if (win.isMinimized()) {
+  win.unMinimize();
+}
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.maximize()"
+  badge="widgetWindow"
+  badgeType="core"
+>
+
+Maximizes the widget window to fill the work area.
+
+<template #example>
+
+```javascript
+win.maximize();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.restore()"
+  badge="widgetWindow"
+  badgeType="core"
+>
+
+Restores a maximized window to its previous size and position.
+
+<template #example>
+
+```javascript
+win.restore();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.toggleMaximize()"
+  badge="widgetWindow"
+  badgeType="core"
+>
+
+Toggles between maximized and normal window state.
+
+<template #example>
+
+```javascript
+win.toggleMaximize();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.isMaximized()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="boolean"
+>
+<template #returns><code>true</code> if the window is currently maximized.</template>
+
+Returns whether the window is maximized.
+
+<template #example>
+
+```javascript
+if (!win.isMaximized()) {
+  win.maximize();
+}
 ```
 
 </template>
@@ -305,6 +602,252 @@ Clears all UI elements and re-executes the widget's UI script. Stale `ipcRendere
 
 ```javascript
 win.refresh();
+```
+
+</template>
+</MethodBox>
+
+## Background Image
+
+<MethodBox
+  name="win.setBackgroundImage(path, size, position)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'path', type: 'string', description: 'Path to the image file. Supports local files and HTTP/HTTPS URLs.' },
+    { name: 'size', type: 'string | object', optional: true, description: 'Image fit mode: cover (default), contain, stretch, or { width, height } for explicit sizing.' },
+    { name: 'position', type: 'string | object', optional: true, description: 'Image position: center (default), or a keyword / { x, y } offset.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Sets the window background image. The image is drawn behind all UI elements but on top of `backgroundColor`.
+
+**Size modes:**
+
+| Mode | Behavior |
+|---|---|
+| `"cover"` | Image fills the window, cropping if needed to maintain aspect ratio (default). |
+| `"contain"` | Image fits inside the window, letterboxing if needed to maintain aspect ratio. |
+| `"stretch"` | Image stretches to fill the window exactly, ignoring aspect ratio. |
+| `{ width, height }` | Explicit pixel size. Omit one dimension to auto-scale while maintaining aspect ratio. |
+
+**Position keywords:**
+
+`"top-left"`, `"top"`, `"top-right"`, `"left"`, `"center"`, `"right"`, `"bottom-left"`, `"bottom"`, `"bottom-right"`
+
+<template #example>
+
+```javascript
+win.setBackgroundImage("./assets/wallpaper.jpg");
+win.setBackgroundImage("./assets/bg.png", "contain");
+win.setBackgroundImage("./assets/bg.png", "cover", "top-left");
+win.setBackgroundImage("./assets/bg.png", { width: 200 }, "center");
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.getBackgroundImage()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="string"
+>
+<template #returns>The current background image path, or empty string if none.</template>
+
+Returns the current background image path.
+
+<template #example>
+
+```javascript
+console.log("BG image:", win.getBackgroundImage());
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.setBackgroundImageFallback(path)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'path', type: 'string', description: 'Fallback image path. Shown while the main image loads or if it fails to load.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Sets a fallback image that displays while the main `backgroundImage` is loading (or if it fails to load).
+
+<template #example>
+
+```javascript
+win.setBackgroundImageFallback("./assets/placeholder.png");
+win.setBackgroundImage("https://example.com/wallpaper.jpg");
+```
+
+</template>
+</MethodBox>
+
+## Window Animation
+
+<MethodBox
+  name="win.animate(options)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'options', type: 'object', description: 'Animation configuration object.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Animates the window's position, size, and opacity using either a simple A-to-B tween or a multi-stop keyframe timeline.
+
+Every call is **fire-and-forget** — there is no callback when the animation completes. Calling `animate()` on a window that is already animating immediately replaces the running animation.
+
+**Options:**
+
+| Property | Type | Required | Default | Description |
+|---|---|---|---|---|
+| `duration` | `number` | No | `250` | Duration in milliseconds. |
+| `easing` | `string` | No | `"linear"` | Easing function name. See [easing reference](/api/ui/animate.html#easing-reference). |
+| `iterationCount` | `number` / `"infinite"` | No | `1` | How many times to play. Must be ≥ 1 or `"infinite"`. |
+| `to` | `object` | Tween only | — | Target values. See animatable properties below. |
+| `from` | `object` | No | Current state | Starting values. Omit to start from current state. Accepts the same properties as `to`. |
+| `keyframes` | `array` / `object` | Keyframe only | — | Multi-stop timeline. Cannot be combined with `to`/`from`. |
+
+**Animatable properties** (in `from`, `to`, and each keyframe):
+
+| Property | Type | Description |
+|---|---|---|
+| `x` | `number` / `string` | Horizontal position in pixels, or a screen keyword expression (see below). |
+| `y` | `number` / `string` | Vertical position in pixels, or a screen keyword expression (see below). |
+| `width` | `number` | Window width in pixels. Alias: `w`. |
+| `height` | `number` | Window height in pixels. Alias: `h`. |
+| `opacity` | `number` | Window opacity `0.0`–`1.0`. Alias: `alpha`. |
+| `backgroundColor` | `string` | Background color to animate to. Alias: `bgColor`. |
+| `position` | `string` | Screen position preset (see below). Alias: `align`. |
+| `offsetX` | `number` | Pixel offset applied after resolving `position`. |
+| `offsetY` | `number` | Pixel offset applied after resolving `position`. |
+
+**Screen position presets** (`position` / `align`):
+
+| Preset | Aliases | Resolves to |
+|---|---|---|
+| `"top-left"` | `"topleft"` | Top-left corner of the work area. |
+| `"top-center"` | `"top"` | Top center of the work area. |
+| `"top-right"` | `"topright"` | Top-right corner of the work area. |
+| `"center-left"` | `"left"` | Left edge, vertically centered. |
+| `"center"` | `"middle"` | Dead center of the work area. |
+| `"center-right"` | `"right"` | Right edge, vertically centered. |
+| `"bottom-left"` | `"bottomleft"` | Bottom-left corner of the work area. |
+| `"bottom-center"` | `"bottom"` | Bottom center of the work area. |
+| `"bottom-right"` | `"bottomright"` | Bottom-right corner of the work area. |
+
+::: tip Work area
+The "work area" is the portion of the screen excluding the taskbar. Position presets align the window's top-left corner to that screen location.
+:::
+
+**String expressions for `x` and `y`**:
+
+Instead of a number, `x` and `y` accept a string keyword with an optional pixel offset:
+
+| Keyword | X resolves to | Y resolves to |
+|---|---|---|
+| `"left"` | Left edge of work area | — |
+| `"center"` / `"middle"` | Horizontally centered | Vertically centered |
+| `"right"` | Right edge minus window width | — |
+| `"top"` | — | Top edge of work area |
+| `"bottom"` | — | Bottom edge minus window height |
+| `"offscreen-left"` | Left edge minus window width (hidden) | — |
+| `"offscreen-right"` | Right edge (hidden) | — |
+| `"offscreen-top"` | — | Top edge minus window height (hidden) |
+| `"offscreen-bottom"` | — | Bottom edge (hidden) |
+
+<template #example>
+
+```javascript
+// Slide the window in from off-screen
+win.animate({
+  duration: 500,
+  easing: "easeOutCubic",
+  from: { x: -400 },
+  to: { x: 100 }
+});
+
+// Fade in
+win.animate({
+  duration: 300,
+  from: { opacity: 0 },
+  to: { opacity: 1 }
+});
+
+// Infinite bounce
+win.animate({
+  duration: 700,
+  iterationCount: "infinite",
+  from: { y: 100 },
+  to: { y: 80 }
+});
+
+// Keyframe: slide in then settle
+win.animate({
+  duration: 800,
+  keyframes: [
+    { offset: 0, x: -400 },
+    { offset: 0.6, x: 120, easing: "easeOutBack" },
+    { offset: 1, x: 100 }
+  ]
+});
+
+// Animate to a screen position
+win.animate({
+  duration: 400,
+  easing: "easeOutCubic",
+  to: { position: "bottom-center" }
+});
+
+// Use position with an offset
+win.animate({
+  duration: 300,
+  to: { position: "top-right", offsetX: -20, offsetY: 20 }
+});
+
+// String expression for x/y
+win.animate({
+  duration: 500,
+  from: { x: "offscreen-left" },
+  to: { x: "left", y: "center" }
+});
+
+// Animate background color
+win.animate({
+  duration: 600,
+  from: { backgroundColor: "rgb(0,0,0)" },
+  to: { backgroundColor: "rgb(30,30,60)" }
+});
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.stopAnimation()"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Stops all running window animations. The window stays at its current position/size/opacity.
+
+<template #example>
+
+```javascript
+win.stopAnimation();
 ```
 
 </template>
@@ -652,6 +1195,9 @@ Registers an event listener on the widget window. Mouse events pass a [Mouse Eve
 | `minimize` | Window was minimized |
 | `unMinimize` | Window was restored from minimized state |
 | `move` | Window position changed |
+| `resize` | Window was resized (width or height changed) |
+| `resizeStart` | Window resize operation started (user began dragging an edge). Alias: `resize-start` |
+| `resizeEnd` | Window resize operation ended (user released the edge). Alias: `resize-end` |
 | `refresh` | UI script was refreshed |
 | `close` | Window is about to close (fired by `close()`, not by `destroy()`) |
 | `closed` | Window has been fully destroyed |
@@ -680,6 +1226,21 @@ win.on("mouseMove", (e) => {
 win.on("close", () => {
   console.log("Window closing");
   cleanup();
+});
+
+win.on("resize", () => {
+  const { width, height } = win.getSize();
+  console.log("New size:", width, "x", height);
+});
+
+win.on("resizeStart", () => {
+  console.log("User started resizing");
+});
+
+win.on("resizeEnd", () => {
+  console.log("User finished resizing");
+  const { width, height } = win.getSize();
+  console.log("Final size:", width, "x", height);
 });
 ```
 

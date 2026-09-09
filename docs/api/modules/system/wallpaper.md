@@ -1,5 +1,6 @@
 ---
 title: Set and read the desktop wallpaper with the wallpaper module.
+description: Get and set the desktop wallpaper.
 ---
 
 # wallpaper Module

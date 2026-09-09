@@ -1,5 +1,6 @@
 ---
 title: Read monitor and virtual desktop metrics with the displayMetrics module.
+description: Read monitor bounds and virtual desktop metrics.
 ---
 
 # displayMetrics Module

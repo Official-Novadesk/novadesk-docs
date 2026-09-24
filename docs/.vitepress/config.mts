@@ -252,7 +252,7 @@ export default defineConfig({
       },
     ],
 
-    socialLinks: [{ icon: "github", link: "https://novadesk.pages.dev/" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/Official-Novadesk/novadesk" }],
   },
 });
 

@@ -27,7 +27,7 @@ export default {
     app.component('CallbackBox', CallbackBox)
     app.component('CliCommandBox', CliCommandBox)
     BackToTopButton(app, {
-      progressColor: '#3f4152', 
+      progressColor: '#29D1FA',
     })
   }
 } satisfies Theme

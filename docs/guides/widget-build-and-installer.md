@@ -54,12 +54,18 @@ Notes:
 
 `nwm build` fails if any of these are missing or empty:
 
-Top-level:
+Top-level required:
 - `name`
 - `version`
 - `author`
 - `description`
 - `icon`
+
+Top-level optional:
+- `preview` (relative path to preview image shown in the package installer, e.g. `"assets/preview.png"`)
+- `excludeItems` (array of file/folder path patterns to exclude from packaging)
+- `addons` (array of addon DLL names required by the widget)
+- `setup` (custom installer configuration object)
 
 `setup` object:
 - `setup.installDir`
@@ -271,6 +277,7 @@ Typical package structure:
 - Accepts `.ndpkg` path argument or opens a file picker.
 - Validates the NDPKG footer and extracts payload.
 - Requires `ndpkg.json` and `Widgets/` to exist in the package.
+- Displays a preview image of the widget in the **Widget Visuals** pane if `preview` is specified in `meta.json`.
 - Installs to:
   - Portable Novadesk: `<NovadeskFolder>/Widgets` and `<NovadeskFolder>/Addons`
   - Standard Novadesk: `%USERPROFILE%\\Documents\\Novadesk\\Widgets` and `...\\Addons`
@@ -278,8 +285,26 @@ Typical package structure:
 - Marks addon rows as Add/Replace/Newer Version Found based on installed DLL version info.
 - Uses an elevated fallback (`manage_novadesk.exe --request-close`) when admin-level close of Manage/Novadesk is required.
 
+### Preview Image Specifications
+
+The installer displays your widget preview in the **Widget Visuals** section (`324 × 266 px` viewport, with an internal drawable area of `320 × 262 px`).
+
+The installer scales the image using **`cover` mode** (`std::max(scaleX, scaleY)` centered):
+
+| Spec | Value | Description |
+|---|---|---|
+| **Aspect Ratio** | **`~11 : 9`** (`1.22 : 1` or `32 : 26`) | Matches the preview viewport exactly to prevent cropping. |
+| **Recommended Resolution** | **`640 × 524 px`** | 2x HiDPI resolution for crisp rendering on high-DPI displays. |
+| **1:1 Resolution** | **`320 × 262 px`** | Exact viewport pixel dimension. |
+| **Supported Formats** | `.png`, `.jpg`, `.jpeg`, `.bmp` | PNG is recommended for clarity and transparency. |
+
+::: tip Prevent Cropping
+Because the installer centers and scales the image to cover the full preview box (`object-fit: cover`), any image with an aspect ratio significantly wider (e.g. `16:9`) or taller (e.g. `1:1`) will have its edges cropped. Keeping your preview image at or close to **`640 × 524 px`** (or aspect ratio **`1.22 : 1`**) ensures the entire image fits cleanly.
+:::
+
 ## Notes
 
+- `preview` in `meta.json` specifies the relative path to your preview image (e.g., `"preview": "assets/preview.png"`). `nwm build` copies it into the root of the `.ndpkg` package.
 - `icon` is used for the built app executable (`YourWidgetName.exe`).
 - `setup.setupIcon` is used for the installer executable.
 - Unknown extra keys in `setup` are ignored.

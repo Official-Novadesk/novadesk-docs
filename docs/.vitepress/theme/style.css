@@ -55,10 +55,11 @@
   --vp-c-default-3: var(--vp-c-gray-3);
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
-  --vp-c-brand-3: var(--vp-c-indigo-3);
-  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+  /* Brand: cyan-to-blue matching novadesk-www gradient */
+  --vp-c-brand-1: #29D1FA;
+  --vp-c-brand-2: #51BCFE;
+  --vp-c-brand-3: #057AF0;
+  --vp-c-brand-soft: rgba(41, 209, 250, 0.14);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
   --vp-c-tip-2: var(--vp-c-brand-2);
@@ -77,37 +78,65 @@
 }
 
 /**
- * Component: Button
+ * Dark mode: background #0C1329 (rgb 12, 19, 41)
  * -------------------------------------------------------------------------- */
 
-:root {
-  --vp-button-brand-border: transparent;
-  --vp-button-brand-text: var(--vp-c-white);
-  --vp-button-brand-bg: var(--vp-c-brand-3);
-  --vp-button-brand-hover-border: transparent;
-  --vp-button-brand-hover-text: var(--vp-c-white);
-  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
-  --vp-button-brand-active-border: transparent;
-  --vp-button-brand-active-text: var(--vp-c-white);
-  --vp-button-brand-active-bg: var(--vp-c-brand-1);
+.dark {
+  --vp-c-bg: #0C1329;
+  --vp-c-bg-alt: #0f1733;
+  --vp-c-bg-elv: #131d3d;
+  --vp-c-bg-soft: rgba(255, 255, 255, 0.03);
+
+  /* Dividers / borders */
+  --vp-c-divider: rgba(255, 255, 255, 0.08);
+  --vp-c-gutter: #0C1329;
+
+  /* Text colors matching novadesk-www */
+  --vp-c-text-1: #f4f4f7;
+  --vp-c-text-2: #d9d9e0;
+  --vp-c-text-3: #9fa2b8;
+
+  /* Nav / sidebar surfaces */
+  --vp-nav-bg-color: rgba(12, 19, 41, 0.88);
+  --vp-sidebar-bg-color: #0C1329;
+  --vp-local-nav-bg-color: rgba(12, 19, 41, 0.92);
 }
 
 /**
- * Component: Home
+ * Component: Button
+ * Styled to match novadesk-www primary action button
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --vp-button-brand-border: rgba(81, 188, 254, 0.5);
+  --vp-button-brand-text: #eaf3ff;
+  --vp-button-brand-bg: rgba(81, 188, 254, 0.12);
+  --vp-button-brand-hover-border: rgba(81, 188, 254, 0.6);
+  --vp-button-brand-hover-text: #eaf3ff;
+  --vp-button-brand-hover-bg: rgba(81, 188, 254, 0.22);
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #fff;
+  --vp-button-brand-active-bg: #057AF0;
+}
+
+/**
+ * Component: Home Hero
+ * Gradient: #73F0FF → #29D1FA → #057AF0 — exact match with novadesk-www .grad
  * -------------------------------------------------------------------------- */
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #bd34fe 30%,
-    #41d1ff
+  --vp-home-hero-name-background: linear-gradient(
+    45deg,
+    #73F0FF 0%,
+    #29D1FA 55%,
+    #057AF0 100%
   );
 
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #bd34fe 50%,
-    #47caff 50%
+    #073d70 50%,
+    #0a5a9c 50%
   );
   --vp-home-hero-image-filter: blur(44px);
 }
@@ -123,6 +152,59 @@
     --vp-home-hero-image-filter: blur(68px);
   }
 }
+
+/**
+ * Component: Nav
+ * Glass nav styling matching novadesk-www .glass-nav
+ * -------------------------------------------------------------------------- */
+
+.dark .VPNav {
+  background: rgba(12, 19, 41, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dark .VPNavBar {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+/**
+ * Component: Sidebar
+ * -------------------------------------------------------------------------- */
+
+.dark .VPSidebar {
+  background: #0C1329 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+/**
+ * Links — cyan accent matching novadesk-www
+ * -------------------------------------------------------------------------- */
+
+.dark .VPLink,
+.dark .vp-doc a {
+  color: #51BCFE;
+}
+
+.dark .VPLink:hover,
+.dark .vp-doc a:hover {
+  color: #73F0FF;
+}
+
+.dark .outline-link {
+  color: #9fa2b8;
+}
+
+.dark .outline-link:hover,
+.dark .outline-link.active {
+  color: #29D1FA;
+}
+
+/**
+ * Component: Home Features
+ * -------------------------------------------------------------------------- */
 
 .VPHomeFeatures .items {
   grid-template-columns: minmax(0, 1fr);
@@ -150,6 +232,10 @@
   font-size: 36px;
   margin: 0 auto;
 }
+
+/**
+ * Custom Cards
+ * -------------------------------------------------------------------------- */
 
 .custom-cards {
   margin: 32px auto 0;
@@ -181,8 +267,8 @@
 }
 
 .custom-card:hover {
-  border-color: var(--vp-c-brand-2);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  border-color: rgba(41, 209, 250, 0.4);
+  box-shadow: 0 10px 30px rgba(81, 188, 254, 0.12);
   transform: translateY(-2px);
 }
 
@@ -209,3 +295,94 @@
   --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
+
+/**
+ * Code blocks — dark navy tone matching novadesk-www
+ * -------------------------------------------------------------------------- */
+
+.dark .vp-code-group .tabs,
+.dark div[class*='language-'] {
+  background: #0f1733 !important;
+}
+
+.dark :not(pre) > code {
+  background: rgba(81, 188, 254, 0.1);
+  color: #73F0FF;
+}
+
+/**
+ * Back-to-top button accent
+ * -------------------------------------------------------------------------- */
+
+.dark .back-to-top-button {
+  background: rgba(81, 188, 254, 0.15) !important;
+  border: 1px solid rgba(81, 188, 254, 0.35) !important;
+  color: #29D1FA !important;
+}
+
+/**
+ * Scrollbars — match novadesk-www dark navy + cyan palette
+ * WebKit (Chrome, Edge, Safari) + Firefox
+ * -------------------------------------------------------------------------- */
+
+/* Global page scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0C1329;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(41, 209, 250, 0.25);
+  border-radius: 999px;
+  transition: background 140ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(81, 188, 254, 0.55);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #29D1FA;
+}
+
+::-webkit-scrollbar-corner {
+  background: #0C1329;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(41, 209, 250, 0.28) #0C1329;
+}
+
+/* VitePress sidebar inner scroll */
+.VPSidebarItem::-webkit-scrollbar,
+.VPNav::-webkit-scrollbar,
+.vp-doc::-webkit-scrollbar {
+  width: 4px;
+}
+
+.VPSidebarItem::-webkit-scrollbar-track,
+.VPNav::-webkit-scrollbar-track,
+.vp-doc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.VPSidebarItem::-webkit-scrollbar-thumb,
+.VPNav::-webkit-scrollbar-thumb,
+.vp-doc::-webkit-scrollbar-thumb {
+  background: rgba(41, 209, 250, 0.2);
+  border-radius: 999px;
+}
+
+.VPSidebarItem::-webkit-scrollbar-thumb:hover,
+.VPNav::-webkit-scrollbar-thumb:hover,
+.vp-doc::-webkit-scrollbar-thumb:hover {
+  background: rgba(81, 188, 254, 0.5);
+}
+

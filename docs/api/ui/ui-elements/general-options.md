@@ -933,6 +933,29 @@ ui.addImage({
 
 </PropertyBox>
 
+<PropertyBox name="fallbackAspectRatio" type="string" defaultValue='"stretch"'>
+
+How the fallback image (defined by `fallbackPath`) is scaled when displayed. Operates independently from the main image's `preserveAspectRatio`.
+
+| Value | Aliases | Behavior |
+|---|---|---|
+| `"stretch"` | — | Fills bounds exactly, ignoring aspect ratio (default) |
+| `"preserve"` | `"fit"`, `"contain"` | Scales uniformly to fit within bounds, centered |
+| `"crop"` | `"cover"` | Scales uniformly to fill bounds, cropping excess from center |
+
+```javascript
+ui.addImage({
+  id: "banner",
+  path: "https://example.com/banner.png",
+  fallbackPath: "./assets/fallback.png",
+  fallbackAspectRatio: "preserve",
+  preserveAspectRatio: "crop",
+  width: 300, height: 100
+});
+```
+
+</PropertyBox>
+
 ### Color Adjustments
 
 <PropertyBox name="grayscale" type="boolean" defaultValue="false">

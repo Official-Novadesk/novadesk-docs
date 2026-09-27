@@ -72,6 +72,51 @@ app.exit();
 </MethodBox>
 
 <MethodBox
+  name="app.beginWindowBatch()"
+  badge="app"
+  badgeType="core"
+>
+
+Begins a window visibility batch. All subsequent `show()` and `hide()` calls on widget windows are deferred until `app.endWindowBatch()` is called. Use this to prevent visual flicker when toggling multiple windows at once.
+
+::: tip
+Always pair `beginWindowBatch()` with `endWindowBatch()`. Forgetting to call `endWindowBatch()` will leave all windows frozen in their current visibility state.
+:::
+
+<template #example>
+
+```javascript
+app.beginWindowBatch();
+win1.show();
+win2.hide();
+win3.show();
+app.endWindowBatch(); // all changes applied atomically
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="app.endWindowBatch()"
+  badge="app"
+  badgeType="core"
+>
+
+Ends a window visibility batch started by `app.beginWindowBatch()` and flushes all deferred show/hide operations.
+
+<template #example>
+
+```javascript
+app.beginWindowBatch();
+win1.show();
+win2.hide();
+app.endWindowBatch();
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
   name="app.requestSingleInstanceLock()"
   badge="app"
   badgeType="core"

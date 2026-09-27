@@ -31,7 +31,7 @@ Available in the [Main script](/guides/script-types.html#main-script-the-brain) 
 
 Creates and shows a new desktop widget window.
 
-If `id` is provided and a widget with the same `id` already exists, the existing widget is silently removed before the new one is created. If `id` matches a previously saved widget, the saved position and size are loaded as defaults (explicitly provided `x`, `y`, `width`, `height` override them).
+If `id` is provided and a widget with the same `id` already exists, the existing widget is silently removed before the new one is created. If `id` matches a previously saved widget, the saved position and size are loaded as defaults (explicitly provided `x`, `y`, `width`, `height` override them). If no saved state exists yet, the initial position is automatically saved after the first successful creation.
 
 **Options:**
 
@@ -58,6 +58,7 @@ If `id` is provided and a widget with the same `id` already exists, the existing
 | `toolbarTitle` | `string` | `""` | Title shown in the Windows taskbar. |
 | `backgroundImage` | `string` | `""` | Path to a background image. Supports local files and HTTP/HTTPS URLs. |
 | `backgroundImageFallback` | `string` | `""` | Fallback image shown while the main image loads (or if it fails). |
+| `backgroundImageFallbackAspectRatio` | `string` | `"stretch"` | How the fallback background image is scaled. Values: `"stretch"`, `"preserve"` / `"fit"` / `"contain"`, `"crop"` / `"cover"`. Also accepted as `backgroundImageFallbackSize`. |
 | `backgroundImageSize` | `string \| object` | `"cover"` | How the image fits. String: `"cover"`, `"contain"`, `"stretch"`. Object: `{ width, height }` for explicit sizing. |
 | `backgroundImagePosition` | `string \| object` | `"center"` | Image position. String: `"top-left"`, `"top"`, `"top-right"`, `"left"`, `"center"`, `"right"`, `"bottom-left"`, `"bottom"`, `"bottom-right"`. Object: `{ x, y }` for pixel offset. |
 | `zPos` | `string` | `"normal"` | Z-order position. See values below. |
@@ -686,6 +687,30 @@ Sets a fallback image that displays while the main `backgroundImage` is loading 
 ```javascript
 win.setBackgroundImageFallback("./assets/placeholder.png");
 win.setBackgroundImage("https://example.com/wallpaper.jpg");
+```
+
+</template>
+</MethodBox>
+
+<MethodBox
+  name="win.setBackgroundImageFallbackAspectRatio(mode)"
+  badge="widgetWindow"
+  badgeType="core"
+  returns="widgetWindow"
+  :parameters="[
+    { name: 'mode', type: 'string', description: 'How the fallback image is scaled. Accepted values: &quot;stretch&quot; (default), &quot;preserve&quot; / &quot;fit&quot; / &quot;contain&quot;, &quot;crop&quot; / &quot;cover&quot;.' }
+  ]"
+>
+<template #returns>The widget instance (chainable).</template>
+
+Sets the aspect ratio mode for the fallback background image. This controls how the fallback is scaled independently of the main background image size setting.
+
+<template #example>
+
+```javascript
+win.setBackgroundImageFallback("./assets/placeholder.jpg");
+win.setBackgroundImageFallbackAspectRatio("preserve"); // show full fallback, letterboxed
+win.setBackgroundImage("https://example.com/wallpaper.jpg", "cover");
 ```
 
 </template>

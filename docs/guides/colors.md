@@ -279,25 +279,67 @@ Novadesk supports `linearGradient(...)` and `radialGradient(...)`.
 
 ### Linear Gradient
 
-Defines a linear transition across 2+ colors.
+Defines a linear transition across 2+ colors. Both `linearGradient()` and the CSS-style `linear-gradient()` spellings are accepted.
 
 **Syntax:**
 ```javascript
-linearGradient(angle, color1, color2, ...)
+linearGradient([angle,] color1, color2, ...)
+linear-gradient([angle,] color1, color2, ...)
 ```
 
-`angle` is optional. If omitted, default angle is `0`.
+The first argument is an optional angle or direction. If omitted, the default angle is `0` (left to right).
 
-**Example:**
+**Angle formats:**
+
+| Format | Example | Description |
+|---|---|---|
+| Plain number | `90` | Degrees (legacy, still supported) |
+| `deg` suffix | `90deg` | Degrees |
+| `rad` suffix | `1.5708rad` | Radians |
+| `turn` suffix | `0.25turn` | Turns (1 turn = 360°) |
+| Direction keyword | `to bottom` | CSS-style keyword |
+
+**Direction keywords:**
+
+| Keyword | Angle |
+|---|---|
+| `to right` | 0° |
+| `to bottom` | 90° |
+| `to left` | 180° |
+| `to top` | 270° |
+| `to bottom right` | 45° |
+| `to top right` | 315° |
+| `to bottom left` | 135° |
+| `to top left` | 225° |
+
+**Stop positions:**
+
+Each color stop can optionally include a position:
+- Percentage: `rgba(255,0,0,1) 25%`
+- Decimal (0.0–1.0): `rgba(255,0,0,1) 0.25`
+
+If positions are omitted, stops are evenly distributed (first at 0%, last at 100%, middle ones linearly interpolated).
+
+**Examples:**
 ```javascript
-fontColor: "linearGradient(0, #ff8c00, #ff0080)"
-fontColor: "linearGradient(90, #f00, #0f0, #00f)"
-fontColor: "linearGradient(rgba(255,0,0,1), rgba(0,0,255,1))" // angle omitted
+// Direction keyword
+fontColor: "linearGradient(to right, #ff8c00, #ff0080)"
+fontColor: "linear-gradient(to bottom, #ff8c00, #ff0080)"
+
+// Degree angle
+fontColor: "linearGradient(90deg, #f00, #0f0, #00f)"
+fontColor: "linearGradient(0.5turn, rgba(255,0,0,1), rgba(0,0,255,1))"
+
+// With stop positions
+fontColor: "linearGradient(to right, rgba(255,0,0,1) 0%, rgba(0,255,0,1) 60%, rgba(0,0,255,1) 100%)"
+
+// Angle omitted (defaults to 0°)
+fontColor: "linearGradient(rgba(255,0,0,1), rgba(0,0,255,1))"
 ```
 
 ### Radial Gradient
 
-Defines a radial transition across 2+ colors.
+Defines a radial transition across 2+ colors. Both `radialGradient()` and the CSS-style `radial-gradient()` spellings are accepted.
 
 **Syntax:**
 ```javascript
@@ -319,6 +361,7 @@ fontColor: "radialGradient(#00f, #000)" // shape omitted
 
 - Parsing is case-insensitive and tolerates extra spaces.
 - Gradients require at least 2 valid color stops.
-- Explicit stop positions (percentages) are not supported in gradient strings.
+- Color stops accept optional positions as a percentage (e.g. `25%`) or decimal (e.g. `0.25`). Omitted positions are evenly distributed.
+- Both CSS-style hyphenated spellings (`linear-gradient`, `radial-gradient`) and the camelCase Novadesk spellings (`linearGradient`, `radialGradient`) are accepted.
 - `hsl()` / `hsla()` are not currently supported by the built-in parser.
 

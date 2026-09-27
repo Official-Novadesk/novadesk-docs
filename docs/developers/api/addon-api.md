@@ -21,6 +21,8 @@ Novadesk addons are **engine-agnostic**. Instead of linking against a specific J
 
 The primary entry point for any addon. It is called by Novadesk when `addon.load()` is executed.
 
+The macro also exports a `NovadeskAddonApiVersion()` function automatically. Novadesk uses this to verify that the addon was compiled against a compatible API version before loading it.
+
 ```cpp
 #include <NovadeskAPI/novadesk_addon.h>
 
@@ -43,6 +45,62 @@ NOVADESK_ADDON_UNLOAD() {
     // Cleanup your background threads, global memory, etc.
 }
 ```
+
+## **API Versioning**
+
+The header defines `NOVADESK_ADDON_API_VERSION` (currently **2**). Novadesk checks this value against the version of the host at load time. If there is a mismatch, the addon is rejected with an error rather than crashing.
+
+| Constant | Value | Description |
+|---|---|---|
+| `NOVADESK_ADDON_API_VERSION` | `2` | The API version this header targets. |
+
+The `NOVADESK_ADDON_INIT` macro automatically exports `NovadeskAddonApiVersion()` which returns this constant. You do not need to write this yourself.
+
+::: warning Recompile required
+If you update to a new version of `novadesk_addon.h` that bumps `NOVADESK_ADDON_API_VERSION`, you must recompile and redistiribute your addon DLL. Old DLLs compiled against a lower version will be refused.
+:::
+
+
+## **`novadesk::App` — Host App Info (API v2)**
+
+Added in API version 2. The `novadesk::App` helper class gives native addons read-only access to the same information exposed by the JavaScript [`app`](/api/modules/novadesk/app) module — version strings, paths, and runtime flags.
+
+Construct it from the `host` pointer passed to `NOVADESK_ADDON_INIT`:
+
+```cpp
+NOVADESK_ADDON_INIT(ctx, hMsgWnd, host) {
+    novadesk::App appInfo(host);
+
+    if (!appInfo.IsAvailable()) {
+        // Host is older than API v2 — app info unavailable
+        return;
+    }
+
+    // Read host info
+    const char* ver  = appInfo.GetNovadeskVersion(); // e.g. "0.9.11.0"
+    const char* data = appInfo.GetAppDataPath();      // e.g. "C:/Users/Me/AppData/Roaming/Novadesk/"
+    bool portable    = appInfo.IsPortable();
+    bool firstRun    = appInfo.IsFirstRun();
+}
+```
+
+### `App` Methods
+
+| Method | Returns | Description |
+|---|---|---|
+| `IsAvailable()` | `bool` | `true` if the host supports API v2. Always check this before calling other methods. |
+| `GetProductVersion()` | `const char*` | Widget product version (from `meta.json` when running inside `nwm`). |
+| `GetFileVersion()` | `const char*` | Executable file version. |
+| `GetNovadeskVersion()` | `const char*` | Hardcoded Novadesk engine version string. |
+| `GetAppDataPath()` | `const char*` | Path to the Novadesk AppData folder (portable: exe dir; installed: `%APPDATA%\Novadesk\`). |
+| `GetSettingsFilePath()` | `const char*` | Full path to `settings.json`. |
+| `GetLogPath()` | `const char*` | Full path to `logs.log`, or empty string if file logging is disabled. |
+| `IsPortable()` | `bool` | `true` when running in portable mode. |
+| `IsFirstRun()` | `bool` | `true` on the first launch when no settings file exists yet. |
+
+::: info Thread safety
+The returned `const char*` strings are valid until the next call on the same thread. Copy them if you need to pass them to a background thread.
+:::
 
 ## **Host API Functions**
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: addImage
 description: Add an image element with support for local files and URLs.
 ---
@@ -12,7 +12,7 @@ ui.addImage(options);
 ```
 
 ::: info
-Also accepts all [General Element Options](/api/ui/ui-elements/general-options) and [General Image Options](/api/ui/ui-elements/general-options#image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `imageCrop`, `colorMatrix`, `fallbackPath`).
+Also accepts all [General Element Options](/api/ui/ui-elements/general-options) and [General Image Options](/api/ui/ui-elements/general-options#image-options) (`imageAlpha`, `grayscale`, `imageTint`, `imageFlip`, `imageCrop`, `colorMatrix`, `fallbackPath`, `fallbackAspectRatio`).
 :::
 
 #### Table of Contents
@@ -75,6 +75,34 @@ preserveAspectRatio: "crop"
 ::: tip
 Use `"preserve"` for logos or icons where distortion would be visible. Use `"crop"` for background images where filling the space matters more than showing the full image.
 :::
+
+</PropertyBox>
+
+## Fallback Aspect Ratio
+
+<PropertyBox name="fallbackAspectRatio" type="string" defaultValue='"stretch"'>
+
+How the fallback image (set via `fallbackPath`) is scaled when it is displayed — for example while the main image is loading or if it fails.
+
+This is independent of `preserveAspectRatio`, which controls the main image only.
+
+| Value | Aliases | Behavior |
+|---|---|---|
+| `"stretch"` | — | Fills bounds exactly, ignoring aspect ratio (default) |
+| `"preserve"` | `"fit"`, `"contain"` | Scales uniformly to fit within bounds, centered, with empty space around it |
+| `"crop"` | `"cover"` | Scales uniformly to fill bounds, cropping excess from center |
+
+```javascript
+ui.addImage({
+  id: "avatar",
+  x: 10, y: 10,
+  width: 80, height: 80,
+  path: "https://example.com/user.jpg",
+  fallbackPath: "./assets/avatar-placeholder.png",
+  fallbackAspectRatio: "crop",   // fallback fills the bounds, main image uses default stretch
+  preserveAspectRatio: "crop"    // main image also fills and crops
+});
+```
 
 </PropertyBox>
 

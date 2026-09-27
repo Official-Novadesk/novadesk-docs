@@ -5,6 +5,43 @@ description: Release history and changelog for all Novadesk versions.
 
 # Changelog
 
+## [0.9.12.0-beta] - 2026-09-27
+###### 📅 27th September, 2026
+
+### Added
+
+* Added `app.beginWindowBatch()` and `app.endWindowBatch()` — batches window show and hide operations to eliminate visual flicker when toggling multiple windows simultaneously.
+* Added `widgetWindow` constructor option `backgroundImageFallbackAspectRatio` (and alias `backgroundImageFallbackSize`) and method `win.setBackgroundImageFallbackAspectRatio(mode)`.
+* Added `fallbackAspectRatio` option to image elements (`ui.addImage()` and general image options) supporting `"stretch"`, `"preserve"` / `"fit"` / `"contain"`, and `"crop"` / `"cover"`.
+* Enhanced gradient parser:
+  * Supported CSS-style aliases `linear-gradient(...)` and `radial-gradient(...)`.
+  * Supported direction keywords (`to top`, `to bottom`, `to right`, `to left`, `to top right`, `to bottom right`, `to top left`, `to bottom left`).
+  * Supported angle unit specifiers (`deg`, `rad`, `turn`) and raw numbers.
+  * Supported explicit stop positions (percentages or decimals) with automatic linear interpolation for omitted stops.
+* Upgraded Native Addon Host API to Version 2 (`NOVADESK_ADDON_API_VERSION 2`):
+  * Added `novadesk::App` helper class providing read-only access to host versions, paths, portable mode, and first-run state.
+  * Added automatic `NovadeskAddonApiVersion()` DLL export in `NOVADESK_ADDON_INIT` for host compatibility verification.
+* Added `minimumNovadeskVersion` metadata field support in `meta.json` for widget package installer compatibility checks.
+* Added immediate saving of first-run widget position and state when created with an `id`.
+* Added colored console logging output for errors, warnings, and info messages.
+
+### Changed & Improved
+
+* Updated default installer setup name to `{NAME}_Setup` in template and widget packaging.
+* Changed log level of background application and tray icon events from Info to Debug to reduce console noise.
+* Switched InputBox text antialiasing to grayscale rendering for improved clarity on transparent layered window surfaces.
+* Preserved authored element positions for text elements during animation queries rather than calculated layout bounds.
+
+### Fixed
+
+* Fixed widget window position updates for `m_Options.x` and `m_Options.y` to eliminate position flickering.
+* Fixed mouse message handling and click dispatch order to prioritize frontmost interactive controls over transparent display-only overlays.
+* Fixed drag gesture initiation on draggable controls during left mouse button down.
+* Fixed input box focus and caret positioning during programmatic and mouse click interactions.
+* Fixed element destruction ordering to ensure child controls are cleanly detached without invalid container references.
+* Fixed widget instance cleanup in event bindings ensuring proper deregistration from global tracking upon deletion.
+
+<!-- ================================================================================= -->
 ## [0.9.11.0-beta] - 2026-09-09
 ###### 📅 09th September, 2026
 

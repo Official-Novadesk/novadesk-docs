@@ -66,6 +66,7 @@ Top-level optional:
 - `excludeItems` (array of file/folder path patterns to exclude from packaging)
 - `addons` (array of addon DLL names required by the widget)
 - `setup` (custom installer configuration object)
+- `minimumNovadeskVersion` (semver-style string, e.g. `"0.9.11.0"` — minimum Novadesk version required to run this widget; shown in the installer and checked at install time)
 
 `setup` object:
 - `setup.installDir`
@@ -104,7 +105,7 @@ Supported installer options:
 - `setup.runOnStartup` (`boolean`, default `false`)
 - `setup.installDir` (`string`, required)
 - `setup.startMenuFolder` (`string`, required)
-- `setup.setupName` (`string`, required)
+- `setup.setupName` (`string`, required; default is now `{NAME}_Setup`)
 - `setup.setupIcon` (`string`, required)
 - `setup.enableUninstall` (`boolean`, default `true`)
 - `setup.launchAfterInstall` (`boolean`, default `false`)

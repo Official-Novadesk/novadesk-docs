@@ -8,7 +8,7 @@ Novadesk is a powerful desktop customization application that provides real-time
 
 ## Preview
 
-![Novadesk Documentation Website](./.github/preview-website.png)
+![Novadesk Documentation Website](https://res.cloudinary.com/i8b6ikc3/image/upload/v1790520145/luwpopdxsvai23gqwqpz.png)
 
 ## Contributing
 

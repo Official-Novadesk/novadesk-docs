@@ -5,6 +5,21 @@ description: Release history and changelog for all Novadesk versions.
 
 # Changelog
 
+## [0.9.13.0-beta] - 2026-09-28
+###### 📅 28th September, 2026
+
+### Changed & Improved
+
+* **Manage Novadesk UI & Widget List:**
+  * Double-clicking any widget in the Manage Novadesk widget list now toggles its loaded state (load/unload).
+  * Maintained item selection and view scroll position across list refreshes when toggling or refreshing widgets.
+  * Added `LVS_SHOWSELALWAYS` style so the selected widget remains highlighted when focus shifts to other controls.
+  * Optimized list rebuilds with `WM_SETREDRAW` suppression to eliminate visual flicker during updates.
+* **Script Path Handling & Engine Stability:**
+  * Improved script path comparisons throughout `JSEngine` (destruction, timers, IPC listeners/handlers, trays, webFetch) using case-insensitive normalization to prevent duplicate script instances and stale listener leaks on Windows.
+  * Switched script evaluation revision tracking to an atomic global revision counter for reliable module re-evaluation.
+
+<!-- ================================================================================= -->
 ## [0.9.12.0-beta] - 2026-09-27
 ###### 📅 27th September, 2026
 
